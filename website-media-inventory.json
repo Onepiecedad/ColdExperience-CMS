@@ -1,0 +1,4299 @@
+{
+  "timestamp": "2025-12-20T16:47:37.322Z",
+  "summary": {
+    "totalFiles": 135,
+    "videos": 32,
+    "images": 103,
+    "directories": {
+      "nya_filmer": 18,
+      "optimized_videos": 11,
+      "images": 35,
+      "broschyr": 66,
+      "skolan-bilder": 3,
+      "public_root": 2
+    }
+  },
+  "files": [
+    {
+      "filename": "coffee-outdoors-DvAiQJkL.jpeg",
+      "relativePath": "/broschyr/assets/coffee-outdoors-DvAiQJkL.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/coffee-outdoors-DvAiQJkL.jpeg",
+      "type": "image",
+      "sizeBytes": 712318,
+      "sizeMB": "0.68",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "cozy-accommodation-Qz4GHs-Z.jpeg",
+      "relativePath": "/broschyr/assets/cozy-accommodation-Qz4GHs-Z.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/cozy-accommodation-Qz4GHs-Z.jpeg",
+      "type": "image",
+      "sizeBytes": 371472,
+      "sizeMB": "0.35",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "dog-sledging-TPvVXFdq.jpeg",
+      "relativePath": "/broschyr/assets/dog-sledging-TPvVXFdq.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/dog-sledging-TPvVXFdq.jpeg",
+      "type": "image",
+      "sizeBytes": 12487,
+      "sizeMB": "0.01",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "dog-sledging.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/dog-sledging.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/dog-sledging.jpeg",
+      "type": "image",
+      "sizeBytes": 12487,
+      "sizeMB": "0.01",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "forest-cabin-DMlt9M2q.jpeg",
+      "relativePath": "/broschyr/assets/forest-cabin-DMlt9M2q.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/forest-cabin-DMlt9M2q.jpeg",
+      "type": "image",
+      "sizeBytes": 347607,
+      "sizeMB": "0.33",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "ice-fishing-BCQ8arAl.jpeg",
+      "relativePath": "/broschyr/assets/ice-fishing-BCQ8arAl.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/ice-fishing-BCQ8arAl.jpeg",
+      "type": "image",
+      "sizeBytes": 405897,
+      "sizeMB": "0.39",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "northern_lights-DoCdX2IK.jpeg",
+      "relativePath": "/broschyr/assets/northern_lights-DoCdX2IK.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/northern_lights-DoCdX2IK.jpeg",
+      "type": "image",
+      "sizeBytes": 7903,
+      "sizeMB": "0.01",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "northern_lights.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/northern_lights.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/northern_lights.jpeg",
+      "type": "image",
+      "sizeBytes": 7903,
+      "sizeMB": "0.01",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "northern-lights-Q0hZMOOL.jpeg",
+      "relativePath": "/broschyr/assets/northern-lights-Q0hZMOOL.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/northern-lights-Q0hZMOOL.jpeg",
+      "type": "image",
+      "sizeBytes": 336635,
+      "sizeMB": "0.32",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "outdoor-bathtub-9tmnls9l.jpeg",
+      "relativePath": "/broschyr/assets/outdoor-bathtub-9tmnls9l.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/outdoor-bathtub-9tmnls9l.jpeg",
+      "type": "image",
+      "sizeBytes": 441252,
+      "sizeMB": "0.42",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "placeholder.svg",
+      "relativePath": "/broschyr/placeholder.svg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/placeholder.svg",
+      "type": "image",
+      "sizeBytes": 3253,
+      "sizeMB": "0.00",
+      "extension": ".svg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "sami-visit-CWyTvBrF.jpeg",
+      "relativePath": "/broschyr/assets/sami-visit-CWyTvBrF.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/sami-visit-CWyTvBrF.jpeg",
+      "type": "image",
+      "sizeBytes": 15094,
+      "sizeMB": "0.01",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "sami-visit.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/sami-visit.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/sami-visit.jpeg",
+      "type": "image",
+      "sizeBytes": 15094,
+      "sizeMB": "0.01",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "snowmobile-tour-53KHiJ9H.jpeg",
+      "relativePath": "/broschyr/assets/snowmobile-tour-53KHiJ9H.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/snowmobile-tour-53KHiJ9H.jpeg",
+      "type": "image",
+      "sizeBytes": 423738,
+      "sizeMB": "0.40",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "untouched-snow-CULXc5c3.jpeg",
+      "relativePath": "/broschyr/assets/untouched-snow-CULXc5c3.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/untouched-snow-CULXc5c3.jpeg",
+      "type": "image",
+      "sizeBytes": 464944,
+      "sizeMB": "0.44",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.44.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.44.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.44.jpeg",
+      "type": "image",
+      "sizeBytes": 236714,
+      "sizeMB": "0.23",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (1).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (1).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (1).jpeg",
+      "type": "image",
+      "sizeBytes": 373893,
+      "sizeMB": "0.36",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (10).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (10).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (10).jpeg",
+      "type": "image",
+      "sizeBytes": 772884,
+      "sizeMB": "0.74",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (2).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (2).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (2).jpeg",
+      "type": "image",
+      "sizeBytes": 468959,
+      "sizeMB": "0.45",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (3).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (3).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (3).jpeg",
+      "type": "image",
+      "sizeBytes": 464944,
+      "sizeMB": "0.44",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (4).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (4).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (4).jpeg",
+      "type": "image",
+      "sizeBytes": 507078,
+      "sizeMB": "0.48",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (5).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (5).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (5).jpeg",
+      "type": "image",
+      "sizeBytes": 373322,
+      "sizeMB": "0.36",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (6).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (6).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (6).jpeg",
+      "type": "image",
+      "sizeBytes": 423738,
+      "sizeMB": "0.40",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (7).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (7).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (7).jpeg",
+      "type": "image",
+      "sizeBytes": 484811,
+      "sizeMB": "0.46",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (8).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (8).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (8).jpeg",
+      "type": "image",
+      "sizeBytes": 338634,
+      "sizeMB": "0.32",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45 (9).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (9).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45 (9).jpeg",
+      "type": "image",
+      "sizeBytes": 566253,
+      "sizeMB": "0.54",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.45.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.45.jpeg",
+      "type": "image",
+      "sizeBytes": 582410,
+      "sizeMB": "0.56",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (1).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (1).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (1).jpeg",
+      "type": "image",
+      "sizeBytes": 712318,
+      "sizeMB": "0.68",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (10).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (10).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (10).jpeg",
+      "type": "image",
+      "sizeBytes": 349491,
+      "sizeMB": "0.33",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (11).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (11).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (11).jpeg",
+      "type": "image",
+      "sizeBytes": 371472,
+      "sizeMB": "0.35",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (2).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (2).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (2).jpeg",
+      "type": "image",
+      "sizeBytes": 500764,
+      "sizeMB": "0.48",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (3).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (3).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (3).jpeg",
+      "type": "image",
+      "sizeBytes": 243568,
+      "sizeMB": "0.23",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (4).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (4).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (4).jpeg",
+      "type": "image",
+      "sizeBytes": 470792,
+      "sizeMB": "0.45",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (5).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (5).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (5).jpeg",
+      "type": "image",
+      "sizeBytes": 222370,
+      "sizeMB": "0.21",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (6).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (6).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (6).jpeg",
+      "type": "image",
+      "sizeBytes": 211147,
+      "sizeMB": "0.20",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (7).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (7).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (7).jpeg",
+      "type": "image",
+      "sizeBytes": 587738,
+      "sizeMB": "0.56",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (8).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (8).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (8).jpeg",
+      "type": "image",
+      "sizeBytes": 420565,
+      "sizeMB": "0.40",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46 (9).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (9).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46 (9).jpeg",
+      "type": "image",
+      "sizeBytes": 401669,
+      "sizeMB": "0.38",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.46.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.46.jpeg",
+      "type": "image",
+      "sizeBytes": 267655,
+      "sizeMB": "0.26",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (1).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (1).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (1).jpeg",
+      "type": "image",
+      "sizeBytes": 310714,
+      "sizeMB": "0.30",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (10).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (10).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (10).jpeg",
+      "type": "image",
+      "sizeBytes": 181424,
+      "sizeMB": "0.17",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (2).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (2).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (2).jpeg",
+      "type": "image",
+      "sizeBytes": 352392,
+      "sizeMB": "0.34",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (3).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (3).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (3).jpeg",
+      "type": "image",
+      "sizeBytes": 546527,
+      "sizeMB": "0.52",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (4).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (4).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (4).jpeg",
+      "type": "image",
+      "sizeBytes": 189672,
+      "sizeMB": "0.18",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (5).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (5).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (5).jpeg",
+      "type": "image",
+      "sizeBytes": 616851,
+      "sizeMB": "0.59",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (6).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (6).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (6).jpeg",
+      "type": "image",
+      "sizeBytes": 486777,
+      "sizeMB": "0.46",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (7).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (7).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (7).jpeg",
+      "type": "image",
+      "sizeBytes": 405897,
+      "sizeMB": "0.39",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (8).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (8).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (8).jpeg",
+      "type": "image",
+      "sizeBytes": 495290,
+      "sizeMB": "0.47",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47 (9).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (9).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47 (9).jpeg",
+      "type": "image",
+      "sizeBytes": 441252,
+      "sizeMB": "0.42",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.47.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.47.jpeg",
+      "type": "image",
+      "sizeBytes": 198830,
+      "sizeMB": "0.19",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (1).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (1).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (1).jpeg",
+      "type": "image",
+      "sizeBytes": 613763,
+      "sizeMB": "0.59",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (10).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (10).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (10).jpeg",
+      "type": "image",
+      "sizeBytes": 302382,
+      "sizeMB": "0.29",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (11).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (11).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (11).jpeg",
+      "type": "image",
+      "sizeBytes": 399361,
+      "sizeMB": "0.38",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (2)-BVupTsEs.jpeg",
+      "relativePath": "/broschyr/assets/WhatsApp Image 2025-11-10 at 14.14.48 (2)-BVupTsEs.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/assets/WhatsApp Image 2025-11-10 at 14.14.48 (2)-BVupTsEs.jpeg",
+      "type": "image",
+      "sizeBytes": 357618,
+      "sizeMB": "0.34",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (2).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (2).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (2).jpeg",
+      "type": "image",
+      "sizeBytes": 357618,
+      "sizeMB": "0.34",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (3).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (3).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (3).jpeg",
+      "type": "image",
+      "sizeBytes": 573064,
+      "sizeMB": "0.55",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (4).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (4).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (4).jpeg",
+      "type": "image",
+      "sizeBytes": 331653,
+      "sizeMB": "0.32",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (5).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (5).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (5).jpeg",
+      "type": "image",
+      "sizeBytes": 412486,
+      "sizeMB": "0.39",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (6).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (6).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (6).jpeg",
+      "type": "image",
+      "sizeBytes": 579435,
+      "sizeMB": "0.55",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (7).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (7).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (7).jpeg",
+      "type": "image",
+      "sizeBytes": 537495,
+      "sizeMB": "0.51",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (8).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (8).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (8).jpeg",
+      "type": "image",
+      "sizeBytes": 196709,
+      "sizeMB": "0.19",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48 (9).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (9).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48 (9).jpeg",
+      "type": "image",
+      "sizeBytes": 347607,
+      "sizeMB": "0.33",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.48.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.48.jpeg",
+      "type": "image",
+      "sizeBytes": 360085,
+      "sizeMB": "0.34",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.49 (1).jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.49 (1).jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.49 (1).jpeg",
+      "type": "image",
+      "sizeBytes": 336635,
+      "sizeMB": "0.32",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Image 2025-11-10 at 14.14.49.jpeg",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.49.jpeg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Image 2025-11-10 at 14.14.49.jpeg",
+      "type": "image",
+      "sizeBytes": 371138,
+      "sizeMB": "0.35",
+      "extension": ".jpeg",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "WhatsApp Video 2025-11-10 at 14.14.49.mp4",
+      "relativePath": "/broschyr/ColdExperience-Presentation/WhatsApp Video 2025-11-10 at 14.14.49.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/broschyr/ColdExperience-Presentation/WhatsApp Video 2025-11-10 at 14.14.49.mp4",
+      "type": "video",
+      "sizeBytes": 29723223,
+      "sizeMB": "28.35",
+      "extension": ".mp4",
+      "directory": "broschyr",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "clothes.png",
+      "relativePath": "/images/Nya_bilder/clothes.png",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/clothes.png",
+      "type": "image",
+      "sizeBytes": 2471086,
+      "sizeMB": "2.36",
+      "extension": ".png",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/FaqSection.js",
+          "line": 280,
+          "snippet": "src=\"/images/Nya_bilder/clothes.png\""
+        },
+        {
+          "file": "components/FaqSection.js",
+          "line": 302,
+          "snippet": "src=\"/images/Nya_bilder/clothes.png\""
+        },
+        {
+          "file": "components/FaqSection.js",
+          "line": 280,
+          "snippet": "src=\"/images/Nya_bilder/clothes.png\""
+        },
+        {
+          "file": "components/FaqSection.js",
+          "line": 302,
+          "snippet": "src=\"/images/Nya_bilder/clothes.png\""
+        },
+        {
+          "file": "components/FaqSection.js",
+          "line": 280,
+          "snippet": "src=\"/images/Nya_bilder/clothes.png\""
+        },
+        {
+          "file": "components/FaqSection.js",
+          "line": 302,
+          "snippet": "src=\"/images/Nya_bilder/clothes.png\""
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": "faq",
+        "sectionId": "questions",
+        "description": "FAQ clothing info"
+      }
+    },
+    {
+      "filename": "coldexperience_born.jpg",
+      "relativePath": "/images/Nya_bilder/coldexperience_born.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/coldexperience_born.jpg",
+      "type": "image",
+      "sizeBytes": 612744,
+      "sizeMB": "0.58",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 73,
+          "snippet": "image: \"/images/Nya_bilder/coldexperience_born.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 73,
+          "snippet": "image: \"/images/Nya_bilder/coldexperience_born.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 73,
+          "snippet": "image: \"/images/Nya_bilder/coldexperience_born.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 76,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 76,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 76,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 83,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 83,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 83,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 82,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 82,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 82,
+          "snippet": "src: \"/images/Nya_bilder/coldexperience_born.jpg\","
+        }
+      ],
+      "usageCount": 12,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "family_1.jpg",
+      "relativePath": "/images/Nya_bilder/family_1.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/family_1.jpg",
+      "type": "image",
+      "sizeBytes": 436111,
+      "sizeMB": "0.42",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 168,
+          "snippet": "src: \"/images/Nya_bilder/family_1.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 168,
+          "snippet": "src: \"/images/Nya_bilder/family_1.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 168,
+          "snippet": "src: \"/images/Nya_bilder/family_1.jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "family_2.jpg",
+      "relativePath": "/images/Nya_bilder/family_2.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/family_2.jpg",
+      "type": "image",
+      "sizeBytes": 797181,
+      "sizeMB": "0.76",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 66,
+          "snippet": "image: \"/images/Nya_bilder/family_2.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 66,
+          "snippet": "image: \"/images/Nya_bilder/family_2.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 66,
+          "snippet": "image: \"/images/Nya_bilder/family_2.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 175,
+          "snippet": "src: \"/images/Nya_bilder/family_2.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 175,
+          "snippet": "src: \"/images/Nya_bilder/family_2.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 175,
+          "snippet": "src: \"/images/Nya_bilder/family_2.jpg\","
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "gustav_childhood.jpg",
+      "relativePath": "/images/Nya_bilder/gustav_childhood.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/gustav_childhood.jpg",
+      "type": "image",
+      "sizeBytes": 1571653,
+      "sizeMB": "1.50",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 45,
+          "snippet": "image: \"/images/Nya_bilder/gustav_childhood.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 45,
+          "snippet": "image: \"/images/Nya_bilder/gustav_childhood.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 45,
+          "snippet": "image: \"/images/Nya_bilder/gustav_childhood.jpg\""
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_0451.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0451.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_0451.jpg",
+      "type": "image",
+      "sizeBytes": 2100463,
+      "sizeMB": "2.00",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 479,
+          "snippet": "style={{ backgroundImage: \"url(/images/Nya_bilder/IMG_0451.jpg)\" }}"
+        },
+        {
+          "file": "components/About.js",
+          "line": 479,
+          "snippet": "style={{ backgroundImage: \"url(/images/Nya_bilder/IMG_0451.jpg)\" }}"
+        },
+        {
+          "file": "components/About.js",
+          "line": 479,
+          "snippet": "style={{ backgroundImage: \"url(/images/Nya_bilder/IMG_0451.jpg)\" }}"
+        },
+        {
+          "file": "components/Contact.js",
+          "line": 166,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_0451.jpg\";"
+        },
+        {
+          "file": "components/Contact.js",
+          "line": 166,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_0451.jpg\";"
+        },
+        {
+          "file": "components/Contact.js",
+          "line": 166,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_0451.jpg\";"
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 62,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 62,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 62,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 71,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 71,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 71,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 70,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 70,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 70,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0451.jpg\","
+        },
+        {
+          "file": "pages/shared/FaqPage.js",
+          "line": 38,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_0451.jpg\";"
+        },
+        {
+          "file": "pages/shared/FaqPage.js",
+          "line": 38,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_0451.jpg\";"
+        },
+        {
+          "file": "pages/shared/FaqPage.js",
+          "line": 38,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_0451.jpg\";"
+        }
+      ],
+      "usageCount": 18,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_0542.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0542.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_0542.jpg",
+      "type": "image",
+      "sizeBytes": 1201693,
+      "sizeMB": "1.15",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 41,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 41,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 41,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 51,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 51,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 51,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 52,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 52,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 52,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0542.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_0554 (1).jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0554 (1).jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_0554 (1).jpg",
+      "type": "image",
+      "sizeBytes": 900305,
+      "sizeMB": "0.86",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 183,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0554 (1).jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 183,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0554 (1).jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 183,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0554 (1).jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_0575.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0575.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_0575.jpg",
+      "type": "image",
+      "sizeBytes": 1310614,
+      "sizeMB": "1.25",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 48,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 48,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 48,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 57,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 57,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 57,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 58,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 58,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 58,
+          "snippet": "src: \"/images/Nya_bilder/IMG_0575.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_1547.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1547.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_1547.jpg",
+      "type": "image",
+      "sizeBytes": 813559,
+      "sizeMB": "0.78",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 207,
+          "snippet": "\"/images/Nya_bilder/IMG_1547.jpg\", // Grupper"
+        },
+        {
+          "file": "components/About.js",
+          "line": 207,
+          "snippet": "\"/images/Nya_bilder/IMG_1547.jpg\", // Grupper"
+        },
+        {
+          "file": "components/About.js",
+          "line": 207,
+          "snippet": "\"/images/Nya_bilder/IMG_1547.jpg\", // Grupper"
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 90,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 90,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 90,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 97,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 97,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 97,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 96,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 96,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 96,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1547.jpg\","
+        }
+      ],
+      "usageCount": 12,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_1579.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1579.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_1579.jpg",
+      "type": "image",
+      "sizeBytes": 703998,
+      "sizeMB": "0.67",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 190,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1579.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 190,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1579.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 190,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1579.jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_1634.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1634.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_1634.jpg",
+      "type": "image",
+      "sizeBytes": 750889,
+      "sizeMB": "0.72",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 118,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 118,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 118,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 123,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 123,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 123,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 122,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 122,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 122,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1634.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_1687.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1687.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_1687.jpg",
+      "type": "image",
+      "sizeBytes": 621127,
+      "sizeMB": "0.59",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 69,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 69,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 69,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 77,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 77,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 77,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 76,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 76,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 76,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1687.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_1904.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1904.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_1904.jpg",
+      "type": "image",
+      "sizeBytes": 549427,
+      "sizeMB": "0.52",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 197,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1904.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 197,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1904.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 197,
+          "snippet": "src: \"/images/Nya_bilder/IMG_1904.jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_2425.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_2425.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_2425.jpg",
+      "type": "image",
+      "sizeBytes": 1027974,
+      "sizeMB": "0.98",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 143,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_2425.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 205,
+          "snippet": "\"/images/Nya_bilder/IMG_2425.jpg\", // Familj"
+        },
+        {
+          "file": "components/About.js",
+          "line": 143,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_2425.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 205,
+          "snippet": "\"/images/Nya_bilder/IMG_2425.jpg\", // Familj"
+        },
+        {
+          "file": "components/About.js",
+          "line": 143,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_2425.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 205,
+          "snippet": "\"/images/Nya_bilder/IMG_2425.jpg\", // Familj"
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 97,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 97,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 97,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 103,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 103,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 103,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 102,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 102,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 102,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2425.jpg\","
+        }
+      ],
+      "usageCount": 15,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_2963.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_2963.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_2963.jpg",
+      "type": "image",
+      "sizeBytes": 758107,
+      "sizeMB": "0.72",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 160,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 160,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 160,
+          "snippet": "src: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_2963.jpg\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_2963.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_3493.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3493.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_3493.jpg",
+      "type": "image",
+      "sizeBytes": 923089,
+      "sizeMB": "0.88",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 335,
+          "snippet": "src=\"/images/Nya_bilder/IMG_3493.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 335,
+          "snippet": "src=\"/images/Nya_bilder/IMG_3493.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 335,
+          "snippet": "src=\"/images/Nya_bilder/IMG_3493.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 33,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 33,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 33,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 42,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 42,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 42,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 43,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 43,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 43,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_3493.jpg\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_3493.jpg\","
+        }
+      ],
+      "usageCount": 15,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_3700.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3700.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_3700.jpg",
+      "type": "image",
+      "sizeBytes": 889248,
+      "sizeMB": "0.85",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 125,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 125,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 125,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 129,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 129,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 129,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 128,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 128,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 128,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3700.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_3838.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3838.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_3838.jpg",
+      "type": "image",
+      "sizeBytes": 1010299,
+      "sizeMB": "0.96",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 146,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3838.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 146,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3838.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 146,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3838.jpg\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_3838.jpg\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_3838.jpg\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 36,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_3838.jpg\","
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_3860.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3860.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_3860.jpg",
+      "type": "image",
+      "sizeBytes": 851294,
+      "sizeMB": "0.81",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 153,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3860.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 153,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3860.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 153,
+          "snippet": "src: \"/images/Nya_bilder/IMG_3860.jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_4082.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4082.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_4082.jpg",
+      "type": "image",
+      "sizeBytes": 940987,
+      "sizeMB": "0.90",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 205,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4082.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 205,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4082.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 205,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4082.jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_4108.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4108.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_4108.jpg",
+      "type": "image",
+      "sizeBytes": 1567672,
+      "sizeMB": "1.50",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 325,
+          "snippet": "src=\"/images/Nya_bilder/IMG_4108.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 325,
+          "snippet": "src=\"/images/Nya_bilder/IMG_4108.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 325,
+          "snippet": "src=\"/images/Nya_bilder/IMG_4108.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 25,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 25,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 25,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 35,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 35,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 35,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 36,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 36,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 36,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4108.jpg\","
+        }
+      ],
+      "usageCount": 12,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_4436.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4436.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_4436.jpg",
+      "type": "image",
+      "sizeBytes": 877673,
+      "sizeMB": "0.84",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 208,
+          "snippet": "\"/images/Nya_bilder/IMG_4436.jpg\"  // Minnen"
+        },
+        {
+          "file": "components/About.js",
+          "line": 208,
+          "snippet": "\"/images/Nya_bilder/IMG_4436.jpg\"  // Minnen"
+        },
+        {
+          "file": "components/About.js",
+          "line": 208,
+          "snippet": "\"/images/Nya_bilder/IMG_4436.jpg\"  // Minnen"
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 104,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 104,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 104,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 109,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 109,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 109,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 108,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 108,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 108,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4436.jpg\","
+        }
+      ],
+      "usageCount": 12,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_4527.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4527.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_4527.jpg",
+      "type": "image",
+      "sizeBytes": 783208,
+      "sizeMB": "0.75",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 55,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 55,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 55,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 63,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 63,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 63,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 64,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 64,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 64,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 21,
+          "snippet": "image: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 57,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 21,
+          "snippet": "image: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 57,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 21,
+          "snippet": "image: \"/images/Nya_bilder/IMG_4527.jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 57,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_4527.jpg\","
+        }
+      ],
+      "usageCount": 15,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_4545.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4545.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_4545.jpg",
+      "type": "image",
+      "sizeBytes": 745896,
+      "sizeMB": "0.71",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 132,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 132,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 132,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 135,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 135,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 135,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 134,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 134,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 134,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4545.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_4596 (1).jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4596 (1).jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_4596 (1).jpg",
+      "type": "image",
+      "sizeBytes": 1034554,
+      "sizeMB": "0.99",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 212,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4596 (1).jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 212,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4596 (1).jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 212,
+          "snippet": "src: \"/images/Nya_bilder/IMG_4596 (1).jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 58,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_4596 (1).jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 58,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_4596 (1).jpg\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 58,
+          "snippet": "introPoster: \"/images/Nya_bilder/IMG_4596 (1).jpg\","
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_5562.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_5562.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_5562.jpg",
+      "type": "image",
+      "sizeBytes": 645019,
+      "sizeMB": "0.62",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 139,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 139,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 139,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 141,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 141,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 141,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 140,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 140,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 140,
+          "snippet": "src: \"/images/Nya_bilder/IMG_5562.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_6181.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_6181.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_6181.jpg",
+      "type": "image",
+      "sizeBytes": 771340,
+      "sizeMB": "0.74",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 83,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 83,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 83,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 89,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 89,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 89,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 90,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 90,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 90,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6181.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_6698.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_6698.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_6698.jpg",
+      "type": "image",
+      "sizeBytes": 801838,
+      "sizeMB": "0.76",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 345,
+          "snippet": "src=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 345,
+          "snippet": "src=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 345,
+          "snippet": "src=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/BookExperience.js",
+          "line": 59,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_6698.jpg\";"
+        },
+        {
+          "file": "components/BookExperience.js",
+          "line": 59,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_6698.jpg\";"
+        },
+        {
+          "file": "components/BookExperience.js",
+          "line": 59,
+          "snippet": "const heroPoster = \"/images/Nya_bilder/IMG_6698.jpg\";"
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 29,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 29,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 29,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 17,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 17,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 17,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 28,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 28,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 28,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 29,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 29,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 29,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 111,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 133,
+          "snippet": "src=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 111,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 133,
+          "snippet": "src=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 111,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 133,
+          "snippet": "src=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Packages.js",
+          "line": 99,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Packages.js",
+          "line": 99,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "components/Packages.js",
+          "line": 99,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 248,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 248,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 248,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6698.jpg\""
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6698.jpg\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6698.jpg\","
+        }
+      ],
+      "usageCount": 33,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_6702.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_6702.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_6702.jpg",
+      "type": "image",
+      "sizeBytes": 1108916,
+      "sizeMB": "1.06",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 226,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6702.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 363,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6702.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 226,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6702.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 363,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6702.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 226,
+          "snippet": "src: \"/images/Nya_bilder/IMG_6702.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 363,
+          "snippet": "poster=\"/images/Nya_bilder/IMG_6702.jpg\""
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6702.jpg\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6702.jpg\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 35,
+          "snippet": "poster: \"/images/Nya_bilder/IMG_6702.jpg\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_7476 (1).jpg",
+      "relativePath": "/images/Nya_bilder/IMG_7476 (1).jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_7476 (1).jpg",
+      "type": "image",
+      "sizeBytes": 903483,
+      "sizeMB": "0.86",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 233,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7476 (1).jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 233,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7476 (1).jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 233,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7476 (1).jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "IMG_7834.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_7834.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/IMG_7834.jpg",
+      "type": "image",
+      "sizeBytes": 966637,
+      "sizeMB": "0.92",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 206,
+          "snippet": "\"/images/Nya_bilder/IMG_7834.jpg\", // Äkta"
+        },
+        {
+          "file": "components/About.js",
+          "line": 206,
+          "snippet": "\"/images/Nya_bilder/IMG_7834.jpg\", // Äkta"
+        },
+        {
+          "file": "components/About.js",
+          "line": 206,
+          "snippet": "\"/images/Nya_bilder/IMG_7834.jpg\", // Äkta"
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 111,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 111,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 111,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 115,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 115,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery_clean.js",
+          "line": 115,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 116,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 116,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        },
+        {
+          "file": "components/Gallery_new.js",
+          "line": 116,
+          "snippet": "src: \"/images/Nya_bilder/IMG_7834.jpg\","
+        }
+      ],
+      "usageCount": 12,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "julias_matresa.jpg",
+      "relativePath": "/images/Nya_bilder/julias_matresa.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/julias_matresa.jpg",
+      "type": "image",
+      "sizeBytes": 837400,
+      "sizeMB": "0.80",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 52,
+          "snippet": "image: \"/images/Nya_bilder/julias_matresa.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 52,
+          "snippet": "image: \"/images/Nya_bilder/julias_matresa.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 52,
+          "snippet": "image: \"/images/Nya_bilder/julias_matresa.jpg\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 219,
+          "snippet": "src: \"/images/Nya_bilder/julias_matresa.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 219,
+          "snippet": "src: \"/images/Nya_bilder/julias_matresa.jpg\","
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 219,
+          "snippet": "src: \"/images/Nya_bilder/julias_matresa.jpg\","
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "love_adventure.jpg",
+      "relativePath": "/images/Nya_bilder/love_adventure.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/Nya_bilder/love_adventure.jpg",
+      "type": "image",
+      "sizeBytes": 75574,
+      "sizeMB": "0.07",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 59,
+          "snippet": "image: \"/images/Nya_bilder/love_adventure.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 59,
+          "snippet": "image: \"/images/Nya_bilder/love_adventure.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 59,
+          "snippet": "image: \"/images/Nya_bilder/love_adventure.jpg\""
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "owners.jpg",
+      "relativePath": "/images/owners.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/images/owners.jpg",
+      "type": "image",
+      "sizeBytes": 679101,
+      "sizeMB": "0.65",
+      "extension": ".jpg",
+      "directory": "images",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 308,
+          "snippet": "src=\"/images/owners.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 308,
+          "snippet": "src=\"/images/owners.jpg\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 308,
+          "snippet": "src=\"/images/owners.jpg\""
+        },
+        {
+          "file": "components/OwnerSection.js",
+          "line": 40,
+          "snippet": "src=\"/images/owners.jpg\""
+        },
+        {
+          "file": "components/OwnerSection.js",
+          "line": 40,
+          "snippet": "src=\"/images/owners.jpg\""
+        },
+        {
+          "file": "components/OwnerSection.js",
+          "line": 40,
+          "snippet": "src=\"/images/owners.jpg\""
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": "about",
+        "sectionId": "ownerSection",
+        "description": "Owners/Hosts section"
+      }
+    },
+    {
+      "filename": "coldexperience-top-1.mp4",
+      "relativePath": "/nya_filmer/coldexperience-top-1.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/coldexperience-top-1.mp4",
+      "type": "video",
+      "sizeBytes": 7343847,
+      "sizeMB": "7.00",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [
+        {
+          "file": "components/Hero.js",
+          "line": 105,
+          "snippet": "src=\"/nya_filmer/coldexperience-top-1.mp4\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 105,
+          "snippet": "src=\"/nya_filmer/coldexperience-top-1.mp4\""
+        },
+        {
+          "file": "components/Hero.js",
+          "line": 105,
+          "snippet": "src=\"/nya_filmer/coldexperience-top-1.mp4\""
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "hero",
+        "sectionId": "hero",
+        "description": "Hero background video"
+      }
+    },
+    {
+      "filename": "coldexperience1.mp4",
+      "relativePath": "/nya_filmer/coldexperience1.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/coldexperience1.mp4",
+      "type": "video",
+      "sizeBytes": 42882475,
+      "sizeMB": "40.90",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "packages",
+        "sectionId": "packages",
+        "description": "Package video"
+      }
+    },
+    {
+      "filename": "coldexperience2.mp4",
+      "relativePath": "/nya_filmer/coldexperience2.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/coldexperience2.mp4",
+      "type": "video",
+      "sizeBytes": 49531997,
+      "sizeMB": "47.24",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "packages",
+        "sectionId": "packages",
+        "description": "Package video"
+      }
+    },
+    {
+      "filename": "coldexperience3.mp4",
+      "relativePath": "/nya_filmer/coldexperience3.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/coldexperience3.mp4",
+      "type": "video",
+      "sizeBytes": 30373643,
+      "sizeMB": "28.97",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "packages",
+        "sectionId": "packages",
+        "description": "Package video"
+      }
+    },
+    {
+      "filename": "Film-1.mp4",
+      "relativePath": "/nya_filmer/Film-1.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/Film-1.mp4",
+      "type": "video",
+      "sizeBytes": 17336053,
+      "sizeMB": "16.53",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "Film-2.mp4",
+      "relativePath": "/nya_filmer/Film-2.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/Film-2.mp4",
+      "type": "video",
+      "sizeBytes": 10933643,
+      "sizeMB": "10.43",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "Film-3.mp4",
+      "relativePath": "/nya_filmer/Film-3.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/Film-3.mp4",
+      "type": "video",
+      "sizeBytes": 11433124,
+      "sizeMB": "10.90",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "Film-4.mp4",
+      "relativePath": "/nya_filmer/Film-4.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/Film-4.mp4",
+      "type": "video",
+      "sizeBytes": 29723223,
+      "sizeMB": "28.35",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "galleri.mp4",
+      "relativePath": "/nya_filmer/galleri.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/galleri.mp4",
+      "type": "video",
+      "sizeBytes": 37885553,
+      "sizeMB": "36.13",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "gallery",
+        "sectionId": "grid",
+        "description": "Gallery section"
+      }
+    },
+    {
+      "filename": "hundspann1.mp4",
+      "relativePath": "/nya_filmer/hundspann1.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/hundspann1.mp4",
+      "type": "video",
+      "sizeBytes": 38382250,
+      "sizeMB": "36.60",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Dog sledding experience"
+      }
+    },
+    {
+      "filename": "hundspann2.mp4",
+      "relativePath": "/nya_filmer/hundspann2.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/hundspann2.mp4",
+      "type": "video",
+      "sizeBytes": 35461875,
+      "sizeMB": "33.82",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Dog sledding experience"
+      }
+    },
+    {
+      "filename": "hundspann3.mp4",
+      "relativePath": "/nya_filmer/hundspann3.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/hundspann3.mp4",
+      "type": "video",
+      "sizeBytes": 4117588,
+      "sizeMB": "3.93",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Dog sledding experience"
+      }
+    },
+    {
+      "filename": "matlagning.mp4",
+      "relativePath": "/nya_filmer/matlagning.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/matlagning.mp4",
+      "type": "video",
+      "sizeBytes": 4061457,
+      "sizeMB": "3.87",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [
+        {
+          "file": "components/Features.js",
+          "line": 47,
+          "snippet": "videoSrc: \"/nya_filmer/matlagning.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 47,
+          "snippet": "videoSrc: \"/nya_filmer/matlagning.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 47,
+          "snippet": "videoSrc: \"/nya_filmer/matlagning.mp4\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Cooking experience"
+      }
+    },
+    {
+      "filename": "norrsken1.mp4",
+      "relativePath": "/nya_filmer/norrsken1.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/norrsken1.mp4",
+      "type": "video",
+      "sizeBytes": 26504819,
+      "sizeMB": "25.28",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Northern lights experience"
+      }
+    },
+    {
+      "filename": "norrsken2.mp4",
+      "relativePath": "/nya_filmer/norrsken2.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/norrsken2.mp4",
+      "type": "video",
+      "sizeBytes": 37521399,
+      "sizeMB": "35.78",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Northern lights experience"
+      }
+    },
+    {
+      "filename": "om_oss.mp4",
+      "relativePath": "/nya_filmer/om_oss.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/om_oss.mp4",
+      "type": "video",
+      "sizeBytes": 27679616,
+      "sizeMB": "26.40",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "about",
+        "sectionId": "story",
+        "description": "About/Story section"
+      }
+    },
+    {
+      "filename": "snoskoter.mp4",
+      "relativePath": "/nya_filmer/snoskoter.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/snoskoter.mp4",
+      "type": "video",
+      "sizeBytes": 33126549,
+      "sizeMB": "31.59",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Snowmobile experience"
+      }
+    },
+    {
+      "filename": "snoskoter2.mp4",
+      "relativePath": "/nya_filmer/snoskoter2.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/nya_filmer/snoskoter2.mp4",
+      "type": "video",
+      "sizeBytes": 39564303,
+      "sizeMB": "37.73",
+      "extension": ".mp4",
+      "directory": "nya_filmer",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Snowmobile experience"
+      }
+    },
+    {
+      "filename": "coldexperience1-opt.mp4",
+      "relativePath": "/optimized_videos/coldexperience1-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/coldexperience1-opt.mp4",
+      "type": "video",
+      "sizeBytes": 5751235,
+      "sizeMB": "5.48",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/BookExperience.js",
+          "line": 58,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "components/BookExperience.js",
+          "line": 58,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "components/BookExperience.js",
+          "line": 58,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "components/Contact.js",
+          "line": 165,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "components/Contact.js",
+          "line": 165,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "components/Contact.js",
+          "line": 165,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "components/Features.js",
+          "line": 20,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience1-opt.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 20,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience1-opt.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 20,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience1-opt.mp4\","
+        },
+        {
+          "file": "components/Packages.js",
+          "line": 98,
+          "snippet": "src=\"/optimized_videos/coldexperience1-opt.mp4\""
+        },
+        {
+          "file": "components/Packages.js",
+          "line": 98,
+          "snippet": "src=\"/optimized_videos/coldexperience1-opt.mp4\""
+        },
+        {
+          "file": "components/Packages.js",
+          "line": 98,
+          "snippet": "src=\"/optimized_videos/coldexperience1-opt.mp4\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 247,
+          "snippet": "src=\"/optimized_videos/coldexperience1-opt.mp4\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 247,
+          "snippet": "src=\"/optimized_videos/coldexperience1-opt.mp4\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 247,
+          "snippet": "src=\"/optimized_videos/coldexperience1-opt.mp4\""
+        },
+        {
+          "file": "pages/shared/FaqPage.js",
+          "line": 37,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "pages/shared/FaqPage.js",
+          "line": 37,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        },
+        {
+          "file": "pages/shared/FaqPage.js",
+          "line": 37,
+          "snippet": "const heroVideo = \"/optimized_videos/coldexperience1-opt.mp4\";"
+        }
+      ],
+      "usageCount": 18,
+      "suggestedSection": {
+        "pageId": "packages",
+        "sectionId": "packages",
+        "description": "Package video"
+      }
+    },
+    {
+      "filename": "coldexperience2-opt.mp4",
+      "relativePath": "/optimized_videos/coldexperience2-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/coldexperience2-opt.mp4",
+      "type": "video",
+      "sizeBytes": 8279266,
+      "sizeMB": "7.90",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/Features.js",
+          "line": 29,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience2-opt.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 29,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience2-opt.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 29,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience2-opt.mp4\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "packages",
+        "sectionId": "packages",
+        "description": "Package video"
+      }
+    },
+    {
+      "filename": "coldexperience3-opt.mp4",
+      "relativePath": "/optimized_videos/coldexperience3-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/coldexperience3-opt.mp4",
+      "type": "video",
+      "sizeBytes": 7500615,
+      "sizeMB": "7.15",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/Features.js",
+          "line": 38,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience3-opt.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 38,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience3-opt.mp4\","
+        },
+        {
+          "file": "components/Features.js",
+          "line": 38,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience3-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 56,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience3-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 56,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience3-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Accommodation.js",
+          "line": 56,
+          "snippet": "videoSrc: \"/optimized_videos/coldexperience3-opt.mp4\","
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": "packages",
+        "sectionId": "packages",
+        "description": "Package video"
+      }
+    },
+    {
+      "filename": "galleri-opt.mp4",
+      "relativePath": "/optimized_videos/galleri-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/galleri-opt.mp4",
+      "type": "video",
+      "sizeBytes": 7150317,
+      "sizeMB": "6.82",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/Gallery.js",
+          "line": 362,
+          "snippet": "src=\"/optimized_videos/galleri-opt.mp4\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 362,
+          "snippet": "src=\"/optimized_videos/galleri-opt.mp4\""
+        },
+        {
+          "file": "components/Gallery.js",
+          "line": 362,
+          "snippet": "src=\"/optimized_videos/galleri-opt.mp4\""
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "gallery",
+        "sectionId": "grid",
+        "description": "Gallery section"
+      }
+    },
+    {
+      "filename": "hundspann1-opt.mp4",
+      "relativePath": "/optimized_videos/hundspann1-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/hundspann1-opt.mp4",
+      "type": "video",
+      "sizeBytes": 14944466,
+      "sizeMB": "14.25",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/hundspann1-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/hundspann1-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Husky-Ride.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/hundspann1-opt.mp4\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Dog sledding experience"
+      }
+    },
+    {
+      "filename": "hundspann2-opt.mp4",
+      "relativePath": "/optimized_videos/hundspann2-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/hundspann2-opt.mp4",
+      "type": "video",
+      "sizeBytes": 11219546,
+      "sizeMB": "10.70",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/Experiences.js",
+          "line": 52,
+          "snippet": "videoSrc: \"/optimized_videos/hundspann2-opt.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 52,
+          "snippet": "videoSrc: \"/optimized_videos/hundspann2-opt.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 52,
+          "snippet": "videoSrc: \"/optimized_videos/hundspann2-opt.mp4\","
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Dog sledding experience"
+      }
+    },
+    {
+      "filename": "norrsken1-opt.mp4",
+      "relativePath": "/optimized_videos/norrsken1-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/norrsken1-opt.mp4",
+      "type": "video",
+      "sizeBytes": 4149163,
+      "sizeMB": "3.96",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/Experiences.js",
+          "line": 40,
+          "snippet": "videoSrc: \"/optimized_videos/norrsken1-opt.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 40,
+          "snippet": "videoSrc: \"/optimized_videos/norrsken1-opt.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 40,
+          "snippet": "videoSrc: \"/optimized_videos/norrsken1-opt.mp4\","
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 321,
+          "snippet": "src=\"/optimized_videos/norrsken1-opt.mp4\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 321,
+          "snippet": "src=\"/optimized_videos/norrsken1-opt.mp4\""
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 321,
+          "snippet": "src=\"/optimized_videos/norrsken1-opt.mp4\""
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/norrsken1-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/norrsken1-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Northern-Lights.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/norrsken1-opt.mp4\","
+        }
+      ],
+      "usageCount": 9,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Northern lights experience"
+      }
+    },
+    {
+      "filename": "norrsken2-opt.mp4",
+      "relativePath": "/optimized_videos/norrsken2-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/norrsken2-opt.mp4",
+      "type": "video",
+      "sizeBytes": 5407152,
+      "sizeMB": "5.16",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Northern lights experience"
+      }
+    },
+    {
+      "filename": "om_oss-opt.mp4",
+      "relativePath": "/optimized_videos/om_oss-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/om_oss-opt.mp4",
+      "type": "video",
+      "sizeBytes": 3789909,
+      "sizeMB": "3.61",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/About.js",
+          "line": 142,
+          "snippet": "src=\"/optimized_videos/om_oss-opt.mp4\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 142,
+          "snippet": "src=\"/optimized_videos/om_oss-opt.mp4\""
+        },
+        {
+          "file": "components/About.js",
+          "line": 142,
+          "snippet": "src=\"/optimized_videos/om_oss-opt.mp4\""
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "about",
+        "sectionId": "story",
+        "description": "About/Story section"
+      }
+    },
+    {
+      "filename": "snoskoter-opt.mp4",
+      "relativePath": "/optimized_videos/snoskoter-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/snoskoter-opt.mp4",
+      "type": "video",
+      "sizeBytes": 5843802,
+      "sizeMB": "5.57",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/LaplandHolidayPackages.js",
+          "line": 414,
+          "snippet": "{[\"/optimized_videos/hundspann2-opt.mp4\", \"/optimized_videos/snoskoter-opt.mp4\", \"/optimized_videos/"
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/snoskoter-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/snoskoter-opt.mp4\","
+        },
+        {
+          "file": "pages/en/Snowmobile-Safari.js",
+          "line": 34,
+          "snippet": "videoSrc: \"/optimized_videos/snoskoter-opt.mp4\","
+        }
+      ],
+      "usageCount": 6,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Snowmobile experience"
+      }
+    },
+    {
+      "filename": "snoskoter2-opt.mp4",
+      "relativePath": "/optimized_videos/snoskoter2-opt.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/optimized_videos/snoskoter2-opt.mp4",
+      "type": "video",
+      "sizeBytes": 11088093,
+      "sizeMB": "10.57",
+      "extension": ".mp4",
+      "directory": "optimized_videos",
+      "usedIn": [
+        {
+          "file": "components/Experiences.js",
+          "line": 28,
+          "snippet": "videoSrc: \"/optimized_videos/snoskoter2-opt.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 28,
+          "snippet": "videoSrc: \"/optimized_videos/snoskoter2-opt.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 28,
+          "snippet": "videoSrc: \"/optimized_videos/snoskoter2-opt.mp4\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "experiences",
+        "sectionId": "experiences",
+        "description": "Snowmobile experience"
+      }
+    },
+    {
+      "filename": "favicon.svg",
+      "relativePath": "/favicon.svg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/favicon.svg",
+      "type": "image",
+      "sizeBytes": 486,
+      "sizeMB": "0.00",
+      "extension": ".svg",
+      "directory": "public_root",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "logo.png",
+      "relativePath": "/logo.png",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/logo.png",
+      "type": "image",
+      "sizeBytes": 29777,
+      "sizeMB": "0.03",
+      "extension": ".png",
+      "directory": "public_root",
+      "usedIn": [
+        {
+          "file": "components/Header.js",
+          "line": 67,
+          "snippet": "src=\"/logo.png\""
+        },
+        {
+          "file": "components/Header.js",
+          "line": 67,
+          "snippet": "src=\"/logo.png\""
+        },
+        {
+          "file": "components/Header.js",
+          "line": 67,
+          "snippet": "src=\"/logo.png\""
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": "navigation",
+        "sectionId": "header",
+        "description": "Header logo"
+      }
+    },
+    {
+      "filename": "Skolan-film-1.mp4",
+      "relativePath": "/skolan-bilder/Skolan-film-1.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/skolan-bilder/Skolan-film-1.mp4",
+      "type": "video",
+      "sizeBytes": 21670229,
+      "sizeMB": "20.67",
+      "extension": ".mp4",
+      "directory": "skolan-bilder",
+      "usedIn": [],
+      "usageCount": 0,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "Skolan-film-2.mp4",
+      "relativePath": "/skolan-bilder/Skolan-film-2.mp4",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/skolan-bilder/Skolan-film-2.mp4",
+      "type": "video",
+      "sizeBytes": 6985413,
+      "sizeMB": "6.66",
+      "extension": ".mp4",
+      "directory": "skolan-bilder",
+      "usedIn": [
+        {
+          "file": "components/Experiences.js",
+          "line": 64,
+          "snippet": "videoSrc: \"/skolan-bilder/Skolan-film-2.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 64,
+          "snippet": "videoSrc: \"/skolan-bilder/Skolan-film-2.mp4\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 64,
+          "snippet": "videoSrc: \"/skolan-bilder/Skolan-film-2.mp4\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    },
+    {
+      "filename": "skolan1-4fe44306.jpg",
+      "relativePath": "/skolan-bilder/skolan1-4fe44306.jpg",
+      "fullPath": "/Users/onepiecedad/Downloads/Coldexperience CMS/ColdExperience/frontend/public/skolan-bilder/skolan1-4fe44306.jpg",
+      "type": "image",
+      "sizeBytes": 611214,
+      "sizeMB": "0.58",
+      "extension": ".jpg",
+      "directory": "skolan-bilder",
+      "usedIn": [
+        {
+          "file": "components/Experiences.js",
+          "line": 65,
+          "snippet": "poster: \"/skolan-bilder/skolan1-4fe44306.jpg\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 65,
+          "snippet": "poster: \"/skolan-bilder/skolan1-4fe44306.jpg\","
+        },
+        {
+          "file": "components/Experiences.js",
+          "line": 65,
+          "snippet": "poster: \"/skolan-bilder/skolan1-4fe44306.jpg\","
+        }
+      ],
+      "usageCount": 3,
+      "suggestedSection": {
+        "pageId": null,
+        "sectionId": null,
+        "description": "Unassigned - needs manual review"
+      }
+    }
+  ]
+}

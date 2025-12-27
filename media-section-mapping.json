@@ -1,0 +1,535 @@
+{
+  "version": "1.0",
+  "created": "2025-12-20T17:48:00Z",
+  "description": "Maps website media files to CMS sections based on code analysis",
+  "mappings": [
+    {
+      "filename": "coldexperience-top-1.mp4",
+      "relativePath": "/nya_filmer/coldexperience-top-1.mp4",
+      "type": "video",
+      "pageId": "hero",
+      "sectionId": "hero",
+      "component": "Hero.js",
+      "description": "Main hero background video - shared across all Hero sections",
+      "priority": 1
+    },
+    {
+      "filename": "galleri-opt.mp4",
+      "relativePath": "/optimized_videos/galleri-opt.mp4",
+      "type": "video",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery introduction video",
+      "priority": 1
+    },
+    {
+      "filename": "om_oss-opt.mp4",
+      "relativePath": "/optimized_videos/om_oss-opt.mp4",
+      "type": "video",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "About us/Our Story video",
+      "priority": 1
+    },
+    {
+      "filename": "owners.jpg",
+      "relativePath": "/images/owners.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "ownerSection",
+      "component": "About.js, OwnerSection.js",
+      "description": "Gustav & Julia owners photo",
+      "priority": 1
+    },
+    {
+      "filename": "clothes.png",
+      "relativePath": "/images/Nya_bilder/clothes.png",
+      "type": "image",
+      "pageId": "faq",
+      "sectionId": "questions",
+      "component": "FaqSection.js",
+      "description": "Clothing/packing info image",
+      "priority": 1
+    },
+    {
+      "filename": "logo.png",
+      "relativePath": "/logo.png",
+      "type": "image",
+      "pageId": "navigation",
+      "sectionId": "header",
+      "component": "Header.js",
+      "description": "Site logo",
+      "priority": 1
+    },
+    {
+      "filename": "snoskoter2-opt.mp4",
+      "relativePath": "/optimized_videos/snoskoter2-opt.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "Experiences.js",
+      "description": "Snowmobile tour video",
+      "priority": 1
+    },
+    {
+      "filename": "snoskoter-opt.mp4",
+      "relativePath": "/optimized_videos/snoskoter-opt.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "LaplandHolidayPackages.js",
+      "description": "Snowmobile tour video (alternate)",
+      "priority": 2
+    },
+    {
+      "filename": "norrsken1-opt.mp4",
+      "relativePath": "/optimized_videos/norrsken1-opt.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "Experiences.js",
+      "description": "Northern lights video",
+      "priority": 1
+    },
+    {
+      "filename": "norrsken2-opt.mp4",
+      "relativePath": "/optimized_videos/norrsken2-opt.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "LaplandHolidayPackages.js",
+      "description": "Northern lights video (alternate)",
+      "priority": 2
+    },
+    {
+      "filename": "hundspann2-opt.mp4",
+      "relativePath": "/optimized_videos/hundspann2-opt.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "Experiences.js",
+      "description": "Husky dog sledding video",
+      "priority": 1
+    },
+    {
+      "filename": "hundspann1-opt.mp4",
+      "relativePath": "/optimized_videos/hundspann1-opt.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "Husky-Ride.js",
+      "description": "Husky dog sledding video (alternate)",
+      "priority": 2
+    },
+    {
+      "filename": "Skolan-film-2.mp4",
+      "relativePath": "/skolan-bilder/Skolan-film-2.mp4",
+      "type": "video",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "Experiences.js",
+      "description": "School/education experience video",
+      "priority": 1
+    },
+    {
+      "filename": "matlagning.mp4",
+      "relativePath": "/nya_filmer/matlagning.mp4",
+      "type": "video",
+      "pageId": "features",
+      "sectionId": "why-choose-us",
+      "component": "Features.js",
+      "description": "Cooking/food feature video",
+      "priority": 1
+    },
+    {
+      "filename": "coldexperience2-opt.mp4",
+      "relativePath": "/optimized_videos/coldexperience2-opt.mp4",
+      "type": "video",
+      "pageId": "features",
+      "sectionId": "why-choose-us",
+      "component": "Features.js",
+      "description": "Feature video - winter experience",
+      "priority": 1
+    },
+    {
+      "filename": "coldexperience3-opt.mp4",
+      "relativePath": "/optimized_videos/coldexperience3-opt.mp4",
+      "type": "video",
+      "pageId": "features",
+      "sectionId": "why-choose-us",
+      "component": "Features.js",
+      "description": "Feature video - adventure",
+      "priority": 1
+    },
+    {
+      "filename": "coldexperience1-opt.mp4",
+      "relativePath": "/optimized_videos/coldexperience1-opt.mp4",
+      "type": "video",
+      "pageId": "packages",
+      "sectionId": "packages",
+      "component": "BookExperience.js, Packages.js",
+      "description": "Package/booking hero video",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_6698.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_6698.jpg",
+      "type": "image",
+      "pageId": "hero",
+      "sectionId": "hero",
+      "component": "Hero.js",
+      "description": "Hero fallback image",
+      "priority": 2
+    },
+    {
+      "filename": "IMG_4108.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4108.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "ownerSection",
+      "component": "About.js",
+      "description": "Owner/host photo",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_3493.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3493.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "ownerSection",
+      "component": "About.js",
+      "description": "Owner/host photo",
+      "priority": 1
+    },
+    {
+      "filename": "julias_matresa.jpg",
+      "relativePath": "/images/Nya_bilder/julias_matresa.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "Julia's food journey photo",
+      "priority": 1
+    },
+    {
+      "filename": "love_adventure.jpg",
+      "relativePath": "/images/Nya_bilder/love_adventure.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "Love & adventure story photo",
+      "priority": 1
+    },
+    {
+      "filename": "gustav_childhood.jpg",
+      "relativePath": "/images/Nya_bilder/gustav_childhood.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "Gustav childhood photo",
+      "priority": 1
+    },
+    {
+      "filename": "coldexperience_born.jpg",
+      "relativePath": "/images/Nya_bilder/coldexperience_born.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "Cold Experience origin story",
+      "priority": 1
+    },
+    {
+      "filename": "family_1.jpg",
+      "relativePath": "/images/Nya_bilder/family_1.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "Family photo 1",
+      "priority": 1
+    },
+    {
+      "filename": "family_2.jpg",
+      "relativePath": "/images/Nya_bilder/family_2.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "Family photo 2",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_7834.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_7834.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "story",
+      "component": "About.js",
+      "description": "About section photo",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_0542.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0542.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_0554 (1).jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0554 (1).jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_1547.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1547.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_1579.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1579.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_1634.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1634.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_1687.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1687.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_1904.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_1904.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_2425.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_2425.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_2963.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_2963.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_3700.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3700.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_3838.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3838.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_3860.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_3860.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_4436.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4436.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_4527.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4527.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_4545.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4545.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_4596 (1).jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4596 (1).jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_5562.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_5562.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_6181.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_6181.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_6702.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_6702.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_7476 (1).jpg",
+      "relativePath": "/images/Nya_bilder/IMG_7476 (1).jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_0451.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0451.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_0575.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_0575.jpg",
+      "type": "image",
+      "pageId": "gallery",
+      "sectionId": "grid",
+      "component": "Gallery.js",
+      "description": "Gallery image",
+      "priority": 1
+    },
+    {
+      "filename": "IMG_4082.jpg",
+      "relativePath": "/images/Nya_bilder/IMG_4082.jpg",
+      "type": "image",
+      "pageId": "about",
+      "sectionId": "ownerSection",
+      "component": "About.js",
+      "description": "About section photo",
+      "priority": 1
+    },
+    {
+      "filename": "skolan1-4fe44306.jpg",
+      "relativePath": "/skolan-bilder/skolan1-4fe44306.jpg",
+      "type": "image",
+      "pageId": "experiences",
+      "sectionId": "experiences",
+      "component": "Experiences.js",
+      "description": "School experience poster image",
+      "priority": 1
+    }
+  ],
+  "summary": {
+    "totalMappings": 51,
+    "bySection": {
+      "hero/hero": 2,
+      "gallery/grid": 21,
+      "about/story": 8,
+      "about/ownerSection": 5,
+      "experiences/experiences": 8,
+      "features/why-choose-us": 3,
+      "packages/packages": 1,
+      "faq/questions": 1,
+      "navigation/header": 1
+    },
+    "byType": {
+      "video": 17,
+      "image": 34
+    }
+  }
+}

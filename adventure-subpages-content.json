@@ -1,0 +1,368 @@
+{
+  "snowmobileSafari": {
+    "key": "snowmobileSafari",
+    "texts": {
+      "heroTitle": "Snowmobile Safari in Lapland",
+      "heroDescription": "Feel the rush of driving your own snowmobile across untouched winter landscapes together with local guides who know every trail.",
+      "introHeading": "Ride where only snowmobiles can go",
+      "introParagraphs": [
+        "We tailor every tour to the day",
+        ",\n      "
+      ],
+      "closingTitle": "Ready to ride with us?",
+      "closingDescription": "Reserve your snowmobile safari and let us design a Lapland adventure that matches your pace and interests.",
+      "primaryButtonLabel": "Book Snowmobile Safari",
+      "secondaryButtonLabel": "Ask About Availability"
+    },
+    "media": {
+      "videoSrc": "/optimized_videos/snoskoter-opt.mp4",
+      "poster": "/images/Nya_bilder/IMG_6698.jpg",
+      "introPoster": "/images/Nya_bilder/IMG_3493.jpg"
+    },
+    "features": [
+      {
+        "title": "Certified guides",
+        "description": "Professionals with avalanche and first-aid training lead every departure.",
+        "icon": "Shield"
+      },
+      {
+        "title": "Spectacular terrain",
+        "description": "Reach frozen lakes, hidden valleys and panoramic viewpoints.",
+        "icon": "Mountain"
+      },
+      {
+        "title": "Flexible durations",
+        "description": "Choose half-day, full-day or multi-day expeditions.",
+        "icon": "Clock"
+      },
+      {
+        "title": "Photo ready",
+        "description": "Plenty of stops to capture the northern scenery and your ride.",
+        "icon": "Camera"
+      }
+    ],
+    "sections": [
+      {
+        "id": "tourHighlights",
+        "title": "Highlights on the trail",
+        "items": [
+          "Safety briefing and fitting of premium Arctic gear",
+          "Small groups with one guide per 6 guests",
+          "Routes across frozen lakes and through pine forests",
+          "Wilderness lunch cooked over open fire",
+          "Chances to spot reindeer, moose and arctic birds",
+          "Optional evening departures for northern lights"
+        ]
+      },
+      {
+        "id": "safety",
+        "title": "Safety & comfort",
+        "items": [
+          "Latest Lynx and Ski-Doo touring snowmobiles",
+          "DOT approved helmets, suits, boots and gloves",
+          "Two-way radios between guides and support team",
+          "Emergency equipment carried on every tour",
+          "Heated shelter available during weather breaks",
+          "Tow service and support vehicle on call"
+        ]
+      }
+    ],
+    "dayProgram": {
+      "title": "Sample day program",
+      "steps": [
+        {
+          "title": "Briefing & gear up",
+          "description": "Meet your guide, review safety and change into thermal gear."
+        },
+        {
+          "title": "Morning ride",
+          "description": "Follow our private trails across lakes and into the forest."
+        },
+        {
+          "title": "Wilderness lunch",
+          "description": "Enjoy a hot meal cooked over the fire in our timber hut."
+        },
+        {
+          "title": "Scenic return",
+          "description": "Capture the final views before cruising back to base."
+        }
+      ]
+    }
+  },
+  "northernLights": {
+    "key": "northernLights",
+    "texts": {
+      "heroTitle": "Northern Lights Tour",
+      "heroDescription": "Stand beneath the dancing aurora and capture the moment with guides who grew up under these skies.",
+      "introHeading": "Follow the colours across the sky",
+      "introParagraphs": [
+        "We monitor several weather models and solar forecasts to take you where the skies are clearest each night.",
+        "Stay warm in our kota hut with open fire, reindeer hides and hot lingonberry juice while we wait for the show."
+      ],
+      "closingTitle": "Let us find your aurora",
+      "closingDescription": "Share your travel dates and we will recommend the best night for your northern lights tour.",
+      "primaryButtonLabel": "Book Northern Lights Tour",
+      "secondaryButtonLabel": "Check Aurora Forecast"
+    },
+    "media": {
+      "videoSrc": "/optimized_videos/norrsken1-opt.mp4",
+      "poster": "/images/Nya_bilder/IMG_2963.jpg",
+      "introPoster": "/images/Nya_bilder/IMG_2963.jpg"
+    },
+    "features": [
+      {
+        "title": "Aurora expertise",
+        "description": "Daily analysis of KP index, cloud cover and local micro climates.",
+        "icon": "Eye"
+      },
+      {
+        "title": "Photography support",
+        "description": "Tripods and manual camera settings help from our in-house photographer.",
+        "icon": "Camera"
+      },
+      {
+        "title": "Stay warm",
+        "description": "Thermal suits, boots and hand warmers included for every guest.",
+        "icon": "Thermometer"
+      },
+      {
+        "title": "Flexible transport",
+        "description": "Travel by minibus, snowmobile or snowshoes depending on conditions.",
+        "icon": "Snowflake"
+      }
+    ],
+    "sections": [
+      {
+        "id": "bestConditions",
+        "title": "Before the lights",
+        "items": [
+          "Real-time weather tracking to choose the best direction",
+          "Briefing on how the aurora works and what to expect",
+          "Dress in supplied thermal gear for -30°C nights",
+          "Drive to remote viewing locations away from light pollution",
+          "Snacks and hot drinks in our heated hut",
+          "Optional snowshoe walk to panoramic viewpoints"
+        ]
+      },
+      {
+        "id": "expectations",
+        "title": "During the hunt",
+        "items": [
+          "Immediate camera support when the lights appear",
+          "Storytelling about Sami legends and science",
+          "Time-lapse and portrait photos taken for your group",
+          "Warm blankets and reindeer hides for extra comfort",
+          "Flexible end time depending on aurora activity",
+          "Aurora report emailed with photos the next morning"
+        ]
+      }
+    ],
+    "dayProgram": {
+      "title": "Evening schedule",
+      "steps": [
+        {
+          "title": "18:00 Meet & brief",
+          "description": "Gather at base camp, gear up and review the forecast."
+        },
+        {
+          "title": "Travel to clear skies",
+          "description": "Drive 30-60 minutes to the best aurora window of the night."
+        },
+        {
+          "title": "Aurora watching",
+          "description": "Enjoy the lights from our heated shelter or outside on the snow."
+        },
+        {
+          "title": "Photo session",
+          "description": "Capture portraits and tips for shooting the lights yourself."
+        }
+      ]
+    }
+  },
+  "huskyRide": {
+    "key": "huskyRide",
+    "texts": {
+      "heroTitle": "Husky Ride Adventure",
+      "heroDescription": "Partner with our friendly Siberian huskies and glide through Lapland",
+      "introHeading": "Drive your own team",
+      "introParagraphs": [
+        "After a hands-on introduction you",
+        ",\n      "
+      ],
+      "closingTitle": "Join our husky family",
+      "closingDescription": "Plan your dog sledding adventure in Lapland and let us match the perfect tour to your group.",
+      "primaryButtonLabel": "Book Husky Ride",
+      "secondaryButtonLabel": "Chat with a musher"
+    },
+    "media": {
+      "videoSrc": "/optimized_videos/hundspann1-opt.mp4",
+      "poster": "/images/Nya_bilder/IMG_6702.jpg",
+      "introPoster": "/images/Nya_bilder/IMG_3838.jpg"
+    },
+    "features": [
+      {
+        "title": "Well-trained huskies",
+        "description": "Friendly, energetic dogs that love to run and be cuddled afterwards.",
+        "icon": "PawPrint"
+      },
+      {
+        "title": "Authentic trails",
+        "description": "Guide-led routes through forests, over lakes and along ridgelines.",
+        "icon": "Wind"
+      },
+      {
+        "title": "Small groups",
+        "description": "Private tours for families and friends with two guests per sled.",
+        "icon": "Users"
+      },
+      {
+        "title": "Care & welfare",
+        "description": "Learn about our training routine and how we care for the pack all year.",
+        "icon": "Heart"
+      }
+    ],
+    "sections": [
+      {
+        "id": "tourHighlights",
+        "title": "On the trail",
+        "items": [
+          "Meet the huskies and help harness the team",
+          "Driving lesson from your personal musher",
+          "Scenic run of 12-18 km depending on conditions",
+          "Midway photo stops on frozen lakes",
+          "Hot drinks and Lapland fika by the fire",
+          "Opportunity to feed and thank your dogs"
+        ]
+      },
+      {
+        "id": "dogFacts",
+        "title": "Good to know",
+        "items": [
+          "Thermal suits, boots, gloves and hats provided",
+          "Children ride safely in the guide",
+          ",\n        ",
+          ",\n        ",
+          ",\n        ",
+          ",\n        "
+        ]
+      }
+    ],
+    "dayProgram": {
+      "title": "Typical tour schedule",
+      "steps": [
+        {
+          "title": "Welcome & clothing",
+          "description": "Arrive at the kennel, meet the team and change into winter gear."
+        },
+        {
+          "title": "Mushing lesson",
+          "description": "Learn commands, braking and turning together with your guide."
+        },
+        {
+          "title": "Trail adventure",
+          "description": "Drive your sled or relax as a passenger while the dogs run."
+        },
+        {
+          "title": "Fika & stories",
+          "description": "Warm drinks, local pastries and time to cuddle the huskies."
+        }
+      ]
+    }
+  },
+  "accommodation": {
+    "key": "accommodation",
+    "texts": {
+      "heroTitle": "Stay with us in Lapland",
+      "heroDescription": "Sleep in our historic village schoolhouse converted into cosy apartments with access to sauna, hot tub and shared lounge.",
+      "introHeading": "Comfort after every adventure",
+      "introParagraphs": [
+        "Each apartment includes a private bedroom loft, living space and kitchenette so you can unwind exactly the way you prefer.",
+        "We prepare breakfast, lunch and dinner with locally sourced ingredients and can adapt menus for any dietary needs."
+      ],
+      "closingTitle": "Make our home yours",
+      "closingDescription": "Tell us how you like to travel and we will tailor a stay that balances adventure and comfort.",
+      "primaryButtonLabel": "Check Availability",
+      "secondaryButtonLabel": "Talk to the hosts"
+    },
+    "media": {
+      "videoSrc": "/optimized_videos/coldexperience3-opt.mp4",
+      "poster": "/images/Nya_bilder/IMG_4527.jpg",
+      "introPoster": "/images/Nya_bilder/IMG_4596 (1).jpg"
+    },
+    "features": [
+      {
+        "title": "Space for families",
+        "description": "Two-bedroom apartments with space for up to six guests.",
+        "icon": "Users"
+      },
+      {
+        "title": "Wellness area",
+        "description": "Wood-fired sauna, outdoor hot tub and relaxation lounge.",
+        "icon": "Heart"
+      },
+      {
+        "title": "Always warm",
+        "description": "Heated drying room keeps your gear ready for the next outing.",
+        "icon": "Thermometer"
+      },
+      {
+        "title": "All-inclusive",
+        "description": "Full-board dining with local ingredients and homemade treats.",
+        "icon": "CheckCircle"
+      }
+    ],
+    "sections": [
+      {
+        "id": "rooms",
+        "title": "Apartments & rooms",
+        "items": [
+          "Two private apartments plus cosy double rooms",
+          "Loft bedrooms with quality bedding",
+          "Spacious living areas with smart TV and Wi-Fi",
+          "Private bathrooms with rain showers"
+        ]
+      },
+      {
+        "id": "wellness",
+        "title": "Sauna & relaxation",
+        "items": [
+          "Traditional wood-fired sauna every evening",
+          "Outdoor hot tub under the night sky",
+          "Massage and stretching on request",
+          "Fireplace lounge with library and games"
+        ]
+      },
+      {
+        "id": "dining",
+        "title": "Dining & gatherings",
+        "items": [
+          "Breakfast buffet with homemade bread and berries",
+          "Warm lunches served during activities",
+          "Three-course dinners inspired by Lapland seasons",
+          "Vegan, vegetarian and allergy-friendly menus"
+        ]
+      }
+    ],
+    "dayProgram": {
+      "title": "A day at the guesthouse",
+      "steps": [
+        {
+          "title": "Morning",
+          "description": "Wake up to coffee aroma and breakfast buffet before heading out."
+        },
+        {
+          "title": "Adventures",
+          "description": "Your guide picks you up for the day"
+        },
+        {
+          "title": "Warm welcome",
+          "description": "Return to a hot sauna and outdoor tub under the stars."
+        },
+        {
+          "title": "Evening",
+          "description": "Share stories over a homemade dinner and plan tomorrow."
+        }
+      ]
+    }
+  }
+}
