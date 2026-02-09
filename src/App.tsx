@@ -482,7 +482,7 @@ function App() {
                 {/* ─────────────────────────────────────────────────────────────────────
             LEFT SIDEBAR - Page sections navigation
         ───────────────────────────────────────────────────────────────────── */}
-                <aside className="hidden lg:flex flex-col w-64 fixed left-0 top-16 bottom-0 bg-[#0a1622]/50 border-r border-white/[0.04]">
+                <aside className={`${(showMediaLibrary || showSettings || showPackages) ? 'hidden' : 'hidden lg:flex'} flex-col w-64 fixed left-0 top-16 bottom-0 bg-[#0a1622]/50 border-r border-white/[0.04]`}>
                     {/* Current Page Header */}
                     <div className="p-6 border-b border-white/[0.04]">
                         <div className="flex items-center gap-3">
