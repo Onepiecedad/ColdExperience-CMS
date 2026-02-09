@@ -18,6 +18,11 @@ export {
     getMedia,
     uploadMedia,
     deleteMedia,
+    getMediaBySection,
+    getUnassignedMedia,
+    uploadMediaToSection,
+    assignMediaToSection,
+    unassignMedia,
     getSettings,
     updateSetting,
 } from '../services/supabase';

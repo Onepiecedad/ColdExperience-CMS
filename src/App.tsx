@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Snowflake, LogOut, Menu, X, Globe, Sparkles, Type, Image, ChevronRight, Settings, Check, Loader2, Database, RefreshCw, ImageIcon } from 'lucide-react';
+import { Snowflake, LogOut, Menu, X, Globe, Sparkles, Type, Image, ChevronRight, Settings, Check, Loader2, Database, RefreshCw, ImageIcon, Package } from 'lucide-react';
 import AuthScreen from './components/AuthScreen';
 import { MediaLibrary } from './components/MediaLibrary';
 import { SectionMediaLibrary } from './components/SectionMediaLibrary';
+import { PackageEditor } from './components/PackageEditor';
+import { SettingsPanel } from './components/SettingsPanel';
 import { signOut, getCurrentUser, isEmailAllowed } from './lib/supabase';
 import { useCmsContent } from './hooks/useCmsContent';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 // Website page structure - mirrors coldexperience.se visual scroll order exactly
 // Each section represents what you SEE when scrolling down the page
@@ -133,7 +136,7 @@ const LANGUAGES = [
 type ContentMode = 'text' | 'media';
 
 function App() {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<SupabaseUser | null>(null);
     const [loading, setLoading] = useState(true);
     const [activePage, setActivePage] = useState('home');
     const [activeSection, setActiveSection] = useState('hero');
@@ -146,6 +149,8 @@ function App() {
     const [syncing, setSyncing] = useState(false);
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [showMediaLibrary, setShowMediaLibrary] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
+    const [showPackages, setShowPackages] = useState(false);
 
     // Using CMS content hook for data with Supabase integration
     const { saveChanges, syncToSupabase, forceResyncFromLocalJson, meta } = useCmsContent();
@@ -193,6 +198,18 @@ function App() {
             setSaving(false);
         }
     }, [saveChanges]);
+
+    // Cmd+S / Ctrl+S keyboard shortcut to save
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+                e.preventDefault();
+                handleSave();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [handleSave]);
 
     const handleSync = useCallback(async () => {
         setSyncing(true);
@@ -292,10 +309,10 @@ function App() {
                         {WEBSITE_PAGES.map((page) => (
                             <button
                                 key={page.id}
-                                onClick={() => { setActivePage(page.id); setShowMediaLibrary(false); }}
+                                onClick={() => { setActivePage(page.id); setShowMediaLibrary(false); setShowSettings(false); setShowPackages(false); }}
                                 className={`
                   relative px-4 py-2 text-[13px] font-medium rounded-lg transition-all duration-300
-                  ${activePage === page.id && !showMediaLibrary
+                  ${activePage === page.id && !showMediaLibrary && !showSettings && !showPackages
                                         ? 'text-white'
                                         : 'text-white/50 hover:text-white/80'
                                     }
@@ -303,14 +320,31 @@ function App() {
                             >
                                 {page.label}
                                 {/* Active indicator */}
-                                {activePage === page.id && !showMediaLibrary && (
+                                {activePage === page.id && !showMediaLibrary && !showSettings && !showPackages && (
                                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-[#3f7ba7] to-transparent" />
                                 )}
                             </button>
                         ))}
+                        {/* Packages button */}
+                        <button
+                            onClick={() => { setShowPackages(true); setShowMediaLibrary(false); setShowSettings(false); }}
+                            className={`
+                              relative px-4 py-2 text-[13px] font-medium rounded-lg transition-all duration-300 flex items-center gap-2
+                              ${showPackages
+                                    ? 'text-white'
+                                    : 'text-white/50 hover:text-white/80'
+                                }
+                            `}
+                        >
+                            <Package size={14} />
+                            Packages
+                            {showPackages && (
+                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-[#3f7ba7] to-transparent" />
+                            )}
+                        </button>
                         {/* Media Library button */}
                         <button
-                            onClick={() => setShowMediaLibrary(true)}
+                            onClick={() => { setShowMediaLibrary(true); setShowPackages(false); setShowSettings(false); }}
                             className={`
                               relative px-4 py-2 text-[13px] font-medium rounded-lg transition-all duration-300 flex items-center gap-2
                               ${showMediaLibrary
@@ -373,7 +407,10 @@ function App() {
 
                         {/* Settings & Sign Out */}
                         <div className="hidden md:flex items-center gap-2 pl-3 border-l border-white/[0.06]">
-                            <button className="p-2 text-white/40 hover:text-white/70 transition-colors">
+                            <button
+                                onClick={() => { setShowSettings(true); setShowMediaLibrary(false); setShowPackages(false); }}
+                                className={`p-2 transition-colors ${showSettings ? 'text-white' : 'text-white/40 hover:text-white/70'}`}
+                            >
                                 <Settings size={18} />
                             </button>
                             <button
@@ -627,16 +664,22 @@ function App() {
                 {/* ─────────────────────────────────────────────────────────────────────
             MAIN CONTENT AREA
         ───────────────────────────────────────────────────────────────────── */}
-                <main className={`flex-1 min-h-[calc(100vh-4rem)] ${showMediaLibrary ? '' : 'lg:ml-64'}`}>
+                <main className={`flex-1 min-h-[calc(100vh-4rem)] ${(showMediaLibrary || showSettings || showPackages) ? '' : 'lg:ml-64'}`}>
                     {/* Ambient Background */}
-                    <div className={`fixed inset-0 pointer-events-none overflow-hidden ${showMediaLibrary ? '' : 'lg:ml-64'}`}>
+                    <div className={`fixed inset-0 pointer-events-none overflow-hidden ${(showMediaLibrary || showSettings || showPackages) ? '' : 'lg:ml-64'}`}>
                         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#3f7ba7]/[0.03] rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3" />
                         <div className="absolute bottom-0 left-1/2 w-[500px] h-[500px] bg-[#5a9bc7]/[0.02] rounded-full blur-[120px] translate-y-1/2" />
                     </div>
 
                     {/* Content Container */}
                     <div className="relative z-10 p-8 lg:p-12 max-w-6xl mx-auto">
-                        {showMediaLibrary ? (
+                        {showSettings ? (
+                            /* Settings View */
+                            <SettingsPanel />
+                        ) : showPackages ? (
+                            /* Packages View */
+                            <PackageEditor />
+                        ) : showMediaLibrary ? (
                             /* Media Library View */
                             <MediaLibrary />
                         ) : (

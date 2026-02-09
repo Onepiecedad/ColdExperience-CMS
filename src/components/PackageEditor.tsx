@@ -105,8 +105,8 @@ export const PackageEditor: React.FC = () => {
             await updatePackage(pkg.id, {
                 price_sek: pkg.price_sek,
                 price_eur: pkg.price_eur,
-                featured: pkg.featured,
-                active: pkg.active,
+                is_featured: pkg.is_featured,
+                is_active: pkg.is_active,
                 [`name_${activeLanguage}`]: getLocalizedField(pkg, 'name'),
                 [`duration_${activeLanguage}`]: getLocalizedField(pkg, 'duration'),
                 [`description_${activeLanguage}`]: getLocalizedField(pkg, 'description'),
@@ -182,12 +182,12 @@ export const PackageEditor: React.FC = () => {
                         key={pkg.id}
                         className={`
                             glass-card overflow-hidden animate-fade-in
-                            ${pkg.featured ? 'ring-1 ring-accent/30' : ''}
+                            ${pkg.is_featured ? 'ring-1 ring-accent/30' : ''}
                         `}
                         style={{ animationDelay: `${index * 100}ms` }}
                     >
                         {/* Featured Badge */}
-                        {pkg.featured && (
+                        {pkg.is_featured && (
                             <div className="h-1 bg-gradient-to-r from-accent via-accent-light to-accent" />
                         )}
 
@@ -195,7 +195,7 @@ export const PackageEditor: React.FC = () => {
                             {/* Package Header */}
                             <div className="flex items-start justify-between mb-6">
                                 <div className="flex items-center gap-4">
-                                    {pkg.featured && (
+                                    {pkg.is_featured && (
                                         <div className="p-2.5 bg-gradient-to-br from-accent/20 to-accent-dark/20 rounded-xl border border-accent/20">
                                             <Star className="text-accent-light" size={20} />
                                         </div>
@@ -280,20 +280,20 @@ export const PackageEditor: React.FC = () => {
                                         <label className="flex items-center gap-3 cursor-pointer group">
                                             <div className={`
                                                 w-10 h-6 rounded-full transition-all duration-300 relative
-                                                ${pkg.featured
+                                                ${pkg.is_featured
                                                     ? 'bg-gradient-to-r from-accent to-accent-dark'
                                                     : 'bg-cold-700'
                                                 }
                                             `}>
                                                 <input
                                                     type="checkbox"
-                                                    checked={pkg.featured}
-                                                    onChange={(e) => updateLocalPackage(pkg.id, 'featured', e.target.checked)}
+                                                    checked={pkg.is_featured}
+                                                    onChange={(e) => updateLocalPackage(pkg.id, 'is_featured', e.target.checked)}
                                                     className="sr-only"
                                                 />
                                                 <div className={`
                                                     absolute top-1 w-4 h-4 rounded-full bg-white shadow-lg transition-all duration-300
-                                                    ${pkg.featured ? 'left-5' : 'left-1'}
+                                                    ${pkg.is_featured ? 'left-5' : 'left-1'}
                                                 `} />
                                             </div>
                                             <span className="text-sm text-cold-300 group-hover:text-white transition-colors">Featured</span>
@@ -301,20 +301,20 @@ export const PackageEditor: React.FC = () => {
                                         <label className="flex items-center gap-3 cursor-pointer group">
                                             <div className={`
                                                 w-10 h-6 rounded-full transition-all duration-300 relative
-                                                ${pkg.active
+                                                ${pkg.is_active
                                                     ? 'bg-gradient-to-r from-emerald-500 to-emerald-600'
                                                     : 'bg-cold-700'
                                                 }
                                             `}>
                                                 <input
                                                     type="checkbox"
-                                                    checked={pkg.active}
-                                                    onChange={(e) => updateLocalPackage(pkg.id, 'active', e.target.checked)}
+                                                    checked={pkg.is_active}
+                                                    onChange={(e) => updateLocalPackage(pkg.id, 'is_active', e.target.checked)}
                                                     className="sr-only"
                                                 />
                                                 <div className={`
                                                     absolute top-1 w-4 h-4 rounded-full bg-white shadow-lg transition-all duration-300
-                                                    ${pkg.active ? 'left-5' : 'left-1'}
+                                                    ${pkg.is_active ? 'left-5' : 'left-1'}
                                                 `} />
                                             </div>
                                             <span className="text-sm text-cold-300 group-hover:text-white transition-colors">Active</span>

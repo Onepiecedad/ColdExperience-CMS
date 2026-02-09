@@ -84,13 +84,13 @@ interface CmsContentState {
     pageIdMap: Map<string, string>; // Map page slug to page UUID
 }
 
-// Database record types - matches ACTUAL Supabase schema
+// Database record types - matches ACTUAL Supabase schema (supabase-schema.sql)
 interface DbContent {
     id?: string;
-    page_id: string;         // UUID reference to cms_pages
-    section: string;         // Section name within the page
-    content_key: string;     // Format: "section.fieldKey"
-    content_type?: string;   // 'text', 'textarea', 'array'
+    page_slug: string;       // TEXT reference to cms_pages.slug
+    section_key: string;     // Section name within the page
+    field_key: string;       // Format: "section.fieldKey"
+    field_type?: string;     // 'text', 'textarea', 'array', 'url'
     content_en?: string;
     content_sv?: string;
     content_de?: string;
@@ -132,7 +132,7 @@ export function useCmsContent() {
     }, []);
 
     /**
-     * Load page ID mappings from Supabase
+     * Load page slug set from Supabase (validates which pages exist)
      */
     const loadPageIds = async (): Promise<Map<string, string>> => {
         const pageIdMap = new Map<string, string>();
@@ -147,11 +147,11 @@ export function useCmsContent() {
                 return pageIdMap;
             }
 
-            pages?.forEach((page) => {
-                pageIdMap.set(page.slug, page.id);
+            pages?.forEach((page: { id: string; slug: string }) => {
+                pageIdMap.set(page.slug, page.slug); // Map slug -> slug for consistency
             });
 
-            console.log(`📄 Loaded ${pageIdMap.size} page ID mappings`);
+            console.log(`📄 Loaded ${pageIdMap.size} page mappings`);
         } catch (error) {
             console.warn('Failed to load page IDs:', error);
         }
@@ -187,24 +187,18 @@ export function useCmsContent() {
 
                 const newData = JSON.parse(JSON.stringify(state.data));
 
-                // Create reverse mapping: page_id -> slug
-                const idToSlugMap = new Map<string, string>();
-                pageIdMap.forEach((id, slug) => {
-                    idToSlugMap.set(id, slug);
-                });
-
                 dbContent.forEach((item: DbContent) => {
-                    const { page_id, section, content_key, content_en, content_sv, content_de, content_pl } = item;
+                    const { page_slug, section_key, field_key, content_en, content_sv, content_de, content_pl } = item;
 
-                    // Find the page slug from the page_id
-                    const pageSlug = idToSlugMap.get(page_id);
+                    // Use page_slug directly (no UUID mapping needed)
+                    const pageSlug = page_slug;
                     if (!pageSlug) return;
 
-                    // Extract field key from content_key (format: "section.fieldKey")
-                    const fieldKey = content_key.includes('.')
-                        ? content_key.split('.').slice(1).join('.')
-                        : content_key;
-                    const sectionKey = section || (content_key.includes('.') ? content_key.split('.')[0] : 'default');
+                    // Extract field key from field_key (format: "section.fieldKey")
+                    const fieldKey = field_key.includes('.')
+                        ? field_key.split('.').slice(1).join('.')
+                        : field_key;
+                    const sectionKey = section_key || (field_key.includes('.') ? field_key.split('.')[0] : 'default');
 
                     if (!newData.content[pageSlug]) {
                         newData.content[pageSlug] = {};
@@ -413,10 +407,10 @@ export function useCmsContent() {
 
             for (const change of changes) {
                 const key = `${change.page}:${change.section}:${change.field}`;
-                const pageId = pageIdMap.get(change.page);
+                const pageSlug = pageIdMap.get(change.page);
 
-                if (!pageId) {
-                    console.warn(`No page ID for ${change.page}, skipping`);
+                if (!pageSlug) {
+                    console.warn(`No page mapping for ${change.page}, skipping`);
                     continue;
                 }
 
@@ -425,9 +419,9 @@ export function useCmsContent() {
                     const existing = data.content[change.page]?.[change.section]?.[change.field] || {};
 
                     contentUpdates.set(key, {
-                        page_id: pageId,
-                        section: change.section,
-                        content_key: `${change.section}.${change.field}`,
+                        page_slug: pageSlug,
+                        section_key: change.section,
+                        field_key: `${change.section}.${change.field}`,
                         content_en: typeof existing.en === 'string' ? existing.en : '',
                         content_sv: typeof existing.sv === 'string' ? existing.sv : '',
                         content_de: typeof existing.de === 'string' ? existing.de : '',
@@ -451,8 +445,8 @@ export function useCmsContent() {
                 const { data: existing } = await supabase
                     .from('cms_content')
                     .select('id')
-                    .eq('page_id', item.page_id)
-                    .eq('content_key', item.content_key)
+                    .eq('page_slug', item.page_slug)
+                    .eq('field_key', item.field_key)
                     .single();
 
                 if (existing) {
@@ -468,7 +462,7 @@ export function useCmsContent() {
                         .eq('id', existing.id);
 
                     if (error) {
-                        console.warn(`Update failed for ${item.content_key}:`, error.message);
+                        console.warn(`Update failed for ${item.field_key}:`, error.message);
                     }
                 } else {
                     // Insert
@@ -477,7 +471,7 @@ export function useCmsContent() {
                         .insert(item);
 
                     if (error) {
-                        console.warn(`Insert failed for ${item.content_key}:`, error.message);
+                        console.warn(`Insert failed for ${item.field_key}:`, error.message);
                     }
                 }
             }
@@ -543,7 +537,7 @@ export function useCmsContent() {
                 const pageId = pageIdMap.get(pageSlug);
 
                 if (!pageId) {
-                    console.log(`⚠️ No page ID for ${pageSlug}, skipping...`);
+                    console.log(`⚠️ No page mapping for ${pageSlug}, skipping...`);
                     continue;
                 }
 
@@ -553,10 +547,10 @@ export function useCmsContent() {
                         const fieldData = sectionContent[field];
 
                         upsertData.push({
-                            page_id: pageId,
-                            section: section,
-                            content_key: `${section}.${field}`,
-                            content_type: Array.isArray(fieldData.en) ? 'array' : 'text',
+                            page_slug: pageSlug,
+                            section_key: section,
+                            field_key: `${section}.${field}`,
+                            field_type: Array.isArray(fieldData.en) ? 'array' : 'text',
                             // Serialize arrays as JSON to preserve object structure
                             content_en: typeof fieldData.en === 'string' ? fieldData.en :
                                 Array.isArray(fieldData.en) ? JSON.stringify(fieldData.en) : '',
@@ -577,13 +571,10 @@ export function useCmsContent() {
 
             // First, clear existing content for the pages we're syncing
             for (const pageSlug of Object.keys(content)) {
-                const pageId = pageIdMap.get(pageSlug);
-                if (pageId) {
-                    await supabase
-                        .from('cms_content')
-                        .delete()
-                        .eq('page_id', pageId);
-                }
+                await supabase
+                    .from('cms_content')
+                    .delete()
+                    .eq('page_slug', pageSlug);
             }
 
             // Insert in batches of 50
@@ -647,10 +638,10 @@ export function useCmsContent() {
             }
 
             interface DbContentRecord {
-                page_id: string;
-                section: string;
-                content_key: string;
-                content_type: string;
+                page_slug: string;
+                section_key: string;
+                field_key: string;
+                field_type: string;
                 content_en: string;
                 content_sv: string;
                 content_de: string;
@@ -669,7 +660,7 @@ export function useCmsContent() {
                 const pageId = pageIdMap.get(pageSlug);
 
                 if (!pageId) {
-                    console.log(`⚠️ No page ID for ${pageSlug}, skipping...`);
+                    console.log(`⚠️ No page mapping for ${pageSlug}, skipping...`);
                     continue;
                 }
 
@@ -697,10 +688,10 @@ export function useCmsContent() {
                         };
 
                         upsertData.push({
-                            page_id: pageId,
-                            section: section,
-                            content_key: `${section}.${field}`,
-                            content_type: isArray ? 'array' : 'text',
+                            page_slug: pageSlug,
+                            section_key: section,
+                            field_key: `${section}.${field}`,
+                            field_type: isArray ? 'array' : 'text',
                             content_en: serializeValue(fieldData.en),
                             content_sv: serializeValue(fieldData.sv),
                             content_de: serializeValue(fieldData.de),
@@ -717,13 +708,10 @@ export function useCmsContent() {
             // First, clear existing content for the pages we're syncing
             console.log('🗑️ Clearing existing content...');
             for (const pageSlug of Object.keys(originalContent)) {
-                const pageId = pageIdMap.get(pageSlug);
-                if (pageId) {
-                    await supabase
-                        .from('cms_content')
-                        .delete()
-                        .eq('page_id', pageId);
-                }
+                await supabase
+                    .from('cms_content')
+                    .delete()
+                    .eq('page_slug', pageSlug);
             }
 
             // Insert in batches of 50

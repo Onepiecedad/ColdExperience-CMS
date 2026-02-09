@@ -290,7 +290,7 @@ export const MediaLibrary: React.FC = () => {
                             <input
                                 type="file"
                                 multiple
-                                accept="image/*"
+                                accept="image/*,video/*"
                                 onChange={(e) => handleUpload(e.target.files)}
                                 className="hidden"
                                 id="file-upload"
@@ -303,7 +303,7 @@ export const MediaLibrary: React.FC = () => {
                                 Browse Files
                             </label>
                             <p className="text-xs text-cold-600 mt-5">
-                                Supported formats: JPG, PNG, WebP, GIF • Max size: 10MB
+                                Supported formats: JPG, PNG, WebP, GIF, MP4, WebM, MOV • Max size: 10MB
                             </p>
                         </>
                     )}
