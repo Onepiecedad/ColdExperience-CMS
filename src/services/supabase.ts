@@ -140,14 +140,14 @@ export async function deletePage(id: string): Promise<void> {
  * Used by mobile-first EditorScreen
  */
 export async function getContentByPageAndSection(
-    pageId: string,
+    pageSlug: string,
     sectionKey: string
 ): Promise<CmsContent[]> {
     const { data, error } = await supabase
         .from('cms_content')
         .select('*')
-        .eq('page_id', pageId)
-        .eq('section', sectionKey)
+        .eq('page_slug', pageSlug)
+        .eq('section_key', sectionKey)
         .order('display_order');
 
     if (error) throw error;
@@ -196,11 +196,11 @@ export async function upsertPages(pages: PageUpsert[]): Promise<{ inserted: numb
 // CONTENT FUNCTIONS
 // ============================================================================
 
-export async function getContentByPage(pageId: string): Promise<CmsContent[]> {
+export async function getContentByPage(pageSlug: string): Promise<CmsContent[]> {
     const { data, error } = await supabase
         .from('cms_content')
         .select('*')
-        .eq('page_id', pageId)
+        .eq('page_slug', pageSlug)
         .order('display_order');
 
     if (error) throw error;
@@ -792,9 +792,9 @@ export async function bumpContentVersion(
  */
 export async function upsertContentFromDraft(
     contentId: string | null,
-    pageId: string,
+    pageSlug: string,
     sectionKey: string,
-    contentKey: string,
+    fieldKey: string,
     language: Language,
     value: string
 ): Promise<void> {
@@ -809,13 +809,13 @@ export async function upsertContentFromDraft(
 
         if (error) throw error;
     } else {
-        // New content - need to upsert by page_id + content_key
+        // New content - need to upsert by page_slug + field_key
         // First check if exists
         const { data: existing } = await supabase
             .from('cms_content')
             .select('id')
-            .eq('page_id', pageId)
-            .eq('content_key', contentKey)
+            .eq('page_slug', pageSlug)
+            .eq('field_key', fieldKey)
             .single();
 
         if (existing) {
@@ -831,10 +831,10 @@ export async function upsertContentFromDraft(
             const { error } = await supabase
                 .from('cms_content')
                 .insert({
-                    page_id: pageId,
-                    content_key: contentKey,
-                    section: sectionKey,
-                    content_type: 'text',
+                    page_slug: pageSlug,
+                    field_key: fieldKey,
+                    section_key: sectionKey,
+                    field_type: 'text',
                     [columnName]: value,
                     display_order: 999, // Will be at end, can be reordered later
                 });
@@ -872,10 +872,10 @@ export async function getContentById(contentId: string): Promise<CmsContent | nu
 export async function getDistinctContentKeys(): Promise<string[]> {
     const { data, error } = await supabase
         .from('cms_content')
-        .select('content_key');
+        .select('field_key');
 
     if (error) throw error;
-    const keys = new Set(data?.map(r => r.content_key) || []);
+    const keys = new Set(data?.map((r: { field_key: string }) => r.field_key) || []);
     return Array.from(keys).sort();
 }
 

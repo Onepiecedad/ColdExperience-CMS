@@ -74,8 +74,9 @@ export function useEditorData(
             setPage(foundPage);
 
             // Step 2: Fetch content and media in parallel
+            // Content uses page_slug, media uses page_id (UUID) — different FK strategies
             const [contentData, mediaData] = await Promise.all([
-                getContentByPageAndSection(foundPage.id, sectionId),
+                getContentByPageAndSection(foundPage.slug, sectionId),
                 getMediaBySection(foundPage.id, sectionId)
             ]);
 

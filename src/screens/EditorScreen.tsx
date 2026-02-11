@@ -71,12 +71,12 @@ export function EditorScreen() {
 
     // Get content value - draft takes priority over published content
     const getDisplayValue = (item: CmsContent): string => {
-        // Check for draft first
+        // Check for draft first (drafts use page UUID, not slug)
         const draftValue = getDraftValue(
             item.id,
-            item.page_id,
-            item.section || '',
-            item.content_key || '',
+            dbPage?.id || '',
+            item.section_key || '',
+            item.field_key || '',
             language
         );
         if (draftValue !== null) {
@@ -91,20 +91,20 @@ export function EditorScreen() {
     const fieldHasDraft = (item: CmsContent): boolean => {
         return hasDraft(
             item.id,
-            item.page_id,
-            item.section || '',
-            item.content_key || '',
+            dbPage?.id || '',
+            item.section_key || '',
+            item.field_key || '',
             language
         );
     };
 
-    // Handle content change - save to local draft
+    // Handle content change - save to local draft (drafts use page UUID)
     const handleContentChange = (item: CmsContent, value: string) => {
         updateDraft({
-            pageId: item.page_id,
-            section: item.section || '',
+            pageId: dbPage?.id || '',
+            section: item.section_key || '',
             contentId: item.id,
-            contentKey: item.content_key || '',
+            contentKey: item.field_key || '',
             language,
             value,
         });
@@ -319,10 +319,10 @@ export function EditorScreen() {
                                                 <div className="px-4 py-3 border-b border-white/[0.04] flex items-center justify-between">
                                                     <div className="flex items-center gap-2">
                                                         <span className="text-sm font-medium text-white">
-                                                            {item.field_label || item.content_key}
+                                                            {item.field_label || item.field_key}
                                                         </span>
                                                         <span className="text-xs text-white/30 font-mono">
-                                                            {item.content_type}
+                                                            {item.field_type}
                                                         </span>
                                                         {/* Draft indicator */}
                                                         {fieldHasDraft(item) && (
@@ -340,14 +340,14 @@ export function EditorScreen() {
                                                 </div>
                                                 <div className="p-4">
                                                     {/* Editable textarea for all content types */}
-                                                    {item.content_type === 'html' || item.content_type === 'richtext' || item.content_type === 'textarea' ? (
+                                                    {item.field_type === 'html' || item.field_type === 'richtext' || item.field_type === 'textarea' ? (
                                                         <textarea
                                                             value={getDisplayValue(item)}
                                                             onChange={(e) => handleContentChange(item, e.target.value)}
                                                             className="w-full min-h-[120px] bg-white/[0.03] border border-white/[0.08] rounded-lg p-3 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50 resize-y"
                                                             placeholder="Enter content..."
                                                         />
-                                                    ) : item.content_type === 'array' ? (
+                                                    ) : item.field_type === 'array' ? (
                                                         <textarea
                                                             value={getDisplayValue(item)}
                                                             onChange={(e) => handleContentChange(item, e.target.value)}

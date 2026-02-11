@@ -37,10 +37,10 @@ export interface CmsPage {
 
 export interface CmsContent {
     id: string;
-    page_id: string;
-    section: string;
-    content_key: string;
-    content_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url';
+    page_slug: string;
+    section_key: string;
+    field_key: string;
+    field_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url';
     content_en: string | null;
     content_sv: string | null;
     content_de: string | null;
@@ -60,8 +60,8 @@ export interface CmsPackage {
     image_url: string | null;
     gradient?: string;
     theme?: string;
-    featured: boolean;
-    active: boolean;
+    is_featured: boolean;
+    is_active: boolean;
     display_order: number;
     name_en: string | null;
     name_sv: string | null;
@@ -81,9 +81,6 @@ export interface CmsPackage {
     highlights_pl: string[];
     created_at: string;
     updated_at: string;
-    // Aliases used in some components
-    is_featured?: boolean;
-    is_active?: boolean;
 }
 
 export interface CmsMedia {

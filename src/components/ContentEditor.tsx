@@ -77,7 +77,7 @@ export const ContentEditor: React.FC = () => {
         const groups: Record<string, CmsContent[]> = {};
 
         content.forEach(item => {
-            const section = item.section || 'main';
+            const section = item.section_key || 'main';
             if (!groups[section]) {
                 groups[section] = [];
             }
@@ -151,12 +151,12 @@ export const ContentEditor: React.FC = () => {
 
     // Render a single field
     const renderField = (item: CmsContent) => {
-        const isTextarea = item.content_type === 'textarea' || item.content_type === 'richtext' || item.content_type === 'html';
-        // Detect URL fields by content_key since 'url' is not a valid content_type
-        const isUrl = item.content_key.toLowerCase().includes('url') || item.content_key.toLowerCase().includes('youtube');
+        const isTextarea = item.field_type === 'textarea' || item.field_type === 'richtext' || item.field_type === 'html';
+        // Detect URL fields by field_key since 'url' is not always set as field_type
+        const isUrl = item.field_key.toLowerCase().includes('url') || item.field_key.toLowerCase().includes('youtube');
         const isSaving = savingFields.has(item.id);
         const isSaved = savedFields.has(item.id);
-        const fieldKey = item.content_key || '';
+        const fieldKey = item.field_key || '';
 
         // Determine field label
         let fieldLabel = item.field_label || fieldKey;
@@ -225,7 +225,7 @@ export const ContentEditor: React.FC = () => {
             // Group features by number (feature1_title + feature1_desc as a pair)
             const featurePairs: Record<string, CmsContent[]> = {};
             items.forEach(item => {
-                const match = (item.content_key || '').match(/feature(\d+)/);
+                const match = (item.field_key || '').match(/feature(\d+)/);
                 if (match) {
                     const num = match[1];
                     if (!featurePairs[num]) featurePairs[num] = [];
@@ -255,10 +255,10 @@ export const ContentEditor: React.FC = () => {
                                 <ContentCard
                                     key={num}
                                     title={`Feature ${num}`}
-                                    subtitle={featureItems.find(i => (i.content_key || '').includes('title'))?.content_en || ''}
+                                    subtitle={featureItems.find(i => (i.field_key || '').includes('title'))?.content_en || ''}
                                 >
                                     {featureItems
-                                        .sort((a, _b) => (a.content_key || '').includes('title') ? -1 : 1)
+                                        .sort((a, _b) => (a.field_key || '').includes('title') ? -1 : 1)
                                         .map(item => renderField(item))}
                                 </ContentCard>
                             ))}

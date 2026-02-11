@@ -254,7 +254,7 @@ export function useCmsContent() {
                     package_key: string;
                     price_sek: number;
                     price_eur: number | null;
-                    featured: boolean;
+                    is_featured: boolean;
                     display_order: number;
                     name_en: string | null; name_sv: string | null; name_de: string | null; name_pl: string | null;
                     duration_en: string | null; duration_sv: string | null; duration_de: string | null; duration_pl: string | null;
@@ -264,7 +264,7 @@ export function useCmsContent() {
                     key: p.package_key,
                     priceSEK: p.price_sek,
                     priceEUR: p.price_eur ?? 0,
-                    featured: p.featured,
+                    featured: p.is_featured,
                     displayOrder: p.display_order,
                     name: { en: p.name_en ?? '', sv: p.name_sv ?? '', de: p.name_de ?? '', pl: p.name_pl ?? '' },
                     duration: { en: p.duration_en ?? '', sv: p.duration_sv ?? '', de: p.duration_de ?? '', pl: p.duration_pl ?? '' },
