@@ -31,11 +31,12 @@ function loadEnv() {
 loadEnv();
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = process.env.VITE_SUPABASE_ANON_KEY;
+// Use service role key to bypass RLS for data migration
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 const DRY_RUN = process.argv.includes('--dry-run');
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
-    console.error('❌ Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY in .env');
+    console.error('❌ Missing VITE_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env');
     process.exit(1);
 }
 
@@ -88,24 +89,32 @@ async function syncPages() {
     }
 }
 
+function detectFieldType(key, value) {
+    const k = key.toLowerCase();
+    if (k.includes('url') || k.includes('youtube')) return 'url';
+    if (typeof value === 'string' && value.length > 100) return 'textarea';
+    return 'text';
+}
+
 async function syncContent() {
     console.log('\n📝 Syncing content...');
     let order = 0;
 
     for (const [pageSlug, sections] of Object.entries(data.content)) {
-        for (const [section, fields] of Object.entries(sections)) {
-            for (const [fieldKey, langValues] of Object.entries(fields)) {
-                const contentKey = `${section}.${fieldKey}`;
+        for (const [sectionKey, fields] of Object.entries(sections)) {
+            for (const [fieldName, langValues] of Object.entries(fields)) {
+                const fieldKey = `${sectionKey}.${fieldName}`;
+                const sampleValue = langValues?.en || langValues?.sv || '';
                 const row = {
-                    page_id: pageSlug,
-                    section: section,
-                    content_key: contentKey,
-                    content_type: 'text',
+                    page_slug: pageSlug,
+                    section_key: sectionKey,
+                    field_key: fieldKey,
+                    field_type: detectFieldType(fieldName, sampleValue),
                     content_en: stringifyValue(langValues?.en),
                     content_sv: stringifyValue(langValues?.sv),
                     content_de: stringifyValue(langValues?.de),
                     content_pl: stringifyValue(langValues?.pl),
-                    field_label: fieldKey.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase()),
+                    field_label: fieldName.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase()),
                     display_order: order++,
                 };
 
@@ -116,10 +125,10 @@ async function syncContent() {
 
                 const { error } = await supabase
                     .from('cms_content')
-                    .upsert(row, { onConflict: 'page_id,content_key' });
+                    .upsert(row, { onConflict: 'page_slug,section_key,field_key' });
 
                 if (error) {
-                    console.error(`  ❌ ${pageSlug}/${contentKey}: ${error.message}`);
+                    console.error(`  ❌ ${pageSlug}/${fieldKey}: ${error.message}`);
                     stats.errors++;
                 } else {
                     stats.content++;
@@ -142,9 +151,9 @@ async function syncPackages() {
             package_key: pkg.key,
             price_sek: pkg.priceSEK ?? 0,
             price_eur: pkg.priceEUR ?? null,
-            featured: pkg.featured ?? false,
+            is_featured: pkg.featured ?? false,
             display_order: pkg.displayOrder ?? 0,
-            active: true,
+            is_active: true,
             name_en: stringifyValue(pkg.name?.en),
             name_sv: stringifyValue(pkg.name?.sv),
             name_de: stringifyValue(pkg.name?.de),
