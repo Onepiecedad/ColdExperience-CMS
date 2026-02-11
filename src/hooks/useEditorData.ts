@@ -1,6 +1,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // USE EDITOR DATA - Hook for fetching content + media for EditorScreen
 // Handles loading, error, and empty states for the mobile-first editor
+//
+// Uses getDataPageId() to resolve the actual DB page slug when sections
+// have been regrouped under different parent pages in the CMS navigation.
+// Example: "Hero" section lives under CMS page "home" but DB page "hero".
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { useState, useEffect, useCallback } from 'react';
@@ -10,6 +14,7 @@ import {
     getContentByPageAndSection,
     getMediaBySection
 } from '../services/supabase';
+import { getDataPageId } from '../content/contentMap';
 import { logInfo, logSuccess, logWarn, logError } from '../services/debugLog';
 
 export interface EditorDataState {
@@ -54,14 +59,40 @@ export function useEditorData(
         setError(null);
         setPageNotFound(false);
 
-        logInfo('EditorData', `Fetching: ${pageSlug}/${sectionId}`);
+        // Resolve the actual DB page slug for this section
+        // (e.g. CMS page "home" + section "hero" → DB slug "hero")
+        const dbPageSlug = getDataPageId(pageSlug, sectionId);
+
+        logInfo('EditorData', `Fetching: ${pageSlug}/${sectionId} (DB: ${dbPageSlug})`);
 
         try {
-            // Step 1: Get page by slug
-            const foundPage = await getPageBySlug(pageSlug);
+            // Step 1: Get page by its DB slug
+            const foundPage = await getPageBySlug(dbPageSlug);
 
             if (!foundPage) {
-                logWarn('EditorData', `Page not found: ${pageSlug}`);
+                // Fallback: try the CMS page slug directly (for pages without dataPageId)
+                const fallbackPage = dbPageSlug !== pageSlug ? await getPageBySlug(pageSlug) : null;
+                if (fallbackPage) {
+                    logInfo('EditorData', `Fallback to CMS slug: ${pageSlug}`);
+                    setPage(fallbackPage);
+
+                    const [contentData, mediaData] = await Promise.all([
+                        getContentByPageAndSection(fallbackPage.slug, sectionId),
+                        getMediaBySection(fallbackPage.slug, sectionId)
+                    ]);
+
+                    setContent(contentData);
+                    setMedia(mediaData);
+                    setFetchedAt(new Date());
+
+                    logSuccess('EditorData', `Loaded ${contentData.length} content, ${mediaData.length} media (fallback)`, {
+                        pageId: fallbackPage.id,
+                        section: sectionId,
+                    });
+                    return;
+                }
+
+                logWarn('EditorData', `Page not found: ${dbPageSlug}`);
                 setPageNotFound(true);
                 setPage(null);
                 setContent([]);
@@ -74,7 +105,7 @@ export function useEditorData(
             setPage(foundPage);
 
             // Step 2: Fetch content and media in parallel
-            // Both use page slug (cms_content.page_slug and cms_media.page_id stores slug as TEXT)
+            // Both use the resolved DB slug for correct data retrieval
             const [contentData, mediaData] = await Promise.all([
                 getContentByPageAndSection(foundPage.slug, sectionId),
                 getMediaBySection(foundPage.slug, sectionId)

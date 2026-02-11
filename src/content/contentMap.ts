@@ -1,7 +1,11 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // CONTENT MAP - Central definition of CMS navigation structure
-// Page IDs = cms_pages.slug (exact match)
+// Mirrors the actual page/section hierarchy of coldexperience.se
+//
+// Page IDs = cms_pages.slug (exact match) — OR a logical group
 // Section IDs = cms_content.section_key (exact match)
+// dataPageId = the actual page_id slug used in DB queries
+//              (needed when a section's DB page differs from the CMS group)
 // ═══════════════════════════════════════════════════════════════════════════
 
 export interface Subsection {
@@ -16,119 +20,131 @@ export interface Section {
     label: string;
     icon: string;
     description: string;
+    dataPageId?: string;   // DB page_id slug if different from parent page
     subsections?: Subsection[];
 }
 
 export interface PageConfig {
     id: string;
     label: string;
+    icon?: string;          // Page-level icon for the list
+    websiteUrl?: string;    // Corresponding URL on coldexperience.se
+    group?: 'content' | 'system'; // Visual grouping in PagesScreen
     sections: Section[];
 }
 
-// Page IDs must match cms_pages.slug exactly
-// Section IDs must match cms_content.section_key exactly
+// ─── WEBSITE PAGES ─────────────────────────────────────────────────────────
+// Sections are listed in scroll-order, matching how they appear on the site.
+// dataPageId is set when the DB page_id differs from the parent page id.
+// ───────────────────────────────────────────────────────────────────────────
+
 export const WEBSITE_PAGES: PageConfig[] = [
+    // ═══════ CONTENT PAGES (visible to editors) ═══════
+
     {
-        id: 'hero',
-        label: 'Hero & Video',
+        id: 'home',
+        label: 'Home',
+        icon: '🏠',
+        websiteUrl: '/',
+        group: 'content',
         sections: [
-            { id: 'hero', label: 'Hero', icon: '🎬', description: 'Background video, title, CTAs, feature cards' },
-            { id: 'featuredVideo', label: 'Featured Video', icon: '▶', description: 'YouTube video "Beyond the ordinary"' },
-        ]
-    },
-    {
-        id: 'features',
-        label: 'Why Choose Us',
-        sections: [
-            { id: 'features', label: 'Features', icon: '★', description: '4 USP cards with icons' },
-        ]
-    },
-    {
-        id: 'experiences',
-        label: 'Experiences',
-        sections: [
-            { id: 'experiences', label: 'All Experiences', icon: '❄', description: 'Snowmobile, Northern Lights, Dog Sledding, Lodging' },
+            { id: 'hero', label: 'Hero', icon: '🎬', description: 'Bakgrundsvideo, titel, CTAs, feature-kort', dataPageId: 'hero' },
+            { id: 'featuredVideo', label: 'Featured Video', icon: '▶', description: '"Beyond the ordinary" — YouTube video', dataPageId: 'hero' },
+            { id: 'features', label: 'Features', icon: '★', description: '4 USP-kort med ikoner', dataPageId: 'features' },
+            { id: 'experiences', label: 'Experiences', icon: '❄', description: 'Skoter, Norrsken, Hundspann, Logi', dataPageId: 'experiences' },
+            { id: 'testimonials', label: 'Testimonials', icon: '⭐', description: 'Gästrecensioner och betyg', dataPageId: 'testimonials' },
+            { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation', dataPageId: 'about' },
+            { id: 'instagram', label: 'Instagram', icon: '📸', description: 'Instagram-flöde' },
+            { id: 'corner', label: 'Home Corner', icon: '🏔️', description: 'Snabbinfo om äventyr & boende' },
         ]
     },
     {
         id: 'about',
         label: 'About Us',
+        icon: '📖',
+        websiteUrl: '/about',
+        group: 'content',
         sections: [
-            { id: 'about', label: 'About', icon: '📖', description: 'Values, meet us, action images, timeline, CTA' },
-            { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation' },
-            { id: 'why', label: 'Why Us', icon: '💎', description: 'Why choose Cold Experience' },
-        ]
-    },
-    {
-        id: 'testimonials',
-        label: 'Testimonials',
-        sections: [
-            { id: 'testimonials', label: 'Testimonials', icon: '⭐', description: 'Guest reviews and ratings' },
-        ]
-    },
-    {
-        id: 'home',
-        label: 'Home Extras',
-        sections: [
-            { id: 'instagram', label: 'Instagram', icon: '📸', description: 'Instagram feed section' },
-            { id: 'corner', label: 'Home Corner', icon: '🏔️', description: 'Quick info section' },
+            { id: 'about', label: 'About', icon: '📖', description: 'Värderingar, bilder, tidslinje, CTA' },
+            { id: 'why', label: 'Why Us', icon: '💎', description: 'Varför välja Cold Experience' },
         ]
     },
     {
         id: 'packages',
         label: 'Packages',
+        icon: '📦',
+        websiteUrl: '/packages',
+        group: 'content',
         sections: [
-            { id: 'packages', label: 'All Packages', icon: '📦', description: 'Adventure packages with prices' },
+            { id: 'packages', label: 'All Packages', icon: '📦', description: 'Äventyrspaket med priser' },
         ]
     },
     {
         id: 'gallery',
         label: 'Gallery',
+        icon: '🖼',
+        websiteUrl: '/gallery',
+        group: 'content',
         sections: [
-            { id: 'gallery', label: 'Gallery', icon: '🖼', description: 'Photo gallery and captions' },
+            { id: 'gallery', label: 'Gallery', icon: '🖼', description: 'Fotogalleri och bildtexter' },
         ]
     },
     {
         id: 'contact',
-        label: 'Contact',
+        label: 'Contact & FAQ',
+        icon: '✉',
+        websiteUrl: '/contact',
+        group: 'content',
         sections: [
-            { id: 'contact', label: 'Contact', icon: '✉', description: 'Contact form and info' },
-            { id: 'faq', label: 'FAQ', icon: '❓', description: 'Frequently asked questions' },
+            { id: 'contact', label: 'Contact', icon: '✉', description: 'Kontaktformulär och info' },
+            { id: 'faq', label: 'FAQ', icon: '❓', description: 'Vanliga frågor' },
         ]
     },
     {
         id: 'booking',
         label: 'Booking',
+        icon: '📅',
+        websiteUrl: '/book',
+        group: 'content',
         sections: [
-            { id: 'booking', label: 'Booking Form', icon: '📅', description: 'Main booking form' },
-            { id: 'book', label: 'Book Section', icon: '📋', description: 'Booking box and CTA' },
-            { id: 'form', label: 'Form Fields', icon: '📝', description: 'Form fields and validation' },
+            { id: 'booking', label: 'Booking Form', icon: '📅', description: 'Huvudbokningsformulär' },
+            { id: 'book', label: 'Book Section', icon: '📋', description: 'Bokningsbox och CTA' },
+            { id: 'form', label: 'Form Fields', icon: '📝', description: 'Formulärfält och validering' },
         ]
     },
     {
         id: 'detailPages',
         label: 'Detail Pages',
+        icon: '📄',
+        group: 'content',
         sections: [
-            { id: 'pages', label: 'Detail Pages', icon: '📄', description: 'Snowmobile, Husky, Northern Lights pages' },
+            { id: 'pages', label: 'Detail Pages', icon: '📄', description: 'Skoter, Husky, Norrsken — undersidor' },
         ]
     },
+
+    // ═══════ SYSTEM PAGES (admin/dev only) ═══════
+
     {
         id: 'navigation',
         label: 'Navigation & UI',
+        icon: '🔝',
+        group: 'system',
         sections: [
-            { id: 'header', label: 'Header', icon: '🔝', description: 'Navigation menu and logo' },
-            { id: 'footer', label: 'Footer', icon: '📑', description: 'Footer with links and contact' },
-            { id: 'common', label: 'Common', icon: '🔧', description: 'Common UI texts' },
-            { id: 'shared', label: 'Shared', icon: '🔄', description: 'Shared section texts' },
+            { id: 'header', label: 'Header', icon: '🔝', description: 'Navigeringsmeny och logotyp' },
+            { id: 'footer', label: 'Footer', icon: '📑', description: 'Footer med länkar och kontakt' },
+            { id: 'common', label: 'Common', icon: '🔧', description: 'Gemensamma UI-texter' },
+            { id: 'shared', label: 'Shared', icon: '🔄', description: 'Delade sektionstexter' },
         ]
     },
     {
         id: 'legal',
         label: 'Legal & Policies',
+        icon: '📜',
+        group: 'system',
         sections: [
-            { id: 'policies', label: 'Policies', icon: '📜', description: 'Privacy policy, terms, cookies' },
-            { id: 'cookieBanner', label: 'Cookie Banner', icon: '🍪', description: 'Cookie banner texts' },
-            { id: 'cookieSettings', label: 'Cookie Settings', icon: '⚙', description: 'Cookie settings panel' },
+            { id: 'policies', label: 'Policies', icon: '📜', description: 'Integritetspolicy, villkor, cookies' },
+            { id: 'cookieBanner', label: 'Cookie Banner', icon: '🍪', description: 'Cookie-banner texter' },
+            { id: 'cookieSettings', label: 'Cookie Settings', icon: '⚙', description: 'Cookie-inställningspanel' },
         ]
     },
 ];
@@ -155,4 +171,13 @@ export function getSectionById(pageId: string, sectionId: string): Section | und
 export function getSubsectionById(pageId: string, sectionId: string, subsectionId: string): Subsection | undefined {
     const section = getSectionById(pageId, sectionId);
     return section?.subsections?.find(sub => sub.id === subsectionId);
+}
+
+/**
+ * Get the actual DB page_id for a section's data queries.
+ * Falls back to the parent page id if dataPageId is not set.
+ */
+export function getDataPageId(pageId: string, sectionId: string): string {
+    const section = getSectionById(pageId, sectionId);
+    return section?.dataPageId ?? pageId;
 }

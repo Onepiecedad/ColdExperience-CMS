@@ -75,10 +75,10 @@ export function PagesScreen() {
                     <StructureCard />
                 )}
 
-                {/* Page List */}
+                {/* Page List — Content Pages */}
                 <div className="bg-[#0a1622]/60 backdrop-blur-xl rounded-2xl border border-white/[0.06] overflow-hidden">
                     <div className="divide-y divide-white/[0.04]">
-                        {WEBSITE_PAGES.map((page) => (
+                        {WEBSITE_PAGES.filter(p => p.group !== 'system').map((page) => (
                             <Link
                                 key={page.id}
                                 to={`/pages/${page.id}`}
@@ -87,7 +87,7 @@ export function PagesScreen() {
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#3f7ba7]/20 border border-[#3f7ba7]/30 flex items-center justify-center">
                                         <span className="text-sm">
-                                            {page.sections[0]?.icon || '📄'}
+                                            {page.icon || page.sections[0]?.icon || '📄'}
                                         </span>
                                     </div>
                                     <div className="min-w-0">
@@ -95,7 +95,7 @@ export function PagesScreen() {
                                             {page.label}
                                         </span>
                                         <span className="block text-xs text-white/40">
-                                            {page.sections.length} sektioner
+                                            {page.sections.length} {page.sections.length === 1 ? 'sektion' : 'sektioner'}
                                         </span>
                                     </div>
                                 </div>
@@ -104,6 +104,43 @@ export function PagesScreen() {
                         ))}
                     </div>
                 </div>
+
+                {/* System Pages — Navigation, Legal (admin/dev only) */}
+                {showStructureCard && WEBSITE_PAGES.filter(p => p.group === 'system').length > 0 && (
+                    <>
+                        <p className="text-[11px] text-white/25 uppercase tracking-wider font-medium px-1">
+                            System & Inställningar
+                        </p>
+                        <div className="bg-[#0a1622]/40 backdrop-blur-xl rounded-2xl border border-white/[0.04] overflow-hidden">
+                            <div className="divide-y divide-white/[0.04]">
+                                {WEBSITE_PAGES.filter(p => p.group === 'system').map((page) => (
+                                    <Link
+                                        key={page.id}
+                                        to={`/pages/${page.id}`}
+                                        className="flex items-center justify-between px-4 py-3.5 active:bg-white/[0.03] transition-colors"
+                                    >
+                                        <div className="flex items-center gap-3 min-w-0">
+                                            <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
+                                                <span className="text-xs">
+                                                    {page.icon || '⚙'}
+                                                </span>
+                                            </div>
+                                            <div className="min-w-0">
+                                                <span className="block text-[14px] font-medium text-white/70 truncate">
+                                                    {page.label}
+                                                </span>
+                                                <span className="block text-[11px] text-white/30">
+                                                    {page.sections.length} {page.sections.length === 1 ? 'sektion' : 'sektioner'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ChevronRight size={18} className="text-white/20 flex-shrink-0" />
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                )}
 
                 {/* Footer */}
                 <div className="text-center space-y-2">

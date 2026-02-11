@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3 } from 'lucide-react';
+import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3, Play, Video } from 'lucide-react';
 import { ContextBar } from '../components/ContextBar';
 import { DevInspector } from '../components/DevInspector';
 import { useEditorData } from '../hooks/useEditorData';
@@ -24,6 +24,14 @@ export function EditorScreen() {
     }>();
 
     const [contentMode, setContentMode] = useState<ContentMode>('text');
+
+    // Helper function to check if media is a video
+    const isVideo = (item: { filename: string; mime_type?: string | null }): boolean => {
+        const videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.mkv'];
+        const filename = item.filename.toLowerCase();
+        const mimeType = item.mime_type?.toLowerCase() || '';
+        return videoExtensions.some(ext => filename.endsWith(ext)) || mimeType.startsWith('video/');
+    };
     const [language, setLanguage] = useState<Language>('en');
 
     // Fetch data from Supabase
@@ -399,11 +407,37 @@ export function EditorScreen() {
                                             >
                                                 {/* Thumbnail */}
                                                 <div className="aspect-video bg-white/[0.02] relative">
-                                                    {item.mime_type?.startsWith('image/') ? (
+                                                    {isVideo(item) ? (
+                                                        <>
+                                                            <video
+                                                                src={item.public_url}
+                                                                className="w-full h-full object-cover"
+                                                                muted
+                                                                preload="metadata"
+                                                                playsInline
+                                                                onLoadedMetadata={(e) => {
+                                                                    const video = e.target as HTMLVideoElement;
+                                                                    video.currentTime = 0.1;
+                                                                }}
+                                                            />
+                                                            <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                                                                <div className="p-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
+                                                                    <Play size={16} className="text-white ml-0.5" fill="white" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="absolute top-1.5 left-1.5">
+                                                                <div className="px-1.5 py-0.5 bg-[#3f7ba7]/80 backdrop-blur-sm rounded flex items-center gap-1">
+                                                                    <Video size={10} className="text-white" />
+                                                                    <span className="text-[10px] text-white font-medium">VIDEO</span>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    ) : item.mime_type?.startsWith('image/') || /\.(jpe?g|png|gif|webp|svg)$/i.test(item.filename) ? (
                                                         <img
                                                             src={item.public_url}
                                                             alt={item.alt_text_en || item.filename}
                                                             className="w-full h-full object-cover"
+                                                            loading="lazy"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center">
