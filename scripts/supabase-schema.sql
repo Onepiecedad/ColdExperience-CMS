@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS cms_content (
     content_sv TEXT,
     content_de TEXT,
     content_pl TEXT,
-    field_type TEXT DEFAULT 'text', -- 'text', 'textarea', 'richtext', 'array'
+    field_type TEXT DEFAULT 'text', -- 'text', 'textarea', 'richtext', 'html', 'array', 'url'
+    field_label TEXT,
+    field_hint TEXT,
     display_order INTEGER DEFAULT 0,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
@@ -67,6 +69,9 @@ CREATE TABLE IF NOT EXISTS cms_packages (
     highlights_pl TEXT[],
     price_sek INTEGER,
     price_eur INTEGER,
+    image_url TEXT,
+    gradient TEXT DEFAULT 'from-blue-500 to-blue-700',
+    theme TEXT DEFAULT 'arctic',
     is_featured BOOLEAN DEFAULT false,
     display_order INTEGER DEFAULT 0,
     is_active BOOLEAN DEFAULT true,
@@ -97,11 +102,17 @@ CREATE TABLE IF NOT EXISTS cms_media (
     public_url TEXT,
     mime_type TEXT,
     size_bytes INTEGER,
+    width INTEGER,
+    height INTEGER,
     folder TEXT DEFAULT 'general',
     alt_text_en TEXT,
     alt_text_sv TEXT,
     alt_text_de TEXT,
     alt_text_pl TEXT,
+    tags TEXT[] DEFAULT '{}',
+    uploaded_by TEXT,
+    page_id TEXT,      -- Page slug for section-bound media
+    section_id TEXT,   -- Section key for section-bound media
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -114,6 +125,7 @@ CREATE INDEX IF NOT EXISTS idx_cms_content_section ON cms_content(section_key);
 CREATE INDEX IF NOT EXISTS idx_cms_content_lookup ON cms_content(page_slug, section_key, field_key);
 CREATE INDEX IF NOT EXISTS idx_cms_packages_active ON cms_packages(is_active, display_order);
 CREATE INDEX IF NOT EXISTS idx_cms_media_folder ON cms_media(folder);
+CREATE INDEX IF NOT EXISTS idx_cms_media_section ON cms_media(page_id, section_id);
 
 -- ============================================================================
 -- ROW LEVEL SECURITY (RLS)
@@ -125,15 +137,7 @@ ALTER TABLE cms_packages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE cms_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE cms_media ENABLE ROW LEVEL SECURITY;
 
--- Create policies for authenticated users (CMS admins)
--- READ access for all authenticated users
-CREATE POLICY "Allow read for authenticated" ON cms_pages FOR SELECT TO authenticated USING (true);
-CREATE POLICY "Allow read for authenticated" ON cms_content FOR SELECT TO authenticated USING (true);
-CREATE POLICY "Allow read for authenticated" ON cms_packages FOR SELECT TO authenticated USING (true);
-CREATE POLICY "Allow read for authenticated" ON cms_settings FOR SELECT TO authenticated USING (true);
-CREATE POLICY "Allow read for authenticated" ON cms_media FOR SELECT TO authenticated USING (true);
-
--- WRITE access for authenticated users
+-- WRITE access for authenticated users (includes read)
 CREATE POLICY "Allow write for authenticated" ON cms_pages FOR ALL TO authenticated USING (true) WITH CHECK (true);
 CREATE POLICY "Allow write for authenticated" ON cms_content FOR ALL TO authenticated USING (true) WITH CHECK (true);
 CREATE POLICY "Allow write for authenticated" ON cms_packages FOR ALL TO authenticated USING (true) WITH CHECK (true);
@@ -163,6 +167,12 @@ CREATE TRIGGER update_cms_content_updated_at BEFORE UPDATE ON cms_content FOR EA
 CREATE TRIGGER update_cms_packages_updated_at BEFORE UPDATE ON cms_packages FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 CREATE TRIGGER update_cms_settings_updated_at BEFORE UPDATE ON cms_settings FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 CREATE TRIGGER update_cms_media_updated_at BEFORE UPDATE ON cms_media FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+-- ============================================================================
+-- CREATE STORAGE BUCKET
+-- ============================================================================
+-- Note: Run this in the Supabase SQL Editor or create the bucket via the dashboard
+-- INSERT INTO storage.buckets (id, name, public) VALUES ('media', 'media', true) ON CONFLICT DO NOTHING;
 
 -- ============================================================================
 -- INSERT DEFAULT SETTINGS
@@ -208,7 +218,7 @@ INSERT INTO cms_packages (package_key, name_en, name_sv, name_de, name_pl, price
 ON CONFLICT (package_key) DO NOTHING;
 
 -- ============================================================================
--- DONE! 
+-- DONE!
 -- ============================================================================
 -- Your CMS database is now ready to use.
 -- Tables created: cms_pages, cms_content, cms_packages, cms_settings, cms_media

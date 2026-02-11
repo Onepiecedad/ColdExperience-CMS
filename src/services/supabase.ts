@@ -179,11 +179,11 @@ export async function upsertPages(pages: PageUpsert[]): Promise<{ inserted: numb
 // CONTENT FUNCTIONS
 // ============================================================================
 
-export async function getContentByPage(pageId: string): Promise<CmsContent[]> {
+export async function getContentByPage(pageSlug: string): Promise<CmsContent[]> {
     const { data, error } = await supabase
         .from('cms_content')
         .select('*')
-        .eq('page_id', pageId)
+        .eq('page_slug', pageSlug)
         .order('display_order');
 
     if (error) throw error;

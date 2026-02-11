@@ -19,7 +19,7 @@ export const LANGUAGES: { code: Language; name: string; flag: string }[] = [
 ];
 
 // ============================================================================
-// DATABASE TYPES
+// DATABASE TYPES - Matches supabase-schema.sql exactly
 // ============================================================================
 
 export interface CmsPage {
@@ -27,8 +27,10 @@ export interface CmsPage {
     slug: string;
     name: string;
     description: string | null;
-    icon: string;
+    icon: string | null;
     display_order: number;
+    sections: string[];
+    is_active: boolean;
     created_at: string;
     updated_at: string;
 }
@@ -36,18 +38,23 @@ export interface CmsPage {
 export interface CmsContent {
     id: string;
     page_id: string;
+    section: string;
     content_key: string;
-    content_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea';
+    content_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url';
     content_en: string | null;
     content_sv: string | null;
     content_de: string | null;
     content_pl: string | null;
     field_label: string | null;
     field_hint: string | null;
-    section: string | null;
     display_order: number;
     created_at: string;
     updated_at: string;
+    // Aliases used in some components
+    page_slug?: string;
+    section_key?: string;
+    field_key?: string;
+    field_type?: string;
 }
 
 export interface CmsPackage {
@@ -56,11 +63,11 @@ export interface CmsPackage {
     price_sek: number;
     price_eur: number | null;
     image_url: string | null;
-    gradient: string;
-    theme: string;
+    gradient?: string;
+    theme?: string;
     featured: boolean;
-    display_order: number;
     active: boolean;
+    display_order: number;
     name_en: string | null;
     name_sv: string | null;
     name_de: string | null;
@@ -79,6 +86,9 @@ export interface CmsPackage {
     highlights_pl: string[];
     created_at: string;
     updated_at: string;
+    // Aliases used in some components
+    is_featured?: boolean;
+    is_active?: boolean;
 }
 
 export interface CmsMedia {
@@ -88,8 +98,8 @@ export interface CmsMedia {
     public_url: string;
     mime_type: string | null;
     size_bytes: number | null;
-    width: number | null;
-    height: number | null;
+    width?: number | null;
+    height?: number | null;
     alt_text_en: string | null;
     alt_text_sv: string | null;
     alt_text_de: string | null;

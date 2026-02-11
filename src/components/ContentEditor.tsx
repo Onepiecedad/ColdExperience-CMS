@@ -58,7 +58,7 @@ export const ContentEditor: React.FC = () => {
         const fetchContent = async () => {
             setLoading(true);
             try {
-                const contentData = await getContentByPage(selectedPage.id);
+                const contentData = await getContentByPage(selectedPage.slug);
                 setContent(contentData);
                 setError(null);
             } catch (err) {
@@ -77,7 +77,7 @@ export const ContentEditor: React.FC = () => {
         const groups: Record<string, CmsContent[]> = {};
 
         content.forEach(item => {
-            const section = item.section || 'main';
+            const section = item.section || item.section_key || 'main';
             if (!groups[section]) {
                 groups[section] = [];
             }
@@ -156,9 +156,10 @@ export const ContentEditor: React.FC = () => {
         const isUrl = item.content_key.toLowerCase().includes('url') || item.content_key.toLowerCase().includes('youtube');
         const isSaving = savingFields.has(item.id);
         const isSaved = savedFields.has(item.id);
+        const fieldKey = item.content_key || item.field_key || '';
 
         // Determine field label
-        let fieldLabel = item.field_label || item.content_key;
+        let fieldLabel = item.field_label || fieldKey;
         if (isUrl && !fieldLabel.toLowerCase().includes('url')) {
             fieldLabel = `${fieldLabel} (URL)`;
         }
@@ -224,7 +225,7 @@ export const ContentEditor: React.FC = () => {
             // Group features by number (feature1_title + feature1_desc as a pair)
             const featurePairs: Record<string, CmsContent[]> = {};
             items.forEach(item => {
-                const match = item.content_key.match(/feature(\d+)/);
+                const match = (item.content_key || item.field_key || '').match(/feature(\d+)/);
                 if (match) {
                     const num = match[1];
                     if (!featurePairs[num]) featurePairs[num] = [];
@@ -254,10 +255,10 @@ export const ContentEditor: React.FC = () => {
                                 <ContentCard
                                     key={num}
                                     title={`Feature ${num}`}
-                                    subtitle={featureItems.find(i => i.content_key.includes('title'))?.content_en || ''}
+                                    subtitle={featureItems.find(i => (i.content_key || i.field_key || '').includes('title'))?.content_en || ''}
                                 >
                                     {featureItems
-                                        .sort((a, _b) => a.content_key.includes('title') ? -1 : 1)
+                                        .sort((a, _b) => (a.content_key || a.field_key || '').includes('title') ? -1 : 1)
                                         .map(item => renderField(item))}
                                 </ContentCard>
                             ))}
