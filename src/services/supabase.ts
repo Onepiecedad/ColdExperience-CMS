@@ -27,8 +27,8 @@ export async function signInWithMagicLink(email: string): Promise<{ error: Error
     return { error: error as Error | null };
 }
 
-// Allowed emails for Google OAuth — read from env variable
-const ALLOWED_EMAILS = (import.meta.env.VITE_ALLOWED_EMAILS || '')
+// Allowed emails fallback — read from env variable (used if cms_allowed_users table doesn't exist)
+const ALLOWED_EMAILS_FALLBACK = (import.meta.env.VITE_ALLOWED_EMAILS || '')
     .split(',')
     .map((e: string) => e.trim().toLowerCase())
     .filter(Boolean);
@@ -43,8 +43,25 @@ export async function signInWithGoogle(): Promise<{ error: Error | null }> {
     return { error: error as Error | null };
 }
 
-export function isEmailAllowed(email: string): boolean {
-    return ALLOWED_EMAILS.includes(email.toLowerCase());
+export async function isEmailAllowed(email: string): Promise<boolean> {
+    try {
+        const { data, error } = await supabase
+            .from('cms_allowed_users')
+            .select('id')
+            .eq('email', email.toLowerCase())
+            .maybeSingle();
+
+        if (error) {
+            // Table might not exist yet — fall back to env var
+            console.warn('[Auth] cms_allowed_users query failed, falling back to env var:', error.message);
+            return ALLOWED_EMAILS_FALLBACK.includes(email.toLowerCase());
+        }
+
+        return data !== null;
+    } catch {
+        // Fallback to env var
+        return ALLOWED_EMAILS_FALLBACK.includes(email.toLowerCase());
+    }
 }
 
 export async function signOut(): Promise<void> {

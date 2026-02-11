@@ -25,7 +25,7 @@ export function PagesScreen() {
 
             // Check if user email is allowed
             const { data: { user } } = await supabase.auth.getUser();
-            if (user?.email && isEmailAllowed(user.email)) {
+            if (user?.email && await isEmailAllowed(user.email)) {
                 setShowStructureCard(true);
             }
         };
