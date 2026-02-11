@@ -4,19 +4,24 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { Link } from 'react-router-dom';
-import { ChevronRight, Snowflake } from 'lucide-react';
+import { ChevronRight, Snowflake, LogOut } from 'lucide-react';
 import { WEBSITE_PAGES } from '../content/contentMap';
 import { StructureCard } from '../components/StructureCard';
-import { isEmailAllowed } from '../services/supabase';
+import { isEmailAllowed, signOut } from '../services/supabase';
 import { useEffect, useState } from 'react';
 import { supabase } from '../services/supabase';
 
 export function PagesScreen() {
     const [showStructureCard, setShowStructureCard] = useState(false);
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+    const [loggingOut, setLoggingOut] = useState(false);
 
-    // Check if user is allowed to see the Structure card
+    // Check if user is allowed to see the Structure card + get email
     useEffect(() => {
         const checkAccess = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            setUserEmail(user?.email || null);
+
             // Always show in dev mode
             if (import.meta.env.DEV) {
                 setShowStructureCard(true);
@@ -24,7 +29,6 @@ export function PagesScreen() {
             }
 
             // Check if user email is allowed
-            const { data: { user } } = await supabase.auth.getUser();
             if (user?.email && await isEmailAllowed(user.email)) {
                 setShowStructureCard(true);
             }
@@ -32,6 +36,12 @@ export function PagesScreen() {
 
         checkAccess();
     }, []);
+
+    const handleSignOut = async () => {
+        setLoggingOut(true);
+        await signOut();
+        window.location.reload();
+    };
 
     return (
         <div className="min-h-screen bg-[#040810]">
@@ -41,10 +51,20 @@ export function PagesScreen() {
                     <div className="w-10 h-10 bg-gradient-to-br from-[#3f7ba7]/90 to-[#285a82] rounded-xl flex items-center justify-center shadow-lg border border-white/10">
                         <Snowflake className="text-white" size={20} strokeWidth={1.5} />
                     </div>
-                    <div>
+                    <div className="flex-1 min-w-0">
                         <h1 className="text-lg font-semibold text-white">ColdExperience CMS</h1>
-                        <p className="text-xs text-white/40">Select a page to edit</p>
+                        <p className="text-xs text-white/40 truncate">
+                            {userEmail || 'Select a page to edit'}
+                        </p>
                     </div>
+                    <button
+                        onClick={handleSignOut}
+                        disabled={loggingOut}
+                        title="Sign out"
+                        className="flex-shrink-0 w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-red-400 hover:bg-red-500/10 hover:border-red-500/20 transition-all duration-200 disabled:opacity-50"
+                    >
+                        <LogOut size={16} strokeWidth={1.5} />
+                    </button>
                 </div>
             </header>
 
