@@ -256,6 +256,31 @@ export function useCmsContent() {
 
             if (dbPackages && dbPackages.length > 0) {
                 console.log(`📦 Loaded ${dbPackages.length} packages from Supabase`);
+                const mappedPackages: Package[] = dbPackages.map((p: {
+                    package_key: string;
+                    price_sek: number;
+                    price_eur: number | null;
+                    featured: boolean;
+                    display_order: number;
+                    name_en: string | null; name_sv: string | null; name_de: string | null; name_pl: string | null;
+                    duration_en: string | null; duration_sv: string | null; duration_de: string | null; duration_pl: string | null;
+                    description_en: string | null; description_sv: string | null; description_de: string | null; description_pl: string | null;
+                    highlights_en: string[] | null; highlights_sv: string[] | null; highlights_de: string[] | null; highlights_pl: string[] | null;
+                }) => ({
+                    key: p.package_key,
+                    priceSEK: p.price_sek,
+                    priceEUR: p.price_eur ?? 0,
+                    featured: p.featured,
+                    displayOrder: p.display_order,
+                    name: { en: p.name_en ?? '', sv: p.name_sv ?? '', de: p.name_de ?? '', pl: p.name_pl ?? '' },
+                    duration: { en: p.duration_en ?? '', sv: p.duration_sv ?? '', de: p.duration_de ?? '', pl: p.duration_pl ?? '' },
+                    description: { en: p.description_en ?? '', sv: p.description_sv ?? '', de: p.description_de ?? '', pl: p.description_pl ?? '' },
+                    highlights: { en: p.highlights_en ?? [], sv: p.highlights_sv ?? [], de: p.highlights_de ?? [], pl: p.highlights_pl ?? [] },
+                }));
+                setState(prev => ({
+                    ...prev,
+                    data: { ...prev.data, packages: mappedPackages },
+                }));
             }
 
         } catch (error) {

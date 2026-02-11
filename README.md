@@ -20,6 +20,7 @@ A content management system for the Cold Experience website, built as a reusable
 ### Setup
 
 1. **Clone and install dependencies:**
+
    ```bash
    npm install
    ```
@@ -38,6 +39,7 @@ A content management system for the Cold Experience website, built as a reusable
    - Set it to public
 
 5. **Start the development server:**
+
    ```bash
    npm run dev
    ```
@@ -45,6 +47,40 @@ A content management system for the Cold Experience website, built as a reusable
 6. **Open in browser:**
    - Visit `http://localhost:3001`
    - Enter your email to receive a magic link
+
+### Database Migrations
+
+#### Draft System (Ticket 5)
+
+The CMS uses a separate `cms_drafts` table for draft content. To set it up:
+
+1. Open your [Supabase SQL Editor](https://supabase.com/dashboard)
+2. Copy the contents of `scripts/create-cms-drafts.sql`
+3. Paste and click **Run**
+4. Verify the table was created:
+
+   ```sql
+   SELECT * FROM public.cms_drafts LIMIT 5;
+   ```
+
+> **Note:** Drafts are stored in `cms_drafts`, never in `cms_content`. This allows safe editing without affecting the live website until you explicitly publish.
+
+## Schema Management
+
+The CMS uses a whitelist (`src/content/schema.ts`) to control which keys can be published. Use the "Add Next Batch" feature to expand the schema:
+
+1. **Generate:** Go to **Advanced → Schema Coverage → Used tab**
+   - Expand "Add Next Batch"
+   - Set optional prefix (e.g. `hero.`) and batch size
+   - Click **Generate Batch** — downloads `schema.pending.json`
+
+2. **Apply:** Run the command (script auto-finds file in `~/Downloads/`):
+
+   ```bash
+   npm run schema:apply-pending
+   ```
+
+This adds the entries to an AUTO-GENERATED block in `schema.ts`.
 
 ## Deployment
 
@@ -69,6 +105,12 @@ A content management system for the Cold Experience website, built as a reusable
 
 ```
 src/
+├── content/
+│   └── contentMap.ts       # Website structure & page definitions
+├── screens/                # New mobile-first navigation flow (iOS Settings-style)
+│   ├── PagesScreen.tsx     # List of all website pages
+│   ├── SectionsScreen.tsx  # Sections for selected page
+│   └── EditorScreen.tsx    # Content editor with context bar
 ├── components/
 │   ├── AuthScreen.tsx      # Login with magic link
 │   ├── ContentEditor.tsx   # Multi-language text editor
@@ -81,6 +123,8 @@ src/
 ├── types.ts                # TypeScript definitions
 └── main.tsx                # Entry point
 ```
+
+> **Note:** New mobile-first flow lives in `src/screens/` - uses React Router for drill-down navigation.
 
 ## License
 

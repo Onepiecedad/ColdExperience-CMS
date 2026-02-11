@@ -112,6 +112,19 @@ export interface CmsSetting {
     updated_at: string;
 }
 
+// Draft content - stored in cms_drafts table, never in cms_content
+export interface CmsDraft {
+    id: string;
+    page_id: string;
+    section: string;
+    content_id: string | null;  // Reference to cms_content.id if editing existing
+    content_key: string | null; // Fallback key when content_id is null
+    language: Language;
+    value: string;
+    updated_at: string;
+    updated_by: string | null;
+}
+
 // ============================================================================
 // AUTH TYPES
 // ============================================================================
@@ -144,3 +157,12 @@ export interface EditorState {
     isSaving: boolean;
     lastSaved: Date | null;
 }
+
+// CMS metadata - content version tracking (Ticket 6)
+export interface CmsMeta {
+    site_id: string;
+    content_version: number;
+    last_published_at: string | null;
+    last_published_by: string | null;
+}
+

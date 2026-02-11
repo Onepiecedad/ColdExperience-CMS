@@ -152,7 +152,8 @@ export const ContentEditor: React.FC = () => {
     // Render a single field
     const renderField = (item: CmsContent) => {
         const isTextarea = item.content_type === 'textarea' || item.content_type === 'richtext' || item.content_type === 'html';
-        const isUrl = item.content_type === 'url' || item.content_key.toLowerCase().includes('url') || item.content_key.toLowerCase().includes('youtube');
+        // Detect URL fields by content_key since 'url' is not a valid content_type
+        const isUrl = item.content_key.toLowerCase().includes('url') || item.content_key.toLowerCase().includes('youtube');
         const isSaving = savingFields.has(item.id);
         const isSaved = savedFields.has(item.id);
 

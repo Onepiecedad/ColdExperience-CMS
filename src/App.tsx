@@ -3,137 +3,17 @@ import { Snowflake, LogOut, Menu, X, Globe, Sparkles, Type, Image, ChevronRight,
 import AuthScreen from './components/AuthScreen';
 import { MediaLibrary } from './components/MediaLibrary';
 import { SectionMediaLibrary } from './components/SectionMediaLibrary';
+import { ToastContainer } from './components/ui/Toast';
 import { signOut, getCurrentUser, isEmailAllowed } from './lib/supabase';
 import { useCmsContent } from './hooks/useCmsContent';
-
-// Website page structure - mirrors coldexperience.se visual scroll order exactly
-// Each section represents what you SEE when scrolling down the page
-// Sections with 'subsections' are expandable in the sidebar
-const WEBSITE_PAGES = [
-    {
-        id: 'home',
-        label: 'Home',
-        sections: [
-            { id: 'hero', label: '1. Hero', icon: '🎬', description: 'Bakgrundsvideo, titel, knappar, 3 feature-kort' },
-            { id: 'featured-video', label: '2. Featured Video', icon: '▶', description: 'YouTube-video "Beyond the ordinary"' },
-            { id: 'why-choose-us', label: '3. Why Choose Us', icon: '★', description: '4 USP-kort med bilder' },
-            {
-                id: 'adventures',
-                label: '4. Adventures',
-                icon: '❄',
-                description: 'Äventyrssektionen med 4 upplevelser',
-                // Sub-sections för varje äventyrstyp (egna undersidor på webbsidan)
-                subsections: [
-                    { id: 'snowmobile', label: 'Snöskoter', icon: '🛷', description: '/snowmobile-safari' },
-                    { id: 'northern-lights', label: 'Norrsken', icon: '🌌', description: '/northern-lights' },
-                    { id: 'dog-sledding', label: 'Hundspann', icon: '🐕', description: '/husky-ride' },
-                    { id: 'lodging', label: 'Boende', icon: '🏠', description: '/accommodation' },
-                ]
-            },
-            { id: 'hosts', label: '5. Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation' },
-            { id: 'testimonials', label: '6. Testimonials', icon: '⭐', description: 'Gästrecensioner och betyg' },
-            { id: 'instagram', label: '7. Instagram', icon: '📸', description: 'Instagram-flöde' },
-            { id: 'corner', label: '8. Home Corner', icon: '🏔️', description: 'Snabbinfo-sektion' },
-        ]
-    },
-    {
-        id: 'about',
-        label: 'About us',
-        sections: [
-            { id: 'hero', label: '1. Hero', icon: '🎬', description: 'Bakgrundsvideo, titel "About Cold Experience Lapland", intro-text' },
-            { id: 'values', label: '2. Our Values', icon: '💎', description: '4 värderingskort: Family, Authentic, Small Groups, Memories' },
-            { id: 'meet-us', label: '3. Meet Gustav & Julia', icon: '👥', description: 'Presentation av värdparet med bild och kort' },
-            { id: 'action-images', label: '4. Action Images', icon: '📸', description: '3 action-bilder: Snowmobile, Lodge, Landscape' },
-            { id: 'timeline', label: '5. Our Journey', icon: '📅', description: 'Tidslinje med 5 milstolpar och bilder' },
-            { id: 'cta', label: '6. Call to Action', icon: '🔘', description: 'Avslutande CTA med 3 knappar' },
-        ]
-    },
-    {
-        id: 'packages',
-        label: 'Packages',
-        sections: [
-            { id: 'hero', label: '1. Hero', icon: '🎬', description: 'Bakgrundsvideo och intro för paketsidan' },
-            {
-                id: 'packages',
-                label: '2. Package Content',
-                icon: '📦',
-                description: 'Alla 4 paket med priser och beskrivningar',
-                // Sub-sections för varje individuellt pakets media
-                subsections: [
-                    { id: 'package-complete', label: 'Complete Package', icon: '⭐', description: '7-dagars fullständiga upplevelsen' },
-                    { id: 'package-adventure', label: 'Adventure Package', icon: '🛷', description: '5-dagars äventyrspaket' },
-                    { id: 'package-threeday', label: 'Three Day Package', icon: '📅', description: '3-dagars upplevelse' },
-                    { id: 'package-taster', label: 'Taster Package', icon: '🌟', description: '1-dags smakprov' },
-                ]
-            },
-        ]
-    },
-    {
-        id: 'gallery',
-        label: 'Gallery',
-        sections: [
-            { id: 'hero', label: '1. Hero', icon: '🎬', description: 'Galleri-introduktion' },
-            { id: 'grid', label: '2. Image Grid', icon: '🖼', description: 'Alla galleribilder' },
-        ]
-    },
-    {
-        id: 'faq',
-        label: 'FAQ',
-        sections: [
-            { id: 'hero', label: '1. Hero', icon: '🎬', description: 'FAQ-introduktion' },
-            { id: 'questions', label: '2. Questions', icon: '❓', description: 'Alla frågor och svar' },
-        ]
-    },
-    {
-        id: 'contact',
-        label: 'Contact',
-        sections: [
-            { id: 'hero', label: '1. Hero', icon: '🎬', description: 'Kontaktsidans intro' },
-            { id: 'form', label: '2. Contact Form', icon: '✉', description: 'Kontaktformulär' },
-            { id: 'info', label: '3. Contact Info', icon: '📍', description: 'Adress, telefon, karta' },
-        ]
-    },
-    {
-        id: 'booking',
-        label: 'Booking',
-        sections: [
-            { id: 'booking', label: '1. Booking Form', icon: '📅', description: 'Huvudbokningsformulär' },
-            { id: 'book', label: '2. Book Section', icon: '📋', description: 'Bokningsruta och CTA' },
-            { id: 'form', label: '3. Form Fields', icon: '📝', description: 'Formulärfält och validering' },
-        ]
-    },
-    {
-        id: 'navigation',
-        label: 'Navigation & UI',
-        sections: [
-            { id: 'header', label: '1. Header', icon: '🔝', description: 'Navigeringsmeny och logotyp' },
-            { id: 'footer', label: '2. Footer', icon: '📑', description: 'Sidfot med länkar och kontakt' },
-            { id: 'common', label: '3. Common', icon: '🔧', description: 'Gemensamma UI-texter' },
-            { id: 'shared', label: '4. Shared', icon: '🔄', description: 'Delade sektionstexter' },
-        ]
-    },
-    {
-        id: 'legal',
-        label: 'Legal & Policies',
-        sections: [
-            { id: 'policies', label: '1. Policies', icon: '📜', description: 'Integritetspolicy, villkor, cookies' },
-            { id: 'cookieBanner', label: '2. Cookie Banner', icon: '🍪', description: 'Cookie-banner texter' },
-            { id: 'cookieSettings', label: '3. Cookie Settings', icon: '⚙', description: 'Cookie-inställningar' },
-        ]
-    },
-];
-
-const LANGUAGES = [
-    { code: 'en', label: 'English', flag: '🇬🇧' },
-    { code: 'sv', label: 'Svenska', flag: '🇸🇪' },
-    { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-    { code: 'pl', label: 'Polski', flag: '🇵🇱' },
-];
+import { useToast } from './hooks/useToast';
+import { WEBSITE_PAGES, LANGUAGES } from './content/contentMap';
+import type { Section, Subsection } from './content/contentMap';
 
 type ContentMode = 'text' | 'media';
 
 function App() {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
     const [loading, setLoading] = useState(true);
     const [activePage, setActivePage] = useState('home');
     const [activeSection, setActiveSection] = useState('hero');
@@ -149,6 +29,7 @@ function App() {
 
     // Using CMS content hook for data with Supabase integration
     const { saveChanges, syncToSupabase, forceResyncFromLocalJson, meta } = useCmsContent();
+    const { toasts, addToast: _addToast, removeToast } = useToast();
 
     const currentPage = WEBSITE_PAGES.find(p => p.id === activePage) || WEBSITE_PAGES[0];
 
@@ -221,7 +102,7 @@ function App() {
         try {
             const success = await forceResyncFromLocalJson();
             if (success) {
-                alert('✅ Force resync klar! Alla fält har uppdaterats från den lokala JSON-filen.');
+                alert('✅ Force resync complete! All fields have been updated from the local JSON file.');
             } else {
                 alert('❌ Force resync misslyckades. Kolla konsolen för detaljer.');
             }
@@ -267,6 +148,7 @@ function App() {
     // Main dashboard
     return (
         <div className="min-h-screen bg-[#040810] text-white">
+            <ToastContainer toasts={toasts} onRemove={removeToast} />
             {/* ═══════════════════════════════════════════════════════════════════════
           HEADER - Fixed top bar with logo, page tabs, and language selector
       ═══════════════════════════════════════════════════════════════════════ */}
@@ -348,7 +230,7 @@ function App() {
                             ) : (
                                 <Sparkles size={14} />
                             )}
-                            {saving ? 'Sparar...' : showSaved ? 'Sparat!' : 'Spara'}
+                            {saving ? 'Saving...' : showSaved ? 'Saved!' : 'Save'}
                         </button>
 
                         {/* Language Selector */}
@@ -431,7 +313,7 @@ function App() {
                             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400/70 hover:bg-red-500/10 transition-all"
                         >
                             <LogOut size={18} />
-                            Logga ut
+                            Sign out
                         </button>
                     </div>
                 </div>
@@ -462,12 +344,13 @@ function App() {
                     {/* Section Navigation */}
                     <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
                         <span className="block text-[10px] font-medium tracking-widest uppercase text-white/30 px-3 py-2">
-                            Sektioner
+                            Sections
                         </span>
                         {currentPage.sections.map((section, index) => {
-                            const hasSubsections = 'subsections' in section && Array.isArray((section as any).subsections);
-                            const subsections = hasSubsections ? (section as any).subsections : [];
-                            const isExpanded = activeSection === section.id || subsections.some((s: any) => activeSubsection === s.id);
+                            const sectionWithSubs = section as Section;
+                            const hasSubsections = Array.isArray(sectionWithSubs.subsections);
+                            const subsections: Subsection[] = hasSubsections ? sectionWithSubs.subsections! : [];
+                            const isExpanded = activeSection === section.id || subsections.some((s: Subsection) => activeSubsection === s.id);
 
                             return (
                                 <div key={section.id}>
@@ -506,7 +389,7 @@ function App() {
                                     {/* Subsections (expandable) */}
                                     {hasSubsections && isExpanded && (
                                         <div className="ml-4 mt-1 space-y-0.5 border-l border-white/[0.08] pl-3">
-                                            {subsections.map((sub: any) => (
+                                            {subsections.map((sub: Subsection) => (
                                                 <button
                                                     key={sub.id}
                                                     onClick={() => {
@@ -582,7 +465,7 @@ function App() {
                             {syncing ? (
                                 <>
                                     <RefreshCw size={14} className="animate-spin" />
-                                    Synkar till Supabase...
+                                    Syncing to Supabase...
                                 </>
                             ) : syncSuccess ? (
                                 <>
@@ -592,12 +475,12 @@ function App() {
                             ) : (
                                 <>
                                     <Database size={14} />
-                                    Synka allt till Supabase
+                                    Sync all to Supabase
                                 </>
                             )}
                         </button>
                         <p className="text-[10px] text-white/30 text-center mt-2">
-                            Laddar upp alla {meta.total_fields} fält
+                            Uploading all {meta.total_fields} fields
                         </p>
 
                         {/* Force Resync Button - resets from local JSON file */}
@@ -609,7 +492,7 @@ function App() {
                             {forceResyncing ? (
                                 <>
                                     <RefreshCw size={12} className="animate-spin" />
-                                    Återställer...
+                                    Resetting...
                                 </>
                             ) : (
                                 <>
@@ -619,7 +502,7 @@ function App() {
                             )}
                         </button>
                         <p className="text-[9px] text-white/20 text-center mt-1.5">
-                            Återställer ALLA fält från lokal JSON
+                            Resets ALL fields from local JSON
                         </p>
                     </div>
                 </aside>
@@ -655,7 +538,7 @@ function App() {
                                                 </span>
                                             </div>
                                             <p className="text-white/40 text-sm mt-1">
-                                                Redigera {contentMode === 'text' ? 'textinnehåll' : 'bilder och media'} för denna sektion
+                                                Editing {contentMode === 'text' ? 'text content' : 'images and media'} for this section
                                             </p>
                                         </div>
                                     </div>
@@ -669,7 +552,7 @@ function App() {
                                             <>
                                                 <ChevronRight size={12} />
                                                 <span className="text-white/50">
-                                                    {(currentPage.sections.find(s => s.id === activeSection) as any)?.subsections?.find((sub: any) => sub.id === activeSubsection)?.label}
+                                                    {(currentPage.sections.find(s => s.id === activeSection) as Section | undefined)?.subsections?.find((sub: Subsection) => sub.id === activeSubsection)?.label}
                                                 </span>
                                             </>
                                         )}
@@ -690,7 +573,7 @@ function App() {
                                         <div className="flex items-center gap-3">
                                             <div className={`w-2 h-2 rounded-full ${contentMode === 'text' ? 'bg-emerald-400' : 'bg-[#5a9bc7]'}`} />
                                             <span className="text-sm font-medium text-white/70">
-                                                {contentMode === 'text' ? 'Textinnehåll' : 'Media & Bilder'}
+                                                {contentMode === 'text' ? 'Text Content' : 'Media & Images'}
                                             </span>
                                         </div>
 
@@ -952,17 +835,17 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // Om fortfarande inte hittat, prova att hitta nästlat objekt
         if (!fieldData && fieldKey.includes('.')) {
             const parts = fieldKey.split('.');
-            let current: any = sectionContent;
+            let current: unknown = sectionContent;
             for (const part of parts) {
-                if (current && typeof current === 'object') {
-                    current = current[part];
+                if (current && typeof current === 'object' && part in (current as Record<string, unknown>)) {
+                    current = (current as Record<string, unknown>)[part];
                 } else {
                     current = undefined;
                     break;
                 }
             }
-            if (current && typeof current === 'object' && 'en' in current) {
-                fieldData = current;
+            if (current && typeof current === 'object' && 'en' in (current as Record<string, unknown>)) {
+                fieldData = current as typeof fieldData;
             }
         }
 
@@ -976,7 +859,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             // Check if it's an array of objects (like features/steps with {icon, title, description})
             if (value.length > 0 && typeof value[0] === 'object' && value[0] !== null) {
                 // Format as readable text: "• Title: Description"
-                return value.map((item: any, i: number) => {
+                return (value as unknown as Record<string, string>[]).map((item, i: number) => {
                     if (item.title && item.description) {
                         return `${i + 1}. ${item.title}: ${item.description}`;
                     } else if (item.title) {
@@ -1123,7 +1006,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             },
             {
                 title: '🎬 Hero-sektion',
-                description: 'Visas högst upp med bakgrundsvideo',
+                description: 'Displayed at the top with background video',
                 fields: [
                     { key: 'title', label: 'Huvudrubrik', type: 'text', hint: 'T.ex. "About Cold Experience Lapland"' },
                     { key: 'intro', label: 'Introduktionstext', type: 'textarea', hint: 'Den vita texten under rubriken' },
@@ -1275,7 +1158,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 fields: [
                     { key: 'cta.title', label: 'Rubrik', type: 'text', hint: 'T.ex. "Ready for your adventure?"' },
                     { key: 'cta.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'cta.packages', label: 'Knapp 1: Paket', type: 'text', hint: 'T.ex. "View Packages"' },
+                    { key: 'cta.packages', label: 'Button 1: Packages', type: 'text', hint: 'E.g. "View Packages"' },
                     { key: 'cta.contact', label: 'Knapp 2: Kontakt', type: 'text', hint: 'T.ex. "Contact"' },
                     { key: 'cta.gallery', label: 'Knapp 3: Galleri', type: 'text', hint: 'T.ex. "Gallery"' },
                 ]
@@ -1341,7 +1224,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 fields: [
                     { key: 'title', label: 'Rubrik', type: 'text', hint: 'T.ex. "Latest from Instagram"' },
                     { key: 'subtitle', label: 'Underrubrik', type: 'text' },
-                    { key: 'viewOnInstagram', label: '"Visa på Instagram"-knapp', type: 'text' },
+                    { key: 'viewOnInstagram', label: '"View on Instagram" button', type: 'text' },
                     { key: 'follow', label: '"Följ oss"-text', type: 'text' },
                     { key: 'loading', label: 'Laddningstext', type: 'text' },
                     { key: 'error', label: 'Felmeddelande', type: 'text' },
@@ -1409,7 +1292,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                     { key: 'quickLinks.title', label: 'Rubrik', type: 'text' },
                     { key: 'quickLinks.home', label: 'Hem', type: 'text' },
                     { key: 'quickLinks.about', label: 'Om oss', type: 'text' },
-                    { key: 'quickLinks.packages', label: 'Paket', type: 'text' },
+                    { key: 'quickLinks.packages', label: 'Packages', type: 'text' },
                     { key: 'quickLinks.gallery', label: 'Galleri', type: 'text' },
                     { key: 'quickLinks.contact', label: 'Kontakt', type: 'text' },
                 ]
@@ -1466,9 +1349,9 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 fields: [
                     { key: 'privacy.categoryLabel', label: 'Kategorietikett', type: 'text' },
                     { key: 'privacy.title', label: 'Rubrik', type: 'text' },
-                    { key: 'privacy.lastUpdated', label: 'Senast uppdaterad', type: 'text' },
+                    { key: 'privacy.lastUpdated', label: 'Last Updated', type: 'text' },
                     { key: 'privacy.intro', label: 'Introduktion', type: 'textarea' },
-                    { key: 'privacy.sections', label: 'Sektioner (JSON)', type: 'textarea' },
+                    { key: 'privacy.sections', label: 'Sections (JSON)', type: 'textarea' },
                     { key: 'privacy.contact.label', label: 'Kontakt etikett', type: 'text' },
                     { key: 'privacy.contact.title', label: 'Kontakt rubrik', type: 'text' },
                     { key: 'privacy.contact.description', label: 'Kontakt beskrivning', type: 'textarea' },
@@ -1481,9 +1364,9 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 fields: [
                     { key: 'terms.categoryLabel', label: 'Kategorietikett', type: 'text' },
                     { key: 'terms.title', label: 'Rubrik', type: 'text' },
-                    { key: 'terms.lastUpdated', label: 'Senast uppdaterad', type: 'text' },
+                    { key: 'terms.lastUpdated', label: 'Last Updated', type: 'text' },
                     { key: 'terms.intro', label: 'Introduktion', type: 'textarea' },
-                    { key: 'terms.sections', label: 'Sektioner (JSON)', type: 'textarea' },
+                    { key: 'terms.sections', label: 'Sections (JSON)', type: 'textarea' },
                     { key: 'terms.contact.label', label: 'Kontakt etikett', type: 'text' },
                     { key: 'terms.contact.title', label: 'Kontakt rubrik', type: 'text' },
                     { key: 'terms.contact.description', label: 'Kontakt beskrivning', type: 'textarea' },
@@ -1496,9 +1379,9 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 fields: [
                     { key: 'cookies.categoryLabel', label: 'Kategorietikett', type: 'text' },
                     { key: 'cookies.title', label: 'Rubrik', type: 'text' },
-                    { key: 'cookies.lastUpdated', label: 'Senast uppdaterad', type: 'text' },
+                    { key: 'cookies.lastUpdated', label: 'Last Updated', type: 'text' },
                     { key: 'cookies.intro', label: 'Introduktion', type: 'textarea' },
-                    { key: 'cookies.sections', label: 'Sektioner (JSON)', type: 'textarea' },
+                    { key: 'cookies.sections', label: 'Sections (JSON)', type: 'textarea' },
                     { key: 'cookies.contact.label', label: 'Kontakt etikett', type: 'text' },
                     { key: 'cookies.contact.title', label: 'Kontakt rubrik', type: 'text' },
                     { key: 'cookies.contact.description', label: 'Kontakt beskrivning', type: 'textarea' },
@@ -1833,7 +1716,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📝 Formulär - Ämnesval',
                 description: 'Dropdown-alternativ för ämnesväljaren',
                 fields: [
-                    { key: 'form.subjectOptions.select', label: 'Välj ämne (default)', type: 'text' },
+                    { key: 'form.subjectOptions.select', label: 'Select subject (default)', type: 'text' },
                     { key: 'form.subjectOptions.booking', label: 'Bokning', type: 'text' },
                     { key: 'form.subjectOptions.sevenDay', label: '7-dagars paket', type: 'text' },
                     { key: 'form.subjectOptions.fiveDay', label: '5-dagars paket', type: 'text' },
@@ -1850,7 +1733,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 ]
             },
             {
-                title: '✅ Bekräftelsemeddelanden',
+                title: '✅ Confirmation Messages',
                 description: 'Toast-meddelanden som visas efter formulärskickning',
                 fields: [
                     { key: 'toast.missingTitle', label: 'Saknade fält: Rubrik', type: 'text' },
@@ -1967,7 +1850,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                     { key: 'phoneErrorInvalid', label: 'Telefon: Ogiltigt format fel', type: 'text' },
                     { key: 'dateErrorRequired', label: 'Datum: Obligatoriskt fel', type: 'text' },
                     { key: 'dateErrorPast', label: 'Datum: Passerat datum fel', type: 'text' },
-                    { key: 'packageError', label: 'Paket: Obligatoriskt fel', type: 'text' },
+                    { key: 'packageError', label: 'Package: Required error', type: 'text' },
                     { key: 'numAdultsError', label: 'Antal vuxna: Fel', type: 'text' },
                     { key: 'numChildrenError', label: 'Antal barn: Fel', type: 'text' },
                     { key: 'childrenAgesErrorRequired', label: 'Barns åldrar: Obligatoriskt fel', type: 'text' },
@@ -1984,14 +1867,14 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                     { key: 'summaryName', label: 'Sammanfattning: Namn', type: 'text' },
                     { key: 'summaryEmail', label: 'Sammanfattning: E-post', type: 'text' },
                     { key: 'summaryPhone', label: 'Sammanfattning: Telefon', type: 'text' },
-                    { key: 'summaryPackage', label: 'Sammanfattning: Paket', type: 'text' },
+                    { key: 'summaryPackage', label: 'Summary: Package', type: 'text' },
                     { key: 'summaryDate', label: 'Sammanfattning: Datum', type: 'text' },
                     { key: 'summaryAdults', label: 'Sammanfattning: Vuxna', type: 'text' },
                     { key: 'summaryChildren', label: 'Sammanfattning: Barn', type: 'text' },
                     { key: 'summaryChildrenAges', label: 'Sammanfattning: Barnens åldrar', type: 'text' },
                     { key: 'summaryPrice', label: 'Sammanfattning: Pris', type: 'text' },
-                    { key: 'summaryConfirmationEmail', label: 'Bekräftelse: E-post info', type: 'text' },
-                    { key: 'summaryConfirmationCall', label: 'Bekräftelse: Telefoninfo', type: 'text' },
+                    { key: 'summaryConfirmationEmail', label: 'Confirmation: Email info', type: 'text' },
+                    { key: 'summaryConfirmationCall', label: 'Confirmation: Phone info', type: 'text' },
                     { key: 'consentLabel', label: 'Samtycke: Etikett', type: 'textarea' },
                 ]
             },
@@ -2018,7 +1901,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📝 Sektionsrubrik',
                 description: 'Rubrik och introduktion för paketsidan',
                 fields: [
-                    { key: 'pageTitle', label: 'Sidtitel (SEO)', type: 'text', hint: 'Visas i webbläsarflik' },
+                    { key: 'pageTitle', label: 'Page Title (SEO)', type: 'text', hint: 'Shown in browser tab' },
                     { key: 'pageDescription', label: 'Sidbeskrivning (SEO)', type: 'textarea', hint: 'Används av sökmotorer' },
                     { key: 'title', label: 'Huvudrubrik', type: 'text', hint: 'T.ex. "Our Packages"' },
                     { key: 'subtitle', label: 'Undertext', type: 'textarea' },
@@ -2032,7 +1915,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 fields: [
                     { key: 'title', label: 'Sektionsrubrik', type: 'text' },
                     { key: 'subtitle', label: 'Underrubrrik', type: 'textarea' },
-                    { key: 'mostPopular', label: '"Mest populär" badge', type: 'text', hint: 'Visas på utvalt paket' },
+                    { key: 'mostPopular', label: '"Most Popular" badge', type: 'text', hint: 'Shown on featured package' },
                     { key: 'perPerson', label: '"Per person" text', type: 'text' },
                     { key: 'bookButton', label: 'Bokningsknapp text', type: 'text' },
                 ]
@@ -2041,7 +1924,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📦 Adventure-paketet',
                 description: 'Det längsta paketet (7 dagar)',
                 fields: [
-                    { key: 'adventure.name', label: 'Paketnamn', type: 'text' },
+                    { key: 'adventure.name', label: 'Package Name', type: 'text' },
                     { key: 'adventure.duration', label: 'Längd', type: 'text', hint: 'T.ex. "7 dagar"' },
                     { key: 'adventure.description', label: 'Beskrivning', type: 'textarea' },
                     { key: 'adventure.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
@@ -2051,7 +1934,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📦 Complete-paketet',
                 description: 'Mellanpaketet (5 dagar)',
                 fields: [
-                    { key: 'complete.name', label: 'Paketnamn', type: 'text' },
+                    { key: 'complete.name', label: 'Package Name', type: 'text' },
                     { key: 'complete.duration', label: 'Längd', type: 'text', hint: 'T.ex. "5 dagar"' },
                     { key: 'complete.description', label: 'Beskrivning', type: 'textarea' },
                     { key: 'complete.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
@@ -2061,7 +1944,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📦 3-dagarspaketet',
                 description: 'Kortare vinterupplevelse',
                 fields: [
-                    { key: 'threeDay.name', label: 'Paketnamn', type: 'text' },
+                    { key: 'threeDay.name', label: 'Package Name', type: 'text' },
                     { key: 'threeDay.duration', label: 'Längd', type: 'text', hint: 'T.ex. "3 dagar"' },
                     { key: 'threeDay.description', label: 'Beskrivning', type: 'textarea' },
                     { key: 'threeDay.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
@@ -2071,7 +1954,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📦 Taster-paketet',
                 description: 'Endagsupplevelsen',
                 fields: [
-                    { key: 'taster.name', label: 'Paketnamn', type: 'text' },
+                    { key: 'taster.name', label: 'Package Name', type: 'text' },
                     { key: 'taster.duration', label: 'Längd', type: 'text', hint: 'T.ex. "1 dag"' },
                     { key: 'taster.description', label: 'Beskrivning', type: 'textarea' },
                     { key: 'taster.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
@@ -2086,8 +1969,8 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📝 SEO & Metadata',
                 description: 'Sidinformation för sökmotorer',
                 fields: [
-                    { key: 'gallery.meta.title', label: 'Meta-titel', type: 'text', hint: 'Visas i webbläsarflik' },
-                    { key: 'gallery.meta.description', label: 'Meta-beskrivning', type: 'textarea', hint: 'Visas i sökresultat' },
+                    { key: 'gallery.meta.title', label: 'Meta Title', type: 'text', hint: 'Shown in browser tab' },
+                    { key: 'gallery.meta.description', label: 'Meta Description', type: 'textarea', hint: 'Shown in search results' },
                 ]
             },
             {
@@ -2115,7 +1998,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '🏷️ Kategori-filter',
                 description: 'Texter för filtreringsknappar',
                 fields: [
-                    { key: 'gallery.categories.all', label: 'Alla', type: 'text' },
+                    { key: 'gallery.categories.all', label: 'All', type: 'text' },
                     { key: 'gallery.categories.featured', label: 'Utvalda', type: 'text' },
                     { key: 'gallery.categories.snowmobile', label: 'Snöskoter', type: 'text' },
                     { key: 'gallery.categories.dogSledding', label: 'Hundspann', type: 'text' },
@@ -2127,7 +2010,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '🔘 UI-kontroller',
                 description: 'Knappar och meddelanden',
                 fields: [
-                    { key: 'gallery.noImages', label: '"Inga bilder" meddelande', type: 'text' },
+                    { key: 'gallery.noImages', label: '"No images" message', type: 'text' },
                     { key: 'gallery.closeModal', label: 'Stäng-knapp', type: 'text' },
                     { key: 'gallery.prevImage', label: 'Föregående-knapp', type: 'text' },
                     { key: 'gallery.nextImage', label: 'Nästa-knapp', type: 'text' },
@@ -2255,8 +2138,8 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         });
 
         return [{
-            title: '📝 Innehållsfält',
-            description: `Alla tillgängliga fält för ${section}`,
+            title: '📝 Content Fields',
+            description: `All available fields for ${section}`,
             fields
         }];
     };
@@ -2265,7 +2148,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
     const totalFields = fieldGroups.reduce((sum, g) => sum + g.fields.length, 0);
 
     const handleChange = (key: string, value: string) => {
-        // Uppdatera lokalt state
+        // Update local state
         setLocalValues(prev => ({ ...prev, [key]: value }));
 
         // Använd exakt fieldKey för uppdatering (med punkter i namn)

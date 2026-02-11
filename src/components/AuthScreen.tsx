@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Loader2, Snowflake, Shield, ChevronRight } from 'lucide-react';
-import { signInWithGoogle } from '../services/supabase';
+import { Loader2, Snowflake, Shield, ChevronRight, Mail } from 'lucide-react';
+import { signInWithGoogle, signInWithMagicLink } from '../services/supabase';
 import type { User } from '../types';
 
 interface AuthScreenProps {
@@ -10,6 +10,9 @@ interface AuthScreenProps {
 
 export const AuthScreen: React.FC<AuthScreenProps> = ({ error: externalError }) => {
     const [loading, setLoading] = useState(false);
+    const [magicLinkLoading, setMagicLinkLoading] = useState(false);
+    const [email, setEmail] = useState('');
+    const [magicLinkSent, setMagicLinkSent] = useState(false);
     const [error, setError] = useState<string | null>(externalError || null);
 
     const handleGoogleSignIn = async () => {
@@ -26,6 +29,30 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ error: externalError }) 
         } catch (err) {
             setError('An unexpected error occurred. Please try again.');
             setLoading(false);
+        }
+    };
+
+    const handleMagicLink = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email.trim()) {
+            setError('Please enter your email address');
+            return;
+        }
+
+        setMagicLinkLoading(true);
+        setError(null);
+
+        try {
+            const { error: magicLinkError } = await signInWithMagicLink(email);
+            if (magicLinkError) {
+                setError(magicLinkError.message);
+            } else {
+                setMagicLinkSent(true);
+            }
+        } catch (err) {
+            setError('Failed to send magic link. Please try again.');
+        } finally {
+            setMagicLinkLoading(false);
         }
     };
 
@@ -140,6 +167,55 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ error: externalError }) 
                             )}
                         </div>
                     </button>
+
+                    {/* Divider */}
+                    <div className="flex items-center gap-4 my-6">
+                        <div className="flex-1 h-px bg-cold-700/30" />
+                        <span className="text-xs text-cold-400 uppercase tracking-wider">or</span>
+                        <div className="flex-1 h-px bg-cold-700/30" />
+                    </div>
+
+                    {/* Magic Link Form */}
+                    {magicLinkSent ? (
+                        <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 animate-fade-in">
+                            <div className="flex items-center gap-3">
+                                <Mail className="w-5 h-5 text-green-400" />
+                                <div>
+                                    <p className="text-sm font-medium text-green-400">Check your inbox</p>
+                                    <p className="text-xs text-cold-300 mt-1">
+                                        We sent a login link to <span className="font-medium text-white">{email}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleMagicLink} className="space-y-3">
+                            <div className="relative">
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cold-400" />
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Enter your email"
+                                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-cold-800/50 border border-cold-700/30 text-white placeholder-cold-400 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={magicLinkLoading}
+                                className="w-full py-3 rounded-xl bg-accent/20 border border-accent/30 text-accent-light font-medium hover:bg-accent/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            >
+                                {magicLinkLoading ? (
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                    <>
+                                        <Mail className="w-4 h-4" />
+                                        Send Magic Link
+                                    </>
+                                )}
+                            </button>
+                        </form>
+                    )}
 
                     {/* Access Notice - Premium */}
                     <div className="mt-8 pt-6 border-t border-cold-700/30">

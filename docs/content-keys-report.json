@@ -1,0 +1,3112 @@
+{
+  "total_unique_keys": 755,
+  "total_rows": 755,
+  "by_page_section": {
+    "0ef27191-1e41-4dab-8223-e18ef73d07d5": {
+      "main": [
+        {
+          "content_key": "main.nav_about",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.nav_book",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.nav_contact",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.nav_gallery",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.nav_home",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.nav_packages",
+          "content_type": "text"
+        }
+      ]
+    },
+    "12c0db3f-27d9-4bc8-be6d-1e7ee5301960": {
+      "common": [
+        {
+          "content_key": "common.cancel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "common.error",
+          "content_type": "text"
+        },
+        {
+          "content_key": "common.loading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "common.save",
+          "content_type": "text"
+        },
+        {
+          "content_key": "common.success",
+          "content_type": "text"
+        }
+      ],
+      "footer": [
+        {
+          "content_key": "footer.companyDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.companyName",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.contact.addressLine1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.contact.addressLine2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.contact.email",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.contact.phone",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.contact.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.cookiePolicy",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.cookieSettings",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.dogSledding",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.iceFishing",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.localCuisine",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.northernLights",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.saunaHotTub",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.snowmobile",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.experiences.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.privacyPolicy",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quickLinks.about",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quickLinks.contact",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quickLinks.gallery",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quickLinks.home",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quickLinks.packages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quickLinks.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.quote",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.rights",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.season.cta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.season.dates",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.season.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "footer.termsOfService",
+          "content_type": "text"
+        }
+      ],
+      "header": [
+        {
+          "content_key": "header.bookAdventure",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.chooseLanguage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.languageNames.de",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.languageNames.en",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.languageNames.pl",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.languageNames.sv",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.about",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.adventures",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.contact",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.faq",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.gallery",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.home",
+          "content_type": "text"
+        },
+        {
+          "content_key": "header.nav.packages",
+          "content_type": "text"
+        }
+      ],
+      "shared": [
+        {
+          "content_key": "shared.closing.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.closing.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.closing.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.closing.ratingText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.closing.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.closing.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.closing.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.dayProgram.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "shared.sectionsHeading",
+          "content_type": "text"
+        }
+      ]
+    },
+    "142e043d-63e7-4d4e-acf4-ab3538059337": {
+      "pages": [
+        {
+          "content_key": "pages.huskyRide.closing.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.ratingText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.showStarRating",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.closing.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.dayProgram.steps",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.huskyRide.dayProgram.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.features",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.huskyRide.hero.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.hero.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.hero.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.hero.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.hero.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.intro.heading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.intro.paragraphs",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.huskyRide.media.introPoster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.media.poster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.media.scale",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.media.videoSrc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.@context",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.image",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.location.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.location.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.provider.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.provider.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.jsonLd.url",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.keywords",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.ogDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.ogImage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.ogTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.siteUrl",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.meta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.huskyRide.sectionsHeading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.huskyRide.settings.showFooter",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.cta.outlineCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.cta.primaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.cta.secondaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.cta.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.cta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.badge",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.galleryCaptions",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.includes",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.includesTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.perPerson",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.price",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.primaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.package.secondaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.featured.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.includes",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.includesTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.perPerson",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.price",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.primaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.package.secondaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.fiveDay.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.hero.primaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.hero.secondaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.hero.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.intro.features",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.intro.paragraphs",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.metaDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.metaTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.includes",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.includesTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.perPerson",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.price",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.primaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.package.secondaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.oneDay.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.addOns",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.addOnsTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.cancellationPolicy",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.includes",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.includesTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.itinerary",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.itineraryTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.perPerson",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.price",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.primaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.package.secondaryCta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.laplandHoliday.threeDay.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.ratingText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.showStarRating",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.closing.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.dayProgram.steps",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.lodging.dayProgram.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.features",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.lodging.hero.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.hero.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.hero.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.hero.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.hero.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.intro.heading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.intro.paragraphs",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.lodging.media.introPoster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.media.poster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.media.scale",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.media.videoSrc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.canonicalPath",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.@context",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.address.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.address.addressCountry",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.address.addressLocality",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.address.addressRegion",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.address.postalCode",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.address.streetAddress",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.amenityFeature",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.image",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.jsonLd.telephone",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.keywords",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.ogDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.ogImage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.ogTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.siteUrl",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.meta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.lodging.sectionsHeading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.lodging.settings.showFooter",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.ratingText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.showStarRating",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.closing.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.dayProgram.steps",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.northernLights.dayProgram.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.features",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.northernLights.hero.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.hero.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.hero.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.hero.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.hero.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.intro.heading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.intro.paragraphs",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.northernLights.media.introPoster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.media.poster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.media.scale",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.media.videoSrc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.@context",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.image",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.location.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.location.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.provider.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.provider.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.jsonLd.url",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.keywords",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.ogDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.ogImage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.ogTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.siteUrl",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.meta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.northernLights.sectionsHeading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.northernLights.settings.showFooter",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.ratingText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.showStarRating",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.closing.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.dayProgram.steps",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.dayProgram.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.features",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.hero.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.hero.primaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.hero.primaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.hero.secondaryButton.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.hero.secondaryButton.target",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.intro.heading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.intro.paragraphs",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.media.introPoster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.media.poster",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.media.scale",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.media.videoSrc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.@context",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.image",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.location.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.location.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.provider.@type",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.provider.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.jsonLd.url",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.keywords",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.ogDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.ogImage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.ogTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.siteUrl",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.meta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.sectionsHeading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "pages.snowmobileSafari.settings.showFooter",
+          "content_type": "text"
+        }
+      ]
+    },
+    "1daf806c-a4ea-4f34-8327-ac582f1d97de": {
+      "features": [
+        {
+          "content_key": "features.feature1Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature1Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature2Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature2Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature3Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature3Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature4Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.feature4Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.outro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "features.title",
+          "content_type": "text"
+        }
+      ]
+    },
+    "3ce81555-178f-4c83-9217-8f5465ac345b": {
+      "experiences": [
+        {
+          "content_key": "experiences.ctaBook",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.ctaDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.ctaTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.dogSleddingDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.dogSleddingFeature1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.dogSleddingFeature2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.dogSleddingFeature3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.dogSleddingFeature4",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.dogSleddingTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.learnMore",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingAlt",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingFeature1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingFeature2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingFeature3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingFeature4",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.lodgingTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.northernLightsDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.northernLightsFeature1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.northernLightsFeature2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.northernLightsFeature3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.northernLightsFeature4",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.northernLightsTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.snowmobileDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.snowmobileFeature1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.snowmobileFeature2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.snowmobileFeature3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.snowmobileFeature4",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.snowmobileTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "experiences.titleHighlight",
+          "content_type": "text"
+        }
+      ]
+    },
+    "41004dde-0a3b-4f0c-88dc-27966092f799": {
+      "cookieBanner": [
+        {
+          "content_key": "cookieBanner.acceptAll",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieBanner.acceptNecessary",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieBanner.customize",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieBanner.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieBanner.policyLink",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieBanner.title",
+          "content_type": "text"
+        }
+      ],
+      "cookieSettings": [
+        {
+          "content_key": "cookieSettings.cancel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.categories.analytics.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.categories.analytics.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.categories.marketing.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.categories.marketing.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.categories.necessary.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.categories.necessary.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.close",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.save",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.status.disabled",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.status.enabled",
+          "content_type": "text"
+        },
+        {
+          "content_key": "cookieSettings.title",
+          "content_type": "text"
+        }
+      ],
+      "policies": [
+        {
+          "content_key": "policies.cookies.categoryLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.contact.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.contact.email",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.contact.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.contact.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.lastUpdated",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.cookies.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "policies.cookies.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.categoryLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.contact.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.contact.email",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.contact.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.contact.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.lastUpdated",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.privacy.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "policies.privacy.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.categoryLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.contact.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.contact.email",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.contact.label",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.contact.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.lastUpdated",
+          "content_type": "text"
+        },
+        {
+          "content_key": "policies.terms.sections",
+          "content_type": "array"
+        },
+        {
+          "content_key": "policies.terms.title",
+          "content_type": "text"
+        }
+      ]
+    },
+    "6a5942c7-5aa0-45c0-bdc0-65a39eef7d1c": {
+      "packages": [
+        {
+          "content_key": "packages.adventure.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.adventure.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.adventure.highlights",
+          "content_type": "array"
+        },
+        {
+          "content_key": "packages.adventure.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.bookButton",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.complete.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.complete.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.complete.highlights",
+          "content_type": "array"
+        },
+        {
+          "content_key": "packages.complete.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.bookAdventure",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.logo",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.nav.about",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.nav.contact",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.nav.gallery",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.nav.home",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.header.nav.packages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.mostPopular",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.pageDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.pageTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.perPerson",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.taster.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.taster.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.taster.highlights",
+          "content_type": "array"
+        },
+        {
+          "content_key": "packages.taster.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.threeDay.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.threeDay.duration",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.threeDay.highlights",
+          "content_type": "array"
+        },
+        {
+          "content_key": "packages.threeDay.name",
+          "content_type": "text"
+        },
+        {
+          "content_key": "packages.title",
+          "content_type": "text"
+        }
+      ]
+    },
+    "7398bdb4-8037-4b09-b60b-5f6a93662e91": {
+      "about": [
+        {
+          "content_key": "about.about.gallery",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.actionImages.landscape",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.actionImages.lodge",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.actionImages.snowmobile",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.cta.contact",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.cta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.cta.gallery",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.cta.packages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.cta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.journeyTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.experience",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.family",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.familyDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.guides",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.guidesDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meetUs.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.meta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.childhood.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.childhood.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.coldExperience.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.coldExperience.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.culinary.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.culinary.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.family.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.family.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.love.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.timeline.love.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.authentic.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.authentic.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.family.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.family.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.groups.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.groups.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.memories.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.values.memories.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "about.valuesTitle",
+          "content_type": "text"
+        }
+      ],
+      "ownerSection": [
+        {
+          "content_key": "ownerSection.authenticExperienceText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.authenticExperienceTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.bio",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.familyBusinessText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.familyBusinessTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.gustavBio",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.gustavTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.juliaBio",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.juliaTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.lifestyleQuote",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.lifestyleTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.localExpertiseText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.localExpertiseTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.names",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.title1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.title2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.whyText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "ownerSection.whyTitle",
+          "content_type": "text"
+        }
+      ],
+      "why": [
+        {
+          "content_key": "why.authenticExperienceText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.authenticExperienceTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.familyBusinessText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.familyBusinessTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.localExpertiseText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.localExpertiseTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.whyText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "why.whyTitle",
+          "content_type": "text"
+        }
+      ]
+    },
+    "7a18496e-0664-43ab-9db3-598e3ba5b5c2": {
+      "contact": [
+        {
+          "content_key": "contact.callNow",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.ctaSubtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.ctaTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.faqEmailButton",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.faqEmailPrompt",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.faqs",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.faqSubtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.faqTitle1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.faqTitle2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.findusTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.contactByPhone",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.emailLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.emailPlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.messageLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.messagePlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.nameLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.namePlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.phoneLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.phonePlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.sendButton",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.booking",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.custom",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.fiveDay",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.general",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.oneDay",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.select",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subjectOptions.sevenDay",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.form.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.hero.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.hero.title1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.hero.title2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.email.address",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.email.note",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.email.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.location.line1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.location.line2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.location.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.phone.note",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.phone.number",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.phone.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.season.cta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.season.dates",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.info.season.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.openMaps",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.pageDescription",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.pageTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.sendEmail",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.social.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.social.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.toast.missingDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.toast.missingTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.toast.sentDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "contact.toast.sentTitle",
+          "content_type": "text"
+        }
+      ],
+      "faq": [
+        {
+          "content_key": "faq.faq.item1.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item1.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item10.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item10.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item2.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item2.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item3.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item3.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item4.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item4.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item5.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item5.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item6.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item6.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item7.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item7.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item8.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item8.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item9.answer",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.faq.item9.question",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.hero.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.hero.title1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.hero.title2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "faq.meta.description",
+          "content_type": "text"
+        }
+      ]
+    },
+    "859f1b94-1601-4a55-920b-92a19610834c": {
+      "featuredVideo": [
+        {
+          "content_key": "featuredVideo.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "featuredVideo.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "featuredVideo.youtubeUrl",
+          "content_type": "text"
+        }
+      ],
+      "hero": [
+        {
+          "content_key": "hero.book",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.chooseLanguage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.cta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.explore",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature1Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature1Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature2Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature2Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature3Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature3Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature4Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.feature4Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.magic",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.packages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.premium",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "hero.videoFallbackAlt",
+          "content_type": "text"
+        }
+      ]
+    },
+    "88f53fd5-4da4-4c89-9fca-e9f536423cdc": {
+      "gallery": [
+        {
+          "content_key": "gallery.categories.activities",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.categories.all",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.categories.dogSledding",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.categories.featured",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.categories.landscapes",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.categories.snowmobile",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.closeModal",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.cta.button",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.cta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.hero.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.hero.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.heroSubtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.heroTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.heroTitleAccent",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.heroTitlePrimary",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.activity1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.adventure1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.auroraDance",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.auroraPines",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.authentic1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.campfireCooking",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.dogSledding",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.family1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.familyGathering",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.familyJoy",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.fireplaceFeast",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.firesideLake",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.firesideShelter",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.landscape1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.landscape2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.landscape3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.landscape4",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.memories1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.moonlitCabin",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.scenic1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.scenic2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.scenic3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.scenic4",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.snowmobile1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.snowmobile2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.snowmobile3",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.snowmobileAdventure",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.starCamp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.winter1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.winter2",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.images.winterLandscape",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.meta.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.meta.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.nextImage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.noImages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.prevImage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.sections.food",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.sections.husky",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.sections.nature",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.sections.northernLights",
+          "content_type": "text"
+        },
+        {
+          "content_key": "gallery.sections.winter",
+          "content_type": "text"
+        }
+      ]
+    },
+    "a72b6453-c281-4513-8fab-45569a6bd5e3": {
+      "testimonials": [
+        {
+          "content_key": "testimonials.intro",
+          "content_type": "text"
+        },
+        {
+          "content_key": "testimonials.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "testimonials.titleHighlight",
+          "content_type": "text"
+        }
+      ]
+    },
+    "af5cab80-0cbc-4bda-acb5-0b9c3e8501c6": {
+      "links": [
+        {
+          "content_key": "links.contact_title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "links.quick_links_title",
+          "content_type": "text"
+        }
+      ],
+      "main": [
+        {
+          "content_key": "main.copyright",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.description",
+          "content_type": "text"
+        },
+        {
+          "content_key": "main.tagline",
+          "content_type": "text"
+        }
+      ]
+    },
+    "c72e98b9-3301-459c-b81e-5af4312e3515": {
+      "book": [
+        {
+          "content_key": "book.hero.book",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.cta",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.explore",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature1Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature1Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature2Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature2Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature3Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature3Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature4Desc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.feature4Title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.packages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.title1",
+          "content_type": "text"
+        },
+        {
+          "content_key": "book.hero.title2",
+          "content_type": "text"
+        }
+      ],
+      "booking": [
+        {
+          "content_key": "booking.childrenAgesErrorRange",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.childrenAgesErrorRequired",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.childrenAgesLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.childrenAgesPlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.consentError",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.consentLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.dateErrorPast",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.dateErrorRequired",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.dateNotSelected",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.emailErrorInvalid",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.emailErrorRequired",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.formTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.messageErrorTooLong",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.nameErrorRequired",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.nameErrorShort",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.numAdultsError",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.numChildrenError",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.packageError",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.phoneErrorInvalid",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.phoneErrorRequired",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.selectedDateText",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.submitButton",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.submitButtonLoading",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryAdults",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryChildren",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryChildrenAges",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryConfirmationCall",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryConfirmationEmail",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryDate",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryEmail",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryName",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryPackage",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryPhone",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryPrice",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.summaryTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastErrorDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastErrorTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastProcessingDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastProcessingTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastSuccessDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastSuccessTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastValidationDesc",
+          "content_type": "text"
+        },
+        {
+          "content_key": "booking.toastValidationTitle",
+          "content_type": "text"
+        }
+      ],
+      "form": [
+        {
+          "content_key": "form.dateHelp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.dateLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.emailLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.emailPlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.messageHelp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.messageLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.messagePlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.nameLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.namePlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.numAdultsHelp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.numAdultsLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.numAdultsPlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.numChildrenHelp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.numChildrenLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.numChildrenPlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.packageHelp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.packageLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.packagePlaceholder",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.phoneHelp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.phoneLabel",
+          "content_type": "text"
+        },
+        {
+          "content_key": "form.phonePlaceholder",
+          "content_type": "text"
+        }
+      ]
+    },
+    "global": {
+      "corner": [
+        {
+          "content_key": "corner.adventuresTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.bookNow",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.contactUs",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.huskyBody",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.huskyTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.learnMore",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.nlightsBody",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.nlightsTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.planBody",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.planTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.snowmobileBody",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.snowmobileTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.viewPackages",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.whoBody",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.whoTitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.whyHosp",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.whyLocal",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.whySmall",
+          "content_type": "text"
+        },
+        {
+          "content_key": "corner.whyTitle",
+          "content_type": "text"
+        }
+      ],
+      "instagram": [
+        {
+          "content_key": "instagram.followButton",
+          "content_type": "text"
+        },
+        {
+          "content_key": "instagram.subtitle",
+          "content_type": "text"
+        },
+        {
+          "content_key": "instagram.title",
+          "content_type": "text"
+        },
+        {
+          "content_key": "instagram.titleHighlight",
+          "content_type": "text"
+        },
+        {
+          "content_key": "instagram.viewMore",
+          "content_type": "text"
+        }
+      ]
+    }
+  }
+}
