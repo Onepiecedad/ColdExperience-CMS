@@ -43,7 +43,7 @@ export function PagesScreen() {
                     </div>
                     <div>
                         <h1 className="text-lg font-semibold text-white">ColdExperience CMS</h1>
-                        <p className="text-xs text-white/40">Välj en sida att redigera</p>
+                        <p className="text-xs text-white/40">Select a page to edit</p>
                     </div>
                 </div>
             </header>
@@ -88,7 +88,7 @@ export function PagesScreen() {
                 {/* Footer */}
                 <div className="text-center space-y-2">
                     <p className="text-xs text-white/30">
-                        Tryck på en sida för att se dess sektioner
+                        Tap a page to see its sections
                     </p>
 
                     {/* Advanced link (admin only) */}

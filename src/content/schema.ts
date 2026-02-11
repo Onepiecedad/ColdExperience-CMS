@@ -4,7 +4,7 @@
 // Ticket 6: Publish per page with schema guardrails
 // Only keys defined here may be published. Unknown keys are blocked and logged.
 //
-// Content keys are mapped from cms_content.content_key values
+// Content keys are mapped from cms_content.field_key values
 // Type mappings based on content_type column + heuristics:
 //   - content_type: 'array' → skipped (complex types)
 //   - key contains 'url', 'youtube', 'video', 'link' → 'url'
@@ -19,7 +19,7 @@ export type ContentFieldType = 'text' | 'textarea' | 'richtext' | 'url' | 'media
 
 // Schema definition for a content field
 export interface ContentFieldSchema {
-    key: string;           // Canonical key (matches cms_content.content_key)
+    key: string;           // Canonical key (matches cms_content.field_key)
     type: ContentFieldType;
     translatable: boolean; // true for text, false for media/urls
     label: string;         // Human-friendly label
@@ -163,13 +163,13 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     // Last updated: 2026-02-03
     // DO NOT EDIT MANUALLY - Use "Add Next Batch" in Schema Coverage
 
-// ═══════════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════════
 
-// ═══════════════════════════════════════════════════════════════════════════
-// AUTO-GENERATED SCHEMA ENTRIES
-// Last updated: 2026-02-03
-// DO NOT EDIT MANUALLY - Use "Add Next Batch" in Schema Coverage
-// ═══════════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════════
+    // AUTO-GENERATED SCHEMA ENTRIES
+    // Last updated: 2026-02-03
+    // DO NOT EDIT MANUALLY - Use "Add Next Batch" in Schema Coverage
+    // ═══════════════════════════════════════════════════════════════════════════
 
     'auto:generated': [
         { key: 'about.about.gallery', type: 'text', translatable: true, label: 'About: Gallery' },
@@ -1010,7 +1010,7 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'why.whyTitle', type: 'text', translatable: true, label: 'Why: Why Title' },
     ],
 
-// ═══════════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════════
 };
 
 // ============================================================================

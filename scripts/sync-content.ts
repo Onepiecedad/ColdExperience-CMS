@@ -15,9 +15,9 @@ interface TranslationContent {
 }
 
 interface CmsContentItem {
-    page_id: string;
-    content_key: string;
-    content_type: 'text' | 'richtext' | 'html' | 'array';
+    page_slug: string;
+    field_key: string;
+    field_type: 'text' | 'richtext' | 'html' | 'array';
     field_label: string;
     content_en?: string;
     content_sv?: string;
@@ -150,11 +150,11 @@ function generateContentSQL(translations: { en: TranslationContent; sv: Translat
         const escapedSvValue = svValue.replace(/'/g, "''");
 
         sqlStatements.push(`
-INSERT INTO cms_content (page_id, content_key, content_type, field_label, content_en, content_sv, display_order)
-SELECT p.id, '${mapping.key}', '${mapping.type}', '${mapping.label}', 
+INSERT INTO cms_content (page_slug, field_key, field_type, field_label, content_en, content_sv, display_order)
+SELECT p.slug, '${mapping.key}', '${mapping.type}', '${mapping.label}', 
        '${escapedEnValue}', '${escapedSvValue}', ${index + 1}
 FROM cms_pages p WHERE p.slug = '${mapping.page}'
-ON CONFLICT (page_id, content_key) DO UPDATE SET
+ON CONFLICT (page_slug, field_key) DO UPDATE SET
   content_en = EXCLUDED.content_en,
   content_sv = EXCLUDED.content_sv,
   field_label = EXCLUDED.field_label;`);

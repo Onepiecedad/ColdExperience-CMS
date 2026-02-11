@@ -98,10 +98,10 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             for (const draft of drafts) {
                 let contentKey: string | null = null;
 
-                // Get canonical content_key
+                // Get canonical field_key
                 if (draft.content_id) {
                     const content = await getContentById(draft.content_id);
-                    contentKey = content?.content_key || null;
+                    contentKey = content?.field_key || null;
                 } else {
                     contentKey = draft.content_key;
                 }
@@ -234,7 +234,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
      * Execute the publish operation
      */
     const executePublish = useCallback(async (): Promise<boolean> => {
-        if (!pageId || !summary) return false;
+        if (!pageId || !pageSlug || !summary) return false;
 
         setStatus('loading');
         setError(null);
@@ -249,7 +249,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             for (const item of summary.draftsToPublish) {
                 await upsertContentFromDraft(
                     item.draft.content_id,
-                    item.draft.page_id,
+                    pageSlug,
                     item.draft.section,
                     item.contentKey,
                     item.draft.language,
