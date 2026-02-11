@@ -37,10 +37,10 @@ export interface CmsPage {
 
 export interface CmsContent {
     id: string;
-    page_slug: string;
-    section_key: string;
-    field_key: string;
-    field_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url';
+    page_id: string;
+    section: string;
+    content_key: string;
+    content_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url';
     content_en: string | null;
     content_sv: string | null;
     content_de: string | null;

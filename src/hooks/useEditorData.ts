@@ -75,7 +75,7 @@ export function useEditorData(
 
             // Step 2: Fetch content and media in parallel
             const [contentData, mediaData] = await Promise.all([
-                getContentByPageAndSection(foundPage.slug, sectionId),
+                getContentByPageAndSection(foundPage.id, sectionId),
                 getMediaBySection(foundPage.id, sectionId)
             ]);
 

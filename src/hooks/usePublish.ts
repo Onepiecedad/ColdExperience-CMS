@@ -101,7 +101,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
                 // Get canonical field_key
                 if (draft.content_id) {
                     const content = await getContentById(draft.content_id);
-                    contentKey = content?.field_key || null;
+                    contentKey = content?.content_key || null;
                 } else {
                     contentKey = draft.content_key;
                 }
@@ -249,7 +249,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             for (const item of summary.draftsToPublish) {
                 await upsertContentFromDraft(
                     item.draft.content_id,
-                    pageSlug,
+                    pageId,
                     item.draft.section,
                     item.contentKey,
                     item.draft.language,
