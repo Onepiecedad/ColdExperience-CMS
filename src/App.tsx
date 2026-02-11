@@ -823,7 +823,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
     // Helper to get value from nested content
     // Handles both direct keys ('title') and dot-notation ('hero.title1', 'meta.description')
     const getValue = (fieldKey: string): string => {
-        // Försök först med exakt nyckel (t.ex. "hero.title1", "meta.description")
+        // Try exact key first (e.g. "hero.title1", "meta.description")
         let fieldData = sectionContent[fieldKey];
 
         // Om inte hittat, prova utan prefix för bakåtkompatibilitet
@@ -900,7 +900,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
 
     // ═══════════════════════════════════════════════════════════════════════
     // FIELD SCHEMAS - Defines how each section's fields should be displayed
-    // Groups related fields together with clear Swedish labels
+    // Groups related fields together with clear labels
     // ═══════════════════════════════════════════════════════════════════════
     type FieldGroup = {
         title: string;
@@ -912,25 +912,25 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // HOME PAGE - HERO SECTION
         'home:hero': [
             {
-                title: '📝 Huvudinnehåll',
-                description: 'Rubriken och undertexten som visas i hero-sektionen',
+                title: '📝 Main Content',
+                description: 'Heading and subtitle displayed in the hero section',
                 fields: [
-                    { key: 'title', label: 'Rubrik (rad 1)', type: 'text', hint: 'T.ex. "Experience the"' },
-                    { key: 'magic', label: 'Rubrik (rad 2, färgad)', type: 'text', hint: 'T.ex. "Magic of Lapland"' },
-                    { key: 'subtitle', label: 'Undertext', type: 'textarea', hint: 'Beskrivande text under rubriken' },
+                    { key: 'title', label: 'Heading (line 1)', type: 'text', hint: 'E.g. "Experience the"' },
+                    { key: 'magic', label: 'Heading (line 2, colored)', type: 'text', hint: 'E.g. "Magic of Lapland"' },
+                    { key: 'subtitle', label: 'Subtitle', type: 'textarea', hint: 'Descriptive text below the heading' },
                 ]
             },
             {
-                title: '🔘 Knappar',
-                description: 'Call-to-action knappar i hero-sektionen',
+                title: '🔘 Buttons',
+                description: 'Call-to-action buttons in the hero section',
                 fields: [
-                    { key: 'cta', label: 'Primär knapp', type: 'text', hint: 'T.ex. "Book Your Adventure"' },
-                    { key: 'explore', label: 'Sekundär knapp', type: 'text', hint: 'T.ex. "View Packages"' },
+                    { key: 'cta', label: 'Primary button', type: 'text', hint: 'E.g. "Book Your Adventure"' },
+                    { key: 'explore', label: 'Secondary button', type: 'text', hint: 'E.g. "View Packages"' },
                 ]
             },
             {
                 title: '💎 Feature-kort (desktop)',
-                description: 'De tre informationskorten som visas längst ner på hero (endast desktop)',
+                description: 'Three info cards shown at the bottom of hero (desktop only)',
                 fields: [
                     { key: 'feature1Title', label: 'Kort 1: Titel', type: 'text' },
                     { key: 'feature1Desc', label: 'Kort 1: Text', type: 'textarea' },
@@ -945,39 +945,39 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         'home:featured-video': [
             {
                 title: '▶️ Featured Video',
-                description: 'YouTube-video som visas under hero-sektionen',
+                description: 'YouTube video shown below the hero section',
                 fields: [
-                    { key: 'youtubeUrl', label: 'YouTube-länk', type: 'url', hint: 'Full YouTube embed-URL, t.ex. "https://www.youtube.com/embed/VIDEO_ID"' },
-                    { key: 'title', label: 'Videotitel', type: 'text', hint: 'Rubrik som visas ovanför videon' },
-                    { key: 'description', label: 'Beskrivning', type: 'textarea', hint: 'Text som visas under rubriken' },
+                    { key: 'youtubeUrl', label: 'YouTube URL', type: 'url', hint: 'Full YouTube embed URL' },
+                    { key: 'title', label: 'Video title', type: 'text', hint: 'Heading shown above the video' },
+                    { key: 'description', label: 'Description', type: 'textarea', hint: 'Text shown below the heading' },
                 ]
             }
         ],
         // HOME PAGE - TESTIMONIALS
         'home:testimonials': [
             {
-                title: '⭐ Gästrecensioner',
-                description: 'Texter för recensionssektionen',
+                title: '⭐ Guest Reviews',
+                description: 'Text for the reviews section',
                 fields: [
-                    { key: 'title', label: 'Sektionsrubrik', type: 'text', hint: 'T.ex. "What Our Guests Say"' },
-                    { key: 'subtitle', label: 'Undertext', type: 'textarea' },
-                    { key: 'readMore', label: '"Läs mer" knapp', type: 'text' },
+                    { key: 'title', label: 'Section heading', type: 'text', hint: 'E.g. "What Our Guests Say"' },
+                    { key: 'subtitle', label: 'Subtitle', type: 'textarea' },
+                    { key: 'readMore', label: '"Read more" button', type: 'text' },
                 ]
             }
         ],
         // HOME PAGE - WHY CHOOSE US (FEATURES)
         'home:why-choose-us': [
             {
-                title: '📝 Sektionsrubrik',
+                title: '📝 Section Heading',
                 fields: [
-                    { key: 'title', label: 'Huvudrubrik', type: 'text', hint: 'T.ex. "Why our guests choose us"' },
-                    { key: 'intro', label: 'Introduktionstext', type: 'textarea' },
-                    { key: 'outro', label: 'Avslutande text', type: 'textarea' },
+                    { key: 'title', label: 'Main heading', type: 'text', hint: 'E.g. "Why our guests choose us"' },
+                    { key: 'intro', label: 'Intro text', type: 'textarea' },
+                    { key: 'outro', label: 'Closing text', type: 'textarea' },
                 ]
             },
             {
                 title: '💎 Feature-kort',
-                description: 'De fyra korten med bakgrundsvideos',
+                description: 'Four cards with background videos',
                 fields: [
                     { key: 'feature1Title', label: 'Kort 1: Titel', type: 'text', hint: '"Small Private Groups"' },
                     { key: 'feature1Desc', label: 'Kort 1: Beskrivning', type: 'textarea' },
@@ -994,65 +994,65 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // ABOUT PAGE SECTIONS - Ordning matchar webbsidan exakt
         // ═══════════════════════════════════════════════════════════════════════
 
-        // ABOUT PAGE - 1. HERO (Bakgrundsvideo + titel + intro)
+        // ABOUT PAGE - 1. HERO (Background video + title + intro)
         'about:hero': [
             {
                 title: '🔍 SEO & Metadata',
-                description: 'Sökmotoroptimering för About-sidan',
+                description: 'SEO for the About page',
                 fields: [
-                    { key: 'meta.title', label: 'Sidtitel (webbläsarflik)', type: 'text', hint: 'T.ex. "About Us | Cold Experience Lapland"' },
-                    { key: 'meta.description', label: 'Meta-beskrivning (Google)', type: 'textarea', hint: 'Max 160 tecken för bästa visning i sökresultat' },
+                    { key: 'meta.title', label: 'Page title (browser tab)', type: 'text', hint: 'E.g. "About Us | Cold Experience Lapland"' },
+                    { key: 'meta.description', label: 'Meta description (Google)', type: 'textarea', hint: 'Max 160 chars for best search result display' },
                 ]
             },
             {
-                title: '🎬 Hero-sektion',
+                title: '🎬 Hero Section',
                 description: 'Displayed at the top with background video',
                 fields: [
-                    { key: 'title', label: 'Huvudrubrik', type: 'text', hint: 'T.ex. "About Cold Experience Lapland"' },
-                    { key: 'intro', label: 'Introduktionstext', type: 'textarea', hint: 'Den vita texten under rubriken' },
+                    { key: 'title', label: 'Main heading', type: 'text', hint: 'E.g. "About Cold Experience Lapland"' },
+                    { key: 'intro', label: 'Intro text', type: 'textarea', hint: 'White text below the heading' },
                 ]
             }
         ],
 
-        // ABOUT PAGE - 2. OUR VALUES (4 värderingskort)
+        // ABOUT PAGE - 2. OUR VALUES (4 value cards)
         'about:values': [
             {
-                title: '💎 Sektionsrubrik',
-                description: 'Rubriken ovanför värderingskorten',
+                title: '💎 Section Heading',
+                description: 'Heading above the value cards',
                 fields: [
-                    { key: 'valuesTitle', label: 'Rubrik', type: 'text', hint: 'T.ex. "Our Values"' },
+                    { key: 'valuesTitle', label: 'Heading', type: 'text', hint: 'E.g. "Our Values"' },
                 ]
             },
             {
                 title: '❤️ Kort 1: Family Experience',
-                description: 'Familjevärdering med bakgrundsbild IMG_2425.jpg',
+                description: 'Family value with background image IMG_2425.jpg',
                 fields: [
-                    { key: 'values.family.title', label: 'Titel', type: 'text' },
-                    { key: 'values.family.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'values.family.title', label: 'Title', type: 'text' },
+                    { key: 'values.family.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
                 title: '🏆 Kort 2: Authentic Experiences',
-                description: 'Äkthetsvärdering med bakgrundsbild IMG_7834.jpg',
+                description: 'Authenticity value with background image IMG_7834.jpg',
                 fields: [
-                    { key: 'values.authentic.title', label: 'Titel', type: 'text' },
-                    { key: 'values.authentic.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'values.authentic.title', label: 'Title', type: 'text' },
+                    { key: 'values.authentic.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
                 title: '👥 Kort 3: Small Groups',
-                description: 'Gruppstorlek med bakgrundsbild IMG_1547.jpg',
+                description: 'Group size value with background image IMG_1547.jpg',
                 fields: [
-                    { key: 'values.groups.title', label: 'Titel', type: 'text' },
-                    { key: 'values.groups.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'values.groups.title', label: 'Title', type: 'text' },
+                    { key: 'values.groups.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
                 title: '📸 Kort 4: Unforgettable Memories',
-                description: 'Minnesvärdering med bakgrundsbild IMG_4436.jpg',
+                description: 'Memories value with background image IMG_4436.jpg',
                 fields: [
-                    { key: 'values.memories.title', label: 'Titel', type: 'text' },
-                    { key: 'values.memories.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'values.memories.title', label: 'Title', type: 'text' },
+                    { key: 'values.memories.description', label: 'Description', type: 'textarea' },
                 ]
             }
         ],
@@ -1060,28 +1060,28 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // ABOUT PAGE - 3. MEET GUSTAV & JULIA
         'about:meet-us': [
             {
-                title: '👋 Rubrik & Introduktion',
-                description: 'Presentationsrubrik för värdparet',
+                title: '👋 Heading & Introduction',
+                description: 'Introduction heading for the hosts',
                 fields: [
-                    { key: 'meetUs.title', label: 'Rubrik', type: 'text', hint: 'T.ex. "Meet Gustav & Julia"' },
-                    { key: 'meetUs.description', label: 'Kort beskrivning', type: 'textarea' },
-                    { key: 'meetUs.experience', label: 'Erfarenhetstext', type: 'textarea' },
+                    { key: 'meetUs.title', label: 'Heading', type: 'text', hint: 'E.g. "Meet Gustav & Julia"' },
+                    { key: 'meetUs.description', label: 'Short description', type: 'textarea' },
+                    { key: 'meetUs.experience', label: 'Experience text', type: 'textarea' },
                 ]
             },
             {
-                title: '🧭 Våra Guider (vänster kort)',
-                description: 'Det lilla kortet till vänster',
+                title: '🧭 Our Guides (left card)',
+                description: 'Small card on the left',
                 fields: [
-                    { key: 'meetUs.guides', label: 'Korttitel', type: 'text', hint: 'T.ex. "Our Guides"' },
-                    { key: 'meetUs.guidesDesc', label: 'Kortbeskrivning', type: 'textarea' },
+                    { key: 'meetUs.guides', label: 'Card title', type: 'text', hint: 'E.g. "Our Guides"' },
+                    { key: 'meetUs.guidesDesc', label: 'Card description', type: 'textarea' },
                 ]
             },
             {
-                title: '👨‍👩‍👧‍👦 Vår Familj (höger kort)',
-                description: 'Det lilla kortet till höger',
+                title: '👨‍👩‍👧‍👦 Our Family (right card)',
+                description: 'Small card on the right',
                 fields: [
-                    { key: 'meetUs.family', label: 'Korttitel', type: 'text', hint: 'T.ex. "Our Family"' },
-                    { key: 'meetUs.familyDesc', label: 'Kortbeskrivning', type: 'textarea' },
+                    { key: 'meetUs.family', label: 'Card title', type: 'text', hint: 'E.g. "Our Family"' },
+                    { key: 'meetUs.familyDesc', label: 'Card description', type: 'textarea' },
                 ]
             }
         ],
@@ -1089,12 +1089,12 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // ABOUT PAGE - 4. ACTION IMAGES (3 bilder med overlay-text)
         'about:action-images': [
             {
-                title: '📸 Action-bilder',
-                description: 'De 3 bilderna under "Meet Gustav & Julia" med text-overlay',
+                title: '📸 Action Images',
+                description: 'The 3 images below Meet Gustav & Julia with text overlay',
                 fields: [
-                    { key: 'actionImages.snowmobile', label: 'Bild 1: Snöskoter (IMG_4108.jpg)', type: 'text', hint: 'Overlay-text på bilden' },
-                    { key: 'actionImages.lodge', label: 'Bild 2: Lodge (IMG_3493.jpg)', type: 'text', hint: 'Overlay-text på bilden' },
-                    { key: 'actionImages.landscape', label: 'Bild 3: Landskap (IMG_6698.jpg)', type: 'text', hint: 'Overlay-text på bilden' },
+                    { key: 'actionImages.snowmobile', label: 'Image 1: Snowmobile (IMG_4108.jpg)', type: 'text', hint: 'Overlay text on the image' },
+                    { key: 'actionImages.lodge', label: 'Image 2: Lodge (IMG_3493.jpg)', type: 'text', hint: 'Overlay text on the image' },
+                    { key: 'actionImages.landscape', label: 'Image 3: Landscape (IMG_6698.jpg)', type: 'text', hint: 'Overlay text on the image' },
                 ]
             }
         ],
@@ -1102,50 +1102,50 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // ABOUT PAGE - 5. OUR JOURNEY (Tidslinje)
         'about:timeline': [
             {
-                title: '📅 Tidslinjerubrik',
-                description: 'Rubriken för hela tidslinjesektionen',
+                title: '📅 Timeline Heading',
+                description: 'Heading for the timeline section',
                 fields: [
-                    { key: 'journeyTitle', label: 'Rubrik', type: 'text', hint: 'T.ex. "Our Journey"' },
+                    { key: 'journeyTitle', label: 'Heading', type: 'text', hint: 'E.g. "Our Journey"' },
                 ]
             },
             {
-                title: '👶 1990s: Barndom i Lappland',
-                description: 'Första milstolpen med bild gustav_childhood.jpg',
+                title: '👶 1990s: Childhood in Lapland',
+                description: 'First milestone with image gustav_childhood.jpg',
                 fields: [
-                    { key: 'timeline.childhood.title', label: 'Titel', type: 'text' },
-                    { key: 'timeline.childhood.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'timeline.childhood.title', label: 'Title', type: 'text' },
+                    { key: 'timeline.childhood.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
-                title: '🍳 2000s: Kulinariska Upptäckter',
-                description: 'Andra milstolpen med bild julias_matresa.jpg',
+                title: '🍳 2000s: Culinary Discoveries',
+                description: 'Second milestone with image julias_matresa.jpg',
                 fields: [
-                    { key: 'timeline.culinary.title', label: 'Titel', type: 'text' },
-                    { key: 'timeline.culinary.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'timeline.culinary.title', label: 'Title', type: 'text' },
+                    { key: 'timeline.culinary.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
-                title: '❤️ 2020: Passion för Äventyr',
-                description: 'Tredje milstolpen med bild love_adventure.jpg',
+                title: '❤️ 2020: Passion for Adventure',
+                description: 'Third milestone with image love_adventure.jpg',
                 fields: [
-                    { key: 'timeline.love.title', label: 'Titel', type: 'text' },
-                    { key: 'timeline.love.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'timeline.love.title', label: 'Title', type: 'text' },
+                    { key: 'timeline.love.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
-                title: '👨‍👩‍👧‍👦 2022-2023: Familjebildning',
-                description: 'Fjärde milstolpen med bild family_2.jpg',
+                title: '👨‍👩‍👧‍👦 2022-2023: Growing Family',
+                description: 'Fourth milestone with image family_2.jpg',
                 fields: [
-                    { key: 'timeline.family.title', label: 'Titel', type: 'text' },
-                    { key: 'timeline.family.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'timeline.family.title', label: 'Title', type: 'text' },
+                    { key: 'timeline.family.description', label: 'Description', type: 'textarea' },
                 ]
             },
             {
-                title: '❄️ 2024: Cold Experience Föds',
-                description: 'Femte milstolpen med bild coldexperience_born.jpg',
+                title: '❄️ 2024: Cold Experience is Born',
+                description: 'Fifth milestone with image coldexperience_born.jpg',
                 fields: [
-                    { key: 'timeline.coldExperience.title', label: 'Titel', type: 'text' },
-                    { key: 'timeline.coldExperience.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'timeline.coldExperience.title', label: 'Title', type: 'text' },
+                    { key: 'timeline.coldExperience.description', label: 'Description', type: 'textarea' },
                 ]
             }
         ],
@@ -1154,308 +1154,308 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         'about:cta': [
             {
                 title: '🔘 Call to Action',
-                description: 'Avslutande sektion med knappar - bakgrund IMG_0451.jpg',
+                description: 'Closing section with buttons - background IMG_0451.jpg',
                 fields: [
-                    { key: 'cta.title', label: 'Rubrik', type: 'text', hint: 'T.ex. "Ready for your adventure?"' },
-                    { key: 'cta.description', label: 'Beskrivning', type: 'textarea' },
+                    { key: 'cta.title', label: 'Heading', type: 'text', hint: 'E.g. "Ready for your adventure?"' },
+                    { key: 'cta.description', label: 'Description', type: 'textarea' },
                     { key: 'cta.packages', label: 'Button 1: Packages', type: 'text', hint: 'E.g. "View Packages"' },
-                    { key: 'cta.contact', label: 'Knapp 2: Kontakt', type: 'text', hint: 'T.ex. "Contact"' },
-                    { key: 'cta.gallery', label: 'Knapp 3: Galleri', type: 'text', hint: 'T.ex. "Gallery"' },
+                    { key: 'cta.contact', label: 'Button 2: Contact', type: 'text', hint: 'E.g. "Contact"' },
+                    { key: 'cta.gallery', label: 'Button 3: Gallery', type: 'text', hint: 'E.g. "Gallery"' },
                 ]
             }
         ],
         // HOME & ABOUT PAGE - HOSTS/OWNER SECTION (about.ownerSection - 19 fält)
         'home:hosts': [
             {
-                title: '📝 Sektionsrubrik',
-                description: 'Rubrik och intro för värdpar-sektionen',
+                title: '📝 Section Heading',
+                description: 'Heading and intro for the hosts section',
                 fields: [
-                    { key: 'title1', label: 'Rubrik del 1', type: 'text', hint: 'T.ex. "Meet"' },
-                    { key: 'title2', label: 'Rubrik del 2', type: 'text', hint: 'T.ex. "Your Hosts"' },
-                    { key: 'intro', label: 'Introduktion', type: 'textarea' },
-                    { key: 'names', label: 'Namn', type: 'text', hint: 'T.ex. "Gustav & Julia"' },
+                    { key: 'title1', label: 'Heading part 1', type: 'text', hint: 'E.g. "Meet"' },
+                    { key: 'title2', label: 'Heading part 2', type: 'text', hint: 'E.g. "Your Hosts"' },
+                    { key: 'intro', label: 'Intro', type: 'textarea' },
+                    { key: 'names', label: 'Name', type: 'text', hint: 'E.g. "Gustav & Julia"' },
                 ]
             },
             {
                 title: '👤 Gustav',
-                description: 'Presentation av Gustav',
+                description: 'Introducing Gustav',
                 fields: [
-                    { key: 'gustavTitle', label: 'Titel/roll', type: 'text' },
-                    { key: 'gustavBio', label: 'Biografi', type: 'textarea' },
+                    { key: 'gustavTitle', label: 'Title/role', type: 'text' },
+                    { key: 'gustavBio', label: 'Biography', type: 'textarea' },
                 ]
             },
             {
                 title: '👤 Julia',
-                description: 'Presentation av Julia',
+                description: 'Introducing Julia',
                 fields: [
-                    { key: 'juliaTitle', label: 'Titel/roll', type: 'text' },
-                    { key: 'juliaBio', label: 'Biografi', type: 'textarea' },
+                    { key: 'juliaTitle', label: 'Title/role', type: 'text' },
+                    { key: 'juliaBio', label: 'Biography', type: 'textarea' },
                 ]
             },
             {
-                title: '🏔 Livsstil & Filosofi',
-                description: 'Citat och livsstilsbeskrivning',
+                title: '🏔 Lifestyle & Philosophy',
+                description: 'Quotes and lifestyle description',
                 fields: [
-                    { key: 'bio', label: 'Gemensam bio', type: 'textarea' },
-                    { key: 'lifestyleTitle', label: 'Livsstil rubrik', type: 'text' },
-                    { key: 'lifestyleQuote', label: 'Livsstilscitat', type: 'textarea' },
+                    { key: 'bio', label: 'Shared bio', type: 'textarea' },
+                    { key: 'lifestyleTitle', label: 'Lifestyle heading', type: 'text' },
+                    { key: 'lifestyleQuote', label: 'Lifestyle quote', type: 'textarea' },
                 ]
             },
             {
-                title: '✨ Varför välja oss',
-                description: 'Tre USP:er för värdarna',
+                title: '✨ Why Choose Us',
+                description: 'Three USPs for the hosts',
                 fields: [
-                    { key: 'whyTitle', label: 'Varför-rubrik', type: 'text' },
-                    { key: 'whyText', label: 'Varför-text', type: 'textarea' },
-                    { key: 'localExpertiseTitle', label: 'Lokal expertis: Rubrik', type: 'text' },
-                    { key: 'localExpertiseText', label: 'Lokal expertis: Text', type: 'textarea' },
-                    { key: 'familyBusinessTitle', label: 'Familjeföretag: Rubrik', type: 'text' },
-                    { key: 'familyBusinessText', label: 'Familjeföretag: Text', type: 'textarea' },
-                    { key: 'authenticExperienceTitle', label: 'Äkta upplevelse: Rubrik', type: 'text' },
-                    { key: 'authenticExperienceText', label: 'Äkta upplevelse: Text', type: 'textarea' },
+                    { key: 'whyTitle', label: 'Why heading', type: 'text' },
+                    { key: 'whyText', label: 'Why text', type: 'textarea' },
+                    { key: 'localExpertiseTitle', label: 'Local Expertise: Heading', type: 'text' },
+                    { key: 'localExpertiseText', label: 'Local Expertise: Text', type: 'textarea' },
+                    { key: 'familyBusinessTitle', label: 'Family Business: Heading', type: 'text' },
+                    { key: 'familyBusinessText', label: 'Family Business: Text', type: 'textarea' },
+                    { key: 'authenticExperienceTitle', label: 'Authentic Experience: Heading', type: 'text' },
+                    { key: 'authenticExperienceText', label: 'Authentic Experience: Text', type: 'textarea' },
                 ]
             }
         ],
         // HOME PAGE - INSTAGRAM SECTION
         'home:instagram': [
             {
-                title: '📸 Instagram-sektion',
-                description: 'Instagram-integration och texter',
+                title: '📸 Instagram Section',
+                description: 'Instagram integration and text',
                 fields: [
-                    { key: 'title', label: 'Rubrik', type: 'text', hint: 'T.ex. "Latest from Instagram"' },
-                    { key: 'subtitle', label: 'Underrubrik', type: 'text' },
+                    { key: 'title', label: 'Heading', type: 'text', hint: 'E.g. "Latest from Instagram"' },
+                    { key: 'subtitle', label: 'Subtitle', type: 'text' },
                     { key: 'viewOnInstagram', label: '"View on Instagram" button', type: 'text' },
-                    { key: 'follow', label: '"Följ oss"-text', type: 'text' },
-                    { key: 'loading', label: 'Laddningstext', type: 'text' },
-                    { key: 'error', label: 'Felmeddelande', type: 'text' },
+                    { key: 'follow', label: '"Follow us" text', type: 'text' },
+                    { key: 'loading', label: 'Loading text', type: 'text' },
+                    { key: 'error', label: 'Error message', type: 'text' },
                 ]
             }
         ],
         // HOME PAGE - CORNER SECTION
         'home:corner': [
             {
-                title: '👋 Vilka vi är',
-                description: 'Kort presentation',
+                title: '👋 Who We Are',
+                description: 'Short introduction',
                 fields: [
-                    { key: 'whoTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'whoBody', label: 'Text', type: 'textarea' },
+                    { key: 'whoTitle', label: 'Heading', type: 'text' },
+                    { key: 'whoBody', label: 'Body', type: 'textarea' },
                 ]
             },
             {
-                title: '🎿 Äventyr',
-                description: 'Äventyrs-preview',
+                title: '🎿 Adventures',
+                description: 'Adventure preview',
                 fields: [
-                    { key: 'adventuresTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'huskyTitle', label: 'Husky: Rubrik', type: 'text' },
+                    { key: 'adventuresTitle', label: 'Heading', type: 'text' },
+                    { key: 'huskyTitle', label: 'Husky: Heading', type: 'text' },
                     { key: 'huskyBody', label: 'Husky: Text', type: 'textarea' },
-                    { key: 'snowmobileTitle', label: 'Snöskoter: Rubrik', type: 'text' },
-                    { key: 'snowmobileBody', label: 'Snöskoter: Text', type: 'textarea' },
-                    { key: 'nlightsTitle', label: 'Norrsken: Rubrik', type: 'text' },
-                    { key: 'nlightsBody', label: 'Norrsken: Text', type: 'textarea' },
-                    { key: 'learnMore', label: '"Läs mer"-knapp', type: 'text' },
+                    { key: 'snowmobileTitle', label: 'Snowmobile: Heading', type: 'text' },
+                    { key: 'snowmobileBody', label: 'Snowmobile: Text', type: 'textarea' },
+                    { key: 'nlightsTitle', label: 'Northern Lights: Heading', type: 'text' },
+                    { key: 'nlightsBody', label: 'Northern Lights: Text', type: 'textarea' },
+                    { key: 'learnMore', label: '"Read more" button', type: 'text' },
                 ]
             },
             {
-                title: '✨ Varför oss',
-                description: 'USP:er och CTA',
+                title: '✨ Why Us',
+                description: 'USPs and CTA',
                 fields: [
-                    { key: 'whyTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'whyLocal', label: 'Lokal expertis', type: 'text' },
-                    { key: 'whyHosp', label: 'Gästfrihet', type: 'text' },
-                    { key: 'whySmall', label: 'Små grupper', type: 'text' },
-                    { key: 'planTitle', label: 'Planera: Rubrik', type: 'text' },
-                    { key: 'planBody', label: 'Planera: Text', type: 'textarea' },
-                    { key: 'viewPackages', label: '"Se paket"-knapp', type: 'text' },
-                    { key: 'bookNow', label: '"Boka nu"-knapp', type: 'text' },
-                    { key: 'contactUs', label: '"Kontakta oss"-knapp', type: 'text' },
+                    { key: 'whyTitle', label: 'Heading', type: 'text' },
+                    { key: 'whyLocal', label: 'Local expertise', type: 'text' },
+                    { key: 'whyHosp', label: 'Hospitality', type: 'text' },
+                    { key: 'whySmall', label: 'Small groups', type: 'text' },
+                    { key: 'planTitle', label: 'Plan: Heading', type: 'text' },
+                    { key: 'planBody', label: 'Plan: Text', type: 'textarea' },
+                    { key: 'viewPackages', label: '"View packages" button', type: 'text' },
+                    { key: 'bookNow', label: '"Book now" button', type: 'text' },
+                    { key: 'contactUs', label: '"Contact us" button', type: 'text' },
                 ]
             }
         ],
         // About hosts uses same schema as home hosts (same data source)
         // getFieldGroups() will fall back to 'home:hosts' schema since it shares the same data
-        // NAVIGATION - FOOTER (navigation.footer - 29 fält)
+        // NAVIGATION - FOOTER (navigation.footer - 29 fields)
         'navigation:footer': [
             {
-                title: '🏢 Företagsinfo',
-                description: 'Grundläggande företagsinformation',
+                title: '🏢 Company Info',
+                description: 'Basic company information',
                 fields: [
-                    { key: 'companyName', label: 'Företagsnamn', type: 'text' },
-                    { key: 'companyDescription', label: 'Företagsbeskrivning', type: 'textarea' },
-                    { key: 'rights', label: 'Upphovsrättstext', type: 'text' },
-                    { key: 'quote', label: 'Citat/motto', type: 'text' },
+                    { key: 'companyName', label: 'Company name', type: 'text' },
+                    { key: 'companyDescription', label: 'Company description', type: 'textarea' },
+                    { key: 'rights', label: 'Copyright text', type: 'text' },
+                    { key: 'quote', label: 'Quote/motto', type: 'text' },
                 ]
             },
             {
-                title: '🔗 Snabblänkar',
-                description: 'Huvudnavigering i footer',
+                title: '🔗 Quick Links',
+                description: 'Main footer navigation',
                 fields: [
-                    { key: 'quickLinks.title', label: 'Rubrik', type: 'text' },
-                    { key: 'quickLinks.home', label: 'Hem', type: 'text' },
-                    { key: 'quickLinks.about', label: 'Om oss', type: 'text' },
+                    { key: 'quickLinks.title', label: 'Heading', type: 'text' },
+                    { key: 'quickLinks.home', label: 'Home', type: 'text' },
+                    { key: 'quickLinks.about', label: 'About us', type: 'text' },
                     { key: 'quickLinks.packages', label: 'Packages', type: 'text' },
-                    { key: 'quickLinks.gallery', label: 'Galleri', type: 'text' },
-                    { key: 'quickLinks.contact', label: 'Kontakt', type: 'text' },
+                    { key: 'quickLinks.gallery', label: 'Gallery', type: 'text' },
+                    { key: 'quickLinks.contact', label: 'Contact', type: 'text' },
                 ]
             },
             {
-                title: '❄ Upplevelser',
-                description: 'Länkar till äventyrsupplevelser',
+                title: '❄ Experiences',
+                description: 'Links to adventure experiences',
                 fields: [
-                    { key: 'experiences.title', label: 'Rubrik', type: 'text' },
-                    { key: 'experiences.snowmobile', label: 'Snöskoter', type: 'text' },
-                    { key: 'experiences.northernLights', label: 'Norrsken', type: 'text' },
-                    { key: 'experiences.dogSledding', label: 'Hundspann', type: 'text' },
-                    { key: 'experiences.saunaHotTub', label: 'Bastu & Badtunna', type: 'text' },
-                    { key: 'experiences.iceFishing', label: 'Isfiske', type: 'text' },
-                    { key: 'experiences.localCuisine', label: 'Lokal mat', type: 'text' },
+                    { key: 'experiences.title', label: 'Heading', type: 'text' },
+                    { key: 'experiences.snowmobile', label: 'Snowmobile', type: 'text' },
+                    { key: 'experiences.northernLights', label: 'Northern Lights', type: 'text' },
+                    { key: 'experiences.dogSledding', label: 'Dog Sledding', type: 'text' },
+                    { key: 'experiences.saunaHotTub', label: 'Sauna & Hot Tub', type: 'text' },
+                    { key: 'experiences.iceFishing', label: 'Ice Fishing', type: 'text' },
+                    { key: 'experiences.localCuisine', label: 'Local Cuisine', type: 'text' },
                 ]
             },
             {
-                title: '📍 Kontaktinfo',
-                description: 'Adress, telefon och e-post',
+                title: '📍 Contact Info',
+                description: 'Address, phone and email',
                 fields: [
-                    { key: 'contact.title', label: 'Rubrik', type: 'text' },
-                    { key: 'contact.addressLine1', label: 'Adressrad 1', type: 'text' },
-                    { key: 'contact.addressLine2', label: 'Adressrad 2', type: 'text' },
-                    { key: 'contact.phone', label: 'Telefon', type: 'text' },
-                    { key: 'contact.email', label: 'E-post', type: 'text' },
+                    { key: 'contact.title', label: 'Heading', type: 'text' },
+                    { key: 'contact.addressLine1', label: 'Address line 1', type: 'text' },
+                    { key: 'contact.addressLine2', label: 'Address line 2', type: 'text' },
+                    { key: 'contact.phone', label: 'Phone', type: 'text' },
+                    { key: 'contact.email', label: 'Email', type: 'text' },
                 ]
             },
             {
-                title: '📅 Säsong',
-                description: 'Information om vintersäsongen',
+                title: '📅 Season',
+                description: 'Winter season information',
                 fields: [
-                    { key: 'season.title', label: 'Rubrik', type: 'text' },
-                    { key: 'season.dates', label: 'Datum', type: 'text' },
+                    { key: 'season.title', label: 'Heading', type: 'text' },
+                    { key: 'season.dates', label: 'Dates', type: 'text' },
                     { key: 'season.cta', label: 'Call-to-action', type: 'text' },
                 ]
             },
             {
-                title: '📜 Juridiska länkar',
-                description: 'Policylänkar och cookie-inställningar',
+                title: '📜 Legal Links',
+                description: 'Policy links and cookie settings',
                 fields: [
-                    { key: 'privacyPolicy', label: 'Integritetspolicy', type: 'text' },
-                    { key: 'termsOfService', label: 'Användarvillkor', type: 'text' },
-                    { key: 'cookiePolicy', label: 'Cookie-policy', type: 'text' },
-                    { key: 'cookieSettings', label: 'Cookie-inställningar', type: 'text' },
+                    { key: 'privacyPolicy', label: 'Privacy policy', type: 'text' },
+                    { key: 'termsOfService', label: 'Terms of service', type: 'text' },
+                    { key: 'cookiePolicy', label: 'Cookie policy', type: 'text' },
+                    { key: 'cookieSettings', label: 'Cookie settings', type: 'text' },
                 ]
             }
         ],
-        // LEGAL - POLICIES (legal.policies - 27 fält)
+        // LEGAL - POLICIES (legal.policies - 27 fields)
         'legal:policies': [
             {
-                title: '📜 Integritetspolicy',
-                description: 'GDPR och dataskydd',
+                title: '📜 Privacy Policy',
+                description: 'GDPR and data protection',
                 fields: [
-                    { key: 'privacy.categoryLabel', label: 'Kategorietikett', type: 'text' },
-                    { key: 'privacy.title', label: 'Rubrik', type: 'text' },
+                    { key: 'privacy.categoryLabel', label: 'Category label', type: 'text' },
+                    { key: 'privacy.title', label: 'Heading', type: 'text' },
                     { key: 'privacy.lastUpdated', label: 'Last Updated', type: 'text' },
-                    { key: 'privacy.intro', label: 'Introduktion', type: 'textarea' },
+                    { key: 'privacy.intro', label: 'Intro', type: 'textarea' },
                     { key: 'privacy.sections', label: 'Sections (JSON)', type: 'textarea' },
-                    { key: 'privacy.contact.label', label: 'Kontakt etikett', type: 'text' },
-                    { key: 'privacy.contact.title', label: 'Kontakt rubrik', type: 'text' },
-                    { key: 'privacy.contact.description', label: 'Kontakt beskrivning', type: 'textarea' },
-                    { key: 'privacy.contact.email', label: 'Kontakt e-post', type: 'text' },
+                    { key: 'privacy.contact.label', label: 'Contact label', type: 'text' },
+                    { key: 'privacy.contact.title', label: 'Contact heading', type: 'text' },
+                    { key: 'privacy.contact.description', label: 'Contact description', type: 'textarea' },
+                    { key: 'privacy.contact.email', label: 'Contact email', type: 'text' },
                 ]
             },
             {
-                title: '📋 Användarvillkor',
-                description: 'Villkor för tjänsten',
+                title: '📋 Terms of Service',
+                description: 'Service terms and conditions',
                 fields: [
-                    { key: 'terms.categoryLabel', label: 'Kategorietikett', type: 'text' },
-                    { key: 'terms.title', label: 'Rubrik', type: 'text' },
+                    { key: 'terms.categoryLabel', label: 'Category label', type: 'text' },
+                    { key: 'terms.title', label: 'Heading', type: 'text' },
                     { key: 'terms.lastUpdated', label: 'Last Updated', type: 'text' },
-                    { key: 'terms.intro', label: 'Introduktion', type: 'textarea' },
+                    { key: 'terms.intro', label: 'Intro', type: 'textarea' },
                     { key: 'terms.sections', label: 'Sections (JSON)', type: 'textarea' },
-                    { key: 'terms.contact.label', label: 'Kontakt etikett', type: 'text' },
-                    { key: 'terms.contact.title', label: 'Kontakt rubrik', type: 'text' },
-                    { key: 'terms.contact.description', label: 'Kontakt beskrivning', type: 'textarea' },
-                    { key: 'terms.contact.email', label: 'Kontakt e-post', type: 'text' },
+                    { key: 'terms.contact.label', label: 'Contact label', type: 'text' },
+                    { key: 'terms.contact.title', label: 'Contact heading', type: 'text' },
+                    { key: 'terms.contact.description', label: 'Contact description', type: 'textarea' },
+                    { key: 'terms.contact.email', label: 'Contact email', type: 'text' },
                 ]
             },
             {
                 title: '🍪 Cookies',
-                description: 'Cookie-policy',
+                description: 'Cookie policy',
                 fields: [
-                    { key: 'cookies.categoryLabel', label: 'Kategorietikett', type: 'text' },
-                    { key: 'cookies.title', label: 'Rubrik', type: 'text' },
+                    { key: 'cookies.categoryLabel', label: 'Category label', type: 'text' },
+                    { key: 'cookies.title', label: 'Heading', type: 'text' },
                     { key: 'cookies.lastUpdated', label: 'Last Updated', type: 'text' },
-                    { key: 'cookies.intro', label: 'Introduktion', type: 'textarea' },
+                    { key: 'cookies.intro', label: 'Intro', type: 'textarea' },
                     { key: 'cookies.sections', label: 'Sections (JSON)', type: 'textarea' },
-                    { key: 'cookies.contact.label', label: 'Kontakt etikett', type: 'text' },
-                    { key: 'cookies.contact.title', label: 'Kontakt rubrik', type: 'text' },
-                    { key: 'cookies.contact.description', label: 'Kontakt beskrivning', type: 'textarea' },
-                    { key: 'cookies.contact.email', label: 'Kontakt e-post', type: 'text' },
+                    { key: 'cookies.contact.label', label: 'Contact label', type: 'text' },
+                    { key: 'cookies.contact.title', label: 'Contact heading', type: 'text' },
+                    { key: 'cookies.contact.description', label: 'Contact description', type: 'textarea' },
+                    { key: 'cookies.contact.email', label: 'Contact email', type: 'text' },
                 ]
             }
         ],
         // HOME PAGE - ADVENTURES (the section showing all 4 adventure cards)
         'home:adventures': [
             {
-                title: '📝 Sektionsrubrik',
-                description: 'Rubrik och intro som visas högst upp i äventyrssektionen',
+                title: '📝 Section Heading',
+                description: 'Heading and intro shown at the top of the adventures section',
                 fields: [
-                    { key: 'title', label: 'Rubrik (del 1)', type: 'text', hint: '"Magical"' },
-                    { key: 'titleHighlight', label: 'Rubrik (del 2, färgad)', type: 'text', hint: '"Winter Adventures"' },
-                    { key: 'intro', label: 'Introduktionstext', type: 'textarea' },
+                    { key: 'title', label: 'Heading (part 1)', type: 'text', hint: '"Magical"' },
+                    { key: 'titleHighlight', label: 'Heading (part 2, colored)', type: 'text', hint: '"Winter Adventures"' },
+                    { key: 'intro', label: 'Intro text', type: 'textarea' },
                 ]
             },
             {
-                title: '🛷 Kort 1: Snöskoter',
-                description: 'Första adventure-kortet på startsidan',
+                title: '🛷 Card 1: Snowmobile',
+                description: 'First adventure card on home page',
                 fields: [
-                    { key: 'snowmobileTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'snowmobileDesc', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'snowmobileFeature1', label: 'Punkt 1', type: 'text' },
-                    { key: 'snowmobileFeature2', label: 'Punkt 2', type: 'text' },
-                    { key: 'snowmobileFeature3', label: 'Punkt 3', type: 'text' },
-                    { key: 'snowmobileFeature4', label: 'Punkt 4', type: 'text' },
+                    { key: 'snowmobileTitle', label: 'Heading', type: 'text' },
+                    { key: 'snowmobileDesc', label: 'Description', type: 'textarea' },
+                    { key: 'snowmobileFeature1', label: 'Feature 1', type: 'text' },
+                    { key: 'snowmobileFeature2', label: 'Feature 2', type: 'text' },
+                    { key: 'snowmobileFeature3', label: 'Feature 3', type: 'text' },
+                    { key: 'snowmobileFeature4', label: 'Feature 4', type: 'text' },
                 ]
             },
             {
-                title: '🌌 Kort 2: Norrsken',
-                description: 'Andra adventure-kortet på startsidan',
+                title: '🌌 Card 2: Northern Lights',
+                description: 'Second adventure card on home page',
                 fields: [
-                    { key: 'northernLightsTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'northernLightsDesc', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'northernLightsFeature1', label: 'Punkt 1', type: 'text' },
-                    { key: 'northernLightsFeature2', label: 'Punkt 2', type: 'text' },
-                    { key: 'northernLightsFeature3', label: 'Punkt 3', type: 'text' },
-                    { key: 'northernLightsFeature4', label: 'Punkt 4', type: 'text' },
+                    { key: 'northernLightsTitle', label: 'Heading', type: 'text' },
+                    { key: 'northernLightsDesc', label: 'Description', type: 'textarea' },
+                    { key: 'northernLightsFeature1', label: 'Feature 1', type: 'text' },
+                    { key: 'northernLightsFeature2', label: 'Feature 2', type: 'text' },
+                    { key: 'northernLightsFeature3', label: 'Feature 3', type: 'text' },
+                    { key: 'northernLightsFeature4', label: 'Feature 4', type: 'text' },
                 ]
             },
             {
-                title: '🐕 Kort 3: Hundspann',
-                description: 'Tredje adventure-kortet på startsidan',
+                title: '🐕 Card 3: Dog Sledding',
+                description: 'Third adventure card on home page',
                 fields: [
-                    { key: 'dogSleddingTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'dogSleddingDesc', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'dogSleddingFeature1', label: 'Punkt 1', type: 'text' },
-                    { key: 'dogSleddingFeature2', label: 'Punkt 2', type: 'text' },
-                    { key: 'dogSleddingFeature3', label: 'Punkt 3', type: 'text' },
-                    { key: 'dogSleddingFeature4', label: 'Punkt 4', type: 'text' },
+                    { key: 'dogSleddingTitle', label: 'Heading', type: 'text' },
+                    { key: 'dogSleddingDesc', label: 'Description', type: 'textarea' },
+                    { key: 'dogSleddingFeature1', label: 'Feature 1', type: 'text' },
+                    { key: 'dogSleddingFeature2', label: 'Feature 2', type: 'text' },
+                    { key: 'dogSleddingFeature3', label: 'Feature 3', type: 'text' },
+                    { key: 'dogSleddingFeature4', label: 'Feature 4', type: 'text' },
                 ]
             },
             {
-                title: '🏠 Kort 4: Boende',
-                description: 'Fjärde adventure-kortet på startsidan',
+                title: '🏠 Card 4: Lodging',
+                description: 'Fourth adventure card on home page',
                 fields: [
-                    { key: 'lodgingTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'lodgingDesc', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'lodgingFeature1', label: 'Punkt 1', type: 'text' },
-                    { key: 'lodgingFeature2', label: 'Punkt 2', type: 'text' },
-                    { key: 'lodgingFeature3', label: 'Punkt 3', type: 'text' },
-                    { key: 'lodgingFeature4', label: 'Punkt 4', type: 'text' },
+                    { key: 'lodgingTitle', label: 'Heading', type: 'text' },
+                    { key: 'lodgingDesc', label: 'Description', type: 'textarea' },
+                    { key: 'lodgingFeature1', label: 'Feature 1', type: 'text' },
+                    { key: 'lodgingFeature2', label: 'Feature 2', type: 'text' },
+                    { key: 'lodgingFeature3', label: 'Feature 3', type: 'text' },
+                    { key: 'lodgingFeature4', label: 'Feature 4', type: 'text' },
                 ]
             },
             {
                 title: '🔘 Call-to-action',
-                description: 'Rutan längst ner i äventyrssektionen',
+                description: 'Box at the bottom of the adventures section',
                 fields: [
-                    { key: 'learnMore', label: '"Läs mer" knapp', type: 'text' },
-                    { key: 'ctaTitle', label: 'CTA Rubrik', type: 'text' },
-                    { key: 'ctaDesc', label: 'CTA Beskrivning', type: 'textarea' },
-                    { key: 'ctaBook', label: 'Bokningsknapp text', type: 'text' },
+                    { key: 'learnMore', label: '"Read more" button', type: 'text' },
+                    { key: 'ctaTitle', label: 'CTA Heading', type: 'text' },
+                    { key: 'ctaDesc', label: 'CTA Description', type: 'textarea' },
+                    { key: 'ctaBook', label: 'Book button text', type: 'text' },
                 ]
             }
         ],
@@ -1464,52 +1464,52 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // Keys match database: 'snowmobileSafari.xxx' (NO 'pages.' prefix)
         'home:snowmobile': [
             {
-                title: '🎬 Hero-sektion',
-                description: 'Toppbild och intro för snöskotersidan',
+                title: '🎬 Hero Section',
+                description: 'Hero image and intro for the snowmobile page',
                 fields: [
-                    { key: 'snowmobileSafari.hero.title', label: 'Rubrik', type: 'text' },
-                    { key: 'snowmobileSafari.hero.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'snowmobileSafari.hero.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'snowmobileSafari.hero.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
+                    { key: 'snowmobileSafari.hero.title', label: 'Heading', type: 'text' },
+                    { key: 'snowmobileSafari.hero.description', label: 'Description', type: 'textarea' },
+                    { key: 'snowmobileSafari.hero.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'snowmobileSafari.hero.secondaryButton.label', label: 'Secondary button', type: 'text' },
                 ]
             },
             {
                 title: '📝 Intro',
                 fields: [
-                    { key: 'snowmobileSafari.intro.heading', label: 'Rubrik', type: 'text' },
-                    { key: 'snowmobileSafari.intro.paragraphs', label: 'Stycken', type: 'textarea' },
+                    { key: 'snowmobileSafari.intro.heading', label: 'Heading', type: 'text' },
+                    { key: 'snowmobileSafari.intro.paragraphs', label: 'Paragraphs', type: 'textarea' },
                 ]
             },
             {
                 title: '✨ Features',
                 fields: [
-                    { key: 'snowmobileSafari.features', label: 'Features (lista)', type: 'textarea' },
-                    { key: 'snowmobileSafari.sectionsHeading', label: 'Sektion rubrik', type: 'text' },
+                    { key: 'snowmobileSafari.features', label: 'Features (list)', type: 'textarea' },
+                    { key: 'snowmobileSafari.sectionsHeading', label: 'Section heading', type: 'text' },
                 ]
             },
             {
-                title: '📋 Dagsprogram',
+                title: '📋 Day Program',
                 fields: [
-                    { key: 'snowmobileSafari.dayProgram.title', label: 'Rubrik', type: 'text' },
-                    { key: 'snowmobileSafari.dayProgram.steps', label: 'Steg (lista)', type: 'textarea' },
+                    { key: 'snowmobileSafari.dayProgram.title', label: 'Heading', type: 'text' },
+                    { key: 'snowmobileSafari.dayProgram.steps', label: 'Steps (list)', type: 'textarea' },
                 ]
             },
             {
-                title: '🔘 Avslutning/CTA',
+                title: '🔘 Closing/CTA',
                 fields: [
-                    { key: 'snowmobileSafari.closing.title', label: 'Rubrik', type: 'text' },
-                    { key: 'snowmobileSafari.closing.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'snowmobileSafari.closing.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'snowmobileSafari.closing.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
-                    { key: 'snowmobileSafari.closing.ratingText', label: 'Betygstext', type: 'text' },
+                    { key: 'snowmobileSafari.closing.title', label: 'Heading', type: 'text' },
+                    { key: 'snowmobileSafari.closing.description', label: 'Description', type: 'textarea' },
+                    { key: 'snowmobileSafari.closing.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'snowmobileSafari.closing.secondaryButton.label', label: 'Secondary button', type: 'text' },
+                    { key: 'snowmobileSafari.closing.ratingText', label: 'Rating text', type: 'text' },
                 ]
             },
             {
                 title: '🔍 SEO/Meta',
                 fields: [
-                    { key: 'snowmobileSafari.meta.title', label: 'Meta titel', type: 'text' },
-                    { key: 'snowmobileSafari.meta.description', label: 'Meta beskrivning', type: 'textarea' },
-                    { key: 'snowmobileSafari.meta.keywords', label: 'Nyckelord', type: 'text' },
+                    { key: 'snowmobileSafari.meta.title', label: 'Meta title', type: 'text' },
+                    { key: 'snowmobileSafari.meta.description', label: 'Meta description', type: 'textarea' },
+                    { key: 'snowmobileSafari.meta.keywords', label: 'Keywords', type: 'text' },
                 ]
             }
         ],
@@ -1517,51 +1517,51 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // Keys match database: 'northernLights.xxx' (NO 'pages.' prefix)
         'home:northern-lights': [
             {
-                title: '🎬 Hero-sektion',
+                title: '🎬 Hero Section',
                 fields: [
-                    { key: 'northernLights.hero.title', label: 'Rubrik', type: 'text' },
-                    { key: 'northernLights.hero.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'northernLights.hero.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'northernLights.hero.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
+                    { key: 'northernLights.hero.title', label: 'Heading', type: 'text' },
+                    { key: 'northernLights.hero.description', label: 'Description', type: 'textarea' },
+                    { key: 'northernLights.hero.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'northernLights.hero.secondaryButton.label', label: 'Secondary button', type: 'text' },
                 ]
             },
             {
                 title: '📝 Intro',
                 fields: [
-                    { key: 'northernLights.intro.heading', label: 'Rubrik', type: 'text' },
-                    { key: 'northernLights.intro.paragraphs', label: 'Stycken', type: 'textarea' },
+                    { key: 'northernLights.intro.heading', label: 'Heading', type: 'text' },
+                    { key: 'northernLights.intro.paragraphs', label: 'Paragraphs', type: 'textarea' },
                 ]
             },
             {
                 title: '✨ Features',
                 fields: [
-                    { key: 'northernLights.features', label: 'Features (lista)', type: 'textarea' },
-                    { key: 'northernLights.sectionsHeading', label: 'Sektion rubrik', type: 'text' },
+                    { key: 'northernLights.features', label: 'Features (list)', type: 'textarea' },
+                    { key: 'northernLights.sectionsHeading', label: 'Section heading', type: 'text' },
                 ]
             },
             {
-                title: '📋 Kvällsschema',
+                title: '📋 Evening Schedule',
                 fields: [
-                    { key: 'northernLights.dayProgram.title', label: 'Rubrik', type: 'text' },
-                    { key: 'northernLights.dayProgram.steps', label: 'Steg (lista)', type: 'textarea' },
+                    { key: 'northernLights.dayProgram.title', label: 'Heading', type: 'text' },
+                    { key: 'northernLights.dayProgram.steps', label: 'Steps (list)', type: 'textarea' },
                 ]
             },
             {
-                title: '🔘 Avslutning/CTA',
+                title: '🔘 Closing/CTA',
                 fields: [
-                    { key: 'northernLights.closing.title', label: 'Rubrik', type: 'text' },
-                    { key: 'northernLights.closing.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'northernLights.closing.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'northernLights.closing.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
-                    { key: 'northernLights.closing.ratingText', label: 'Betygstext', type: 'text' },
+                    { key: 'northernLights.closing.title', label: 'Heading', type: 'text' },
+                    { key: 'northernLights.closing.description', label: 'Description', type: 'textarea' },
+                    { key: 'northernLights.closing.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'northernLights.closing.secondaryButton.label', label: 'Secondary button', type: 'text' },
+                    { key: 'northernLights.closing.ratingText', label: 'Rating text', type: 'text' },
                 ]
             },
             {
                 title: '🔍 SEO/Meta',
                 fields: [
-                    { key: 'northernLights.meta.title', label: 'Meta titel', type: 'text' },
-                    { key: 'northernLights.meta.description', label: 'Meta beskrivning', type: 'textarea' },
-                    { key: 'northernLights.meta.keywords', label: 'Nyckelord', type: 'text' },
+                    { key: 'northernLights.meta.title', label: 'Meta title', type: 'text' },
+                    { key: 'northernLights.meta.description', label: 'Meta description', type: 'textarea' },
+                    { key: 'northernLights.meta.keywords', label: 'Keywords', type: 'text' },
                 ]
             }
         ],
@@ -1569,51 +1569,51 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // Keys match database: 'huskyRide.xxx' (NO 'pages.' prefix)
         'home:dog-sledding': [
             {
-                title: '🎬 Hero-sektion',
+                title: '🎬 Hero Section',
                 fields: [
-                    { key: 'huskyRide.hero.title', label: 'Rubrik', type: 'text' },
-                    { key: 'huskyRide.hero.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'huskyRide.hero.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'huskyRide.hero.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
+                    { key: 'huskyRide.hero.title', label: 'Heading', type: 'text' },
+                    { key: 'huskyRide.hero.description', label: 'Description', type: 'textarea' },
+                    { key: 'huskyRide.hero.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'huskyRide.hero.secondaryButton.label', label: 'Secondary button', type: 'text' },
                 ]
             },
             {
                 title: '📝 Intro',
                 fields: [
-                    { key: 'huskyRide.intro.heading', label: 'Rubrik', type: 'text' },
-                    { key: 'huskyRide.intro.paragraphs', label: 'Stycken', type: 'textarea' },
+                    { key: 'huskyRide.intro.heading', label: 'Heading', type: 'text' },
+                    { key: 'huskyRide.intro.paragraphs', label: 'Paragraphs', type: 'textarea' },
                 ]
             },
             {
                 title: '✨ Features',
                 fields: [
-                    { key: 'huskyRide.features', label: 'Features (lista)', type: 'textarea' },
-                    { key: 'huskyRide.sectionsHeading', label: 'Sektion rubrik', type: 'text' },
+                    { key: 'huskyRide.features', label: 'Features (list)', type: 'textarea' },
+                    { key: 'huskyRide.sectionsHeading', label: 'Section heading', type: 'text' },
                 ]
             },
             {
-                title: '📋 Turschema',
+                title: '📋 Tour Schedule',
                 fields: [
-                    { key: 'huskyRide.dayProgram.title', label: 'Rubrik', type: 'text' },
-                    { key: 'huskyRide.dayProgram.steps', label: 'Steg (lista)', type: 'textarea' },
+                    { key: 'huskyRide.dayProgram.title', label: 'Heading', type: 'text' },
+                    { key: 'huskyRide.dayProgram.steps', label: 'Steps (list)', type: 'textarea' },
                 ]
             },
             {
-                title: '🔘 Avslutning/CTA',
+                title: '🔘 Closing/CTA',
                 fields: [
-                    { key: 'huskyRide.closing.title', label: 'Rubrik', type: 'text' },
-                    { key: 'huskyRide.closing.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'huskyRide.closing.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'huskyRide.closing.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
-                    { key: 'huskyRide.closing.ratingText', label: 'Betygstext', type: 'text' },
+                    { key: 'huskyRide.closing.title', label: 'Heading', type: 'text' },
+                    { key: 'huskyRide.closing.description', label: 'Description', type: 'textarea' },
+                    { key: 'huskyRide.closing.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'huskyRide.closing.secondaryButton.label', label: 'Secondary button', type: 'text' },
+                    { key: 'huskyRide.closing.ratingText', label: 'Rating text', type: 'text' },
                 ]
             },
             {
                 title: '🔍 SEO/Meta',
                 fields: [
-                    { key: 'huskyRide.meta.title', label: 'Meta titel', type: 'text' },
-                    { key: 'huskyRide.meta.description', label: 'Meta beskrivning', type: 'textarea' },
-                    { key: 'huskyRide.meta.keywords', label: 'Nyckelord', type: 'text' },
+                    { key: 'huskyRide.meta.title', label: 'Meta title', type: 'text' },
+                    { key: 'huskyRide.meta.description', label: 'Meta description', type: 'textarea' },
+                    { key: 'huskyRide.meta.keywords', label: 'Keywords', type: 'text' },
                 ]
             }
         ],
@@ -1621,51 +1621,51 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // Keys match database: 'lodging.xxx' (NO 'pages.' prefix)
         'home:lodging': [
             {
-                title: '🎬 Hero-sektion',
+                title: '🎬 Hero Section',
                 fields: [
-                    { key: 'lodging.hero.title', label: 'Rubrik', type: 'text' },
-                    { key: 'lodging.hero.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'lodging.hero.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'lodging.hero.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
+                    { key: 'lodging.hero.title', label: 'Heading', type: 'text' },
+                    { key: 'lodging.hero.description', label: 'Description', type: 'textarea' },
+                    { key: 'lodging.hero.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'lodging.hero.secondaryButton.label', label: 'Secondary button', type: 'text' },
                 ]
             },
             {
                 title: '📝 Intro',
                 fields: [
-                    { key: 'lodging.intro.heading', label: 'Rubrik', type: 'text' },
-                    { key: 'lodging.intro.paragraphs', label: 'Stycken', type: 'textarea' },
+                    { key: 'lodging.intro.heading', label: 'Heading', type: 'text' },
+                    { key: 'lodging.intro.paragraphs', label: 'Paragraphs', type: 'textarea' },
                 ]
             },
             {
                 title: '✨ Features',
                 fields: [
-                    { key: 'lodging.features', label: 'Features (lista)', type: 'textarea' },
-                    { key: 'lodging.sectionsHeading', label: 'Sektion rubrik', type: 'text' },
+                    { key: 'lodging.features', label: 'Features (list)', type: 'textarea' },
+                    { key: 'lodging.sectionsHeading', label: 'Section heading', type: 'text' },
                 ]
             },
             {
-                title: '📋 En dag på gästhuset',
+                title: '📋 A Day at the Guesthouse',
                 fields: [
-                    { key: 'lodging.dayProgram.title', label: 'Rubrik', type: 'text' },
-                    { key: 'lodging.dayProgram.steps', label: 'Steg (lista)', type: 'textarea' },
+                    { key: 'lodging.dayProgram.title', label: 'Heading', type: 'text' },
+                    { key: 'lodging.dayProgram.steps', label: 'Steps (list)', type: 'textarea' },
                 ]
             },
             {
-                title: '🔘 Avslutning/CTA',
+                title: '🔘 Closing/CTA',
                 fields: [
-                    { key: 'lodging.closing.title', label: 'Rubrik', type: 'text' },
-                    { key: 'lodging.closing.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'lodging.closing.primaryButton.label', label: 'Primär knapp', type: 'text' },
-                    { key: 'lodging.closing.secondaryButton.label', label: 'Sekundär knapp', type: 'text' },
-                    { key: 'lodging.closing.ratingText', label: 'Betygstext', type: 'text' },
+                    { key: 'lodging.closing.title', label: 'Heading', type: 'text' },
+                    { key: 'lodging.closing.description', label: 'Description', type: 'textarea' },
+                    { key: 'lodging.closing.primaryButton.label', label: 'Primary button', type: 'text' },
+                    { key: 'lodging.closing.secondaryButton.label', label: 'Secondary button', type: 'text' },
+                    { key: 'lodging.closing.ratingText', label: 'Rating text', type: 'text' },
                 ]
             },
             {
                 title: '🔍 SEO/Meta',
                 fields: [
-                    { key: 'lodging.meta.title', label: 'Meta titel', type: 'text' },
-                    { key: 'lodging.meta.description', label: 'Meta beskrivning', type: 'textarea' },
-                    { key: 'lodging.meta.keywords', label: 'Nyckelord', type: 'text' },
+                    { key: 'lodging.meta.title', label: 'Meta title', type: 'text' },
+                    { key: 'lodging.meta.description', label: 'Meta description', type: 'textarea' },
+                    { key: 'lodging.meta.keywords', label: 'Keywords', type: 'text' },
                 ]
             }
         ],
@@ -1674,59 +1674,59 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // CONTACT PAGE SCHEMAS
         // ═══════════════════════════════════════════════════════════════════════
 
-        // CONTACT PAGE - HERO (3 fält)
+        // CONTACT PAGE - HERO (3 fields)
         'contact:hero': [
             {
-                title: '🎬 Hero-sektion',
-                description: 'Toppinnehåll på kontaktsidan',
+                title: '🎬 Hero Section',
+                description: 'Top content on the contact page',
                 fields: [
-                    { key: 'hero.title1', label: 'Rubrik del 1', type: 'text', hint: 'T.ex. "Get in"' },
-                    { key: 'hero.title2', label: 'Rubrik del 2 (färgad)', type: 'text', hint: 'T.ex. "Touch"' },
-                    { key: 'hero.subtitle', label: 'Undertext', type: 'textarea' },
+                    { key: 'hero.title1', label: 'Heading part 1', type: 'text', hint: 'E.g. "Get in"' },
+                    { key: 'hero.title2', label: 'Heading part 2 (colored)', type: 'text', hint: 'E.g. "Touch"' },
+                    { key: 'hero.subtitle', label: 'Subtitle', type: 'textarea' },
                 ]
             }
         ],
 
-        // CONTACT PAGE - FORM (~19 fält)
+        // CONTACT PAGE - FORM (~19 fields)
         'contact:form': [
             {
-                title: '📝 Formulär - Rubriker',
-                description: 'Rubriker och introduktionstext för formuläret',
+                title: '📝 Form - Headings',
+                description: 'Headings and intro text for the form',
                 fields: [
-                    { key: 'form.title', label: 'Formulärrubrik', type: 'text' },
-                    { key: 'form.subtitle', label: 'Formulärundertext', type: 'textarea' },
+                    { key: 'form.title', label: 'Form heading', type: 'text' },
+                    { key: 'form.subtitle', label: 'Form subtitle', type: 'textarea' },
                 ]
             },
             {
-                title: '📝 Formulär - Fältetiketter',
-                description: 'Etiketter och placeholder-texter för formulärfält',
+                title: '📝 Form - Field Labels',
+                description: 'Labels and placeholder text for form fields',
                 fields: [
-                    { key: 'form.nameLabel', label: 'Namn: Etikett', type: 'text' },
-                    { key: 'form.namePlaceholder', label: 'Namn: Placeholder', type: 'text' },
-                    { key: 'form.emailLabel', label: 'E-post: Etikett', type: 'text' },
-                    { key: 'form.emailPlaceholder', label: 'E-post: Placeholder', type: 'text' },
-                    { key: 'form.phoneLabel', label: 'Telefon: Etikett', type: 'text' },
-                    { key: 'form.phonePlaceholder', label: 'Telefon: Placeholder', type: 'text' },
-                    { key: 'form.subjectLabel', label: 'Ämne: Etikett', type: 'text' },
-                    { key: 'form.messageLabel', label: 'Meddelande: Etikett', type: 'text' },
-                    { key: 'form.messagePlaceholder', label: 'Meddelande: Placeholder', type: 'text' },
+                    { key: 'form.nameLabel', label: 'Name: Label', type: 'text' },
+                    { key: 'form.namePlaceholder', label: 'Name: Placeholder', type: 'text' },
+                    { key: 'form.emailLabel', label: 'Email: Label', type: 'text' },
+                    { key: 'form.emailPlaceholder', label: 'Email: Placeholder', type: 'text' },
+                    { key: 'form.phoneLabel', label: 'Phone: Label', type: 'text' },
+                    { key: 'form.phonePlaceholder', label: 'Phone: Placeholder', type: 'text' },
+                    { key: 'form.subjectLabel', label: 'Subject: Label', type: 'text' },
+                    { key: 'form.messageLabel', label: 'Message: Label', type: 'text' },
+                    { key: 'form.messagePlaceholder', label: 'Message: Placeholder', type: 'text' },
                 ]
             },
             {
-                title: '📝 Formulär - Ämnesval',
-                description: 'Dropdown-alternativ för ämnesväljaren',
+                title: '📝 Form - Subject Options',
+                description: 'Dropdown options for subject selector',
                 fields: [
                     { key: 'form.subjectOptions.select', label: 'Select subject (default)', type: 'text' },
-                    { key: 'form.subjectOptions.booking', label: 'Bokning', type: 'text' },
+                    { key: 'form.subjectOptions.booking', label: 'Booking', type: 'text' },
                     { key: 'form.subjectOptions.sevenDay', label: '7-dagars paket', type: 'text' },
                     { key: 'form.subjectOptions.fiveDay', label: '5-dagars paket', type: 'text' },
                     { key: 'form.subjectOptions.oneDay', label: '1-dags upplevelse', type: 'text' },
-                    { key: 'form.subjectOptions.custom', label: 'Skräddarsydd upplevelse', type: 'text' },
-                    { key: 'form.subjectOptions.general', label: 'Allmän förfrågan', type: 'text' },
+                    { key: 'form.subjectOptions.custom', label: 'Custom experience', type: 'text' },
+                    { key: 'form.subjectOptions.general', label: 'General inquiry', type: 'text' },
                 ]
             },
             {
-                title: '📝 Formulär - Övrigt',
+                title: '📝 Form - Other',
                 fields: [
                     { key: 'form.contactByPhone', label: 'Checkbox: Kontakt via telefon', type: 'text' },
                     { key: 'form.sendButton', label: 'Skicka-knapp text', type: 'text' },
@@ -1734,10 +1734,10 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             },
             {
                 title: '✅ Confirmation Messages',
-                description: 'Toast-meddelanden som visas efter formulärskickning',
+                description: 'Toast messages shown after form submission',
                 fields: [
-                    { key: 'toast.missingTitle', label: 'Saknade fält: Rubrik', type: 'text' },
-                    { key: 'toast.missingDesc', label: 'Saknade fält: Beskrivning', type: 'text' },
+                    { key: 'toast.missingTitle', label: 'Missing fields: Heading', type: 'text' },
+                    { key: 'toast.missingDesc', label: 'Missing fields: Description', type: 'text' },
                     { key: 'toast.sentTitle', label: 'Skickat: Rubrik', type: 'text' },
                     { key: 'toast.sentDesc', label: 'Skickat: Beskrivning', type: 'text' },
                 ]
@@ -1750,15 +1750,15 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 title: '📍 Plats',
                 description: 'Adressinformation',
                 fields: [
-                    { key: 'info.location.title', label: 'Rubrik', type: 'text' },
-                    { key: 'info.location.line1', label: 'Adressrad 1', type: 'text' },
-                    { key: 'info.location.line2', label: 'Adressrad 2', type: 'text' },
+                    { key: 'info.location.title', label: 'Heading', type: 'text' },
+                    { key: 'info.location.line1', label: 'Address line 1', type: 'text' },
+                    { key: 'info.location.line2', label: 'Address line 2', type: 'text' },
                 ]
             },
             {
                 title: '📞 Telefon',
                 fields: [
-                    { key: 'info.phone.title', label: 'Rubrik', type: 'text' },
+                    { key: 'info.phone.title', label: 'Heading', type: 'text' },
                     { key: 'info.phone.number', label: 'Telefonnummer', type: 'text' },
                     { key: 'info.phone.note', label: 'Anteckning', type: 'text' },
                 ]
@@ -1766,15 +1766,15 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             {
                 title: '✉️ E-post',
                 fields: [
-                    { key: 'info.email.title', label: 'Rubrik', type: 'text' },
+                    { key: 'info.email.title', label: 'Heading', type: 'text' },
                     { key: 'info.email.address', label: 'E-postadress', type: 'text' },
                     { key: 'info.email.note', label: 'Anteckning', type: 'text' },
                 ]
             },
             {
-                title: '📅 Säsong',
+                title: '📅 Season',
                 fields: [
-                    { key: 'info.season.title', label: 'Rubrik', type: 'text' },
+                    { key: 'info.season.title', label: 'Heading', type: 'text' },
                     { key: 'info.season.dates', label: 'Datum/Period', type: 'text' },
                     { key: 'info.season.cta', label: 'Call-to-action', type: 'text' },
                 ]
@@ -1782,14 +1782,14 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             {
                 title: '🔗 Sociala medier',
                 fields: [
-                    { key: 'social.title', label: 'Rubrik', type: 'text' },
-                    { key: 'social.subtitle', label: 'Undertext', type: 'text' },
+                    { key: 'social.title', label: 'Heading', type: 'text' },
+                    { key: 'social.subtitle', label: 'Subtitle', type: 'text' },
                 ]
             },
             {
                 title: '🔘 Call-to-action',
                 fields: [
-                    { key: 'ctaTitle', label: 'CTA Rubrik', type: 'text' },
+                    { key: 'ctaTitle', label: 'CTA Heading', type: 'text' },
                     { key: 'ctaSubtitle', label: 'CTA Undertext', type: 'text' },
                     { key: 'callNow', label: 'Ring nu knapp', type: 'text' },
                     { key: 'sendEmail', label: 'Skicka e-post knapp', type: 'text' },
@@ -1808,8 +1808,8 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             {
                 title: '📍 Hitta hit',
                 fields: [
-                    { key: 'findusTitle', label: 'Rubrik', type: 'text' },
-                    { key: 'openMaps', label: 'Öppna karta knapp', type: 'text' },
+                    { key: 'findusTitle', label: 'Heading', type: 'text' },
+                    { key: 'openMaps', label: 'Open map button', type: 'text' },
                 ]
             }
         ],
@@ -1820,10 +1820,10 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
 
         'booking:booking': [
             {
-                title: '📝 Formulär - Rubriker & Fält',
-                description: 'Huvudrubriker och formulärfältstexter',
+                title: '📝 Form - Headings & Fields',
+                description: 'Main headings and form field text',
                 fields: [
-                    { key: 'formTitle', label: 'Formulärets rubrik', type: 'text' },
+                    { key: 'formTitle', label: 'Form heading', type: 'text' },
                     { key: 'selectedDateText', label: 'Valt datum text', type: 'text' },
                     { key: 'dateNotSelected', label: 'Datum ej valt text', type: 'text' },
                     { key: 'submitButton', label: 'Skicka-knapp', type: 'text' },
@@ -1831,19 +1831,19 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 ]
             },
             {
-                title: '📝 Fältetiketter & Placeholders',
-                description: 'Etiketter och placeholder-texter för bokningsformulär',
+                title: '📝 Field Labels & Placeholders',
+                description: 'Labels and placeholder text for booking form',
                 fields: [
-                    { key: 'childrenAgesLabel', label: 'Barn ålder: Etikett', type: 'text' },
-                    { key: 'childrenAgesPlaceholder', label: 'Barn ålder: Placeholder', type: 'text' },
+                    { key: 'childrenAgesLabel', label: 'Children ages: Label', type: 'text' },
+                    { key: 'childrenAgesPlaceholder', label: 'Children ages: Placeholder', type: 'text' },
                 ]
             },
             {
                 title: '⚠️ Valideringsfel',
-                description: 'Felmeddelanden som visas vid ogiltig inmatning',
+                description: 'Error messages shown for invalid input',
                 fields: [
                     { key: 'nameErrorRequired', label: 'Namn: Obligatoriskt fel', type: 'text' },
-                    { key: 'nameErrorShort', label: 'Namn: För kort fel', type: 'text' },
+                    { key: 'nameErrorShort', label: 'Name: Too short error', type: 'text' },
                     { key: 'emailErrorRequired', label: 'E-post: Obligatoriskt fel', type: 'text' },
                     { key: 'emailErrorInvalid', label: 'E-post: Ogiltigt format fel', type: 'text' },
                     { key: 'phoneErrorRequired', label: 'Telefon: Obligatoriskt fel', type: 'text' },
@@ -1853,10 +1853,10 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                     { key: 'packageError', label: 'Package: Required error', type: 'text' },
                     { key: 'numAdultsError', label: 'Antal vuxna: Fel', type: 'text' },
                     { key: 'numChildrenError', label: 'Antal barn: Fel', type: 'text' },
-                    { key: 'childrenAgesErrorRequired', label: 'Barns åldrar: Obligatoriskt fel', type: 'text' },
-                    { key: 'childrenAgesErrorRange', label: 'Barns åldrar: Intervallfel', type: 'text' },
+                    { key: 'childrenAgesErrorRequired', label: 'Children ages: Required error', type: 'text' },
+                    { key: 'childrenAgesErrorRange', label: 'Children ages: Range error', type: 'text' },
                     { key: 'consentError', label: 'Samtycke: Obligatoriskt fel', type: 'text' },
-                    { key: 'messageErrorTooLong', label: 'Meddelande: För långt fel', type: 'text' },
+                    { key: 'messageErrorTooLong', label: 'Message: Too long error', type: 'text' },
                 ]
             },
             {
@@ -1871,7 +1871,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                     { key: 'summaryDate', label: 'Sammanfattning: Datum', type: 'text' },
                     { key: 'summaryAdults', label: 'Sammanfattning: Vuxna', type: 'text' },
                     { key: 'summaryChildren', label: 'Sammanfattning: Barn', type: 'text' },
-                    { key: 'summaryChildrenAges', label: 'Sammanfattning: Barnens åldrar', type: 'text' },
+                    { key: 'summaryChildrenAges', label: 'Summary: Children ages', type: 'text' },
                     { key: 'summaryPrice', label: 'Sammanfattning: Pris', type: 'text' },
                     { key: 'summaryConfirmationEmail', label: 'Confirmation: Email info', type: 'text' },
                     { key: 'summaryConfirmationCall', label: 'Confirmation: Phone info', type: 'text' },
@@ -1880,7 +1880,7 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             },
             {
                 title: '✅ Toast-meddelanden',
-                description: 'Popup-meddelanden för feedback',
+                description: 'Popup messages for feedback',
                 fields: [
                     { key: 'toastSuccessTitle', label: 'Lyckad: Rubrik', type: 'text' },
                     { key: 'toastSuccessDesc', label: 'Lyckad: Beskrivning', type: 'text' },
@@ -1898,36 +1898,36 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // ═══════════════════════════════════════════════════════════════════════
         'packages:hero': [
             {
-                title: '📝 Sektionsrubrik',
-                description: 'Rubrik och introduktion för paketsidan',
+                title: '📝 Section Heading',
+                description: 'Heading and intro for the packages page',
                 fields: [
                     { key: 'pageTitle', label: 'Page Title (SEO)', type: 'text', hint: 'Shown in browser tab' },
-                    { key: 'pageDescription', label: 'Sidbeskrivning (SEO)', type: 'textarea', hint: 'Används av sökmotorer' },
-                    { key: 'title', label: 'Huvudrubrik', type: 'text', hint: 'T.ex. "Our Packages"' },
-                    { key: 'subtitle', label: 'Undertext', type: 'textarea' },
+                    { key: 'pageDescription', label: 'Page description (SEO)', type: 'textarea', hint: 'Used by search engines' },
+                    { key: 'title', label: 'Main heading', type: 'text', hint: 'E.g. "Our Packages"' },
+                    { key: 'subtitle', label: 'Subtitle', type: 'textarea' },
                 ]
             }
         ],
         'packages:packages': [
             {
                 title: '📝 Gemensamt',
-                description: 'Gemensamma texter för alla paket',
+                description: 'Shared text for all packages',
                 fields: [
-                    { key: 'title', label: 'Sektionsrubrik', type: 'text' },
+                    { key: 'title', label: 'Section heading', type: 'text' },
                     { key: 'subtitle', label: 'Underrubrrik', type: 'textarea' },
                     { key: 'mostPopular', label: '"Most Popular" badge', type: 'text', hint: 'Shown on featured package' },
                     { key: 'perPerson', label: '"Per person" text', type: 'text' },
-                    { key: 'bookButton', label: 'Bokningsknapp text', type: 'text' },
+                    { key: 'bookButton', label: 'Book button text', type: 'text' },
                 ]
             },
             {
                 title: '📦 Adventure-paketet',
-                description: 'Det längsta paketet (7 dagar)',
+                description: 'The longest package (7 days)',
                 fields: [
                     { key: 'adventure.name', label: 'Package Name', type: 'text' },
-                    { key: 'adventure.duration', label: 'Längd', type: 'text', hint: 'T.ex. "7 dagar"' },
-                    { key: 'adventure.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'adventure.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
+                    { key: 'adventure.duration', label: 'Duration', type: 'text', hint: 'E.g. "7 dagar"' },
+                    { key: 'adventure.description', label: 'Description', type: 'textarea' },
+                    { key: 'adventure.highlights', label: 'Highlights (one per line)', type: 'textarea' },
                 ]
             },
             {
@@ -1935,9 +1935,9 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 description: 'Mellanpaketet (5 dagar)',
                 fields: [
                     { key: 'complete.name', label: 'Package Name', type: 'text' },
-                    { key: 'complete.duration', label: 'Längd', type: 'text', hint: 'T.ex. "5 dagar"' },
-                    { key: 'complete.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'complete.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
+                    { key: 'complete.duration', label: 'Duration', type: 'text', hint: 'E.g. "5 dagar"' },
+                    { key: 'complete.description', label: 'Description', type: 'textarea' },
+                    { key: 'complete.highlights', label: 'Highlights (one per line)', type: 'textarea' },
                 ]
             },
             {
@@ -1945,9 +1945,9 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 description: 'Kortare vinterupplevelse',
                 fields: [
                     { key: 'threeDay.name', label: 'Package Name', type: 'text' },
-                    { key: 'threeDay.duration', label: 'Längd', type: 'text', hint: 'T.ex. "3 dagar"' },
-                    { key: 'threeDay.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'threeDay.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
+                    { key: 'threeDay.duration', label: 'Duration', type: 'text', hint: 'E.g. "3 dagar"' },
+                    { key: 'threeDay.description', label: 'Description', type: 'textarea' },
+                    { key: 'threeDay.highlights', label: 'Highlights (one per line)', type: 'textarea' },
                 ]
             },
             {
@@ -1955,9 +1955,9 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
                 description: 'Endagsupplevelsen',
                 fields: [
                     { key: 'taster.name', label: 'Package Name', type: 'text' },
-                    { key: 'taster.duration', label: 'Längd', type: 'text', hint: 'T.ex. "1 dag"' },
-                    { key: 'taster.description', label: 'Beskrivning', type: 'textarea' },
-                    { key: 'taster.highlights', label: 'Höjdpunkter (en per rad)', type: 'textarea' },
+                    { key: 'taster.duration', label: 'Duration', type: 'text', hint: 'E.g. "1 dag"' },
+                    { key: 'taster.description', label: 'Description', type: 'textarea' },
+                    { key: 'taster.highlights', label: 'Highlights (one per line)', type: 'textarea' },
                 ]
             }
         ],
@@ -1967,25 +1967,25 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         'gallery:hero': [
             {
                 title: '📝 SEO & Metadata',
-                description: 'Sidinformation för sökmotorer',
+                description: 'Page information for search engines',
                 fields: [
                     { key: 'gallery.meta.title', label: 'Meta Title', type: 'text', hint: 'Shown in browser tab' },
                     { key: 'gallery.meta.description', label: 'Meta Description', type: 'textarea', hint: 'Shown in search results' },
                 ]
             },
             {
-                title: '🎬 Hero-sektion',
-                description: 'Toppbild med rubrik',
+                title: '🎬 Hero Section',
+                description: 'Top image with heading',
                 fields: [
-                    { key: 'gallery.hero.title', label: 'Rubrik', type: 'text' },
-                    { key: 'gallery.hero.subtitle', label: 'Undertext', type: 'textarea' },
+                    { key: 'gallery.hero.title', label: 'Heading', type: 'text' },
+                    { key: 'gallery.hero.subtitle', label: 'Subtitle', type: 'textarea' },
                 ]
             }
         ],
         'gallery:grid': [
             {
                 title: '📑 Sektionsrubriker',
-                description: 'Rubriker för gallerisektioner',
+                description: 'Headings for gallery sections',
                 fields: [
                     { key: 'gallery.sections.winter', label: 'Vinter-sektion', type: 'text' },
                     { key: 'gallery.sections.northernLights', label: 'Norrsken-sektion', type: 'text' },
@@ -1996,24 +1996,24 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
             },
             {
                 title: '🏷️ Kategori-filter',
-                description: 'Texter för filtreringsknappar',
+                description: 'Text for filter buttons',
                 fields: [
                     { key: 'gallery.categories.all', label: 'All', type: 'text' },
                     { key: 'gallery.categories.featured', label: 'Utvalda', type: 'text' },
-                    { key: 'gallery.categories.snowmobile', label: 'Snöskoter', type: 'text' },
-                    { key: 'gallery.categories.dogSledding', label: 'Hundspann', type: 'text' },
+                    { key: 'gallery.categories.snowmobile', label: 'Snowmobile', type: 'text' },
+                    { key: 'gallery.categories.dogSledding', label: 'Dog Sledding', type: 'text' },
                     { key: 'gallery.categories.landscapes', label: 'Landskap', type: 'text' },
                     { key: 'gallery.categories.activities', label: 'Aktiviteter', type: 'text' },
                 ]
             },
             {
                 title: '🔘 UI-kontroller',
-                description: 'Knappar och meddelanden',
+                description: 'Buttons and messages',
                 fields: [
                     { key: 'gallery.noImages', label: '"No images" message', type: 'text' },
-                    { key: 'gallery.closeModal', label: 'Stäng-knapp', type: 'text' },
-                    { key: 'gallery.prevImage', label: 'Föregående-knapp', type: 'text' },
-                    { key: 'gallery.nextImage', label: 'Nästa-knapp', type: 'text' },
+                    { key: 'gallery.closeModal', label: 'Close button', type: 'text' },
+                    { key: 'gallery.prevImage', label: 'Previous button', type: 'text' },
+                    { key: 'gallery.nextImage', label: 'Next button', type: 'text' },
                 ]
             },
             {
@@ -2030,51 +2030,51 @@ function TextContentEditor({ page, section, language }: TextContentEditorProps) 
         // ═══════════════════════════════════════════════════════════════════════
         'faq:hero': [
             {
-                title: '🎬 Hero-sektion',
-                description: 'Toppinnehåll på FAQ-sidan',
+                title: '🎬 Hero Section',
+                description: 'Top content on the FAQ page',
                 fields: [
-                    { key: 'hero.title1', label: 'Rubrik (del 1)', type: 'text', hint: 'T.ex. "Frequently Asked"' },
-                    { key: 'hero.title2', label: 'Rubrik (del 2, färgad)', type: 'text', hint: 'T.ex. "Questions"' },
-                    { key: 'hero.subtitle', label: 'Undertext', type: 'textarea' },
+                    { key: 'hero.title1', label: 'Heading (part 1)', type: 'text', hint: 'E.g. "Frequently Asked"' },
+                    { key: 'hero.title2', label: 'Heading (part 2, colored)', type: 'text', hint: 'E.g. "Questions"' },
+                    { key: 'hero.subtitle', label: 'Subtitle', type: 'textarea' },
                 ]
             }
         ],
         'faq:questions': [
             {
                 title: '🚗 Resa & Transport',
-                description: 'Frågor om hur man tar sig hit',
+                description: 'Questions about how to get here',
                 fields: [
-                    { key: 'faq.item1.question', label: 'Fråga 1', type: 'text' },
+                    { key: 'faq.item1.question', label: 'Question 1', type: 'text' },
                     { key: 'faq.item1.answer', label: 'Svar 1', type: 'textarea' },
-                    { key: 'faq.item2.question', label: 'Fråga 2', type: 'text' },
+                    { key: 'faq.item2.question', label: 'Question 2', type: 'text' },
                     { key: 'faq.item2.answer', label: 'Svar 2', type: 'textarea' },
-                    { key: 'faq.item3.question', label: 'Fråga 3', type: 'text' },
+                    { key: 'faq.item3.question', label: 'Question 3', type: 'text' },
                     { key: 'faq.item3.answer', label: 'Svar 3', type: 'textarea' },
                 ]
             },
             {
-                title: '🧥 Kläder & Utrustning',
-                description: 'Vad ska man packa och vad ingår',
+                title: '🧥 Clothing & Equipment',
+                description: 'What to pack and what is included',
                 fields: [
-                    { key: 'faq.item4.question', label: 'Fråga 4', type: 'text' },
+                    { key: 'faq.item4.question', label: 'Question 4', type: 'text' },
                     { key: 'faq.item4.answer', label: 'Svar 4', type: 'textarea' },
-                    { key: 'faq.item5.question', label: 'Fråga 5', type: 'text' },
+                    { key: 'faq.item5.question', label: 'Question 5', type: 'text' },
                     { key: 'faq.item5.answer', label: 'Svar 5', type: 'textarea' },
-                    { key: 'faq.item6.question', label: 'Fråga 6', type: 'text' },
+                    { key: 'faq.item6.question', label: 'Question 6', type: 'text' },
                     { key: 'faq.item6.answer', label: 'Svar 6', type: 'textarea' },
                 ]
             },
             {
                 title: '🍽️ Kost & Praktiskt',
-                description: 'Mat, försäkring och praktiska frågor',
+                description: 'Food, insurance and practical questions',
                 fields: [
-                    { key: 'faq.item7.question', label: 'Fråga 7', type: 'text' },
+                    { key: 'faq.item7.question', label: 'Question 7', type: 'text' },
                     { key: 'faq.item7.answer', label: 'Svar 7', type: 'textarea' },
-                    { key: 'faq.item8.question', label: 'Fråga 8', type: 'text' },
+                    { key: 'faq.item8.question', label: 'Question 8', type: 'text' },
                     { key: 'faq.item8.answer', label: 'Svar 8', type: 'textarea' },
-                    { key: 'faq.item9.question', label: 'Fråga 9', type: 'text' },
+                    { key: 'faq.item9.question', label: 'Question 9', type: 'text' },
                     { key: 'faq.item9.answer', label: 'Svar 9', type: 'textarea' },
-                    { key: 'faq.item10.question', label: 'Fråga 10', type: 'text' },
+                    { key: 'faq.item10.question', label: 'Question 10', type: 'text' },
                     { key: 'faq.item10.answer', label: 'Svar 10', type: 'textarea' },
                 ]
             }

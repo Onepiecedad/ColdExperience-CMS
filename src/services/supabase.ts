@@ -89,6 +89,35 @@ export async function getPageBySlug(slug: string): Promise<CmsPage | null> {
     return data;
 }
 
+export async function createPage(page: Partial<CmsPage>): Promise<CmsPage> {
+    const { data, error } = await supabase
+        .from('cms_pages')
+        .insert(page)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data;
+}
+
+export async function updatePage(id: string, updates: Partial<CmsPage>): Promise<void> {
+    const { error } = await supabase
+        .from('cms_pages')
+        .update(updates)
+        .eq('id', id);
+
+    if (error) throw error;
+}
+
+export async function deletePage(id: string): Promise<void> {
+    const { error } = await supabase
+        .from('cms_pages')
+        .delete()
+        .eq('id', id);
+
+    if (error) throw error;
+}
+
 /**
  * Get content for a specific page and section
  * Used by mobile-first EditorScreen
@@ -453,6 +482,36 @@ export async function updateSetting(key: string, value: string): Promise<void> {
         .from('cms_settings')
         .update({ setting_value: value })
         .eq('setting_key', key);
+
+    if (error) throw error;
+}
+
+export async function createSetting(key: string, value: string, type: string = 'string', description?: string): Promise<CmsSetting> {
+    const { data, error } = await supabase
+        .from('cms_settings')
+        .insert({ setting_key: key, setting_value: value, setting_type: type, description: description || null })
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data;
+}
+
+export async function deleteSetting(id: string): Promise<void> {
+    const { error } = await supabase
+        .from('cms_settings')
+        .delete()
+        .eq('id', id);
+
+    if (error) throw error;
+}
+
+export async function updateMediaAltText(mediaId: string, lang: Language, altText: string): Promise<void> {
+    const column = `alt_text_${lang}` as const;
+    const { error } = await supabase
+        .from('cms_media')
+        .update({ [column]: altText })
+        .eq('id', mediaId);
 
     if (error) throw error;
 }
