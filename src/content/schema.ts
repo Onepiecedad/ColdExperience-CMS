@@ -100,9 +100,9 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     ],
 
     // ─────────────────────────────────────────────────────────────────────────
-    // HOME PAGE (859f1b94-1601-4a55-920b-92a19610834c)
+    // HERO PAGE (page_slug: hero)
     // ─────────────────────────────────────────────────────────────────────────
-    'home:hero': [
+    'hero:hero': [
         { key: 'hero.title', type: 'text', translatable: true, label: 'Hero Title' },
         { key: 'hero.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
         { key: 'hero.cta', type: 'text', translatable: true, label: 'CTA Button' },
@@ -123,7 +123,7 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'hero.videoFallbackAlt', type: 'text', translatable: true, label: 'Video Fallback Alt' },
     ],
 
-    'home:featuredVideo': [
+    'hero:featuredVideo': [
         { key: 'featuredVideo.title', type: 'text', translatable: true, label: 'Section Title' },
         { key: 'featuredVideo.description', type: 'textarea', translatable: true, label: 'Section Description' },
         { key: 'featuredVideo.youtubeUrl', type: 'url', translatable: false, label: 'YouTube URL' },
