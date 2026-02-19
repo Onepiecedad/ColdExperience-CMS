@@ -6,13 +6,13 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3, Play, Video, Trash2, Languages, X, Eye, EyeOff } from 'lucide-react';
+import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3, Play, Video, Trash2, Languages, X } from 'lucide-react';
 import { deleteMedia } from '../services/supabase';
 import { ContextBar } from '../components/ContextBar';
 import { DevInspector } from '../components/DevInspector';
 import { TranslationStatusIcon } from '../components/TranslationStatusIcon';
 import { SideBySideField } from '../components/SideBySideField';
-import { LivePreview } from '../components/LivePreview';
+// LivePreview removed — preview is now permanently handled by PreviewEditorScreen
 import { useEditorData } from '../hooks/useEditorData';
 import { useDraftStore } from '../hooks/useDraftStore';
 import { getPageById, getSectionById, getSubsectionById, LANGUAGES } from '../content/contentMap';
@@ -38,7 +38,7 @@ export function EditorScreen() {
     };
     const [language, setLanguage] = useState<Language>('en');
     const [compareLang, setCompareLang] = useState<Language | null>(null);
-    const [showPreview, setShowPreview] = useState(false);
+
 
     // Fetch data from Supabase
     const {
@@ -181,7 +181,7 @@ export function EditorScreen() {
     };
 
     return (
-        <div className={`editor-split-layout ${showPreview ? 'preview-open' : ''}`}>
+        <div className="editor-split-layout">
             {/* Editor Pane — scrolls independently */}
             <div className="editor-pane">
                 {/* Sticky Context Bar */}
@@ -214,14 +214,6 @@ export function EditorScreen() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <SyncStatusBadge />
-                                <button
-                                    onClick={() => setShowPreview(prev => !prev)}
-                                    className={`transition-colors p-1 rounded-lg hover:bg-white/5 ${showPreview ? 'text-[var(--frost)]' : 'text-white/40 hover:text-white/70'
-                                        }`}
-                                    title={showPreview ? 'Hide Preview' : 'Live Preview'}
-                                >
-                                    {showPreview ? <EyeOff size={16} /> : <Eye size={16} />}
-                                </button>
                             </div>
                         </div>
                         <p className="text-sm text-white/40">{editingDescription}</p>
@@ -251,10 +243,10 @@ export function EditorScreen() {
                                 but has no matching row in <span className="font-mono">cms_pages</span>.
                             </p>
                             <Link
-                                to="/pages"
+                                to="/edit/home/sections/hero"
                                 className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/30 transition-colors"
                             >
-                                Back to pages
+                                Back to home
                             </Link>
                         </div>
                     )}
@@ -595,15 +587,7 @@ export function EditorScreen() {
                 </main>
             </div>
 
-            {/* Live Preview Panel — side-by-side, synced to current section */}
-            <LivePreview
-                websiteUrl={localPage?.websiteUrl}
-                language={language}
-                isOpen={showPreview}
-                onClose={() => setShowPreview(false)}
-                activeSection={sectionId}
-                websiteAnchor={section?.websiteAnchor}
-            />
+
         </div>
     );
 }

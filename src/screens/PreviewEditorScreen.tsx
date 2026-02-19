@@ -104,7 +104,7 @@ export function PreviewEditorScreen() {
                     setActivePageId(lookup.pageId);
                     setActiveSectionId(lookup.sectionId);
                     // Update URL without full reload
-                    navigate(`/pages/${lookup.pageId}/sections/${lookup.sectionId}`, { replace: true });
+                    navigate(`/edit/${lookup.pageId}/sections/${lookup.sectionId}`, { replace: true });
                 }
                 break;
 
@@ -113,7 +113,7 @@ export function PreviewEditorScreen() {
                     const lookup = reverseLookupUrl(msg.url);
                     setActivePageId(lookup.pageId);
                     setActiveSectionId(lookup.sectionId);
-                    navigate(`/pages/${lookup.pageId}/sections/${lookup.sectionId}`, { replace: true });
+                    navigate(`/edit/${lookup.pageId}/sections/${lookup.sectionId}`, { replace: true });
                 }
                 if (msg.lang) {
                     setLanguage(msg.lang);
@@ -137,7 +137,7 @@ export function PreviewEditorScreen() {
     const handleSectionSelect = (newPageId: string, newSectionId: string) => {
         setActivePageId(newPageId);
         setActiveSectionId(newSectionId);
-        navigate(`/pages/${newPageId}/sections/${newSectionId}`, { replace: true });
+        navigate(`/edit/${newPageId}/sections/${newSectionId}`, { replace: true });
 
         // Tell the preview to scroll to this section
         if (iframeRef.current?.contentWindow) {
