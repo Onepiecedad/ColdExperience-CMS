@@ -378,7 +378,7 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'experiences.learnMoreLodging', type: 'text', translatable: true, label: 'Experiences: Learn More Lodging' },
         { key: 'experiences.learnMoreNorthernLights', type: 'text', translatable: true, label: 'Experiences: Learn More Northern Lights' },
         { key: 'experiences.learnMoreSnowmobile', type: 'text', translatable: true, label: 'Experiences: Learn More Snowmobile' },
-        { key: 'experiences.lodgingAlt', type: 'text', translatable: true, label: 'Experiences: Lodging Alt' },
+        { key: 'experiences.lodgingAlt', type: 'text', translatable: true, label: 'Lodging Image Alt Text' },
         { key: 'experiences.lodgingDesc', type: 'textarea', translatable: true, label: 'Experiences: Lodging Desc' },
         { key: 'experiences.lodgingFeature1', type: 'text', translatable: true, label: 'Experiences: Lodging Feature1' },
         { key: 'experiences.lodgingFeature2', type: 'text', translatable: true, label: 'Experiences: Lodging Feature2' },

@@ -80,11 +80,17 @@ export function PreviewEditorScreen() {
         }
     }, [urlPageId, urlSectionId]);
 
-    // ── Build preview URL ─────────────────────────────────────────────
+    // ── Build preview URL (debounced to avoid iframe jank) ────────────
     const page = getPageById(activePageId);
     const previewUrl = page?.websiteUrl
         ? `${SITE_BASE}/${language}${page.websiteUrl === '/' ? '' : page.websiteUrl}`
         : `${SITE_BASE}/${language}`;
+
+    const [debouncedPreviewUrl, setDebouncedPreviewUrl] = useState(previewUrl);
+    useEffect(() => {
+        const timer = setTimeout(() => setDebouncedPreviewUrl(previewUrl), 300);
+        return () => clearTimeout(timer);
+    }, [previewUrl]);
 
     // ── Listen for bridge messages ────────────────────────────────────
     const handleBridgeMessage = useCallback((event: MessageEvent) => {
@@ -227,7 +233,7 @@ export function PreviewEditorScreen() {
                             <RefreshCw size={14} />
                         </button>
                         <a
-                            href={previewUrl}
+                            href={debouncedPreviewUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="preview-toolbar-btn"
@@ -251,7 +257,7 @@ export function PreviewEditorScreen() {
                     >
                         <iframe
                             ref={iframeRef}
-                            src={previewUrl}
+                            src={debouncedPreviewUrl}
                             title="Live Preview"
                             className="preview-iframe"
                             onLoad={() => setIsLoading(false)}

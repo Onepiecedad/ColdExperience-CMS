@@ -471,6 +471,74 @@ export function EditorScreen() {
                                                                         className="w-full min-h-[100px] bg-white/[0.03] border border-white/[0.08] rounded-lg p-3 text-sm text-white/90 font-mono placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50 resize-y"
                                                                         placeholder="[]"
                                                                     />
+                                                                ) : item.field_type === 'url' ? (
+                                                                    <div className="space-y-2">
+                                                                        <div className="relative">
+                                                                            <input
+                                                                                type="text"
+                                                                                value={getDisplayValue(item)}
+                                                                                onChange={(e) => handleContentChange(item, e.target.value)}
+                                                                                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg pl-3 pr-9 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
+                                                                                placeholder="Enter URL..."
+                                                                            />
+                                                                            {getDisplayValue(item) && (
+                                                                                <a
+                                                                                    href={getDisplayValue(item)}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/30 hover:text-[#5a9bc7] transition-colors"
+                                                                                    title="Open URL"
+                                                                                >
+                                                                                    <ExternalLink size={14} />
+                                                                                </a>
+                                                                            )}
+                                                                        </div>
+                                                                        {/* Inline media preview */}
+                                                                        {(() => {
+                                                                            const url = getDisplayValue(item);
+                                                                            if (!url) return null;
+                                                                            const isVideoUrl = /\.(mp4|webm|mov|ogg)(\?|$)/i.test(url);
+                                                                            const isYoutube = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/i.test(url);
+                                                                            const isImageUrl = /\.(jpe?g|png|gif|webp|svg|avif)(\?|$)/i.test(url);
+                                                                            if (isVideoUrl) {
+                                                                                return (
+                                                                                    <video
+                                                                                        src={url}
+                                                                                        className="w-full max-h-40 rounded-lg bg-black/40 object-contain"
+                                                                                        controls
+                                                                                        muted
+                                                                                        preload="metadata"
+                                                                                    />
+                                                                                );
+                                                                            }
+                                                                            if (isYoutube) {
+                                                                                const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/);
+                                                                                const videoId = match?.[1];
+                                                                                if (videoId) {
+                                                                                    return (
+                                                                                        <iframe
+                                                                                            src={`https://www.youtube.com/embed/${videoId}`}
+                                                                                            className="w-full aspect-video rounded-lg"
+                                                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                                            allowFullScreen
+                                                                                            title="YouTube Preview"
+                                                                                        />
+                                                                                    );
+                                                                                }
+                                                                            }
+                                                                            if (isImageUrl) {
+                                                                                return (
+                                                                                    <img
+                                                                                        src={url}
+                                                                                        alt="Preview"
+                                                                                        className="w-full max-h-40 rounded-lg object-contain bg-black/20"
+                                                                                        loading="lazy"
+                                                                                    />
+                                                                                );
+                                                                            }
+                                                                            return null;
+                                                                        })()}
+                                                                    </div>
                                                                 ) : (
                                                                     <input
                                                                         type="text"
