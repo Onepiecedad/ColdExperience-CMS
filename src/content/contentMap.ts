@@ -21,6 +21,7 @@ export interface Section {
     icon: string;
     description: string;
     dataPageId?: string;   // DB page_id slug if different from parent page
+    websiteAnchor?: string; // DOM element ID on the website for preview scroll sync
     subsections?: Subsection[];
 }
 
@@ -36,6 +37,8 @@ export interface PageConfig {
 // ─── WEBSITE PAGES ─────────────────────────────────────────────────────────
 // Sections are listed in scroll-order, matching how they appear on the site.
 // dataPageId is set when the DB page_id differs from the parent page id.
+// websiteAnchor maps to the DOM heading ID on the production website for
+// preview scroll sync (fragment navigation).
 // ───────────────────────────────────────────────────────────────────────────
 
 export const WEBSITE_PAGES: PageConfig[] = [
@@ -48,14 +51,14 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/',
         group: 'content',
         sections: [
-            { id: 'hero', label: 'Hero', icon: '🎬', description: 'Bakgrundsvideo, titel, CTAs, feature-kort', dataPageId: 'hero' },
-            { id: 'featuredVideo', label: 'Featured Video', icon: '▶', description: '"Beyond the ordinary" — YouTube video', dataPageId: 'hero' },
-            { id: 'features', label: 'Features', icon: '★', description: '4 USP-kort med ikoner', dataPageId: 'features' },
-            { id: 'experiences', label: 'Experiences', icon: '❄', description: 'Skoter, Norrsken, Hundspann, Logi', dataPageId: 'experiences' },
+            { id: 'hero', label: 'Hero', icon: '🎬', description: 'Bakgrundsvideo, titel, CTAs, feature-kort', dataPageId: 'hero', websiteAnchor: 'experience-magic-lapland' },
+            { id: 'featuredVideo', label: 'Featured Video', icon: '▶', description: '"Beyond the ordinary" — YouTube video', dataPageId: 'hero', websiteAnchor: 'beyond-ordinary-wild' },
+            { id: 'features', label: 'Features', icon: '★', description: '4 USP-kort med ikoner', dataPageId: 'features', websiteAnchor: 'why-guests-choose-cold-experience' },
+            { id: 'experiences', label: 'Experiences', icon: '❄', description: 'Skoter, Norrsken, Hundspann, Logi', dataPageId: 'experiences', websiteAnchor: 'magicalwinter-adventures' },
             { id: 'testimonials', label: 'Testimonials', icon: '⭐', description: 'Gästrecensioner och betyg', dataPageId: 'testimonials' },
-            { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation', dataPageId: 'about' },
-            { id: 'instagram', label: 'Instagram', icon: '📸', description: 'Instagram-flöde' },
-            { id: 'corner', label: 'Home Corner', icon: '🏔️', description: 'Snabbinfo om äventyr & boende' },
+            { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation', dataPageId: 'about', websiteAnchor: 'meet-lapland-hosts' },
+            { id: 'instagram', label: 'Instagram', icon: '📸', description: 'Instagram-flöde', websiteAnchor: 'latest-from-instagram' },
+            { id: 'corner', label: 'Home Corner', icon: '🏔️', description: 'Snabbinfo om äventyr & boende', websiteAnchor: 'ready-adventure-lifetime' },
         ]
     },
     {
@@ -181,3 +184,70 @@ export function getDataPageId(pageId: string, sectionId: string): string {
     const section = getSectionById(pageId, sectionId);
     return section?.dataPageId ?? pageId;
 }
+
+// ─── REVERSE LOOKUP (Preview → Editor navigation) ────────────────────────
+// Used by the CMS to determine which page/section to show when
+// the bridge script reports a URL or scroll position from the preview.
+
+/** Map of website URL path segments → CMS page IDs */
+const URL_TO_PAGE: Record<string, string> = {
+    '': 'home',
+    'about': 'about',
+    'packages': 'packages',
+    'gallery': 'gallery',
+    'contact': 'contact',
+    'faq': 'contact',
+    'book': 'booking',
+    'privacy': 'legal',
+    'terms': 'legal',
+    'cookies': 'legal',
+    // EN detail pages
+    'husky-ride': 'detailPages',
+    'snowmobile-safari': 'detailPages',
+    'northern-lights': 'detailPages',
+    'accommodation': 'detailPages',
+    'lapland-holiday-packages': 'packages',
+    // SV
+    'hundspann': 'detailPages',
+    'skotersafari': 'detailPages',
+    'norrsken': 'detailPages',
+    'boende': 'detailPages',
+    'paketresor': 'packages',
+    // DE
+    'husky-tour': 'detailPages',
+    'schneemobil-safari': 'detailPages',
+    'nordlichter': 'detailPages',
+    'lappland-reisepakete': 'packages',
+    // PL
+    'pakiety-laponii': 'packages',
+};
+
+/**
+ * Given a website URL path (e.g. "/en/about" or "/sv/hundspann"),
+ * returns the CMS page ID and its first section ID.
+ */
+export function reverseLookupUrl(urlPath: string): { pageId: string; sectionId: string } {
+    const parts = urlPath.split('/').filter(Boolean);
+    // Remove language prefix
+    const pagePath = parts.length > 1 ? parts[parts.length - 1] : '';
+    const pageId = URL_TO_PAGE[pagePath] || 'home';
+    const page = getPageById(pageId);
+    const sectionId = page?.sections[0]?.id || pageId;
+    return { pageId, sectionId };
+}
+
+/**
+ * Given a data-cms-section attribute value from the bridge script (e.g. "features"),
+ * returns the matching CMS { pageId, sectionId }.
+ * Falls back to the home page if not found.
+ */
+export function lookupBySectionAttribute(cmsSectionId: string): { pageId: string; sectionId: string } {
+    for (const page of WEBSITE_PAGES) {
+        const section = page.sections.find(s => s.id === cmsSectionId);
+        if (section) {
+            return { pageId: page.id, sectionId: section.id };
+        }
+    }
+    return { pageId: 'home', sectionId: 'hero' };
+}
+

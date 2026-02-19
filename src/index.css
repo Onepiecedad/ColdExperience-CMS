@@ -356,3 +356,549 @@ kbd {
   transform: translateY(-10px);
   transition: all 0.2s var(--ease-smooth);
 }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   SPLIT-SCREEN EDITOR + LIVE PREVIEW
+─────────────────────────────────────────────────────────────────────────── */
+
+/* Root split container */
+.editor-split-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #040810;
+}
+
+/* Editor pane — always visible, scrolls independently */
+.editor-pane {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  height: 100vh;
+  transition: flex 0.35s var(--ease-smooth);
+}
+
+/* When preview is open, constrain editor width */
+.editor-split-layout.preview-open .editor-pane {
+  flex: 1 1 50%;
+}
+
+/* Live Preview panel — inline, not overlay */
+.live-preview-panel {
+  flex: 0 0 50%;
+  max-width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--abyss);
+  border-left: 1px solid var(--glass-border);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+  animation: slideInRight 0.3s var(--ease-smooth) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Toolbar */
+.live-preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--deep);
+  flex-shrink: 0;
+}
+
+.live-preview-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.live-preview-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.live-preview-url {
+  font-size: 0.6875rem;
+  font-family: 'SF Mono', 'Monaco', 'Fira Code', monospace;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.live-preview-toolbar-center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: var(--glass-highlight);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+}
+
+.live-preview-device-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.live-preview-device-btn:hover {
+  color: var(--text-secondary);
+  background: var(--glass-highlight);
+}
+
+.live-preview-device-btn.active {
+  color: var(--text-primary);
+  background: var(--frost);
+  box-shadow: 0 2px 8px rgba(63, 123, 167, 0.3);
+}
+
+.live-preview-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.live-preview-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.live-preview-action-btn:hover {
+  color: var(--text-primary);
+  background: var(--glass-highlight);
+}
+
+.live-preview-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-left: 0.25rem;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.live-preview-close-btn:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+/* Iframe area */
+.live-preview-iframe-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: #000;
+}
+
+.live-preview-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  z-index: 5;
+  background: var(--abyss);
+}
+
+.live-preview-iframe-sizer {
+  width: 100%;
+  height: 100%;
+  transition: max-width 0.3s var(--ease-smooth);
+  margin: 0 auto;
+}
+
+.live-preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+/* Mobile: preview goes full-screen overlay */
+@media (max-width: 768px) {
+  .editor-split-layout {
+    flex-direction: column;
+  }
+
+  .editor-split-layout.preview-open .editor-pane {
+    display: none;
+  }
+
+  .live-preview-panel {
+    flex: 1;
+    max-width: 100%;
+    height: 100vh;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PREVIEW EDITOR SCREEN - Unified split view (Phase 3)
+   Left 60%: always-visible preview, Right 40%: editor
+═══════════════════════════════════════════════════════════════════════════ */
+
+.preview-editor-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: #040810;
+}
+
+/* ── Left: Preview Pane ──────────────────────────────── */
+.preview-pane {
+  flex: 0 0 60%;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--glass-border);
+}
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: var(--deep);
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+  gap: 0.5rem;
+}
+
+.preview-toolbar-left,
+.preview-toolbar-center,
+.preview-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.preview-toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.preview-toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+}
+
+.preview-toolbar-btn.active {
+  background: rgba(90, 155, 199, 0.15);
+  color: var(--frost);
+}
+
+.bridge-status {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.bridge-status.ready {
+  color: #4ade80;
+}
+
+.preview-iframe-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: #000;
+}
+
+.preview-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--abyss);
+  color: var(--text-muted);
+  z-index: 5;
+}
+
+.preview-iframe-sizer {
+  height: 100%;
+  transition: width 0.3s var(--ease-smooth);
+  margin: 0 auto;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+/* ── Right: Editor Pane ──────────────────────────────── */
+.editor-main-pane {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: var(--deep);
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+  gap: 0.5rem;
+}
+
+.editor-nav-breadcrumb {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ── Section Selector ────────────────────────────────── */
+.section-selector {
+  position: relative;
+}
+
+.section-selector-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.section-selector-trigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.section-selector-page {
+  color: var(--text-muted);
+}
+
+.section-selector-arrow {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.section-selector-section {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.section-selector-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 260px;
+  max-height: 420px;
+  overflow-y: auto;
+  background: var(--deep);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  padding: 0.375rem;
+}
+
+.section-selector-group {
+  margin-bottom: 0.25rem;
+}
+
+.section-selector-group-title {
+  padding: 0.375rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.section-selector-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  text-align: left;
+}
+
+.section-selector-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.section-selector-item.active {
+  background: rgba(90, 155, 199, 0.12);
+  color: var(--frost);
+}
+
+/* ── System Pages Menu ───────────────────────────────── */
+.system-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 220px;
+  max-height: 360px;
+  overflow-y: auto;
+  background: var(--deep);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  padding: 0.375rem;
+}
+
+.system-menu-group {
+  margin-bottom: 0.25rem;
+}
+
+.system-menu-title {
+  padding: 0.375rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.system-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  text-align: left;
+}
+
+.system-menu-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.system-menu-item.active {
+  background: rgba(90, 155, 199, 0.12);
+  color: var(--frost);
+}
+
+/* ── EditorScreen nested inside PreviewEditorScreen ──── */
+/* Override the 100vh height and make it fill its container */
+.editor-main-pane .editor-split-layout {
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.editor-main-pane .editor-pane {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Hide the LivePreview panel and toggle when preview is permanent */
+.editor-main-pane .live-preview-panel {
+  display: none !important;
+}
+
+/* ── Responsive: mobile stacks vertically ────────────── */
+@media (max-width: 900px) {
+  .preview-editor-layout {
+    flex-direction: column;
+  }
+
+  .preview-pane {
+    flex: 0 0 45%;
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .editor-main-pane {
+    flex: 1;
+    overflow-y: auto;
+  }
+}

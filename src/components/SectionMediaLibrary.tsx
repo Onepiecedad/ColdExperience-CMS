@@ -352,6 +352,14 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
                                             loading="lazy"
                                         />
                                     )}
+                                    {/* Delete button - top right, visible on hover */}
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleDelete(item); }}
+                                        className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-500/80 text-white opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all duration-200 backdrop-blur-sm border border-red-400/30 z-10"
+                                        title="Delete media"
+                                    >
+                                        <Trash2 size={12} />
+                                    </button>
                                 </div>
                                 {/* Always visible filename bar at bottom */}
                                 <div className="px-2 py-1.5 bg-[#0a1622] border-t border-white/[0.06]">
