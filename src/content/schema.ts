@@ -615,6 +615,7 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'ownerSection.title2', type: 'text', translatable: true, label: 'OwnerSection: Title2' },
         { key: 'ownerSection.whyText', type: 'text', translatable: true, label: 'OwnerSection: Why Text' },
         { key: 'ownerSection.whyTitle', type: 'text', translatable: true, label: 'OwnerSection: Why Title' },
+        { key: 'ownerSection.ownerImageUrl', type: 'url', translatable: false, label: 'OwnerSection: Owner Photo URL' },
         { key: 'packages.adventure.description', type: 'textarea', translatable: true, label: 'Packages: Description' },
         { key: 'packages.adventure.duration', type: 'text', translatable: true, label: 'Packages: Duration' },
         { key: 'packages.adventure.highlights', type: 'text', translatable: true, label: 'Packages: Highlights' },

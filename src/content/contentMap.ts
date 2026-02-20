@@ -13,6 +13,9 @@ export interface Subsection {
     label: string;
     icon: string;
     description: string;
+    contentKeyPrefix?: string;  // Prefix to filter content fields (e.g. "pages.snowmobileSafari")
+    dataPageId?: string;        // DB page slug override (e.g. "detailPages")
+    dataSectionKey?: string;    // DB section_key override (e.g. "pages")
 }
 
 export interface Section {
@@ -54,7 +57,14 @@ export const WEBSITE_PAGES: PageConfig[] = [
             { id: 'hero', label: 'Hero', icon: '🎬', description: 'Bakgrundsvideo, titel, CTAs, feature-kort', dataPageId: 'hero', websiteAnchor: 'experience-magic-lapland' },
             { id: 'featuredVideo', label: 'Featured Video', icon: '▶', description: '"Beyond the ordinary" — YouTube video', dataPageId: 'hero', websiteAnchor: 'beyond-ordinary-wild' },
             { id: 'features', label: 'Features', icon: '★', description: '4 USP-kort med ikoner', dataPageId: 'features', websiteAnchor: 'why-guests-choose-cold-experience' },
-            { id: 'experiences', label: 'Experiences', icon: '❄', description: 'Skoter, Norrsken, Hundspann, Logi', dataPageId: 'experiences', websiteAnchor: 'magicalwinter-adventures' },
+            {
+                id: 'experiences', label: 'Experiences', icon: '❄', description: 'Skoter, Norrsken, Hundspann, Logi', dataPageId: 'experiences', websiteAnchor: 'magicalwinter-adventures', subsections: [
+                    { id: 'snowmobile', label: 'Skoter', icon: '🏔️', description: 'Snöskoteräventyr', contentKeyPrefix: 'pages.snowmobileSafari', dataPageId: 'detailPages', dataSectionKey: 'pages' },
+                    { id: 'dogsledding', label: 'Hundspann', icon: '🐕', description: 'Hundspannsäventyr', contentKeyPrefix: 'pages.huskyRide', dataPageId: 'detailPages', dataSectionKey: 'pages' },
+                    { id: 'northernlights', label: 'Norrsken', icon: '🌌', description: 'Norrskenssafari', contentKeyPrefix: 'pages.northernLights', dataPageId: 'detailPages', dataSectionKey: 'pages' },
+                    { id: 'lodging', label: 'Boende', icon: '🏠', description: 'Arktiskt boende', contentKeyPrefix: 'pages.lodging', dataPageId: 'detailPages', dataSectionKey: 'pages' },
+                ]
+            },
             { id: 'testimonials', label: 'Testimonials', icon: '⭐', description: 'Gästrecensioner och betyg', dataPageId: 'testimonials' },
             { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation', dataPageId: 'about', websiteAnchor: 'meet-lapland-hosts' },
             { id: 'instagram', label: 'Instagram', icon: '📸', description: 'Instagram-flöde', websiteAnchor: 'latest-from-instagram' },

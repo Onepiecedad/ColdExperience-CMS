@@ -14,7 +14,7 @@ import {
     getContentByPageAndSection,
     getMediaBySection
 } from '../services/supabase';
-import { getDataPageId } from '../content/contentMap';
+import { getDataPageId, getSubsectionById } from '../content/contentMap';
 import { logInfo, logSuccess, logWarn, logError } from '../services/debugLog';
 
 export interface EditorDataState {
@@ -37,7 +37,8 @@ export interface EditorDataState {
 
 export function useEditorData(
     pageSlug: string | undefined,
-    sectionId: string | undefined
+    sectionId: string | undefined,
+    subsectionId?: string
 ): EditorDataState {
     const [page, setPage] = useState<CmsPage | null>(null);
     const [content, setContent] = useState<CmsContent[]>([]);
@@ -61,9 +62,15 @@ export function useEditorData(
 
         // Resolve the actual DB page slug for this section
         // (e.g. CMS page "home" + section "hero" → DB slug "hero")
-        const dbPageSlug = getDataPageId(pageSlug, sectionId);
+        // Subsections can override with their own dataPageId/dataSectionKey
+        const subsectionConfig = pageSlug && sectionId && subsectionId
+            ? getSubsectionById(pageSlug, sectionId, subsectionId)
+            : undefined;
 
-        logInfo('EditorData', `Fetching: ${pageSlug}/${sectionId} (DB: ${dbPageSlug})`);
+        const dbPageSlug = subsectionConfig?.dataPageId || getDataPageId(pageSlug, sectionId);
+        const dbSectionKey = subsectionConfig?.dataSectionKey || sectionId;
+
+        logInfo('EditorData', `Fetching: ${pageSlug}/${sectionId}${subsectionId ? `/${subsectionId}` : ''} (DB: ${dbPageSlug}/${dbSectionKey})`);
 
         try {
             // Step 1: Get page by its DB slug
@@ -76,9 +83,10 @@ export function useEditorData(
                     logInfo('EditorData', `Fallback to CMS slug: ${pageSlug}`);
                     setPage(fallbackPage);
 
+                    const mediaSectionId = subsectionId ? `${sectionId}-${subsectionId}` : sectionId;
                     const [contentData, mediaData] = await Promise.all([
-                        getContentByPageAndSection(fallbackPage.slug, sectionId),
-                        getMediaBySection(fallbackPage.slug, sectionId)
+                        getContentByPageAndSection(fallbackPage.slug, dbSectionKey),
+                        getMediaBySection(fallbackPage.slug, mediaSectionId)
                     ]);
 
                     setContent(contentData);
@@ -87,7 +95,7 @@ export function useEditorData(
 
                     logSuccess('EditorData', `Loaded ${contentData.length} content, ${mediaData.length} media (fallback)`, {
                         pageId: fallbackPage.id,
-                        section: sectionId,
+                        section: dbSectionKey,
                     });
                     return;
                 }
@@ -105,10 +113,15 @@ export function useEditorData(
             setPage(foundPage);
 
             // Step 2: Fetch content and media in parallel
-            // Both use the resolved DB slug for correct data retrieval
+            // Content uses the subsection's DB override (e.g. detailPages/pages)
+            // Media uses the parent section's page (e.g. experiences) since media is stored there
+            const mediaSectionId = subsectionId ? `${sectionId}-${subsectionId}` : sectionId;
+            const mediaPageSlug = subsectionConfig?.dataPageId
+                ? getDataPageId(pageSlug, sectionId) // Use parent section's page for media
+                : foundPage.slug;
             const [contentData, mediaData] = await Promise.all([
-                getContentByPageAndSection(foundPage.slug, sectionId),
-                getMediaBySection(foundPage.slug, sectionId)
+                getContentByPageAndSection(foundPage.slug, dbSectionKey),
+                getMediaBySection(mediaPageSlug, mediaSectionId)
             ]);
 
             setContent(contentData);
@@ -127,7 +140,7 @@ export function useEditorData(
         } finally {
             setIsLoading(false);
         }
-    }, [pageSlug, sectionId]);
+    }, [pageSlug, sectionId, subsectionId]);
 
     // Initial fetch and refetch on params change
     useEffect(() => {
