@@ -129,7 +129,7 @@ export const WEBSITE_PAGES: PageConfig[] = [
         id: 'detailPages',
         label: 'Detail Pages',
         icon: '📄',
-        group: 'content',
+        group: 'system',
         sections: [
             { id: 'pages', label: 'Detail Pages', icon: '📄', description: 'Skoter, Husky, Norrsken — undersidor' },
         ]
@@ -211,35 +211,74 @@ const URL_TO_PAGE: Record<string, string> = {
     'privacy': 'legal',
     'terms': 'legal',
     'cookies': 'legal',
-    // EN detail pages
-    'husky-ride': 'detailPages',
-    'snowmobile-safari': 'detailPages',
-    'northern-lights': 'detailPages',
-    'accommodation': 'detailPages',
     'lapland-holiday-packages': 'packages',
-    // SV
-    'hundspann': 'detailPages',
-    'skotersafari': 'detailPages',
-    'norrsken': 'detailPages',
-    'boende': 'detailPages',
     'paketresor': 'packages',
-    // DE
-    'husky-tour': 'detailPages',
-    'schneemobil-safari': 'detailPages',
-    'nordlichter': 'detailPages',
     'lappland-reisepakete': 'packages',
-    // PL
     'pakiety-laponii': 'packages',
 };
 
 /**
- * Given a website URL path (e.g. "/en/about" or "/sv/hundspann"),
- * returns the CMS page ID and its first section ID.
+ * Map of detail-page URL slugs → subsection routing info.
+ * When the preview iframe navigates to e.g. /en/snowmobile-safari, the bridge
+ * reports the URL and we need to resolve it to the correct CMS subsection
+ * (home / experiences / snowmobile) instead of the legacy detailPages bucket.
  */
-export function reverseLookupUrl(urlPath: string): { pageId: string; sectionId: string } {
+const URL_TO_SUBSECTION: Record<string, { pageId: string; sectionId: string; subsectionId: string }> = {
+    // EN
+    'snowmobile-safari': { pageId: 'home', sectionId: 'experiences', subsectionId: 'snowmobile' },
+    'husky-ride': { pageId: 'home', sectionId: 'experiences', subsectionId: 'dogsledding' },
+    'northern-lights': { pageId: 'home', sectionId: 'experiences', subsectionId: 'northernlights' },
+    'accommodation': { pageId: 'home', sectionId: 'experiences', subsectionId: 'lodging' },
+    // SV
+    'skotersafari': { pageId: 'home', sectionId: 'experiences', subsectionId: 'snowmobile' },
+    'hundspann': { pageId: 'home', sectionId: 'experiences', subsectionId: 'dogsledding' },
+    'norrsken': { pageId: 'home', sectionId: 'experiences', subsectionId: 'northernlights' },
+    'boende': { pageId: 'home', sectionId: 'experiences', subsectionId: 'lodging' },
+    // DE
+    'schneemobil-safari': { pageId: 'home', sectionId: 'experiences', subsectionId: 'snowmobile' },
+    'husky-tour': { pageId: 'home', sectionId: 'experiences', subsectionId: 'dogsledding' },
+    'nordlichter': { pageId: 'home', sectionId: 'experiences', subsectionId: 'northernlights' },
+};
+
+/**
+ * Reverse lookup: given a subsection ID (e.g. "dogsledding"),
+ * returns the English website URL slug (e.g. "husky-ride").
+ * Used to navigate the preview iframe to the correct detail page.
+ */
+const SUBSECTION_TO_URL_SLUG: Record<string, string> = {};
+(() => {
+    // Build from URL_TO_SUBSECTION, keeping only the first (English) match per subsectionId
+    for (const [slug, info] of Object.entries(URL_TO_SUBSECTION)) {
+        if (!SUBSECTION_TO_URL_SLUG[info.subsectionId]) {
+            SUBSECTION_TO_URL_SLUG[info.subsectionId] = slug;
+        }
+    }
+})();
+
+/**
+ * Get the website URL for a subsection to use in the preview iframe.
+ * Returns e.g. "/husky-ride" for subsectionId "dogsledding".
+ */
+export function getSubsectionWebsiteUrl(subsectionId: string): string | undefined {
+    const slug = SUBSECTION_TO_URL_SLUG[subsectionId];
+    return slug ? `/${slug}` : undefined;
+}
+
+/**
+ * Given a website URL path (e.g. "/en/about" or "/sv/hundspann"),
+ * returns the CMS page ID, section ID, and optional subsection ID.
+ */
+export function reverseLookupUrl(urlPath: string): { pageId: string; sectionId: string; subsectionId?: string } {
     const parts = urlPath.split('/').filter(Boolean);
     // Remove language prefix
     const pagePath = parts.length > 1 ? parts[parts.length - 1] : '';
+
+    // Check subsection map first (detail pages → experiences subsections)
+    const subsection = URL_TO_SUBSECTION[pagePath];
+    if (subsection) {
+        return subsection;
+    }
+
     const pageId = URL_TO_PAGE[pagePath] || 'home';
     const page = getPageById(pageId);
     const sectionId = page?.sections[0]?.id || pageId;

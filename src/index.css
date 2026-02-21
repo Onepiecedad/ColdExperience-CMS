@@ -811,6 +811,14 @@ kbd {
   color: var(--frost);
 }
 
+.section-selector-sub {
+  padding-left: 1.75rem;
+  font-size: 0.75rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.06);
+  margin-left: 0.75rem;
+  border-radius: 0 8px 8px 0;
+}
+
 /* ── System Pages Menu ───────────────────────────────── */
 .system-menu {
   position: absolute;

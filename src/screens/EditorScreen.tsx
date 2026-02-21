@@ -4,7 +4,7 @@
 // Ticket 5: Local drafts with autosync
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3, Play, Video, Trash2, Languages, X } from 'lucide-react';
 import { deleteMedia } from '../services/supabase';
@@ -19,6 +19,57 @@ import { getPageById, getSectionById, getSubsectionById, LANGUAGES, type Subsect
 import type { Language, CmsContent, CmsMedia } from '../types';
 
 type ContentMode = 'text' | 'media';
+
+// ── Pretty-printed JSON textarea with local state (no cursor-jumping) ──
+function JsonTextarea({ value, onChange, className, placeholder }: {
+    value: string;
+    onChange: (compactJson: string) => void;
+    className?: string;
+    placeholder?: string;
+}) {
+    const prettyPrint = (raw: string): string => {
+        try { return JSON.stringify(JSON.parse(raw), null, 2); } catch { return raw; }
+    };
+
+    const [local, setLocal] = useState(() => prettyPrint(value));
+    const prevValueRef = useRef(value);
+
+    // Re-sync if the upstream value changes (e.g. switching fields)
+    useEffect(() => {
+        if (value !== prevValueRef.current) {
+            setLocal(prettyPrint(value));
+            prevValueRef.current = value;
+        }
+    }, [value]);
+
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setLocal(e.target.value);
+    }, []);
+
+    const handleBlur = useCallback(() => {
+        try {
+            const parsed = JSON.parse(local);
+            const compact = JSON.stringify(parsed);
+            onChange(compact);
+            // Re-pretty-print after save
+            setLocal(JSON.stringify(parsed, null, 2));
+            prevValueRef.current = compact;
+        } catch {
+            // Invalid JSON — save raw so user doesn't lose work
+            onChange(local);
+        }
+    }, [local, onChange]);
+
+    return (
+        <textarea
+            value={local}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={className}
+            placeholder={placeholder}
+        />
+    );
+}
 
 export function EditorScreen() {
     const { pageId, sectionId, subsectionId } = useParams<{
@@ -186,12 +237,28 @@ export function EditorScreen() {
     const subsectionPrefix = (subsection as Subsection & { contentKeyPrefix?: string } | undefined)?.contentKeyPrefix;
 
     const filteredContent = subsectionPrefix
-        ? content.filter(item => item.field_key.startsWith(subsectionPrefix))
+        ? content.filter(item =>
+            item.field_key.startsWith(subsectionPrefix) &&
+            !item.field_key.includes('.meta.') &&   // Exclude SEO meta fields
+            !item.field_key.includes('.media.')      // Exclude media file paths (video src, poster, scale)
+        )
         : content;
+
+    // ── Media path fields (videoSrc, poster, etc.) — show in Media tab ───
+    // These are .media. fields excluded from filteredContent but should be editable
+    const mediaPathFields = subsectionPrefix
+        ? content.filter(item =>
+            item.field_key.startsWith(subsectionPrefix) &&
+            item.field_key.includes('.media.')
+        )
+        : content.filter(item => item.field_key.includes('.media.'));
 
     // ── Split content into text fields vs media/url fields ────────────────
     const textContent = filteredContent.filter(item => item.field_type !== 'url');
-    const mediaContent = filteredContent.filter(item => item.field_type === 'url');
+    const mediaContent = [
+        ...filteredContent.filter(item => item.field_type === 'url'),
+        ...mediaPathFields,  // Include .media. fields (videoSrc, poster, scale, etc.)
+    ];
 
     return (
         <div className="editor-split-layout">
@@ -485,10 +552,10 @@ export function EditorScreen() {
                                                                         placeholder="Enter content..."
                                                                     />
                                                                 ) : item.field_type === 'array' ? (
-                                                                    <textarea
+                                                                    <JsonTextarea
                                                                         value={getDisplayValue(item)}
-                                                                        onChange={(e) => handleContentChange(item, e.target.value)}
-                                                                        className="w-full min-h-[100px] bg-white/[0.03] border border-white/[0.08] rounded-lg p-3 text-sm text-white/90 font-mono placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50 resize-y"
+                                                                        onChange={(val) => handleContentChange(item, val)}
+                                                                        className="w-full min-h-[160px] bg-white/[0.03] border border-white/[0.08] rounded-lg p-3 text-sm text-white/90 font-mono placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50 resize-y leading-relaxed"
                                                                         placeholder="[]"
                                                                     />
                                                                 ) : item.field_type === 'url' ? (
@@ -559,15 +626,31 @@ export function EditorScreen() {
                                                                             return null;
                                                                         })()}
                                                                     </div>
-                                                                ) : (
-                                                                    <input
-                                                                        type="text"
-                                                                        value={getDisplayValue(item)}
-                                                                        onChange={(e) => handleContentChange(item, e.target.value)}
-                                                                        className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
-                                                                        placeholder="Enter text..."
-                                                                    />
-                                                                )}
+                                                                ) : (() => {
+                                                                    const val = getDisplayValue(item);
+                                                                    const trimmed = val.trim();
+                                                                    const isJson = (trimmed.startsWith('[') && trimmed.endsWith(']')) ||
+                                                                        (trimmed.startsWith('{') && trimmed.endsWith('}'));
+                                                                    if (isJson) {
+                                                                        return (
+                                                                            <JsonTextarea
+                                                                                value={val}
+                                                                                onChange={(compactVal) => handleContentChange(item, compactVal)}
+                                                                                className="w-full min-h-[160px] bg-white/[0.03] border border-white/[0.08] rounded-lg p-3 text-sm text-white/90 font-mono placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50 resize-y leading-relaxed"
+                                                                                placeholder="[]"
+                                                                            />
+                                                                        );
+                                                                    }
+                                                                    return (
+                                                                        <input
+                                                                            type="text"
+                                                                            value={val}
+                                                                            onChange={(e) => handleContentChange(item, e.target.value)}
+                                                                            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
+                                                                            placeholder="Enter text..."
+                                                                        />
+                                                                    );
+                                                                })()}
                                                             </>
                                                         )}
                                                     </div>
@@ -583,274 +666,359 @@ export function EditorScreen() {
                         ═══════════════════════════════════════════════════════════ */}
                             {contentMode === 'media' && (
                                 <>
-                                    {/* ── URL / Video Link Fields ────────────── */}
+                                    {/* ── Media Content Fields (video+poster pairs) ────────────── */}
                                     {mediaContent.length > 0 && (() => {
                                         const SITE_BASE = 'https://coldexperience.se';
-                                        const videoItems = mediaContent.filter((item) => {
+
+                                        // ── Group media fields into logical pairs ──
+                                        // Pair definitions: [videoKeyPart, posterKeyPart, label]
+                                        const PAIR_DEFS: [string, string, string][] = [
+                                            ['media.videoSrc', 'media.poster', 'Bakgrundsvideo'],
+                                            ['media.introVideo', 'media.introPoster', 'Introvideo'],
+                                        ];
+
+                                        type MediaPair = {
+                                            label: string;
+                                            video?: typeof mediaContent[0];
+                                            poster?: typeof mediaContent[0];
+                                        };
+
+                                        const paired: MediaPair[] = [];
+                                        const usedIds = new Set<string>();
+
+                                        for (const [videoKey, posterKey, label] of PAIR_DEFS) {
+                                            const video = mediaContent.find(i => i.field_key.endsWith(videoKey));
+                                            const poster = mediaContent.find(i => i.field_key.endsWith(posterKey));
+                                            if (video || poster) {
+                                                paired.push({ label, video, poster });
+                                                if (video) usedIds.add(video.id);
+                                                if (poster) usedIds.add(poster.id);
+                                            }
+                                        }
+
+                                        // Anything not paired stays as ungrouped
+                                        const ungrouped = mediaContent.filter(i => !usedIds.has(i.id));
+
+                                        // Helper: render a single media card (video or image)
+                                        const renderMediaCard = (item: typeof mediaContent[0]) => {
                                             const rawUrl = getDisplayValue(item);
-                                            return rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl);
-                                        });
-                                        const nonVideoItems = mediaContent.filter((item) => {
-                                            const rawUrl = getDisplayValue(item);
-                                            return !(rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl));
-                                        });
+                                            const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
+                                            const urlFilename = rawUrl ? rawUrl.split('/').pop()?.split('?')[0] || rawUrl : '';
+                                            const isVideoFile = rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl);
+                                            const isImageFile = rawUrl && /\.(jpe?g|png|gif|webp|svg|avif)(\?|$)/i.test(rawUrl);
+                                            const shortLabel = (item.field_label || item.field_key).split('.').pop() || '';
+
+                                            return (
+                                                <div
+                                                    key={item.id}
+                                                    className={`group relative bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border overflow-hidden hover:border-[#5a9bc7]/30 transition-colors cursor-pointer ${fieldHasDraft(item) ? 'border-amber-500/40' : 'border-white/[0.06]'}`}
+                                                    onClick={() => resolvedUrl && window.open(resolvedUrl, '_blank')}
+                                                >
+                                                    <div className="aspect-video bg-white/[0.02] relative">
+                                                        {isVideoFile ? (
+                                                            <>
+                                                                <video
+                                                                    src={resolvedUrl}
+                                                                    className="w-full h-full object-cover"
+                                                                    muted
+                                                                    preload="metadata"
+                                                                    playsInline
+                                                                    onLoadedMetadata={(e) => {
+                                                                        const video = e.target as HTMLVideoElement;
+                                                                        video.currentTime = 0.1;
+                                                                    }}
+                                                                />
+                                                                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                                                                    <div className="p-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
+                                                                        <Play size={16} className="text-white ml-0.5" fill="white" />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="absolute top-1.5 left-1.5">
+                                                                    <div className="px-1.5 py-0.5 bg-[#3f7ba7]/80 backdrop-blur-sm rounded flex items-center gap-1">
+                                                                        <Video size={10} className="text-white" />
+                                                                        <span className="text-[10px] text-white font-medium">VIDEO</span>
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                        ) : isImageFile ? (
+                                                            <img
+                                                                src={resolvedUrl}
+                                                                alt={shortLabel}
+                                                                className="w-full h-full object-cover"
+                                                                loading="lazy"
+                                                            />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center">
+                                                                <Image size={32} className="text-white/20" />
+                                                            </div>
+                                                        )}
+                                                        {fieldHasDraft(item) && (
+                                                            <div className="absolute top-1.5 right-1.5">
+                                                                <span className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 backdrop-blur-sm text-amber-300 rounded text-[10px] font-medium">
+                                                                    <Edit3 size={10} />
+                                                                    Draft
+                                                                </span>
+                                                            </div>
+                                                        )}
+                                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                                            <ExternalLink size={20} className="text-white" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="p-2 border-t border-white/[0.04]">
+                                                        <p className="text-xs text-white/60 truncate">{urlFilename || '(empty)'}</p>
+                                                        <p className="text-[10px] text-white/30 truncate mt-0.5">
+                                                            {shortLabel}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            );
+                                        };
 
                                         return (
                                             <>
-                                                {/* ── Video URL cards — same grid as uploaded media ── */}
-                                                {videoItems.length > 0 && (
-                                                    <div className="grid grid-cols-2 gap-3 mb-3">
-                                                        {videoItems.map((item) => {
-                                                            const rawUrl = getDisplayValue(item);
-                                                            const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
-                                                            const urlFilename = rawUrl ? rawUrl.split('/').pop()?.split('?')[0] || rawUrl : '';
+                                                {/* ── Paired media groups (video + poster) ── */}
+                                                {paired.map((pair) => (
+                                                    <div key={pair.label} className="mb-5">
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <Video size={14} className="text-[#5a9bc7]" />
+                                                            <span className="text-sm font-medium text-white/80">{pair.label}</span>
+                                                        </div>
+                                                        <div className="grid grid-cols-2 gap-3">
+                                                            {pair.video && renderMediaCard(pair.video)}
+                                                            {pair.poster && renderMediaCard(pair.poster)}
+                                                        </div>
+                                                    </div>
+                                                ))}
 
-                                                            return (
-                                                                <div
-                                                                    key={item.id}
-                                                                    className={`group relative bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border overflow-hidden hover:border-[#5a9bc7]/30 transition-colors cursor-pointer ${fieldHasDraft(item) ? 'border-amber-500/40' : 'border-white/[0.06]'
-                                                                        }`}
-                                                                    onClick={() => window.open(resolvedUrl, '_blank')}
-                                                                >
-                                                                    {/* Thumbnail */}
-                                                                    <div className="aspect-video bg-white/[0.02] relative">
-                                                                        <video
-                                                                            src={resolvedUrl}
-                                                                            className="w-full h-full object-cover"
-                                                                            muted
-                                                                            preload="metadata"
-                                                                            playsInline
-                                                                            onLoadedMetadata={(e) => {
-                                                                                const video = e.target as HTMLVideoElement;
-                                                                                video.currentTime = 0.1;
-                                                                            }}
-                                                                        />
-                                                                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                                                                            <div className="p-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-                                                                                <Play size={16} className="text-white ml-0.5" fill="white" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="absolute top-1.5 left-1.5">
-                                                                            <div className="px-1.5 py-0.5 bg-[#3f7ba7]/80 backdrop-blur-sm rounded flex items-center gap-1">
-                                                                                <Video size={10} className="text-white" />
-                                                                                <span className="text-[10px] text-white font-medium">VIDEO</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        {fieldHasDraft(item) && (
-                                                                            <div className="absolute top-1.5 right-1.5">
-                                                                                <span className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 backdrop-blur-sm text-amber-300 rounded text-[10px] font-medium">
-                                                                                    <Edit3 size={10} />
-                                                                                    Draft
-                                                                                </span>
-                                                                            </div>
-                                                                        )}
-                                                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                                                            <ExternalLink size={20} className="text-white" />
-                                                                        </div>
-                                                                    </div>
-                                                                    {/* Filename */}
-                                                                    <div className="p-2 border-t border-white/[0.04]">
-                                                                        <p className="text-xs text-white/60 truncate">{urlFilename}</p>
-                                                                        <p className="text-[10px] text-white/30 truncate mt-0.5">
-                                                                            {item.field_label || item.field_key}
-                                                                        </p>
-                                                                    </div>
+                                                {/* ── Ungrouped media fields ── */}
+                                                {ungrouped.length > 0 && (() => {
+                                                    const videoItems = ungrouped.filter((item) => {
+                                                        const rawUrl = getDisplayValue(item);
+                                                        return rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl);
+                                                    });
+                                                    const nonVideoItems = ungrouped.filter((item) => {
+                                                        const rawUrl = getDisplayValue(item);
+                                                        return !(rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl));
+                                                    });
+                                                    return (
+                                                        <>
+                                                            {videoItems.length > 0 && (
+                                                                <div className="grid grid-cols-2 gap-3 mb-3">
+                                                                    {videoItems.map(renderMediaCard)}
                                                                 </div>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                )}
+                                                            )}
+                                                            {nonVideoItems.length > 0 && (
+                                                                <div className="space-y-4 mb-6">
+                                                                    {nonVideoItems.map((item) => {
+                                                                        const rawUrl = getDisplayValue(item);
+                                                                        const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
+                                                                        const isYoutube = rawUrl && /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/i.test(rawUrl);
+                                                                        const isImageUrl = rawUrl && /\.(jpe?g|png|gif|webp|svg|avif)(\?|$)/i.test(rawUrl);
 
-                                                {/* ── Non-video URLs: YouTube embeds, images, other ── */}
-                                                {nonVideoItems.length > 0 && (
-                                                    <div className="space-y-4 mb-6">
-                                                        {nonVideoItems.map((item) => {
-                                                            const rawUrl = getDisplayValue(item);
-                                                            const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
-                                                            const isYoutube = rawUrl && /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/i.test(rawUrl);
-                                                            const isImageUrl = rawUrl && /\.(jpe?g|png|gif|webp|svg|avif)(\?|$)/i.test(rawUrl);
-
-                                                            return (
-                                                                <div
-                                                                    key={item.id}
-                                                                    className={`bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border overflow-hidden transition-colors ${fieldHasDraft(item) ? 'border-amber-500/40' : 'border-white/[0.06]'
-                                                                        }`}
-                                                                >
-                                                                    <div className="px-4 py-3 border-b border-white/[0.04] flex items-center justify-between">
-                                                                        <div className="flex items-center gap-2">
-                                                                            <Video size={14} className="text-[#5a9bc7]" />
-                                                                            <span className="text-sm font-medium text-white">
-                                                                                {item.field_label || item.field_key}
-                                                                            </span>
-                                                                            <span className="text-xs text-white/30 font-mono">
-                                                                                {item.field_type}
-                                                                            </span>
-                                                                            {fieldHasDraft(item) && (
-                                                                                <span className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px] font-medium">
-                                                                                    <Edit3 size={10} />
-                                                                                    Draft
-                                                                                </span>
-                                                                            )}
-                                                                        </div>
-                                                                        {item.field_hint && (
-                                                                            <span className="text-xs text-white/40">
-                                                                                {item.field_hint}
-                                                                            </span>
-                                                                        )}
-                                                                    </div>
-                                                                    <div className="p-4 space-y-2">
-                                                                        <div className="relative">
-                                                                            <input
-                                                                                type="text"
-                                                                                value={rawUrl}
-                                                                                onChange={(e) => handleContentChange(item, e.target.value)}
-                                                                                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg pl-3 pr-9 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
-                                                                                placeholder="Enter URL..."
-                                                                            />
-                                                                            {rawUrl && (
-                                                                                <a
-                                                                                    href={rawUrl}
-                                                                                    target="_blank"
-                                                                                    rel="noopener noreferrer"
-                                                                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/30 hover:text-[#5a9bc7] transition-colors"
-                                                                                    title="Open URL"
-                                                                                >
-                                                                                    <ExternalLink size={14} />
-                                                                                </a>
-                                                                            )}
-                                                                        </div>
-                                                                        {/* Inline media preview for YouTube & images */}
-                                                                        {(() => {
-                                                                            if (!resolvedUrl) return null;
-                                                                            if (isYoutube) {
-                                                                                const match = resolvedUrl.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/);
-                                                                                const videoId = match?.[1];
-                                                                                if (videoId) {
-                                                                                    return (
-                                                                                        <iframe
-                                                                                            src={`https://www.youtube.com/embed/${videoId}`}
-                                                                                            className="w-full aspect-video rounded-lg"
-                                                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                                            allowFullScreen
-                                                                                            title="YouTube Preview"
+                                                                        return (
+                                                                            <div
+                                                                                key={item.id}
+                                                                                className={`bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border overflow-hidden transition-colors ${fieldHasDraft(item) ? 'border-amber-500/40' : 'border-white/[0.06]'}`}
+                                                                            >
+                                                                                <div className="px-4 py-3 border-b border-white/[0.04] flex items-center justify-between">
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <Video size={14} className="text-[#5a9bc7]" />
+                                                                                        <span className="text-sm font-medium text-white">
+                                                                                            {item.field_label || item.field_key}
+                                                                                        </span>
+                                                                                        <span className="text-xs text-white/30 font-mono">
+                                                                                            {item.field_type}
+                                                                                        </span>
+                                                                                        {fieldHasDraft(item) && (
+                                                                                            <span className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px] font-medium">
+                                                                                                <Edit3 size={10} />
+                                                                                                Draft
+                                                                                            </span>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    {item.field_hint && (
+                                                                                        <span className="text-xs text-white/40">
+                                                                                            {item.field_hint}
+                                                                                        </span>
+                                                                                    )}
+                                                                                </div>
+                                                                                <div className="p-4 space-y-2">
+                                                                                    <div className="relative">
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            value={rawUrl}
+                                                                                            onChange={(e) => handleContentChange(item, e.target.value)}
+                                                                                            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg pl-3 pr-9 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
+                                                                                            placeholder="Enter URL..."
                                                                                         />
-                                                                                    );
-                                                                                }
-                                                                            }
-                                                                            if (isImageUrl) {
-                                                                                return (
-                                                                                    <img
-                                                                                        src={resolvedUrl}
-                                                                                        alt="Preview"
-                                                                                        className="w-full max-h-40 rounded-lg object-contain bg-black/20"
-                                                                                        loading="lazy"
-                                                                                    />
-                                                                                );
-                                                                            }
-                                                                            return null;
-                                                                        })()}
-                                                                    </div>
-                                                            </div>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                )}
+                                                                                        {rawUrl && (
+                                                                                            <a
+                                                                                                href={rawUrl}
+                                                                                                target="_blank"
+                                                                                                rel="noopener noreferrer"
+                                                                                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/30 hover:text-[#5a9bc7] transition-colors"
+                                                                                                title="Open URL"
+                                                                                            >
+                                                                                                <ExternalLink size={14} />
+                                                                                            </a>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    {/* Inline media preview for YouTube & images */}
+                                                                                    {(() => {
+                                                                                        if (!resolvedUrl) return null;
+                                                                                        if (isYoutube) {
+                                                                                            const match = resolvedUrl.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/);
+                                                                                            const videoId = match?.[1];
+                                                                                            if (videoId) {
+                                                                                                return (
+                                                                                                    <iframe
+                                                                                                        src={`https://www.youtube.com/embed/${videoId}`}
+                                                                                                        className="w-full aspect-video rounded-lg"
+                                                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                                                        allowFullScreen
+                                                                                                        title="YouTube Preview"
+                                                                                                    />
+                                                                                                );
+                                                                                            }
+                                                                                        }
+                                                                                        if (isImageUrl) {
+                                                                                            return (
+                                                                                                <img
+                                                                                                    src={resolvedUrl}
+                                                                                                    alt="Preview"
+                                                                                                    className="w-full max-h-40 rounded-lg object-contain bg-black/20"
+                                                                                                    loading="lazy"
+                                                                                                />
+                                                                                            );
+                                                                                        }
+                                                                                        return null;
+                                                                                    })()}
+                                                                                </div>
+                                                                            </div>
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            )}
+                                                        </>
+                                                    );
+                                                })()}
                                             </>
                                         );
                                     })()}
 
-                            {/* ── Uploaded Media Files ────────────── */}
-                            {localMedia.length === 0 && mediaContent.length === 0 ? (
-                                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 text-center">
-                                    <Image size={32} className="text-amber-400 mx-auto mb-3" />
-                                    <h3 className="text-amber-300 font-medium mb-2">
-                                        No media found for this section
-                                    </h3>
-                                    <p className="text-sm text-amber-300/60">
-                                        This section has no media files assigned in{' '}
-                                        <span className="font-mono">cms_media</span>.
-                                    </p>
-                                </div>
-                            ) : (
-                                <div className="grid grid-cols-2 gap-3">
-                                    {localMedia.map((item) => (
-                                        <div
-                                            key={item.id}
-                                            className="group relative bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border border-white/[0.06] overflow-hidden hover:border-[#5a9bc7]/30 transition-colors cursor-pointer"
-                                            onClick={() => window.open(item.public_url, '_blank')}
-                                        >
-                                            {/* Thumbnail */}
-                                            <div className="aspect-video bg-white/[0.02] relative">
-                                                {isVideo(item) ? (
-                                                    <>
-                                                        <video
-                                                            src={item.public_url}
-                                                            className="w-full h-full object-cover"
-                                                            muted
-                                                            preload="metadata"
-                                                            playsInline
-                                                            onLoadedMetadata={(e) => {
-                                                                const video = e.target as HTMLVideoElement;
-                                                                video.currentTime = 0.1;
-                                                            }}
-                                                        />
-                                                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                                                            <div className="p-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-                                                                <Play size={16} className="text-white ml-0.5" fill="white" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="absolute top-1.5 left-1.5">
-                                                            <div className="px-1.5 py-0.5 bg-[#3f7ba7]/80 backdrop-blur-sm rounded flex items-center gap-1">
-                                                                <Video size={10} className="text-white" />
-                                                                <span className="text-[10px] text-white font-medium">VIDEO</span>
-                                                            </div>
-                                                        </div>
-                                                    </>
-                                                ) : item.mime_type?.startsWith('image/') || /\.(jpe?g|png|gif|webp|svg)$/i.test(item.filename) ? (
-                                                    <img
-                                                        src={item.public_url}
-                                                        alt={item.alt_text_en || item.filename}
-                                                        className="w-full h-full object-cover"
-                                                        loading="lazy"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <Image size={32} className="text-white/20" />
-                                                    </div>
-                                                )}
-                                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                                    <ExternalLink size={20} className="text-white" />
-                                                </div>
-                                                {/* Delete button - appears on hover */}
-                                                <button
-                                                    onClick={(e) => handleDeleteMedia(item, e)}
-                                                    className="absolute top-2 right-2 p-1.5 bg-red-500/80 hover:bg-red-600 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 backdrop-blur-sm border border-red-400/30"
-                                                    title="Delete media"
-                                                >
-                                                    <Trash2 size={14} className="text-white" />
-                                                </button>
-                                            </div>
-                                            {/* Filename */}
-                                            <div className="p-2 border-t border-white/[0.04]">
-                                                <p className="text-xs text-white/60 truncate">
-                                                    {item.filename}
-                                                </p>
-                                                {item.size_bytes && (
-                                                    <p className="text-[10px] text-white/30">
-                                                        {(item.size_bytes / 1024).toFixed(1)} KB
+                                    {/* ── Uploaded Media Files (exclude items already shown in content fields) ── */}
+                                    {(() => {
+                                        // Collect filenames referenced by content fields so we can hide duplicates
+                                        const contentFieldFilenames = new Set<string>();
+                                        for (const item of mediaContent) {
+                                            const val = getDisplayValue(item);
+                                            if (val) {
+                                                const fname = val.split('/').pop()?.split('?')[0];
+                                                if (fname) contentFieldFilenames.add(fname.toLowerCase());
+                                            }
+                                        }
+                                        const filteredLocalMedia = localMedia.filter(
+                                            (m) => !contentFieldFilenames.has(m.filename.toLowerCase())
+                                        );
+
+                                        if (filteredLocalMedia.length === 0 && mediaContent.length === 0) {
+                                            return (
+                                                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 text-center">
+                                                    <Image size={32} className="text-amber-400 mx-auto mb-3" />
+                                                    <h3 className="text-amber-300 font-medium mb-2">
+                                                        No media found for this section
+                                                    </h3>
+                                                    <p className="text-sm text-amber-300/60">
+                                                        This section has no media files assigned in{' '}
+                                                        <span className="font-mono">cms_media</span>.
                                                     </p>
-                                                )}
+                                                </div>
+                                            );
+                                        }
+
+                                        if (filteredLocalMedia.length === 0) return null;
+
+                                        return (
+                                            <div className="grid grid-cols-2 gap-3">
+                                                {filteredLocalMedia.map((item) => (
+                                                    <div
+                                                        key={item.id}
+                                                        className="group relative bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border border-white/[0.06] overflow-hidden hover:border-[#5a9bc7]/30 transition-colors cursor-pointer"
+                                                        onClick={() => window.open(item.public_url, '_blank')}
+                                                    >
+                                                        {/* Thumbnail */}
+                                                        <div className="aspect-video bg-white/[0.02] relative">
+                                                            {isVideo(item) ? (
+                                                                <>
+                                                                    <video
+                                                                        src={item.public_url}
+                                                                        className="w-full h-full object-cover"
+                                                                        muted
+                                                                        preload="metadata"
+                                                                        playsInline
+                                                                        onLoadedMetadata={(e) => {
+                                                                            const video = e.target as HTMLVideoElement;
+                                                                            video.currentTime = 0.1;
+                                                                        }}
+                                                                    />
+                                                                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                                                                        <div className="p-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
+                                                                            <Play size={16} className="text-white ml-0.5" fill="white" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="absolute top-1.5 left-1.5">
+                                                                        <div className="px-1.5 py-0.5 bg-[#3f7ba7]/80 backdrop-blur-sm rounded flex items-center gap-1">
+                                                                            <Video size={10} className="text-white" />
+                                                                            <span className="text-[10px] text-white font-medium">VIDEO</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            ) : item.mime_type?.startsWith('image/') || /\.(jpe?g|png|gif|webp|svg)$/i.test(item.filename) ? (
+                                                                <img
+                                                                    src={item.public_url}
+                                                                    alt={item.alt_text_en || item.filename}
+                                                                    className="w-full h-full object-cover"
+                                                                    loading="lazy"
+                                                                />
+                                                            ) : (
+                                                                <div className="w-full h-full flex items-center justify-center">
+                                                                    <Image size={32} className="text-white/20" />
+                                                                </div>
+                                                            )}
+                                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                                                <ExternalLink size={20} className="text-white" />
+                                                            </div>
+                                                            {/* Delete button - appears on hover */}
+                                                            <button
+                                                                onClick={(e) => handleDeleteMedia(item, e)}
+                                                                className="absolute top-2 right-2 p-1.5 bg-red-500/80 hover:bg-red-600 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 backdrop-blur-sm border border-red-400/30"
+                                                                title="Delete media"
+                                                            >
+                                                                <Trash2 size={14} className="text-white" />
+                                                            </button>
+                                                        </div>
+                                                        {/* Filename */}
+                                                        <div className="p-2 border-t border-white/[0.04]">
+                                                            <p className="text-xs text-white/60 truncate">
+                                                                {item.filename}
+                                                            </p>
+                                                            {item.size_bytes && (
+                                                                <p className="text-[10px] text-white/30">
+                                                                    {(item.size_bytes / 1024).toFixed(1)} KB
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        );
+                                    })()}
+                                </>
                             )}
                         </>
                     )}
-                </>
-                    )}
-            </main>
-        </div>
+                </main>
+            </div>
 
 
         </div >

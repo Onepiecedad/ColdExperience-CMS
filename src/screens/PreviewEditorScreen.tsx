@@ -20,8 +20,9 @@ import {
     getPageById,
     reverseLookupUrl,
     lookupBySectionAttribute,
+    getSubsectionWebsiteUrl,
 } from '../content/contentMap';
-import type { PageConfig, Section } from '../content/contentMap';
+import type { PageConfig, Section, Subsection } from '../content/contentMap';
 
 const SITE_BASE = 'https://coldexperience.se';
 
@@ -54,14 +55,16 @@ function isBridgeMessage(data: unknown): data is BridgeMessage {
 
 export function PreviewEditorScreen() {
     const navigate = useNavigate();
-    const { pageId: urlPageId, sectionId: urlSectionId } = useParams<{
+    const { pageId: urlPageId, sectionId: urlSectionId, subsectionId: urlSubsectionId } = useParams<{
         pageId?: string;
         sectionId?: string;
+        subsectionId?: string;
     }>();
 
     // Default to home/hero if no URL params
     const [activePageId, setActivePageId] = useState(urlPageId || 'home');
     const [activeSectionId, setActiveSectionId] = useState(urlSectionId || 'hero');
+    const [activeSubsectionId, setActiveSubsectionId] = useState<string | undefined>(urlSubsectionId);
     const [syncActive, setSyncActive] = useState(true);
     const [bridgeReady, setBridgeReady] = useState(false);
     const [device, setDevice] = useState<DeviceMode>('desktop');
@@ -72,13 +75,25 @@ export function PreviewEditorScreen() {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const systemMenuRef = useRef<HTMLDivElement>(null);
 
+    // Ref always tracks the latest subsection — immune to useCallback closure staleness
+    const subsectionRef = useRef(activeSubsectionId);
+    subsectionRef.current = activeSubsectionId;
+
+    // Refs for page/section — used in navigate handler to compare incoming vs current
+    const activePageIdRef = useRef(activePageId);
+    activePageIdRef.current = activePageId;
+    const activeSectionIdRef = useRef(activeSectionId);
+    activeSectionIdRef.current = activeSectionId;
+
     // ── Sync from URL params to state ─────────────────────────────────
     useEffect(() => {
+
         if (urlPageId && urlSectionId) {
             setActivePageId(urlPageId);
             setActiveSectionId(urlSectionId);
+            setActiveSubsectionId(urlSubsectionId);
         }
-    }, [urlPageId, urlSectionId]);
+    }, [urlPageId, urlSectionId, urlSubsectionId]);
 
     // ── Build preview URL (debounced to avoid iframe jank) ────────────
     const page = getPageById(activePageId);
@@ -93,11 +108,20 @@ export function PreviewEditorScreen() {
     }, [previewUrl]);
 
     // ── Listen for bridge messages ────────────────────────────────────
+    // Uses subsectionRef (not activeSubsectionId from closure) to avoid
+    // stale-closure race: handleSectionSelect sets state but the OLD
+    // useCallback handler stays attached until React re-renders. A ref
+    // always reads the latest value synchronously.
     const handleBridgeMessage = useCallback((event: MessageEvent) => {
         if (!isBridgeMessage(event.data)) return;
         if (!syncActive) return;
 
         const msg = event.data;
+
+        // Read from ref — always current, never stale
+        const isSubsectionActive = !!subsectionRef.current;
+
+
 
         switch (msg.type) {
             case 'bridge-ready':
@@ -105,11 +129,16 @@ export function PreviewEditorScreen() {
                 break;
 
             case 'scroll':
+                if (isSubsectionActive) {
+
+                    break;
+                }
                 if (msg.cmsSectionId) {
                     const lookup = lookupBySectionAttribute(msg.cmsSectionId);
+
                     setActivePageId(lookup.pageId);
                     setActiveSectionId(lookup.sectionId);
-                    // Update URL without full reload
+                    setActiveSubsectionId(undefined);
                     navigate(`/edit/${lookup.pageId}/sections/${lookup.sectionId}`, { replace: true });
                 }
                 break;
@@ -117,9 +146,27 @@ export function PreviewEditorScreen() {
             case 'navigate':
                 if (msg.url) {
                     const lookup = reverseLookupUrl(msg.url);
+
+                    // If a subsection is active and the navigation is within the
+                    // same page/section, ignore it (prevents scroll-triggered
+                    // overrides while editing a subsection). But if the user
+                    // navigates to a DIFFERENT page, follow the navigation and
+                    // clear the subsection state.
+                    if (isSubsectionActive &&
+                        lookup.pageId === activePageIdRef.current &&
+                        lookup.sectionId === activeSectionIdRef.current) {
+                        if (msg.lang) setLanguage(msg.lang);
+                        break;
+                    }
+
                     setActivePageId(lookup.pageId);
                     setActiveSectionId(lookup.sectionId);
-                    navigate(`/edit/${lookup.pageId}/sections/${lookup.sectionId}`, { replace: true });
+                    setActiveSubsectionId(lookup.subsectionId);
+                    subsectionRef.current = lookup.subsectionId;
+                    const path = lookup.subsectionId
+                        ? `/edit/${lookup.pageId}/sections/${lookup.sectionId}/${lookup.subsectionId}`
+                        : `/edit/${lookup.pageId}/sections/${lookup.sectionId}`;
+                    navigate(path, { replace: true });
                 }
                 if (msg.lang) {
                     setLanguage(msg.lang);
@@ -140,10 +187,20 @@ export function PreviewEditorScreen() {
     }, [handleBridgeMessage]);
 
     // ── Manual section navigation (dropdown) ──────────────────────────
-    const handleSectionSelect = (newPageId: string, newSectionId: string) => {
+    const handleSectionSelect = (newPageId: string, newSectionId: string, newSubsectionId?: string) => {
+        // Update ref SYNCHRONOUSLY before React re-renders — the bridge handler
+        // reads subsectionRef.current, so it must be correct before any async
+        // postMessage events from the iframe can fire.
+        subsectionRef.current = newSubsectionId;
+
         setActivePageId(newPageId);
         setActiveSectionId(newSectionId);
-        navigate(`/edit/${newPageId}/sections/${newSectionId}`, { replace: true });
+        setActiveSubsectionId(newSubsectionId);
+
+        const path = newSubsectionId
+            ? `/edit/${newPageId}/sections/${newSectionId}/${newSubsectionId}`
+            : `/edit/${newPageId}/sections/${newSectionId}`;
+        navigate(path, { replace: true });
 
         // Tell the preview to scroll to this section
         if (iframeRef.current?.contentWindow) {
@@ -154,11 +211,25 @@ export function PreviewEditorScreen() {
             }, '*');
         }
 
-        // If different page, update iframe URL
-        const newPage = getPageById(newPageId);
-        if (newPage?.websiteUrl && newPage.id !== activePageId) {
-            const newUrl = `${SITE_BASE}/${language}${newPage.websiteUrl === '/' ? '' : newPage.websiteUrl}`;
-            if (iframeRef.current) {
+        // Navigate the iframe to the correct page / detail page
+        if (iframeRef.current) {
+            let targetPath: string | undefined;
+
+            // Subsection? Navigate to its detail page (e.g. /husky-ride)
+            if (newSubsectionId) {
+                targetPath = getSubsectionWebsiteUrl(newSubsectionId);
+            }
+
+            // Different page? Navigate to the page URL
+            if (!targetPath) {
+                const newPage = getPageById(newPageId);
+                if (newPage?.websiteUrl && newPage.id !== activePageId) {
+                    targetPath = newPage.websiteUrl === '/' ? '' : newPage.websiteUrl;
+                }
+            }
+
+            if (targetPath !== undefined) {
+                const newUrl = `${SITE_BASE}/${language}${targetPath}`;
                 setIsLoading(true);
                 iframeRef.current.src = newUrl;
             }
@@ -277,6 +348,7 @@ export function PreviewEditorScreen() {
                             pages={contentPages}
                             activePageId={activePageId}
                             activeSectionId={activeSectionId}
+                            activeSubsectionId={activeSubsectionId}
                             onSelect={handleSectionSelect}
                         />
                     </div>
@@ -332,18 +404,23 @@ function SectionSelector({
     pages,
     activePageId,
     activeSectionId,
+    activeSubsectionId,
     onSelect,
 }: {
     pages: PageConfig[];
     activePageId: string;
     activeSectionId: string;
-    onSelect: (pageId: string, sectionId: string) => void;
+    activeSubsectionId?: string;
+    onSelect: (pageId: string, sectionId: string, subsectionId?: string) => void;
 }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const currentPage = pages.find(p => p.id === activePageId);
     const currentSection = currentPage?.sections.find((s: Section) => s.id === activeSectionId);
+    const currentSubsection = activeSubsectionId
+        ? currentSection?.subsections?.find((sub: Subsection) => sub.id === activeSubsectionId)
+        : undefined;
 
     // Close on outside click
     useEffect(() => {
@@ -357,6 +434,11 @@ function SectionSelector({
         return () => document.removeEventListener('mousedown', handler);
     }, [isOpen]);
 
+    // Build breadcrumb label
+    const sectionLabel = currentSubsection
+        ? `${currentSection?.icon} ${currentSection?.label} › ${currentSubsection.icon} ${currentSubsection.label}`
+        : `${currentSection?.icon} ${currentSection?.label || activeSectionId}`;
+
     return (
         <div className="section-selector" ref={dropdownRef}>
             <button
@@ -368,7 +450,7 @@ function SectionSelector({
                 </span>
                 <ChevronRight size={12} className="section-selector-arrow" />
                 <span className="section-selector-section">
-                    {currentSection?.icon} {currentSection?.label || activeSectionId}
+                    {sectionLabel}
                 </span>
             </button>
 
@@ -380,17 +462,32 @@ function SectionSelector({
                                 {page.icon} {page.label}
                             </div>
                             {page.sections.map((section: Section) => (
-                                <button
-                                    key={section.id}
-                                    className={`section-selector-item ${activePageId === page.id && activeSectionId === section.id ? 'active' : ''}`}
-                                    onClick={() => {
-                                        onSelect(page.id, section.id);
-                                        setIsOpen(false);
-                                    }}
-                                >
-                                    <span>{section.icon}</span>
-                                    <span>{section.label}</span>
-                                </button>
+                                <div key={section.id}>
+                                    <button
+                                        className={`section-selector-item ${activePageId === page.id && activeSectionId === section.id && !activeSubsectionId ? 'active' : ''}`}
+                                        onClick={() => {
+                                            onSelect(page.id, section.id);
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        <span>{section.icon}</span>
+                                        <span>{section.label}</span>
+                                    </button>
+                                    {/* Subsection items */}
+                                    {section.subsections?.map((sub: Subsection) => (
+                                        <button
+                                            key={sub.id}
+                                            className={`section-selector-item section-selector-sub ${activePageId === page.id && activeSectionId === section.id && activeSubsectionId === sub.id ? 'active' : ''}`}
+                                            onClick={() => {
+                                                onSelect(page.id, section.id, sub.id);
+                                                setIsOpen(false);
+                                            }}
+                                        >
+                                            <span>{sub.icon}</span>
+                                            <span>{sub.label}</span>
+                                        </button>
+                                    ))}
+                                </div>
                             ))}
                         </div>
                     ))}
