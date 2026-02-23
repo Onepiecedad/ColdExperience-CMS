@@ -40,7 +40,7 @@ export interface CmsContent {
     page_slug: string;
     section_key: string;
     field_key: string;
-    field_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url';
+    field_type: 'text' | 'richtext' | 'html' | 'array' | 'textarea' | 'url' | 'image';
     content_en: string | null;
     content_sv: string | null;
     content_de: string | null;

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { getPackages, updatePackage, updatePackageHighlights } from '../services/supabase';
 import { LANGUAGES, type CmsPackage, type Language } from '../types';
+import { MediaFieldEditor } from './MediaFieldEditor';
 
 export const PackageEditor: React.FC = () => {
     const [packages, setPackages] = useState<CmsPackage[]>([]);
@@ -105,6 +106,7 @@ export const PackageEditor: React.FC = () => {
             await updatePackage(pkg.id, {
                 price_sek: pkg.price_sek,
                 price_eur: pkg.price_eur,
+                image_url: pkg.image_url,
                 is_featured: pkg.is_featured,
                 is_active: pkg.is_active,
                 [`name_${activeLanguage}`]: getLocalizedField(pkg, 'name'),
@@ -319,6 +321,17 @@ export const PackageEditor: React.FC = () => {
                                             </div>
                                             <span className="text-sm text-cold-300 group-hover:text-white transition-colors">Active</span>
                                         </label>
+                                    </div>
+
+                                    {/* Package Image */}
+                                    <div>
+                                        <label className="flex items-center gap-2 text-sm font-medium text-cold-300 mb-2">
+                                            Package Image
+                                        </label>
+                                        <MediaFieldEditor
+                                            value={pkg.image_url || null}
+                                            onChange={(url) => updateLocalPackage(pkg.id, 'image_url', url)}
+                                        />
                                     </div>
 
                                     {/* Name */}

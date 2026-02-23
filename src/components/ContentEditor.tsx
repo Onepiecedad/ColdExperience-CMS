@@ -11,6 +11,7 @@ import { getPages, getContentByPage, updateContent } from '../services/supabase'
 import { LANGUAGES, type CmsPage, type CmsContent, type Language } from '../types';
 import { CollapsibleSection } from './ui/CollapsibleSection';
 import { ContentGrid, ContentField, ContentCard } from './ui/ContentGrid';
+import { MediaFieldEditor } from './MediaFieldEditor';
 
 // Section display configuration
 const SECTION_CONFIG: Record<string, { title: string; icon?: string; defaultExpanded?: boolean }> = {
@@ -152,8 +153,13 @@ export const ContentEditor: React.FC = () => {
     // Render a single field
     const renderField = (item: CmsContent) => {
         const isTextarea = item.field_type === 'textarea' || item.field_type === 'richtext' || item.field_type === 'html';
+        const isImage = item.field_type === 'image'
+            || item.field_key.toLowerCase().includes('image')
+            || item.field_key.toLowerCase().includes('photo')
+            || item.field_key.toLowerCase().includes('background_url')
+            || item.field_key.toLowerCase().includes('thumbnail');
         // Detect URL fields by field_key since 'url' is not always set as field_type
-        const isUrl = item.field_key.toLowerCase().includes('url') || item.field_key.toLowerCase().includes('youtube');
+        const isUrl = !isImage && (item.field_type === 'url' || item.field_key.toLowerCase().includes('url') || item.field_key.toLowerCase().includes('youtube'));
         const isSaving = savingFields.has(item.id);
         const isSaved = savedFields.has(item.id);
         const fieldKey = item.field_key || '';
@@ -162,6 +168,42 @@ export const ContentEditor: React.FC = () => {
         let fieldLabel = item.field_label || fieldKey;
         if (isUrl && !fieldLabel.toLowerCase().includes('url')) {
             fieldLabel = `${fieldLabel} (URL)`;
+        }
+
+        // Image / media field — language-independent (always uses content_en as the URL store)
+        if (isImage) {
+            const currentUrl = (item.content_en as string) || '';
+            return (
+                <ContentField key={item.id} label={fieldLabel} hint={item.field_hint || 'Click the preview to upload a new file or enter a URL'}>
+                    <div className="relative">
+                        <MediaFieldEditor
+                            value={currentUrl}
+                            onChange={(url) => {
+                                // Update local state for all language columns (image URL is language-agnostic)
+                                setContent(prev =>
+                                    prev.map(c =>
+                                        c.id === item.id
+                                            ? { ...c, content_en: url, content_sv: url, content_de: url, content_pl: url }
+                                            : c
+                                    )
+                                );
+                                saveField({ ...item, content_en: url }, url);
+                            }}
+                        />
+                        {/* Save indicator */}
+                        {(isSaving || isSaved) && (
+                            <div className="absolute top-2 right-2 z-10">
+                                {isSaving && <Loader2 size={14} className="animate-spin text-cold-400" />}
+                                {isSaved && !isSaving && (
+                                    <div className="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-500/20">
+                                        <Check size={12} className="text-emerald-400" />
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </ContentField>
+            );
         }
 
         return (
