@@ -703,12 +703,14 @@ export function EditorScreen() {
                                         // Helper: render a single media card (video or image) — editable via MediaFieldEditor
                                         const renderMediaCard = (item: typeof mediaContent[0]) => {
                                             const rawUrl = getDisplayValue(item);
+                                            const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
                                             const shortLabel = (item.field_label || item.field_key).split('.').pop() || '';
 
                                             return (
                                                 <div key={item.id}>
                                                     <MediaFieldEditor
                                                         value={rawUrl || null}
+                                                        previewUrl={resolvedUrl || undefined}
                                                         onChange={(url) => handleContentChange(item, url)}
                                                         label={shortLabel}
                                                     />

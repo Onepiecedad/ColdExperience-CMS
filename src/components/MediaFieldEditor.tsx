@@ -22,6 +22,8 @@ interface MediaFieldEditorProps {
     onChange: (url: string) => void;
     /** Optional label shown above the preview */
     label?: string;
+    /** Optional resolved URL used only for preview display (e.g. relative paths prefixed with site base) */
+    previewUrl?: string;
 }
 
 type Tab = 'upload' | 'url' | 'library';
@@ -35,6 +37,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
     value,
     onChange,
     label,
+    previewUrl,
 }) => {
     const [open, setOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<Tab>('upload');
@@ -145,7 +148,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                             {mediaIsVideo ? (
                                 <>
                                     <video
-                                        src={value!}
+                                        src={previewUrl || value!}
                                         className="w-full h-32 object-cover"
                                         muted
                                         preload="metadata"
@@ -165,7 +168,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                                 </>
                             ) : (
                                 <img
-                                    src={value!}
+                                    src={previewUrl || value!}
                                     alt=""
                                     className="w-full h-32 object-cover"
                                 />
