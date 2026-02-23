@@ -153,6 +153,10 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                                         muted
                                         preload="metadata"
                                         playsInline
+                                        onLoadedMetadata={(e) => {
+                                            const v = e.currentTarget;
+                                            v.currentTime = 0.1;
+                                        }}
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center bg-cold-950/30">
                                         <div className="p-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
