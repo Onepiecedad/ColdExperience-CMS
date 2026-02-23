@@ -12,6 +12,7 @@ import { ContextBar } from '../components/ContextBar';
 import { DevInspector } from '../components/DevInspector';
 import { TranslationStatusIcon } from '../components/TranslationStatusIcon';
 import { SideBySideField } from '../components/SideBySideField';
+import { MediaFieldEditor } from '../components/MediaFieldEditor';
 // LivePreview removed — preview is now permanently handled by PreviewEditorScreen
 import { useEditorData } from '../hooks/useEditorData';
 import { useDraftStore } from '../hooks/useDraftStore';
@@ -699,77 +700,24 @@ export function EditorScreen() {
                                         // Anything not paired stays as ungrouped
                                         const ungrouped = mediaContent.filter(i => !usedIds.has(i.id));
 
-                                        // Helper: render a single media card (video or image)
+                                        // Helper: render a single media card (video or image) — editable via MediaFieldEditor
                                         const renderMediaCard = (item: typeof mediaContent[0]) => {
                                             const rawUrl = getDisplayValue(item);
-                                            const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
-                                            const urlFilename = rawUrl ? rawUrl.split('/').pop()?.split('?')[0] || rawUrl : '';
-                                            const isVideoFile = rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl);
-                                            const isImageFile = rawUrl && /\.(jpe?g|png|gif|webp|svg|avif)(\?|$)/i.test(rawUrl);
                                             const shortLabel = (item.field_label || item.field_key).split('.').pop() || '';
 
                                             return (
-                                                <div
-                                                    key={item.id}
-                                                    className={`group relative bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border overflow-hidden hover:border-[#5a9bc7]/30 transition-colors cursor-pointer ${fieldHasDraft(item) ? 'border-amber-500/40' : 'border-white/[0.06]'}`}
-                                                    onClick={() => resolvedUrl && window.open(resolvedUrl, '_blank')}
-                                                >
-                                                    <div className="aspect-video bg-white/[0.02] relative">
-                                                        {isVideoFile ? (
-                                                            <>
-                                                                <video
-                                                                    src={resolvedUrl}
-                                                                    className="w-full h-full object-cover"
-                                                                    muted
-                                                                    preload="metadata"
-                                                                    playsInline
-                                                                    onLoadedMetadata={(e) => {
-                                                                        const video = e.target as HTMLVideoElement;
-                                                                        video.currentTime = 0.1;
-                                                                    }}
-                                                                />
-                                                                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                                                                    <div className="p-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-                                                                        <Play size={16} className="text-white ml-0.5" fill="white" />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="absolute top-1.5 left-1.5">
-                                                                    <div className="px-1.5 py-0.5 bg-[#3f7ba7]/80 backdrop-blur-sm rounded flex items-center gap-1">
-                                                                        <Video size={10} className="text-white" />
-                                                                        <span className="text-[10px] text-white font-medium">VIDEO</span>
-                                                                    </div>
-                                                                </div>
-                                                            </>
-                                                        ) : isImageFile ? (
-                                                            <img
-                                                                src={resolvedUrl}
-                                                                alt={shortLabel}
-                                                                className="w-full h-full object-cover"
-                                                                loading="lazy"
-                                                            />
-                                                        ) : (
-                                                            <div className="w-full h-full flex items-center justify-center">
-                                                                <Image size={32} className="text-white/20" />
-                                                            </div>
-                                                        )}
-                                                        {fieldHasDraft(item) && (
-                                                            <div className="absolute top-1.5 right-1.5">
-                                                                <span className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 backdrop-blur-sm text-amber-300 rounded text-[10px] font-medium">
-                                                                    <Edit3 size={10} />
-                                                                    Draft
-                                                                </span>
-                                                            </div>
-                                                        )}
-                                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                                            <ExternalLink size={20} className="text-white" />
+                                                <div key={item.id}>
+                                                    <MediaFieldEditor
+                                                        value={rawUrl || null}
+                                                        onChange={(url) => handleContentChange(item, url)}
+                                                        label={shortLabel}
+                                                    />
+                                                    {fieldHasDraft(item) && (
+                                                        <div className="mt-1 flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px] font-medium w-fit">
+                                                            <Edit3 size={10} />
+                                                            Draft
                                                         </div>
-                                                    </div>
-                                                    <div className="p-2 border-t border-white/[0.04]">
-                                                        <p className="text-xs text-white/60 truncate">{urlFilename || '(empty)'}</p>
-                                                        <p className="text-[10px] text-white/30 truncate mt-0.5">
-                                                            {shortLabel}
-                                                        </p>
-                                                    </div>
+                                                    )}
                                                 </div>
                                             );
                                         };
