@@ -319,7 +319,7 @@ export function EditorScreen() {
                                     `}
                                 >
                                     <Image size={15} />
-                                    Media ({media.length + mediaContent.length})
+                                    Media ({mediaContent.length + media.length})
                                 </button>
                             </div>
                         </div>
@@ -741,117 +741,11 @@ export function EditorScreen() {
                                                 ))}
 
                                                 {/* ── Ungrouped media fields ── */}
-                                                {ungrouped.length > 0 && (() => {
-                                                    const videoItems = ungrouped.filter((item) => {
-                                                        const rawUrl = getDisplayValue(item);
-                                                        return rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl);
-                                                    });
-                                                    const nonVideoItems = ungrouped.filter((item) => {
-                                                        const rawUrl = getDisplayValue(item);
-                                                        return !(rawUrl && /\.(mp4|webm|mov|ogg)(\?|$)/i.test(rawUrl));
-                                                    });
-                                                    return (
-                                                        <>
-                                                            {videoItems.length > 0 && (
-                                                                <div className="grid grid-cols-2 gap-3 mb-3">
-                                                                    {videoItems.map(renderMediaCard)}
-                                                                </div>
-                                                            )}
-                                                            {nonVideoItems.length > 0 && (
-                                                                <div className="space-y-4 mb-6">
-                                                                    {nonVideoItems.map((item) => {
-                                                                        const rawUrl = getDisplayValue(item);
-                                                                        const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
-                                                                        const isYoutube = rawUrl && /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/i.test(rawUrl);
-                                                                        const isImageUrl = rawUrl && /\.(jpe?g|png|gif|webp|svg|avif)(\?|$)/i.test(rawUrl);
-
-                                                                        return (
-                                                                            <div
-                                                                                key={item.id}
-                                                                                className={`bg-[#0a1622]/60 backdrop-blur-xl rounded-xl border overflow-hidden transition-colors ${fieldHasDraft(item) ? 'border-amber-500/40' : 'border-white/[0.06]'}`}
-                                                                            >
-                                                                                <div className="px-4 py-3 border-b border-white/[0.04] flex items-center justify-between">
-                                                                                    <div className="flex items-center gap-2">
-                                                                                        <Video size={14} className="text-[#5a9bc7]" />
-                                                                                        <span className="text-sm font-medium text-white">
-                                                                                            {item.field_label || item.field_key}
-                                                                                        </span>
-                                                                                        <span className="text-xs text-white/30 font-mono">
-                                                                                            {item.field_type}
-                                                                                        </span>
-                                                                                        {fieldHasDraft(item) && (
-                                                                                            <span className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px] font-medium">
-                                                                                                <Edit3 size={10} />
-                                                                                                Draft
-                                                                                            </span>
-                                                                                        )}
-                                                                                    </div>
-                                                                                    {item.field_hint && (
-                                                                                        <span className="text-xs text-white/40">
-                                                                                            {item.field_hint}
-                                                                                        </span>
-                                                                                    )}
-                                                                                </div>
-                                                                                <div className="p-4 space-y-2">
-                                                                                    <div className="relative">
-                                                                                        <input
-                                                                                            type="text"
-                                                                                            value={rawUrl}
-                                                                                            onChange={(e) => handleContentChange(item, e.target.value)}
-                                                                                            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg pl-3 pr-9 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
-                                                                                            placeholder="Enter URL..."
-                                                                                        />
-                                                                                        {rawUrl && (
-                                                                                            <a
-                                                                                                href={rawUrl}
-                                                                                                target="_blank"
-                                                                                                rel="noopener noreferrer"
-                                                                                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/30 hover:text-[#5a9bc7] transition-colors"
-                                                                                                title="Open URL"
-                                                                                            >
-                                                                                                <ExternalLink size={14} />
-                                                                                            </a>
-                                                                                        )}
-                                                                                    </div>
-                                                                                    {/* Inline media preview for YouTube & images */}
-                                                                                    {(() => {
-                                                                                        if (!resolvedUrl) return null;
-                                                                                        if (isYoutube) {
-                                                                                            const match = resolvedUrl.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/);
-                                                                                            const videoId = match?.[1];
-                                                                                            if (videoId) {
-                                                                                                return (
-                                                                                                    <iframe
-                                                                                                        src={`https://www.youtube.com/embed/${videoId}`}
-                                                                                                        className="w-full aspect-video rounded-lg"
-                                                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                                                        allowFullScreen
-                                                                                                        title="YouTube Preview"
-                                                                                                    />
-                                                                                                );
-                                                                                            }
-                                                                                        }
-                                                                                        if (isImageUrl) {
-                                                                                            return (
-                                                                                                <img
-                                                                                                    src={resolvedUrl}
-                                                                                                    alt="Preview"
-                                                                                                    className="w-full max-h-40 rounded-lg object-contain bg-black/20"
-                                                                                                    loading="lazy"
-                                                                                                />
-                                                                                            );
-                                                                                        }
-                                                                                        return null;
-                                                                                    })()}
-                                                                                </div>
-                                                                            </div>
-                                                                        );
-                                                                    })}
-                                                                </div>
-                                                            )}
-                                                        </>
-                                                    );
-                                                })()}
+                                                {ungrouped.length > 0 && (
+                                                    <div className="grid grid-cols-2 gap-3 mb-6">
+                                                        {ungrouped.map(renderMediaCard)}
+                                                    </div>
+                                                )}
                                             </>
                                         );
                                     })()}

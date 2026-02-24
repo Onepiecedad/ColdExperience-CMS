@@ -30,7 +30,16 @@ type Tab = 'upload' | 'url' | 'library';
 
 const isVideoUrl = (url: string): boolean => {
     const lower = url.toLowerCase();
-    return ['.mp4', '.webm', '.mov', '.avi', '.mkv'].some(ext => lower.endsWith(ext));
+    return ['.mp4', '.webm', '.mov', '.avi', '.mkv'].some(ext => lower.includes(ext));
+};
+
+const isYoutubeUrl = (url: string): boolean => {
+    return /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)[\w-]+/i.test(url);
+};
+
+const getYoutubeVideoId = (url: string): string | null => {
+    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]+)/);
+    return match?.[1] ?? null;
 };
 
 export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
@@ -145,13 +154,35 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                 >
                     {hasMedia ? (
                         <>
-                            {mediaIsVideo ? (
+                            {isYoutubeUrl(value!) ? (() => {
+                                const ytId = getYoutubeVideoId(value!);
+                                return ytId ? (
+                                    <>
+                                        <img
+                                            src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
+                                            alt="YouTube thumbnail"
+                                            className="w-full h-32 object-cover"
+                                        />
+                                        <div className="absolute inset-0 flex items-center justify-center bg-cold-950/30">
+                                            <div className="p-3 bg-red-600/90 backdrop-blur-md rounded-full border border-red-400/30">
+                                                <Play size={20} className="text-white ml-0.5" fill="white" />
+                                            </div>
+                                        </div>
+                                        <div className="absolute top-2 left-2">
+                                            <div className="px-1.5 py-0.5 bg-red-600/80 backdrop-blur-sm rounded flex items-center gap-1">
+                                                <Video size={10} className="text-white" />
+                                                <span className="text-[10px] text-white font-medium">YOUTUBE</span>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : null;
+                            })() : mediaIsVideo ? (
                                 <>
                                     <video
-                                        src={previewUrl || value!}
+                                        src={`${previewUrl || value!}#t=0.1`}
                                         className="w-full h-32 object-cover"
                                         muted
-                                        preload="metadata"
+                                        preload="auto"
                                         playsInline
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center bg-cold-950/30">
@@ -343,7 +374,18 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                                     {/* Preview of entered URL */}
                                     {urlInput.trim() && (
                                         <div className="rounded-xl overflow-hidden border border-cold-700/30 bg-cold-950">
-                                            {isVideoUrl(urlInput.trim()) ? (
+                                            {isYoutubeUrl(urlInput.trim()) ? (() => {
+                                                const ytId = getYoutubeVideoId(urlInput.trim());
+                                                return ytId ? (
+                                                    <iframe
+                                                        src={`https://www.youtube.com/embed/${ytId}`}
+                                                        className="w-full aspect-video"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                        title="YouTube Preview"
+                                                    />
+                                                ) : null;
+                                            })() : isVideoUrl(urlInput.trim()) ? (
                                                 <video
                                                     src={urlInput.trim()}
                                                     className="w-full max-h-48 object-contain"
