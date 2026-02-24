@@ -6,13 +6,14 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3, Play, Video, Trash2, Languages, X } from 'lucide-react';
+import { Type, Image, Loader2, AlertCircle, FileQuestion, RefreshCw, ExternalLink, Cloud, CloudOff, Edit3, Play, Video, Trash2, Languages, X, Upload } from 'lucide-react';
 import { deleteMedia } from '../services/supabase';
 import { ContextBar } from '../components/ContextBar';
 import { DevInspector } from '../components/DevInspector';
 import { TranslationStatusIcon } from '../components/TranslationStatusIcon';
 import { SideBySideField } from '../components/SideBySideField';
 import { MediaFieldEditor } from '../components/MediaFieldEditor';
+import { PublishModal } from '../components/PublishModal';
 // LivePreview removed — preview is now permanently handled by PreviewEditorScreen
 import { useEditorData } from '../hooks/useEditorData';
 import { useDraftStore } from '../hooks/useDraftStore';
@@ -80,6 +81,7 @@ export function EditorScreen() {
     }>();
 
     const [contentMode, setContentMode] = useState<ContentMode>('text');
+    const [showPublishModal, setShowPublishModal] = useState(false);
 
     // Helper function to check if media is a video
     const isVideo = (item: { filename: string; mime_type?: string | null }): boolean => {
@@ -406,6 +408,13 @@ export function EditorScreen() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <SyncStatusBadge />
+                                <button
+                                    onClick={() => setShowPublishModal(true)}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-[#3f7ba7]/20 text-[#5a9bc7] hover:bg-[#3f7ba7]/30 hover:text-white border border-[#3f7ba7]/30 rounded-lg text-xs font-medium transition-all"
+                                >
+                                    <Upload size={12} />
+                                    <span>Publish</span>
+                                </button>
                             </div>
                         </div>
                         <p className="text-sm text-white/40">{editingDescription}</p>
@@ -864,8 +873,19 @@ export function EditorScreen() {
                 </main>
             </div>
 
-
-        </div >
+            {/* Publish Modal */}
+            <PublishModal
+                isOpen={showPublishModal}
+                onClose={() => setShowPublishModal(false)}
+                pageId={dbPage?.id}
+                pageSlug={pageId}
+                pageLabel={pageLabel}
+                onPublishSuccess={() => {
+                    refetch();
+                    setShowPublishModal(false);
+                }}
+            />
+        </div>
     );
 }
 
