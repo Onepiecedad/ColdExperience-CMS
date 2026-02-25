@@ -243,7 +243,8 @@ export function EditorScreen() {
         ? content.filter(item =>
             item.field_key.startsWith(subsectionPrefix) &&
             !item.field_key.includes('.meta.') &&   // Exclude SEO meta fields
-            !item.field_key.includes('.media.')      // Exclude media file paths (video src, poster, scale)
+            !item.field_key.includes('.media.') &&    // Exclude media file paths (video src, poster, scale)
+            !item.field_key.endsWith('Button.target') // Exclude internal routing targets
         )
         : content;
 
