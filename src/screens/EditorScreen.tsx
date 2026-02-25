@@ -263,6 +263,17 @@ export function EditorScreen() {
         ...mediaPathFields,  // Include .media. fields (videoSrc, poster, scale, etc.)
     ];
 
+    // Count uploaded media NOT already referenced by a content field (avoids double-counting)
+    const contentFieldFilenames = new Set(
+        mediaContent.map(item => {
+            const val = item[`content_${language}` as keyof typeof item] as string || '';
+            return val.split('/').pop()?.split('?')[0]?.toLowerCase() || '';
+        }).filter(Boolean)
+    );
+    const visibleUploadedMedia = localMedia.filter(
+        m => !contentFieldFilenames.has(m.filename.toLowerCase())
+    ).length;
+
     return (
         <div className="editor-split-layout">
             {/* Editor Pane — scrolls independently */}
@@ -321,7 +332,7 @@ export function EditorScreen() {
                                     `}
                                 >
                                     <Image size={15} />
-                                    Media ({mediaContent.length + media.length})
+                                    Media ({mediaContent.length + visibleUploadedMedia})
                                 </button>
                             </div>
                         </div>
