@@ -65,10 +65,6 @@ export const WEBSITE_PAGES: PageConfig[] = [
                     { id: 'lodging', label: 'Boende', icon: '🏠', description: 'Arktiskt boende', contentKeyPrefix: 'pages.lodging', dataPageId: 'detailPages', dataSectionKey: 'pages' },
                 ]
             },
-            { id: 'testimonials', label: 'Testimonials', icon: '⭐', description: 'Gästrecensioner och betyg', dataPageId: 'testimonials' },
-            { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation', dataPageId: 'about', websiteAnchor: 'meet-lapland-hosts' },
-            { id: 'instagram', label: 'Instagram', icon: '📸', description: 'Instagram-flöde', websiteAnchor: 'latest-from-instagram' },
-            { id: 'corner', label: 'Home Corner', icon: '🏔️', description: 'Snabbinfo om äventyr & boende', websiteAnchor: 'ready-adventure-lifetime' },
         ]
     },
     {
