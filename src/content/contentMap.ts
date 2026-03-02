@@ -65,6 +65,7 @@ export const WEBSITE_PAGES: PageConfig[] = [
                     { id: 'lodging', label: 'Boende', icon: '🏠', description: 'Arktiskt boende', contentKeyPrefix: 'pages.lodging', dataPageId: 'detailPages', dataSectionKey: 'pages' },
                 ]
             },
+            { id: 'ownerSection', label: 'Meet the Hosts', icon: '👥', description: 'Gustav & Julia presentation', dataPageId: 'about', websiteAnchor: 'meet-lapland-hosts' },
         ]
     },
     {
