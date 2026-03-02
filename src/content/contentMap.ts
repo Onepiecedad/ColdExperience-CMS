@@ -75,8 +75,11 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/about',
         group: 'content',
         sections: [
-            { id: 'about', label: 'About', icon: '📖', description: 'Värderingar, bilder, tidslinje, CTA' },
-            { id: 'why', label: 'Why Us', icon: '💎', description: 'Varför välja Cold Experience' },
+            { id: 'aboutHero', label: 'Hero', icon: '🎬', description: 'Hero section with video', dataPageId: 'about', websiteAnchor: 'about-hero' },
+            { id: 'values', label: 'Our Values', icon: '💎', description: '4 Core Values cards', dataPageId: 'about', websiteAnchor: 'about-values' },
+            { id: 'meetUs', label: 'Meet Us', icon: '👥', description: 'Gustav & Julia intro', dataPageId: 'about', websiteAnchor: 'about-meet-us' },
+            { id: 'journey', label: 'Our Journey', icon: '⏳', description: 'Timeline of events', dataPageId: 'about', websiteAnchor: 'about-timeline' },
+            { id: 'cta', label: 'Call to Action', icon: '📢', description: 'Bottom CTA section', dataPageId: 'about', websiteAnchor: 'about-cta' },
         ]
     },
     {
