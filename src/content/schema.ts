@@ -172,9 +172,6 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'about.title', type: 'text', translatable: true, label: 'About: Title' },
         { key: 'about.intro', type: 'textarea', translatable: true, label: 'About: Intro' },
         { key: 'about.about.gallery', type: 'text', translatable: true, label: 'About: Gallery' },
-        { key: 'about.actionImages.landscape', type: 'url', translatable: false, label: 'About Action Images: Landscape' },
-        { key: 'about.actionImages.lodge', type: 'url', translatable: false, label: 'About Action Images: Lodge' },
-        { key: 'about.actionImages.snowmobile', type: 'url', translatable: false, label: 'About Action Images: Snowmobile' },
         { key: 'about.meta.title', type: 'text', translatable: true, label: 'About: Meta Title' },
         { key: 'about.meta.description', type: 'textarea', translatable: true, label: 'About: Meta Description' },
     ],
@@ -203,6 +200,10 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'about.meetUs.guidesDesc', type: 'textarea', translatable: true, label: 'About Meet Us: Guides Description' },
         { key: 'about.meetUs.family', type: 'text', translatable: true, label: 'About Meet Us: Family' },
         { key: 'about.meetUs.familyDesc', type: 'textarea', translatable: true, label: 'About Meet Us: Family Description' },
+        { key: 'about.actionImages.snowmobile', type: 'url', translatable: false, label: 'Action Image: Snowmobile' },
+        { key: 'about.actionImages.lodge', type: 'url', translatable: false, label: 'Action Image: Lodge' },
+        { key: 'about.actionImages.landscape', type: 'url', translatable: false, label: 'Action Image: Landscape' },
+        { key: 'ownerSection.ownerImageUrl', type: 'url', translatable: false, label: 'Owner Photo URL' },
     ],
 
     'about:journey': [
