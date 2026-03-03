@@ -11,11 +11,16 @@ import {
     Clock,
     Tag
 } from 'lucide-react';
-import { getPackages, updatePackage, updatePackageHighlights } from '../services/supabase';
+import { getPackages, updatePackage, updatePackageHighlights, upsertPackageImageToContent } from '../services/supabase';
 import { LANGUAGES, type CmsPackage, type Language } from '../types';
 import { MediaFieldEditor } from './MediaFieldEditor';
 
-export const PackageEditor: React.FC = () => {
+interface PackageEditorProps {
+    /** When set, only the package with this package_key is shown (e.g. 'complete', 'adventure'). */
+    filterKey?: string;
+}
+
+export const PackageEditor: React.FC<PackageEditorProps> = ({ filterKey }) => {
     const [packages, setPackages] = useState<CmsPackage[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeLanguage, setActiveLanguage] = useState<Language>('en');
@@ -114,6 +119,11 @@ export const PackageEditor: React.FC = () => {
                 [`description_${activeLanguage}`]: getLocalizedField(pkg, 'description'),
             });
 
+            // Dual-write image URL to cms_content so getMedia() on the website works
+            if (pkg.image_url && pkg.package_key) {
+                await upsertPackageImageToContent(pkg.package_key, pkg.image_url);
+            }
+
             // Save highlights
             await updatePackageHighlights(pkg.id, activeLanguage, getLocalizedHighlights(pkg));
 
@@ -179,7 +189,7 @@ export const PackageEditor: React.FC = () => {
 
             {/* Package Cards - Premium */}
             <div className="grid gap-6">
-                {packages.map((pkg, index) => (
+                {(filterKey ? packages.filter(p => p.package_key === filterKey) : packages).map((pkg, index) => (
                     <div
                         key={pkg.id}
                         className={`

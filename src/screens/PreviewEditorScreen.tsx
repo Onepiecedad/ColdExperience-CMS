@@ -135,6 +135,7 @@ export function PreviewEditorScreen() {
                 }
                 if (msg.cmsSectionId) {
                     const lookup = lookupBySectionAttribute(msg.cmsSectionId);
+                    if (!lookup) break;
 
                     setActivePageId(lookup.pageId);
                     setActiveSectionId(lookup.sectionId);

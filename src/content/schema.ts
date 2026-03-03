@@ -126,7 +126,11 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
 
     // ─────────────────────────────────────────────────────────────────────────
     // PACKAGES PAGE (6a5942c7-5aa0-45c0-bdc0-65a39eef7d1c)
+    // Sections: packages (hero) | packagesIntro | package7day–1day (PackageEditor)
+    //           | packagesCta
     // ─────────────────────────────────────────────────────────────────────────
+
+    // Hero — page-level text + hero video
     'packages:packages': [
         { key: 'packages.title', type: 'text', translatable: true, label: 'Page Title' },
         { key: 'packages.subtitle', type: 'textarea', translatable: true, label: 'Page Subtitle' },
@@ -135,23 +139,21 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'packages.bookButton', type: 'text', translatable: true, label: 'Book Button' },
         { key: 'packages.mostPopular', type: 'text', translatable: true, label: 'Most Popular Badge' },
         { key: 'packages.perPerson', type: 'text', translatable: true, label: 'Per Person Label' },
-        // Taster Package
-        { key: 'packages.taster.name', type: 'text', translatable: true, label: 'Taster: Name' },
-        { key: 'packages.taster.description', type: 'textarea', translatable: true, label: 'Taster: Description' },
-        { key: 'packages.taster.duration', type: 'text', translatable: true, label: 'Taster: Duration' },
-        // Adventure Package
-        { key: 'packages.adventure.name', type: 'text', translatable: true, label: 'Adventure: Name' },
-        { key: 'packages.adventure.description', type: 'textarea', translatable: true, label: 'Adventure: Description' },
-        { key: 'packages.adventure.duration', type: 'text', translatable: true, label: 'Adventure: Duration' },
-        // Complete Package
-        { key: 'packages.complete.name', type: 'text', translatable: true, label: 'Complete: Name' },
-        { key: 'packages.complete.description', type: 'textarea', translatable: true, label: 'Complete: Description' },
-        { key: 'packages.complete.duration', type: 'text', translatable: true, label: 'Complete: Duration' },
-        // Three Day Package
-        { key: 'packages.threeDay.name', type: 'text', translatable: true, label: 'Three Day: Name' },
-        { key: 'packages.threeDay.description', type: 'textarea', translatable: true, label: 'Three Day: Description' },
-        { key: 'packages.threeDay.duration', type: 'text', translatable: true, label: 'Three Day: Duration' },
     ],
+
+    // Intro — "Arctic Experience Awaits" section (text + intro image)
+    // No schema text keys yet — managed as media + possible future keys
+    'packages:packagesIntro': [],
+
+    // Individual package sections — rendered via PackageEditor (cms_packages table)
+    // No cms_content schema keys needed; EditorScreen detects these and delegates
+    'packages:package7day': [],
+    'packages:package5day': [],
+    'packages:package3day': [],
+    'packages:package1day': [],
+
+    // CTA — bottom call-to-action section
+    'packages:packagesCta': [],
 
     // ═══════════════════════════════════════════════════════════════════════════
     // AUTO-GENERATED SCHEMA ENTRIES

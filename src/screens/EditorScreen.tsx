@@ -14,6 +14,7 @@ import { TranslationStatusIcon } from '../components/TranslationStatusIcon';
 import { SideBySideField } from '../components/SideBySideField';
 import { MediaFieldEditor } from '../components/MediaFieldEditor';
 import { PublishModal } from '../components/PublishModal';
+import { PackageEditor } from '../components/PackageEditor';
 // LivePreview removed — preview is now permanently handled by PreviewEditorScreen
 import { useEditorData } from '../hooks/useEditorData';
 import { useDraftStore } from '../hooks/useDraftStore';
@@ -283,6 +284,19 @@ export function EditorScreen() {
         m => !contentFieldFilenames.has(m.filename.toLowerCase())
     ).length;
 
+    // ── Package section detection ─────────────────────────────────────────
+    // Individual package sections (7/5/3/1-day) delegate to PackageEditor
+    // instead of the standard schema-based content view.
+    const PACKAGE_SECTION_MAP: Record<string, string> = {
+        'package7day': 'complete',
+        'package5day': 'adventure',
+        'package3day': 'threeDay',
+        'package1day': 'taster',
+    };
+    const packageFilterKey = pageId === 'packages' && sectionId
+        ? PACKAGE_SECTION_MAP[sectionId]
+        : undefined;
+
     return (
         <div className="editor-split-layout">
             {/* Editor Pane — scrolls independently */}
@@ -504,8 +518,12 @@ export function EditorScreen() {
                         ═══════════════════════════════════════════════════════════ */}
                             {contentMode === 'text' && (
                                 <>
-                                    {/* Content Fields - EDITABLE */}
-                                    {textContent.length === 0 ? (
+                                    {/* ── Package section: delegate to PackageEditor ── */}
+                                    {packageFilterKey ? (
+                                        <PackageEditor filterKey={packageFilterKey} />
+                                    ) : (
+                                    /* Content Fields - EDITABLE */
+                                    textContent.length === 0 ? (
                                         <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 text-center">
                                             <FileQuestion size={32} className="text-amber-400 mx-auto mb-3" />
                                             <h3 className="text-amber-300 font-medium mb-2">
@@ -687,7 +705,7 @@ export function EditorScreen() {
                                                 </div>
                                             ))}
                                         </div>
-                                    )}
+                                    ))}
                                 </>
                             )}
 

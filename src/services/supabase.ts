@@ -281,6 +281,45 @@ export async function updatePackageHighlights(
     if (error) throw error;
 }
 
+// Maps package_key → { sectionKey, fieldKey } for cms_content dual-write
+const PACKAGE_CONTENT_MAP: Record<string, { sectionKey: string; fieldKey: string }> = {
+    complete:  { sectionKey: 'package7day', fieldKey: 'packages.complete.image' },
+    adventure: { sectionKey: 'package5day', fieldKey: 'packages.adventure.image' },
+    threeDay:  { sectionKey: 'package3day', fieldKey: 'packages.threeDay.image' },
+    taster:    { sectionKey: 'package1day', fieldKey: 'packages.taster.image' },
+};
+
+/**
+ * Upserts a package image URL into cms_content so the website's getMedia()
+ * can retrieve it by key (e.g. 'packages.complete.image').
+ * Images are language-agnostic so the URL is written to all language columns.
+ */
+export async function upsertPackageImageToContent(
+    packageKey: string,
+    imageUrl: string
+): Promise<void> {
+    const mapping = PACKAGE_CONTENT_MAP[packageKey];
+    if (!mapping) return;
+
+    const { error } = await supabase
+        .from('cms_content')
+        .upsert(
+            {
+                page_slug:   'packages',
+                section_key: mapping.sectionKey,
+                field_key:   mapping.fieldKey,
+                field_type:  'url',
+                content_en:  imageUrl,
+                content_sv:  imageUrl,
+                content_de:  imageUrl,
+                content_pl:  imageUrl,
+            },
+            { onConflict: 'page_slug,section_key,field_key' }
+        );
+
+    if (error) throw error;
+}
+
 export async function createPackage(pkg: Partial<CmsPackage>): Promise<CmsPackage> {
     const { data, error } = await supabase
         .from('cms_packages')
