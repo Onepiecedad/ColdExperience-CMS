@@ -1,11 +1,12 @@
 {
   "generatedAt": "2026-02-02T17:12:12.709Z",
   "repo": "ColdExperience/frontend",
-  "count": 479,
+  "count": 480,
   "keys": [
     "about.actionImages.landscape",
     "about.actionImages.lodge",
     "about.actionImages.snowmobile",
+    "about.cta.backgroundImage",
     "about.cta.contact",
     "about.cta.description",
     "about.cta.gallery",
