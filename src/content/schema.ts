@@ -153,7 +153,12 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     'packages:package1day': [],
 
     // CTA — bottom call-to-action section
-    'packages:packagesCta': [],
+    'packages:packagesCta': [
+        { key: 'packages.cta.backgroundImage', type: 'url', translatable: false, label: 'CTA: Background Image' },
+        { key: 'packages.cta.title', type: 'text', translatable: true, label: 'CTA: Title' },
+        { key: 'packages.cta.description', type: 'textarea', translatable: true, label: 'CTA: Description' },
+        { key: 'packages.cta.button', type: 'text', translatable: true, label: 'CTA: Button Text' },
+    ],
 
     // ═══════════════════════════════════════════════════════════════════════════
     // AUTO-GENERATED SCHEMA ENTRIES
