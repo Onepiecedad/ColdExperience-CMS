@@ -18,6 +18,7 @@ import { PublishModal } from '../components/PublishModal';
 import { useEditorData } from '../hooks/useEditorData';
 import { useDraftStore } from '../hooks/useDraftStore';
 import { getPageById, getSectionById, getSubsectionById, LANGUAGES, type Subsection } from '../content/contentMap';
+import { CONTENT_SCHEMA, type SchemaSection } from '../content/schema';
 import type { Language, CmsContent, CmsMedia } from '../types';
 
 type ContentMode = 'text' | 'media';
@@ -236,8 +237,13 @@ export function EditorScreen() {
 
     // ── Subsection content filtering ──────────────────────────────────────
     // When viewing a subsection, show only fields matching its contentKeyPrefix.
-    // When viewing the parent section, show ALL fields (no filtering).
+    // When viewing the parent section, filter by schema to hide orphaned DB fields.
     const subsectionPrefix = (subsection as Subsection & { contentKeyPrefix?: string } | undefined)?.contentKeyPrefix;
+
+    // Build schema key and valid field set to exclude stale/removed fields from the DB
+    const schemaKey = `${pageId}:${sectionId}` as SchemaSection;
+    const schemaFields = (CONTENT_SCHEMA as Record<string, { key: string }[]>)[schemaKey];
+    const schemaFieldKeys = schemaFields ? new Set(schemaFields.map(f => f.key)) : null;
 
     const filteredContent = subsectionPrefix
         ? content.filter(item =>
@@ -246,7 +252,9 @@ export function EditorScreen() {
             !item.field_key.includes('.media.') &&    // Exclude media file paths (video src, poster, scale)
             !item.field_key.endsWith('Button.target') // Exclude internal routing targets
         )
-        : content;
+        : schemaFieldKeys
+            ? content.filter(item => schemaFieldKeys.has(item.field_key))
+            : content;
 
     // ── Media path fields (videoSrc, poster, etc.) — show in Media tab ───
     // These are .media. fields excluded from filteredContent but should be editable
