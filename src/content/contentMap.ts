@@ -296,13 +296,13 @@ export function reverseLookupUrl(urlPath: string): { pageId: string; sectionId: 
  * returns the matching CMS { pageId, sectionId }.
  * Falls back to the home page if not found.
  */
-export function lookupBySectionAttribute(cmsSectionId: string): { pageId: string; sectionId: string } {
+export function lookupBySectionAttribute(cmsSectionId: string): { pageId: string; sectionId: string } | null {
     for (const page of WEBSITE_PAGES) {
         const section = page.sections.find(s => s.id === cmsSectionId);
         if (section) {
             return { pageId: page.id, sectionId: section.id };
         }
     }
-    return { pageId: 'home', sectionId: 'hero' };
+    return null;
 }
 
