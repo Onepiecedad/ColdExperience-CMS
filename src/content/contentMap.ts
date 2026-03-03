@@ -86,10 +86,16 @@ export const WEBSITE_PAGES: PageConfig[] = [
         id: 'packages',
         label: 'Packages',
         icon: '📦',
-        websiteUrl: '/packages',
+        websiteUrl: '/lapland-holiday-packages',
         group: 'content',
         sections: [
-            { id: 'packages', label: 'All Packages', icon: '📦', description: 'Äventyrspaket med priser' },
+            { id: 'packages',      label: 'Hero',            icon: '🎬', description: 'Hero med video och rubriker',                          dataPageId: 'packages', websiteAnchor: 'packages-hero' },
+            { id: 'packagesIntro', label: 'Intro',           icon: '📋', description: '"Arctic Experience Awaits" — text, bild, aktiviteter', dataPageId: 'packages', websiteAnchor: 'packages-intro' },
+            { id: 'package7day',   label: '7 Days',          icon: '⭐', description: 'Most Popular — 7-dagarspaket (Complete)',              dataPageId: 'packages', websiteAnchor: 'package-7day' },
+            { id: 'package5day',   label: '5 Days',          icon: '🏔', description: 'Alternative — 5-dagarspaket (Adventure)',             dataPageId: 'packages', websiteAnchor: 'package-5day' },
+            { id: 'package3day',   label: '3 Days',          icon: '❄',  description: 'Signature — 3-dagarspaket (Three Day)',              dataPageId: 'packages', websiteAnchor: 'package-3day' },
+            { id: 'package1day',   label: '1 Day',           icon: '🌟', description: 'Try It — 1-dagspaket (Taster)',                      dataPageId: 'packages', websiteAnchor: 'package-1day' },
+            { id: 'packagesCta',   label: 'Call to Action',  icon: '📢', description: 'Bottom CTA-sektion',                                 dataPageId: 'packages', websiteAnchor: 'packages-cta' },
         ]
     },
     {
