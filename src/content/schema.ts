@@ -226,6 +226,7 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     ],
 
     'about:cta': [
+        { key: 'about.cta.backgroundImage', type: 'url', translatable: false, label: 'About CTA: Background Image' },
         { key: 'about.cta.title', type: 'text', translatable: true, label: 'About CTA: Title' },
         { key: 'about.cta.description', type: 'textarea', translatable: true, label: 'About CTA: Description' },
         { key: 'about.cta.packages', type: 'text', translatable: true, label: 'About CTA: Packages' },
