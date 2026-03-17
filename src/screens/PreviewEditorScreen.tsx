@@ -123,6 +123,33 @@ export function PreviewEditorScreen() {
 
 
 
+        // Dispatch bridge-audit custom event so DevInspector can log it
+        if (import.meta.env.DEV) {
+            const auditEntry = {
+                id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+                type: msg.type,
+                url: msg.url,
+                lang: msg.lang,
+                cmsSectionId: msg.cmsSectionId,
+                timestamp: Date.now(),
+            };
+
+            // For scroll events, enrich with mapped page/section
+            if (msg.type === 'scroll' && msg.cmsSectionId) {
+                const lookup = lookupBySectionAttribute(msg.cmsSectionId);
+                if (lookup) {
+                    Object.assign(auditEntry, {
+                        mappedPageId: lookup.pageId,
+                        mappedSectionId: lookup.sectionId,
+                    });
+                }
+            }
+
+            window.dispatchEvent(
+                new CustomEvent('coldexperience:bridge-audit', { detail: auditEntry })
+            );
+        }
+
         switch (msg.type) {
             case 'bridge-ready':
                 setBridgeReady(true);
