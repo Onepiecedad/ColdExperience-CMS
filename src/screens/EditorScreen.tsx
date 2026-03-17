@@ -23,6 +23,17 @@ import { CONTENT_SCHEMA, type SchemaSection } from '../content/schema';
 import type { Language, CmsContent, CmsMedia } from '../types';
 
 type ContentMode = 'text' | 'media';
+interface BridgeAuditEntry {
+    id: string;
+    type: string;
+    url?: string;
+    lang?: string;
+    cmsSectionId?: string;
+    mappedPageId?: string;
+    mappedSectionId?: string;
+    mappedSubsectionId?: string;
+    timestamp: number;
+}
 
 // ── Pretty-printed JSON textarea with local state (no cursor-jumping) ──
 function JsonTextarea({ value, onChange, className, placeholder }: {
@@ -84,6 +95,7 @@ export function EditorScreen() {
 
     const [contentMode, setContentMode] = useState<ContentMode>('text');
     const [showPublishModal, setShowPublishModal] = useState(false);
+    const [bridgeAudit, setBridgeAudit] = useState<BridgeAuditEntry[]>([]);
 
     // Helper function to check if media is a video
     const isVideo = (item: { filename: string; mime_type?: string | null }): boolean => {
@@ -109,6 +121,21 @@ export function EditorScreen() {
     } = useEditorData(pageId, sectionId, subsectionId);
 
     const [localMedia, setLocalMedia] = useState<CmsMedia[]>([]);
+
+    useEffect(() => {
+        if (!import.meta.env.DEV) return;
+
+        const handleBridgeAudit = (event: Event) => {
+            const customEvent = event as CustomEvent<BridgeAuditEntry>;
+            if (!customEvent.detail) return;
+            setBridgeAudit(prev => [customEvent.detail, ...prev].slice(0, 8));
+        };
+
+        window.addEventListener('coldexperience:bridge-audit', handleBridgeAudit as EventListener);
+        return () => {
+            window.removeEventListener('coldexperience:bridge-audit', handleBridgeAudit as EventListener);
+        };
+    }, []);
 
     // Sync localMedia with fetched media
     useEffect(() => {
@@ -283,6 +310,7 @@ export function EditorScreen() {
     const visibleUploadedMedia = localMedia.filter(
         m => !contentFieldFilenames.has(m.filename.toLowerCase())
     ).length;
+    const showPackageEditor = pageId === 'packages' && sectionId === 'packages' && !subsectionId;
 
     // ── Package section detection ─────────────────────────────────────────
     // Individual package sections (7/5/3/1-day) delegate to PackageEditor
@@ -320,6 +348,7 @@ export function EditorScreen() {
                     fieldCount={content.length}
                     mediaCount={media.length}
                     fetchedAt={fetchedAt}
+                    bridgeAudit={bridgeAudit}
                 />
 
                 {/* ═════════════════════════════════════════════════════════════
@@ -704,6 +733,19 @@ export function EditorScreen() {
                                                     </div>
                                                 </div>
                                             ))}
+
+                                            {showPackageEditor && (
+                                                <div className="mt-6 rounded-2xl border border-white/[0.06] bg-[#07111b]/70 p-4">
+                                                    <div className="mb-4">
+                                                        <h2 className="text-base font-semibold text-white">Package Cards</h2>
+                                                        <p className="mt-1 text-sm text-white/50">
+                                                            This page uses both regular section content and structured package data.
+                                                            Edit the package cards here so the preview and editor stay aligned.
+                                                        </p>
+                                                    </div>
+                                                    <PackageEditor compact />
+                                                </div>
+                                            )}
                                         </div>
                                     ))}
                                 </>
