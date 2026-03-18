@@ -130,20 +130,20 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     //           | packagesCta
     // ─────────────────────────────────────────────────────────────────────────
 
-    // Hero — page-level text + hero video
+    // Hero — visible title + subtitle in the hero video section
     'packages:packages': [
-        { key: 'packages.title', type: 'text', translatable: true, label: 'Page Title' },
-        { key: 'packages.subtitle', type: 'textarea', translatable: true, label: 'Page Subtitle' },
-        { key: 'packages.pageTitle', type: 'text', translatable: true, label: 'Browser Title' },
-        { key: 'packages.pageDescription', type: 'textarea', translatable: true, label: 'Meta Description' },
-        { key: 'packages.bookButton', type: 'text', translatable: true, label: 'Book Button' },
+        { key: 'packages.title', type: 'text', translatable: true, label: 'Hero Title' },
+        { key: 'packages.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
+    ],
+
+    // Intro — "Arctic Experience Awaits" section + shared package labels
+    'packages:packagesIntro': [
+        { key: 'packages.pageTitle', type: 'text', translatable: true, label: 'Browser Tab Title (SEO)' },
+        { key: 'packages.pageDescription', type: 'textarea', translatable: true, label: 'Meta Description (SEO)' },
+        { key: 'packages.bookButton', type: 'text', translatable: true, label: 'Book Button Label' },
         { key: 'packages.mostPopular', type: 'text', translatable: true, label: 'Most Popular Badge' },
         { key: 'packages.perPerson', type: 'text', translatable: true, label: 'Per Person Label' },
     ],
-
-    // Intro — "Arctic Experience Awaits" section (text + intro image)
-    // No schema text keys yet — managed as media + possible future keys
-    'packages:packagesIntro': [],
 
     // Individual package sections — rendered via PackageEditor (cms_packages table)
     // No cms_content schema keys needed; EditorScreen detects these and delegates

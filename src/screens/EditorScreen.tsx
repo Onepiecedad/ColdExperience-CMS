@@ -270,8 +270,14 @@ export function EditorScreen() {
 
     // Build schema key and valid field set to exclude stale/removed fields from the DB
     const schemaKey = `${pageId}:${sectionId}` as SchemaSection;
-    const schemaFields = (CONTENT_SCHEMA as Record<string, { key: string }[]>)[schemaKey];
+    const schemaFields = (CONTENT_SCHEMA as Record<string, { key: string; label?: string }[]>)[schemaKey];
     const schemaFieldKeys = schemaFields ? new Set(schemaFields.map(f => f.key)) : null;
+    // Build a label override map: schema labels take precedence over DB field_label
+    const schemaLabelMap = schemaFields
+        ? new Map(schemaFields.filter(f => f.label).map(f => [f.key, f.label!]))
+        : new Map<string, string>();
+    const getFieldLabel = (item: { field_key: string; field_label?: string | null }) =>
+        schemaLabelMap.get(item.field_key) || item.field_label || item.field_key;
 
     const filteredContent = subsectionPrefix
         ? content.filter(item =>
@@ -590,7 +596,7 @@ export function EditorScreen() {
                                                                 />
                                                             )}
                                                             <span className="text-sm font-medium text-white">
-                                                                {item.field_label || item.field_key}
+                                                                {getFieldLabel(item)}
                                                             </span>
                                                             <span className="text-xs text-white/30 font-mono">
                                                                 {item.field_type}
@@ -796,7 +802,7 @@ export function EditorScreen() {
                                         const renderMediaCard = (item: typeof mediaContent[0]) => {
                                             const rawUrl = getDisplayValue(item);
                                             const resolvedUrl = rawUrl && rawUrl.startsWith('/') ? `${SITE_BASE}${rawUrl}` : rawUrl;
-                                            const shortLabel = (item.field_label || item.field_key).split('.').pop() || '';
+                                            const shortLabel = getFieldLabel(item).split('.').pop() || '';
 
                                             return (
                                                 <div key={item.id}>
