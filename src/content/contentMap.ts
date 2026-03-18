@@ -108,7 +108,10 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/gallery',
         group: 'content',
         sections: [
-            { id: 'gallery', label: 'Gallery', icon: '🖼', description: 'Fotogalleri och bildtexter', bridgeSectionIds: ['gallery', 'gallery:hero', 'gallery:grid'], mediaPageIds: ['gallery'], mediaSectionIds: ['gallery', 'hero', 'grid'] },
+            { id: 'hero',       label: 'Hero',       icon: '🎬', description: 'Hero-sektion med bakgrundsvideo', bridgeSectionIds: ['gallery:hero'], mediaPageIds: ['gallery'], mediaSectionIds: ['hero'] },
+            { id: 'images',     label: 'Images',     icon: '🖼', description: 'Galleribildernas bildtexter', bridgeSectionIds: ['gallery:grid'], mediaSectionIds: ['images'] },
+            { id: 'categories', label: 'Categories', icon: '🏷', description: 'Filterkategorier och UI-texter', bridgeSectionIds: ['gallery'], mediaSectionIds: ['categories'] },
+            { id: 'cta',        label: 'CTA',        icon: '📢', description: 'Call to action-sektion', bridgeSectionIds: ['gallery:cta'], mediaSectionIds: ['cta'] },
         ]
     },
     {

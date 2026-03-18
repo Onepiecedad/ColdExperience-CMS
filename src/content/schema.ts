@@ -534,24 +534,18 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'faq.meta.description', type: 'textarea', translatable: true, label: 'FAQ: Meta Description' },
     ],
 
-    // Gallery page — hero, categories, images, CTA, meta
-    'gallery:gallery': [
-        { key: 'gallery.categories.activities', type: 'text', translatable: true, label: 'Gallery Category: Activities' },
-        { key: 'gallery.categories.all', type: 'text', translatable: true, label: 'Gallery Category: All' },
-        { key: 'gallery.categories.dogSledding', type: 'text', translatable: true, label: 'Gallery Category: Dog Sledding' },
-        { key: 'gallery.categories.featured', type: 'text', translatable: true, label: 'Gallery Category: Featured' },
-        { key: 'gallery.categories.landscapes', type: 'text', translatable: true, label: 'Gallery Category: Landscapes' },
-        { key: 'gallery.categories.snowmobile', type: 'text', translatable: true, label: 'Gallery Category: Snowmobile' },
-        { key: 'gallery.closeModal', type: 'text', translatable: true, label: 'Gallery: Close Modal' },
-        { key: 'gallery.cta.button', type: 'text', translatable: true, label: 'Gallery CTA: Button' },
-        { key: 'gallery.cta.title', type: 'text', translatable: true, label: 'Gallery CTA: Title' },
-        { key: 'gallery.hero.subtitle', type: 'textarea', translatable: true, label: 'Gallery Hero: Subtitle' },
-        { key: 'gallery.hero.title', type: 'text', translatable: true, label: 'Gallery Hero: Title' },
-        { key: 'gallery.heroButton1', type: 'text', translatable: true, label: 'Gallery: Hero Button 1' },
-        { key: 'gallery.heroButton2', type: 'text', translatable: true, label: 'Gallery: Hero Button 2' },
-        // Legacy keys suppressed (gallery.heroSubtitle, gallery.heroTitle, gallery.heroTitleAccent, gallery.heroTitlePrimary)
-        // Canonical: gallery.hero.title + gallery.hero.subtitle
-        // Gallery image captions — each has a thumbnailSrc so the editor shows the image next to the text field
+    // ── Gallery: Hero ────────────────────────────────────────────────────
+    'gallery:hero': [
+        { key: 'gallery.hero.title', type: 'text', translatable: true, label: 'Hero Title' },
+        { key: 'gallery.hero.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
+        { key: 'gallery.heroButton1', type: 'text', translatable: true, label: 'Hero Button 1' },
+        { key: 'gallery.heroButton2', type: 'text', translatable: true, label: 'Hero Button 2' },
+        { key: 'gallery.media.heroVideo', type: 'text', translatable: false, label: 'Hero Background Video' },
+        { key: 'gallery.media.heroPoster', type: 'text', translatable: false, label: 'Hero Poster Image' },
+    ],
+
+    // ── Gallery: Images (captions — ordered matching website gallery) ────
+    'gallery:images': [
         { key: 'gallery.images.winterLandscape', type: 'text', translatable: true, label: 'Northern lights over Lapland', thumbnailSrc: '/images/Nya_bilder/IMG_6698.webp' },
         { key: 'gallery.images.snowmobileAdventure', type: 'text', translatable: true, label: 'Snowmobile guide on frozen lake', thumbnailSrc: '/images/Nya_bilder/IMG_4108.webp' },
         { key: 'gallery.images.dogSledding', type: 'text', translatable: true, label: 'Cabins in winter night', thumbnailSrc: '/images/Nya_bilder/IMG_3493.webp' },
@@ -583,16 +577,33 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'gallery.images.campfireCooking', type: 'text', translatable: true, label: 'Campfire cooking', thumbnailSrc: '/images/Nya_bilder/julias_matresa.webp' },
         { key: 'gallery.images.auroraPines', type: 'text', translatable: true, label: 'Northern lights above pine forest', thumbnailSrc: '/images/Nya_bilder/IMG_6702.webp' },
         { key: 'gallery.images.firesideLake', type: 'text', translatable: true, label: 'Snowmobile camp by frozen lake', thumbnailSrc: '/images/Nya_bilder/IMG_7476 (1).webp' },
-        { key: 'gallery.meta.description', type: 'textarea', translatable: true, label: 'Gallery: Meta Description' },
-        { key: 'gallery.meta.title', type: 'text', translatable: true, label: 'Gallery: Meta Title' },
-        { key: 'gallery.nextImage', type: 'text', translatable: true, label: 'Gallery: Next Image' },
-        { key: 'gallery.noImages', type: 'text', translatable: true, label: 'Gallery: No Images' },
-        { key: 'gallery.prevImage', type: 'text', translatable: true, label: 'Gallery: Prev Image' },
-        { key: 'gallery.sections.food', type: 'text', translatable: true, label: 'Gallery Section: Food' },
-        { key: 'gallery.sections.husky', type: 'text', translatable: true, label: 'Gallery Section: Husky' },
-        { key: 'gallery.sections.nature', type: 'text', translatable: true, label: 'Gallery Section: Nature' },
-        { key: 'gallery.sections.northernLights', type: 'text', translatable: true, label: 'Gallery Section: Northern Lights' },
-        { key: 'gallery.sections.winter', type: 'text', translatable: true, label: 'Gallery Section: Winter' },
+    ],
+
+    // ── Gallery: Categories & UI ─────────────────────────────────────────
+    'gallery:categories': [
+        { key: 'gallery.categories.all', type: 'text', translatable: true, label: 'Category: All' },
+        { key: 'gallery.categories.featured', type: 'text', translatable: true, label: 'Category: Featured' },
+        { key: 'gallery.categories.snowmobile', type: 'text', translatable: true, label: 'Category: Snowmobile' },
+        { key: 'gallery.categories.dogSledding', type: 'text', translatable: true, label: 'Category: Dog Sledding' },
+        { key: 'gallery.categories.landscapes', type: 'text', translatable: true, label: 'Category: Landscapes' },
+        { key: 'gallery.categories.activities', type: 'text', translatable: true, label: 'Category: Activities' },
+        { key: 'gallery.closeModal', type: 'text', translatable: true, label: 'Close Modal Label' },
+        { key: 'gallery.nextImage', type: 'text', translatable: true, label: 'Next Image Label' },
+        { key: 'gallery.prevImage', type: 'text', translatable: true, label: 'Previous Image Label' },
+        { key: 'gallery.noImages', type: 'text', translatable: true, label: 'No Images Message' },
+        { key: 'gallery.sections.food', type: 'text', translatable: true, label: 'Section: Food' },
+        { key: 'gallery.sections.husky', type: 'text', translatable: true, label: 'Section: Husky' },
+        { key: 'gallery.sections.nature', type: 'text', translatable: true, label: 'Section: Nature' },
+        { key: 'gallery.sections.northernLights', type: 'text', translatable: true, label: 'Section: Northern Lights' },
+        { key: 'gallery.sections.winter', type: 'text', translatable: true, label: 'Section: Winter' },
+        { key: 'gallery.meta.title', type: 'text', translatable: true, label: 'SEO: Meta Title' },
+        { key: 'gallery.meta.description', type: 'textarea', translatable: true, label: 'SEO: Meta Description' },
+    ],
+
+    // ── Gallery: CTA ─────────────────────────────────────────────────────
+    'gallery:cta': [
+        { key: 'gallery.cta.title', type: 'text', translatable: true, label: 'CTA Title' },
+        { key: 'gallery.cta.button', type: 'text', translatable: true, label: 'CTA Button' },
     ],
 
     // home:hero REMOVED — home.hero.* keys are unused duplicates of hero.* in hero:hero
