@@ -139,8 +139,19 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'pages.laplandHoliday.hero.secondaryCta', type: 'text', translatable: true, label: 'Hero Secondary Button' },
     ],
 
-    // Intro — paragraphs + feature cards below hero
+    // Intro — two paragraphs + four activity feature cards
+    // Keys MUST match pages.laplandHoliday.intro.* (what LaplandHolidayPackages.js reads)
     'packages:packagesIntro': [
+        { key: 'pages.laplandHoliday.intro.paragraphs.0', type: 'textarea', translatable: true, label: 'Intro Paragraph 1' },
+        { key: 'pages.laplandHoliday.intro.paragraphs.1', type: 'textarea', translatable: true, label: 'Intro Paragraph 2' },
+        { key: 'pages.laplandHoliday.intro.features.0.title', type: 'text', translatable: true, label: 'Feature 1: Title' },
+        { key: 'pages.laplandHoliday.intro.features.0.description', type: 'text', translatable: true, label: 'Feature 1: Description' },
+        { key: 'pages.laplandHoliday.intro.features.1.title', type: 'text', translatable: true, label: 'Feature 2: Title' },
+        { key: 'pages.laplandHoliday.intro.features.1.description', type: 'text', translatable: true, label: 'Feature 2: Description' },
+        { key: 'pages.laplandHoliday.intro.features.2.title', type: 'text', translatable: true, label: 'Feature 3: Title' },
+        { key: 'pages.laplandHoliday.intro.features.2.description', type: 'text', translatable: true, label: 'Feature 3: Description' },
+        { key: 'pages.laplandHoliday.intro.features.3.title', type: 'text', translatable: true, label: 'Feature 4: Title' },
+        { key: 'pages.laplandHoliday.intro.features.3.description', type: 'text', translatable: true, label: 'Feature 4: Description' },
         { key: 'pages.laplandHoliday.meta.title', type: 'text', translatable: true, label: 'Browser Tab Title (SEO)' },
         { key: 'pages.laplandHoliday.meta.description', type: 'textarea', translatable: true, label: 'Meta Description (SEO)' },
     ],
