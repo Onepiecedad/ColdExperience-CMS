@@ -536,8 +536,9 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
 
     // ── Gallery: Hero ────────────────────────────────────────────────────
     'gallery:hero': [
-        { key: 'gallery.hero.title', type: 'text', translatable: true, label: 'Hero Title' },
-        { key: 'gallery.hero.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
+        { key: 'gallery.heroTitlePrimary', type: 'text', translatable: true, label: 'Hero Title (white part)' },
+        { key: 'gallery.heroTitleAccent', type: 'text', translatable: true, label: 'Hero Title (accent part)' },
+        { key: 'gallery.heroSubtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
         { key: 'gallery.heroButton1', type: 'text', translatable: true, label: 'Hero Button 1' },
         { key: 'gallery.heroButton2', type: 'text', translatable: true, label: 'Hero Button 2' },
         { key: 'gallery.media.heroVideo', type: 'text', translatable: false, label: 'Hero Background Video' },
