@@ -321,7 +321,7 @@ export function EditorScreen() {
     // ── Split content into text fields vs media/url fields ────────────────
     // Media classification: field_type 'url' OR key-based image patterns
     const isMediaField = (item: { field_key: string; field_type: string }) =>
-        item.field_type === 'url' || item.field_key.startsWith('gallery.images.');
+        item.field_type === 'url';
     const textContent = filteredContent.filter(item => !isMediaField(item));
     const mediaContent = [
         ...filteredContent.filter(item => isMediaField(item)),
