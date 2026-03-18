@@ -154,8 +154,6 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'pages.laplandHoliday.intro.features.2.description', type: 'text', translatable: true, label: 'Feature 3: Description' },
         { key: 'pages.laplandHoliday.intro.features.3.title', type: 'text', translatable: true, label: 'Feature 4: Title' },
         { key: 'pages.laplandHoliday.intro.features.3.description', type: 'text', translatable: true, label: 'Feature 4: Description' },
-        { key: 'pages.laplandHoliday.meta.title', type: 'text', translatable: true, label: 'Browser Tab Title (SEO)' },
-        { key: 'pages.laplandHoliday.meta.description', type: 'textarea', translatable: true, label: 'Meta Description (SEO)' },
         { key: 'pages.laplandHoliday.intro.media.videoSrc', type: 'text', translatable: false, label: 'Intro Video' },
         { key: 'pages.laplandHoliday.intro.media.poster', type: 'text', translatable: false, label: 'Intro Poster Image' },
     ],
