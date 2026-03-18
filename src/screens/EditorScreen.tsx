@@ -284,6 +284,11 @@ export function EditorScreen() {
         ? new Map(schemaFields.map((f, i) => [f.key, i]))
         : new Map<string, number>();
 
+    // Build thumbnail map: key → image src (for gallery captions)
+    const schemaThumbnailMap = schemaFields
+        ? new Map(schemaFields.filter((f: any) => f.thumbnailSrc).map((f: any) => [f.key, f.thumbnailSrc as string]))
+        : new Map<string, string>();
+
     const filteredContent = (subsectionPrefix
         ? content.filter(item =>
             item.field_key.startsWith(subsectionPrefix) &&
@@ -735,15 +740,38 @@ export function EditorScreen() {
                                                                             />
                                                                         );
                                                                     }
-                                                                    return (
-                                                                        <input
-                                                                            type="text"
-                                                                            value={val}
-                                                                            onChange={(e) => handleContentChange(item, e.target.value)}
-                                                                            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
-                                                                            placeholder="Enter text..."
-                                                                        />
-                                                                    );
+                                                                    return (() => {
+                                                                        const thumbSrc = schemaThumbnailMap.get(item.field_key);
+                                                                        const SITE_BASE_THUMB = 'https://coldexperience.se';
+                                                                        if (thumbSrc) {
+                                                                            return (
+                                                                                <div className="flex items-center gap-3">
+                                                                                    <img
+                                                                                        src={`${SITE_BASE_THUMB}${thumbSrc}`}
+                                                                                        alt=""
+                                                                                        className="w-16 h-16 rounded-lg object-cover flex-shrink-0 border border-white/10"
+                                                                                        loading="lazy"
+                                                                                    />
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        value={val}
+                                                                                        onChange={(e) => handleContentChange(item, e.target.value)}
+                                                                                        className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
+                                                                                        placeholder="Enter caption..."
+                                                                                    />
+                                                                                </div>
+                                                                            );
+                                                                        }
+                                                                        return (
+                                                                            <input
+                                                                                type="text"
+                                                                                value={val}
+                                                                                onChange={(e) => handleContentChange(item, e.target.value)}
+                                                                                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder-white/30 focus:outline-none focus:border-[#5a9bc7]/50"
+                                                                                placeholder="Enter text..."
+                                                                            />
+                                                                        );
+                                                                    })();
                                                                 })()}
                                                             </>
                                                         )}
