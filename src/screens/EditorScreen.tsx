@@ -303,12 +303,15 @@ export function EditorScreen() {
 
     // ── Media path fields (videoSrc, poster, etc.) — show in Media tab ───
     // These are .media. fields excluded from filteredContent but should be editable
+    // Scoped to current section's schema fields to avoid cross-section leakage
     const mediaPathFields = subsectionPrefix
         ? content.filter(item =>
             item.field_key.startsWith(subsectionPrefix) &&
             item.field_key.includes('.media.')
         )
-        : content.filter(item => item.field_key.includes('.media.'));
+        : schemaFieldKeys
+            ? content.filter(item => schemaFieldKeys.has(item.field_key) && item.field_key.includes('.media.'))
+            : content.filter(item => item.field_key.includes('.media.'));
 
     // ── Split content into text fields vs media/url fields ────────────────
     // Media classification: field_type 'url' OR key-based image patterns
