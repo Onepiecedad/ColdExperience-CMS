@@ -292,7 +292,7 @@ export function EditorScreen() {
             !item.field_key.endsWith('Button.target') // Exclude internal routing targets
         )
         : schemaFieldKeys
-            ? content.filter(item => schemaFieldKeys.has(item.field_key))
+            ? content.filter(item => schemaFieldKeys.has(item.field_key) && !item.field_key.includes('.media.'))
             : content
     ).sort((a, b) => {
         // Sort by schema-defined order; unrecognized keys go to the end
