@@ -134,6 +134,8 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     'packages:packages': [
         { key: 'packages.title', type: 'text', translatable: true, label: 'Hero Title' },
         { key: 'packages.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
+        { key: 'packages.media.videoSrc', type: 'text', translatable: false, label: 'Hero Background Video' },
+        { key: 'packages.media.poster', type: 'text', translatable: false, label: 'Hero Poster Image' },
     ],
 
     // Intro — "Arctic Experience Awaits" section + shared package labels
