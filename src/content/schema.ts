@@ -184,6 +184,9 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'pages.laplandHoliday.featured.galleryCaptions.0', type: 'text', translatable: true, label: 'Gallery Caption 1' },
         { key: 'pages.laplandHoliday.featured.galleryCaptions.1', type: 'text', translatable: true, label: 'Gallery Caption 2' },
         { key: 'pages.laplandHoliday.featured.galleryCaptions.2', type: 'text', translatable: true, label: 'Gallery Caption 3' },
+        { key: 'pages.laplandHoliday.featured.media.galleryVideo0', type: 'text', translatable: false, label: 'Gallery Video 1' },
+        { key: 'pages.laplandHoliday.featured.media.galleryVideo1', type: 'text', translatable: false, label: 'Gallery Video 2' },
+        { key: 'pages.laplandHoliday.featured.media.galleryVideo2', type: 'text', translatable: false, label: 'Gallery Video 3' },
     ],
 
     // ── 5-Day Package ────────────────────────────────────────────────────
