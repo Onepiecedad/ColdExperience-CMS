@@ -338,17 +338,9 @@ export function EditorScreen() {
     const showPackageEditor = false;
 
     // ── Package section detection ─────────────────────────────────────────
-    // Individual package sections (7/5/3/1-day) delegate to PackageEditor
-    // instead of the standard schema-based content view.
-    const PACKAGE_SECTION_MAP: Record<string, string> = {
-        'package7day': 'complete',
-        'package5day': 'adventure',
-        'package3day': 'threeDay',
-        'package1day': 'taster',
-    };
-    const packageFilterKey = pageId === 'packages' && sectionId
-        ? PACKAGE_SECTION_MAP[sectionId]
-        : undefined;
+    // Package sections now use standard schema-based text fields (not PackageEditor).
+    // The frontend reads from i18n keys, not the cms_packages table.
+    const packageFilterKey = undefined;
 
     return (
         <div className="editor-split-layout">
