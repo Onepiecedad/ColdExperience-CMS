@@ -137,6 +137,8 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'pages.laplandHoliday.hero.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
         { key: 'pages.laplandHoliday.hero.primaryCta', type: 'text', translatable: true, label: 'Hero Primary Button' },
         { key: 'pages.laplandHoliday.hero.secondaryCta', type: 'text', translatable: true, label: 'Hero Secondary Button' },
+        { key: 'pages.laplandHoliday.hero.media.videoSrc', type: 'text', translatable: false, label: 'Hero Background Video' },
+        { key: 'pages.laplandHoliday.hero.media.poster', type: 'text', translatable: false, label: 'Hero Poster Image' },
     ],
 
     // Intro — two paragraphs + four activity feature cards
