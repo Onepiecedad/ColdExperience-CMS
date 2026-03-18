@@ -12,9 +12,11 @@ import type { CmsPage, CmsContent, CmsMedia } from '../types';
 import {
     getPageBySlug,
     getContentByPageAndSection,
-    getMediaBySection
+    getMediaBySection,
+    getMediaBySections,
+    getMediaByPageAndSections
 } from '../services/supabase';
-import { getDataPageId, getSubsectionById } from '../content/contentMap';
+import { getDataPageId, getSectionById, getSubsectionById } from '../content/contentMap';
 import { logInfo, logSuccess, logWarn, logError } from '../services/debugLog';
 
 export interface EditorDataState {
@@ -66,6 +68,9 @@ export function useEditorData(
         const subsectionConfig = pageSlug && sectionId && subsectionId
             ? getSubsectionById(pageSlug, sectionId, subsectionId)
             : undefined;
+        const sectionConfig = pageSlug && sectionId
+            ? getSectionById(pageSlug, sectionId)
+            : undefined;
 
         const dbPageSlug = subsectionConfig?.dataPageId || getDataPageId(pageSlug, sectionId);
         const dbSectionKey = subsectionConfig?.dataSectionKey || sectionId;
@@ -83,10 +88,17 @@ export function useEditorData(
                     logInfo('EditorData', `Fallback to CMS slug: ${pageSlug}`);
                     setPage(fallbackPage);
 
-                    const mediaSectionId = subsectionId ? `${sectionId}-${subsectionId}` : sectionId;
+                    const mediaPageIds = sectionConfig?.mediaPageIds ?? [fallbackPage.slug];
+                    const mediaSectionIds = subsectionId
+                        ? [`${sectionId}-${subsectionId}`]
+                        : (sectionConfig?.mediaSectionIds ?? [sectionId]);
                     const [contentData, mediaData] = await Promise.all([
                         getContentByPageAndSection(fallbackPage.slug, dbSectionKey),
-                        getMediaBySection(fallbackPage.slug, mediaSectionId)
+                        mediaPageIds.length > 1
+                            ? getMediaByPageAndSections(mediaPageIds, mediaSectionIds)
+                            : mediaSectionIds.length > 1
+                            ? getMediaBySections(fallbackPage.slug, mediaSectionIds)
+                            : getMediaBySection(fallbackPage.slug, mediaSectionIds[0])
                     ]);
 
                     setContent(contentData);
@@ -115,13 +127,22 @@ export function useEditorData(
             // Step 2: Fetch content and media in parallel
             // Content uses the subsection's DB override (e.g. detailPages/pages)
             // Media uses the parent section's page (e.g. experiences) since media is stored there
-            const mediaSectionId = subsectionId ? `${sectionId}-${subsectionId}` : sectionId;
+            const mediaSectionIds = subsectionId
+                ? [`${sectionId}-${subsectionId}`]
+                : (sectionConfig?.mediaSectionIds ?? [sectionId]);
             const mediaPageSlug = subsectionConfig?.dataPageId
                 ? getDataPageId(pageSlug, sectionId) // Use parent section's page for media
                 : foundPage.slug;
+            const mediaPageIds = subsectionId
+                ? [mediaPageSlug]
+                : (sectionConfig?.mediaPageIds ?? [mediaPageSlug]);
             const [contentData, mediaData] = await Promise.all([
                 getContentByPageAndSection(foundPage.slug, dbSectionKey),
-                getMediaBySection(mediaPageSlug, mediaSectionId)
+                mediaPageIds.length > 1
+                    ? getMediaByPageAndSections(mediaPageIds, mediaSectionIds)
+                    : mediaSectionIds.length > 1
+                    ? getMediaBySections(mediaPageSlug, mediaSectionIds)
+                    : getMediaBySection(mediaPageSlug, mediaSectionIds[0])
             ]);
 
             setContent(contentData);

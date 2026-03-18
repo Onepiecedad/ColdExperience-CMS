@@ -433,6 +433,52 @@ export async function getMediaBySection(pageId: string, sectionId?: string): Pro
     return data || [];
 }
 
+export async function getMediaBySections(pageId: string, sectionIds: string[]): Promise<CmsMedia[]> {
+    const uniqueSectionIds = [...new Set(sectionIds.filter(Boolean))];
+
+    let query = supabase
+        .from('cms_media')
+        .select('*')
+        .eq('page_id', pageId)
+        .order('created_at', { ascending: false });
+
+    if (uniqueSectionIds.length === 1) {
+        query = query.eq('section_id', uniqueSectionIds[0]);
+    } else if (uniqueSectionIds.length > 1) {
+        query = query.in('section_id', uniqueSectionIds);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+    return data || [];
+}
+
+export async function getMediaByPageAndSections(pageIds: string[], sectionIds: string[]): Promise<CmsMedia[]> {
+    const uniquePageIds = [...new Set(pageIds.filter(Boolean))];
+    const uniqueSectionIds = [...new Set(sectionIds.filter(Boolean))];
+
+    let query = supabase
+        .from('cms_media')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (uniquePageIds.length === 1) {
+        query = query.eq('page_id', uniquePageIds[0]);
+    } else if (uniquePageIds.length > 1) {
+        query = query.in('page_id', uniquePageIds);
+    }
+
+    if (uniqueSectionIds.length === 1) {
+        query = query.eq('section_id', uniqueSectionIds[0]);
+    } else if (uniqueSectionIds.length > 1) {
+        query = query.in('section_id', uniqueSectionIds);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+    return data || [];
+}
+
 /**
  * Get all unassigned media (no page_id set)
  */
@@ -917,5 +963,3 @@ export async function getDistinctContentKeys(): Promise<string[]> {
     const keys = new Set(data?.map((r: { field_key: string }) => r.field_key) || []);
     return Array.from(keys).sort();
 }
-
-

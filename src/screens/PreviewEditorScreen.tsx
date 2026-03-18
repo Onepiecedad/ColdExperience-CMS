@@ -85,14 +85,37 @@ export function PreviewEditorScreen() {
     const activeSectionIdRef = useRef(activeSectionId);
     activeSectionIdRef.current = activeSectionId;
 
+    // ── Manual selection lock ─────────────────────────────────────────
+    // Only subsection/detail-page selections need a persistent lock.
+    // Top-level sections should continue following preview scroll so the
+    // split view behaves as a synchronized editor during normal editing.
+    const manualLockRef = useRef(false);
+
+    // ── Initialization guard ──────────────────────────────────────────
+    // Prevents early preview scroll/navigate events from overriding the
+    // URL-driven section after a deep-link or route change (e.g.
+    // /edit/contact/sections/faq getting pulled back to contact/contact).
+    // Re-arms on every URL param change because React Router reuses the
+    // component — mount-only guards are expired by the time navigation
+    // happens. Cleared after 1.5s or when bridge-ready fires.
+    const initGuardRef = useRef(true);
+    const initGuardTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
     // ── Sync from URL params to state ─────────────────────────────────
     useEffect(() => {
-
         if (urlPageId && urlSectionId) {
+            // Re-arm the initialization guard on every URL param change
+            initGuardRef.current = true;
+            clearTimeout(initGuardTimerRef.current);
+            initGuardTimerRef.current = setTimeout(() => {
+                initGuardRef.current = false;
+            }, 1500);
+
             setActivePageId(urlPageId);
             setActiveSectionId(urlSectionId);
             setActiveSubsectionId(urlSubsectionId);
         }
+        return () => clearTimeout(initGuardTimerRef.current);
     }, [urlPageId, urlSectionId, urlSubsectionId]);
 
     // ── Build preview URL (debounced to avoid iframe jank) ────────────
@@ -120,7 +143,7 @@ export function PreviewEditorScreen() {
 
         // Read from ref — always current, never stale
         const isSubsectionActive = !!subsectionRef.current;
-
+        const isManuallyLocked = manualLockRef.current;
 
 
         // Dispatch bridge-audit custom event so DevInspector can log it
@@ -153,11 +176,18 @@ export function PreviewEditorScreen() {
         switch (msg.type) {
             case 'bridge-ready':
                 setBridgeReady(true);
+                // Note: do NOT clear initGuardRef here — bridge-ready fires
+                // before the preview has settled, and scroll events follow
+                // shortly after. The timer in the URL-sync effect handles it.
                 break;
 
             case 'scroll':
-                if (isSubsectionActive) {
-
+                // ── Guard: never override a manual editor selection ────
+                // When the user explicitly picked a section/subsection via
+                // the dropdown, ignore scroll events that would drag the
+                // editor to a different section.
+                // Also block during initialization to preserve deep-linked routes.
+                if (isSubsectionActive || isManuallyLocked || initGuardRef.current) {
                     break;
                 }
                 if (msg.cmsSectionId) {
@@ -175,17 +205,20 @@ export function PreviewEditorScreen() {
                 if (msg.url) {
                     const lookup = reverseLookupUrl(msg.url);
 
-                    // If a subsection is active and the navigation is within the
-                    // same page/section, ignore it (prevents scroll-triggered
-                    // overrides while editing a subsection). But if the user
-                    // navigates to a DIFFERENT page, follow the navigation and
-                    // clear the subsection state.
-                    if (isSubsectionActive &&
-                        lookup.pageId === activePageIdRef.current &&
-                        lookup.sectionId === activeSectionIdRef.current) {
+                    // If a manual lock or subsection is active and the navigation
+                    // is within the same page, ignore it. This prevents scroll-
+                    // triggered URL changes from overriding the editor while the
+                    // user is editing a specific section.
+                    // But if the preview navigates to a DIFFERENT page, follow
+                    // the navigation and release the lock.
+                    const isSamePage = lookup.pageId === activePageIdRef.current;
+                    if ((isSubsectionActive || isManuallyLocked || initGuardRef.current) && isSamePage) {
                         if (msg.lang) setLanguage(msg.lang);
                         break;
                     }
+
+                    // Different page — release the manual lock and follow
+                    manualLockRef.current = false;
 
                     setActivePageId(lookup.pageId);
                     setActiveSectionId(lookup.sectionId);
@@ -216,10 +249,11 @@ export function PreviewEditorScreen() {
 
     // ── Manual section navigation (dropdown) ──────────────────────────
     const handleSectionSelect = (newPageId: string, newSectionId: string, newSubsectionId?: string) => {
-        // Update ref SYNCHRONOUSLY before React re-renders — the bridge handler
-        // reads subsectionRef.current, so it must be correct before any async
-        // postMessage events from the iframe can fire.
+        // Update refs SYNCHRONOUSLY before React re-renders — the bridge handler
+        // reads subsectionRef.current and manualLockRef.current, so they must be
+        // correct before any async postMessage events from the iframe can fire.
         subsectionRef.current = newSubsectionId;
+        manualLockRef.current = !!newSubsectionId;
 
         setActivePageId(newPageId);
         setActiveSectionId(newSectionId);
@@ -289,7 +323,12 @@ export function PreviewEditorScreen() {
                     <div className="preview-toolbar-left">
                         {/* Sync indicator */}
                         <button
-                            onClick={() => setSyncActive(prev => !prev)}
+                            onClick={() => {
+                                setSyncActive(prev => !prev);
+                                // Toggling sync releases the manual lock so
+                                // scroll-follow resumes on the next sync-on
+                                manualLockRef.current = false;
+                            }}
                             className={`preview-toolbar-btn ${syncActive ? 'active' : ''}`}
                             title={syncActive ? 'Sync ON – preview drives editor' : 'Sync OFF – browse freely'}
                         >

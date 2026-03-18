@@ -25,6 +25,9 @@ export interface Section {
     description: string;
     dataPageId?: string;   // DB page_id slug if different from parent page
     websiteAnchor?: string; // DOM element ID on the website for preview scroll sync
+    bridgeSectionIds?: string[]; // Accepted bridge IDs from the website (legacy aliases allowed)
+    mediaPageIds?: string[]; // Accepted cms_media.page_id values (legacy aliases allowed)
+    mediaSectionIds?: string[]; // Accepted cms_media.section_id values (legacy aliases allowed)
     subsections?: Subsection[];
 }
 
@@ -89,7 +92,7 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/lapland-holiday-packages',
         group: 'content',
         sections: [
-            { id: 'packages',      label: 'Hero',            icon: '🎬', description: 'Hero med video och rubriker',                          dataPageId: 'packages', websiteAnchor: 'packages-hero' },
+            { id: 'packages',      label: 'Hero',            icon: '🎬', description: 'Hero med video och rubriker',                          dataPageId: 'packages', websiteAnchor: 'packages-hero', bridgeSectionIds: ['packages', 'packages:hero', 'packages:packages'], mediaPageIds: ['packages'], mediaSectionIds: ['packages', 'hero'] },
             { id: 'packagesIntro', label: 'Intro',           icon: '📋', description: '"Arctic Experience Awaits" — text, bild, aktiviteter', dataPageId: 'packages', websiteAnchor: 'packages-intro' },
             { id: 'package7day',   label: '7 Days',          icon: '⭐', description: 'Most Popular — 7-dagarspaket (Complete)',              dataPageId: 'packages', websiteAnchor: 'package-7day' },
             { id: 'package5day',   label: '5 Days',          icon: '🏔', description: 'Alternative — 5-dagarspaket (Adventure)',             dataPageId: 'packages', websiteAnchor: 'package-5day' },
@@ -105,7 +108,7 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/gallery',
         group: 'content',
         sections: [
-            { id: 'gallery', label: 'Gallery', icon: '🖼', description: 'Fotogalleri och bildtexter' },
+            { id: 'gallery', label: 'Gallery', icon: '🖼', description: 'Fotogalleri och bildtexter', bridgeSectionIds: ['gallery', 'gallery:hero', 'gallery:grid'], mediaPageIds: ['gallery'], mediaSectionIds: ['gallery', 'hero', 'grid'] },
         ]
     },
     {
@@ -115,8 +118,8 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/contact',
         group: 'content',
         sections: [
-            { id: 'contact', label: 'Contact', icon: '✉', description: 'Kontaktformulär och info' },
-            { id: 'faq', label: 'FAQ', icon: '❓', description: 'Vanliga frågor' },
+            { id: 'contact', label: 'Contact', icon: '✉', description: 'Kontaktformulär och info', bridgeSectionIds: ['contact', 'contact:hero', 'contact:form', 'contact:info'], mediaPageIds: ['contact'], mediaSectionIds: ['contact', 'hero', 'form', 'info'] },
+            { id: 'faq', label: 'FAQ', icon: '❓', description: 'Vanliga frågor', bridgeSectionIds: ['faq', 'faq:hero', 'faq:questions'], mediaPageIds: ['contact', 'faq'], mediaSectionIds: ['faq', 'hero', 'questions'] },
         ]
     },
     {
@@ -212,7 +215,6 @@ const URL_TO_PAGE: Record<string, string> = {
     'packages': 'packages',
     'gallery': 'gallery',
     'contact': 'contact',
-    'faq': 'contact',
     'book': 'booking',
     'privacy': 'legal',
     'terms': 'legal',
@@ -221,6 +223,10 @@ const URL_TO_PAGE: Record<string, string> = {
     'paketresor': 'packages',
     'lappland-reisepakete': 'packages',
     'pakiety-laponii': 'packages',
+};
+
+const URL_TO_SECTION: Record<string, { pageId: string; sectionId: string }> = {
+    'faq': { pageId: 'contact', sectionId: 'faq' },
 };
 
 /**
@@ -279,6 +285,11 @@ export function reverseLookupUrl(urlPath: string): { pageId: string; sectionId: 
     // Remove language prefix
     const pagePath = parts.length > 1 ? parts[parts.length - 1] : '';
 
+    const sectionRoute = URL_TO_SECTION[pagePath];
+    if (sectionRoute) {
+        return sectionRoute;
+    }
+
     // Check subsection map first (detail pages → experiences subsections)
     const subsection = URL_TO_SUBSECTION[pagePath];
     if (subsection) {
@@ -298,11 +309,12 @@ export function reverseLookupUrl(urlPath: string): { pageId: string; sectionId: 
  */
 export function lookupBySectionAttribute(cmsSectionId: string): { pageId: string; sectionId: string } | null {
     for (const page of WEBSITE_PAGES) {
-        const section = page.sections.find(s => s.id === cmsSectionId);
+        const section = page.sections.find(s =>
+            s.id === cmsSectionId || s.bridgeSectionIds?.includes(cmsSectionId)
+        );
         if (section) {
             return { pageId: page.id, sectionId: section.id };
         }
     }
     return null;
 }
-

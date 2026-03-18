@@ -101,6 +101,15 @@ export function useDraftStore() {
             setState(prev => {
                 const newDrafts = new Map(prev.drafts);
 
+                // Replace any previously loaded drafts for this exact page/section
+                // before inserting the latest server state. This avoids stale
+                // drafts lingering in memory across route changes/reloads.
+                for (const [existingKey, existingDraft] of newDrafts) {
+                    if (existingDraft.pageId === pageId && existingDraft.section === section) {
+                        newDrafts.delete(existingKey);
+                    }
+                }
+
                 // Add loaded drafts to the map
                 dbDrafts.forEach(dbDraft => {
                     const local = dbToLocal(dbDraft);
@@ -182,7 +191,19 @@ export function useDraftStore() {
     ): string | null => {
         const key = makeDraftKey({ pageId, section, contentId, contentKey, language });
         const draft = state.drafts.get(key);
-        return draft?.value ?? null;
+
+        if (!draft) {
+            return null;
+        }
+
+        // Persisted empty-string drafts are treated as absent so they cannot
+        // mask the published content. Locally edited empty drafts (isDirty=true)
+        // still render immediately while the user is editing.
+        if (draft.value === '' && !draft.isDirty) {
+            return null;
+        }
+
+        return draft.value;
     }, [state.drafts]);
 
     // =========================================================================
@@ -197,7 +218,11 @@ export function useDraftStore() {
         language: Language
     ): boolean => {
         const key = makeDraftKey({ pageId, section, contentId, contentKey, language });
-        return state.drafts.has(key);
+        const draft = state.drafts.get(key);
+        if (!draft) {
+            return false;
+        }
+        return !(draft.value === '' && !draft.isDirty);
     }, [state.drafts]);
 
     // =========================================================================

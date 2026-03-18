@@ -294,9 +294,12 @@ export function EditorScreen() {
         : content.filter(item => item.field_key.includes('.media.'));
 
     // ── Split content into text fields vs media/url fields ────────────────
-    const textContent = filteredContent.filter(item => item.field_type !== 'url');
+    // Media classification: field_type 'url' OR key-based image patterns
+    const isMediaField = (item: { field_key: string; field_type: string }) =>
+        item.field_type === 'url' || item.field_key.startsWith('gallery.images.');
+    const textContent = filteredContent.filter(item => !isMediaField(item));
     const mediaContent = [
-        ...filteredContent.filter(item => item.field_type === 'url'),
+        ...filteredContent.filter(item => isMediaField(item)),
         ...mediaPathFields,  // Include .media. fields (videoSrc, poster, scale, etc.)
     ];
 
@@ -743,7 +746,7 @@ export function EditorScreen() {
                                                             Edit the package cards here so the preview and editor stay aligned.
                                                         </p>
                                                     </div>
-                                                    <PackageEditor compact />
+                                                    <PackageEditor />
                                                 </div>
                                             )}
                                         </div>
