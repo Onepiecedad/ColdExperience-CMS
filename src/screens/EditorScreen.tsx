@@ -319,7 +319,9 @@ export function EditorScreen() {
     const visibleUploadedMedia = localMedia.filter(
         m => !contentFieldFilenames.has(m.filename.toLowerCase())
     ).length;
-    const showPackageEditor = pageId === 'packages' && sectionId === 'packages' && !subsectionId;
+    // Package editor is NOT shown in the hero section — individual packages (7day, 5day, etc.)
+    // are handled by their own sections. Showing it in hero causes editor to overflow section bounds.
+    const showPackageEditor = false;
 
     // ── Package section detection ─────────────────────────────────────────
     // Individual package sections (7/5/3/1-day) delegate to PackageEditor
