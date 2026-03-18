@@ -92,7 +92,7 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/lapland-holiday-packages',
         group: 'content',
         sections: [
-            { id: 'packages',      label: 'Hero',            icon: '🎬', description: 'Hero med video och rubriker',                          dataPageId: 'packages', websiteAnchor: 'packages-hero', bridgeSectionIds: ['packages', 'packages:hero', 'packages:packages'], mediaPageIds: ['packages'], mediaSectionIds: ['hero'] },
+            { id: 'packages',      label: 'Hero',            icon: '🎬', description: 'Hero med video och rubriker',                          dataPageId: 'packages', websiteAnchor: 'packages-hero', bridgeSectionIds: ['packages', 'packages:hero', 'packages:packages'], mediaSectionIds: ['hero'] },
             { id: 'packagesIntro', label: 'Intro',           icon: '📋', description: '"Arctic Experience Awaits" — text, bild, aktiviteter', dataPageId: 'packages', websiteAnchor: 'packages-intro', bridgeSectionIds: ['packagesIntro', 'packages:intro'] },
             { id: 'package7day',   label: '7 Days',          icon: '⭐', description: 'Most Popular — 7-dagarspaket (Complete)',              dataPageId: 'packages', websiteAnchor: 'package-7day', bridgeSectionIds: ['package7day', 'packages:package7day'], mediaSectionIds: ['package7day'] },
             { id: 'package5day',   label: '5 Days',          icon: '🏔', description: 'Alternative — 5-dagarspaket (Adventure)',             dataPageId: 'packages', websiteAnchor: 'package-5day', bridgeSectionIds: ['package5day', 'packages:package5day'], mediaSectionIds: ['package5day'] },
