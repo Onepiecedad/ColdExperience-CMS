@@ -279,7 +279,12 @@ export function EditorScreen() {
     const getFieldLabel = (item: { field_key: string; field_label?: string | null }) =>
         schemaLabelMap.get(item.field_key) || item.field_label || item.field_key;
 
-    const filteredContent = subsectionPrefix
+    // Build schema key order map for sorting: key → position index
+    const schemaOrderMap = schemaFields
+        ? new Map(schemaFields.map((f, i) => [f.key, i]))
+        : new Map<string, number>();
+
+    const filteredContent = (subsectionPrefix
         ? content.filter(item =>
             item.field_key.startsWith(subsectionPrefix) &&
             !item.field_key.includes('.meta.') &&   // Exclude SEO meta fields
@@ -288,7 +293,13 @@ export function EditorScreen() {
         )
         : schemaFieldKeys
             ? content.filter(item => schemaFieldKeys.has(item.field_key))
-            : content;
+            : content
+    ).sort((a, b) => {
+        // Sort by schema-defined order; unrecognized keys go to the end
+        const posA = schemaOrderMap.get(a.field_key) ?? 9999;
+        const posB = schemaOrderMap.get(b.field_key) ?? 9999;
+        return posA - posB;
+    });
 
     // ── Media path fields (videoSrc, poster, etc.) — show in Media tab ───
     // These are .media. fields excluded from filteredContent but should be editable
