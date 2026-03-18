@@ -130,21 +130,19 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
     //           | packagesCta
     // ─────────────────────────────────────────────────────────────────────────
 
-    // Hero — visible title + subtitle in the hero video section
+    // Hero — title, subtitle, and CTA buttons visible in the hero video section
+    // Keys MUST match pages.laplandHoliday.hero.* (what LaplandHolidayPackages.js reads)
     'packages:packages': [
-        { key: 'packages.title', type: 'text', translatable: true, label: 'Hero Title' },
-        { key: 'packages.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
-        { key: 'packages.media.videoSrc', type: 'text', translatable: false, label: 'Hero Background Video' },
-        { key: 'packages.media.poster', type: 'text', translatable: false, label: 'Hero Poster Image' },
+        { key: 'pages.laplandHoliday.hero.title', type: 'text', translatable: true, label: 'Hero Title' },
+        { key: 'pages.laplandHoliday.hero.subtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
+        { key: 'pages.laplandHoliday.hero.primaryCta', type: 'text', translatable: true, label: 'Hero Primary Button' },
+        { key: 'pages.laplandHoliday.hero.secondaryCta', type: 'text', translatable: true, label: 'Hero Secondary Button' },
     ],
 
-    // Intro — "Arctic Experience Awaits" section + shared package labels
+    // Intro — paragraphs + feature cards below hero
     'packages:packagesIntro': [
-        { key: 'packages.pageTitle', type: 'text', translatable: true, label: 'Browser Tab Title (SEO)' },
-        { key: 'packages.pageDescription', type: 'textarea', translatable: true, label: 'Meta Description (SEO)' },
-        { key: 'packages.bookButton', type: 'text', translatable: true, label: 'Book Button Label' },
-        { key: 'packages.mostPopular', type: 'text', translatable: true, label: 'Most Popular Badge' },
-        { key: 'packages.perPerson', type: 'text', translatable: true, label: 'Per Person Label' },
+        { key: 'pages.laplandHoliday.meta.title', type: 'text', translatable: true, label: 'Browser Tab Title (SEO)' },
+        { key: 'pages.laplandHoliday.meta.description', type: 'textarea', translatable: true, label: 'Meta Description (SEO)' },
     ],
 
     // Individual package sections — rendered via PackageEditor (cms_packages table)
@@ -156,10 +154,11 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
 
     // CTA — bottom call-to-action section
     'packages:packagesCta': [
-        { key: 'packages.cta.backgroundImage', type: 'url', translatable: false, label: 'CTA: Background Image' },
-        { key: 'packages.cta.title', type: 'text', translatable: true, label: 'CTA: Title' },
-        { key: 'packages.cta.description', type: 'textarea', translatable: true, label: 'CTA: Description' },
-        { key: 'packages.cta.button', type: 'text', translatable: true, label: 'CTA: Button Text' },
+        { key: 'pages.laplandHoliday.cta.title', type: 'text', translatable: true, label: 'CTA Title' },
+        { key: 'pages.laplandHoliday.cta.subtitle', type: 'textarea', translatable: true, label: 'CTA Subtitle' },
+        { key: 'pages.laplandHoliday.cta.primaryCta', type: 'text', translatable: true, label: 'CTA Primary Button' },
+        { key: 'pages.laplandHoliday.cta.secondaryCta', type: 'text', translatable: true, label: 'CTA Secondary Button' },
+        { key: 'pages.laplandHoliday.cta.outlineCta', type: 'text', translatable: true, label: 'CTA Outline Button' },
     ],
 
     // ═══════════════════════════════════════════════════════════════════════════
