@@ -120,8 +120,10 @@ export function PreviewEditorScreen() {
 
     // ── Build preview URL (debounced to avoid iframe jank) ────────────
     const page = getPageById(activePageId);
-    const previewUrl = page?.websiteUrl
-        ? `${SITE_BASE}/${language}${page.websiteUrl === '/' ? '' : page.websiteUrl}`
+    const activeSection = page?.sections.find(s => s.id === activeSectionId);
+    const effectiveUrl = activeSection?.websiteUrl || page?.websiteUrl;
+    const previewUrl = effectiveUrl
+        ? `${SITE_BASE}/${language}${effectiveUrl === '/' ? '' : effectiveUrl}`
         : `${SITE_BASE}/${language}`;
 
     const [debouncedPreviewUrl, setDebouncedPreviewUrl] = useState(previewUrl);
