@@ -4,7 +4,8 @@
 // SectionSelector dropdown.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, LogOut } from 'lucide-react';
+import { signOut } from '../services/supabase';
 
 interface ContextBarProps {
     pageLabel: string;
@@ -14,9 +15,14 @@ interface ContextBarProps {
 }
 
 export function ContextBar({ pageLabel, sectionLabel, subsectionLabel }: ContextBarProps) {
+    const handleSignOut = async () => {
+        await signOut();
+        window.location.href = '/';
+    };
+
     return (
         <div className="sticky top-0 z-40 bg-[#0a1622]/95 backdrop-blur-xl border-b border-white/[0.06]">
-            {/* Breadcrumb row (non-clickable) */}
+            {/* Breadcrumb row (non-clickable) + Logout */}
             <div className="px-4 py-3">
                 <div className="flex items-center gap-1.5 text-[13px] flex-wrap">
                     <span className="text-white/40">
@@ -34,6 +40,16 @@ export function ContextBar({ pageLabel, sectionLabel, subsectionLabel }: Context
                             <span className="text-white font-medium">{subsectionLabel}</span>
                         </>
                     )}
+
+                    {/* ── Logout button (always visible, top-right) ── */}
+                    <button
+                        onClick={handleSignOut}
+                        title="Logga ut"
+                        className="ml-auto flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all duration-200"
+                    >
+                        <LogOut size={14} />
+                        <span className="text-[11px] font-medium hidden sm:inline">Logga ut</span>
+                    </button>
                 </div>
             </div>
         </div>
