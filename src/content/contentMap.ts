@@ -122,7 +122,8 @@ export const WEBSITE_PAGES: PageConfig[] = [
         group: 'content',
         sections: [
             { id: 'contact', label: 'Contact', icon: '✉', description: 'Kontaktformulär och info', bridgeSectionIds: ['contact', 'contact:hero', 'contact:form', 'contact:info'], mediaPageIds: ['contact'], mediaSectionIds: ['contact', 'hero', 'form', 'info'] },
-            { id: 'faq', label: 'FAQ', icon: '❓', description: 'Vanliga frågor', bridgeSectionIds: ['faq', 'faq:hero', 'faq:questions'], mediaPageIds: ['contact', 'faq'], mediaSectionIds: ['faq', 'hero', 'questions'] },
+            { id: 'faqHero', label: 'FAQ Hero', icon: '🎬', description: 'FAQ-sidans hero-sektion', bridgeSectionIds: ['faq:hero'], mediaPageIds: ['contact'], mediaSectionIds: ['faqHero'] },
+            { id: 'faq', label: 'FAQ Questions', icon: '❓', description: 'Vanliga frågor och CTA', bridgeSectionIds: ['faq', 'faq:questions'], mediaPageIds: ['contact'], mediaSectionIds: ['faq'] },
         ]
     },
     {

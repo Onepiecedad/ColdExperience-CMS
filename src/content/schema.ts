@@ -523,12 +523,18 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'contact.hero.poster', type: 'url', translatable: false, label: 'Hero Poster' },
     ],
 
-    // FAQ section — hero + questions and answers (ordered to match website)
+    // ── FAQ: Hero ─────────────────────────────────────────────────────────
+    'contact:faqHero': [
+        { key: 'faq.hero.title1', type: 'text', translatable: true, label: 'Title (white)' },
+        { key: 'faq.hero.title2', type: 'text', translatable: true, label: 'Title (accent)' },
+        { key: 'faq.hero.subtitle', type: 'textarea', translatable: true, label: 'Subtitle' },
+        // Media
+        { key: 'faq.hero.videoSrc', type: 'url', translatable: false, label: 'Background Video' },
+        { key: 'faq.hero.poster', type: 'url', translatable: false, label: 'Poster Image' },
+    ],
+
+    // ── FAQ: Questions & CTA ─────────────────────────────────────────────
     'contact:faq': [
-        // Hero
-        { key: 'faq.hero.title1', type: 'text', translatable: true, label: 'FAQ Hero: Title (white)' },
-        { key: 'faq.hero.title2', type: 'text', translatable: true, label: 'FAQ Hero: Title (accent)' },
-        { key: 'faq.hero.subtitle', type: 'textarea', translatable: true, label: 'FAQ Hero: Subtitle' },
         // Section title ("Common Questions")
         { key: 'contact.faqTitle1', type: 'text', translatable: true, label: 'Section Title (white)' },
         { key: 'contact.faqTitle2', type: 'text', translatable: true, label: 'Section Title (accent)' },
@@ -560,8 +566,6 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'contact.callNow', type: 'text', translatable: true, label: 'CTA: Call Button' },
         { key: 'contact.sendEmail', type: 'text', translatable: true, label: 'CTA: Email Button' },
         // Media
-        { key: 'faq.hero.videoSrc', type: 'url', translatable: false, label: 'FAQ Hero Video' },
-        { key: 'faq.hero.poster', type: 'url', translatable: false, label: 'FAQ Hero Poster' },
         { key: 'faq.clothesImage', type: 'url', translatable: false, label: 'Clothes Packing Image' },
     ],
 
