@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2, Snowflake, Shield, ChevronRight, Mail } from 'lucide-react';
 import { signInWithGoogle, signInWithMagicLink } from '../services/supabase';
-import type { User } from '../types';
-
 interface AuthScreenProps {
-    onAuthenticated: (user: User) => void;
     error?: string | null;
 }
 
@@ -26,7 +23,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ error: externalError }) 
                 setLoading(false);
             }
             // If successful, the OAuth flow will redirect and handle the rest
-        } catch (err) {
+        } catch {
             setError('An unexpected error occurred. Please try again.');
             setLoading(false);
         }
@@ -49,7 +46,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ error: externalError }) 
             } else {
                 setMagicLinkSent(true);
             }
-        } catch (err) {
+        } catch {
             setError('Failed to send magic link. Please try again.');
         } finally {
             setMagicLinkLoading(false);

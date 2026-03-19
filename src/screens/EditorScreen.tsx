@@ -86,7 +86,13 @@ function JsonTextarea({ value, onChange, className, placeholder }: {
     );
 }
 
-export function EditorScreen() {
+export function EditorScreen({
+    activeLanguage,
+    onLanguageChange,
+}: {
+    activeLanguage?: Language;
+    onLanguageChange?: (language: Language) => void;
+} = {}) {
     const { pageId, sectionId, subsectionId } = useParams<{
         pageId: string;
         sectionId: string;
@@ -104,8 +110,16 @@ export function EditorScreen() {
         const mimeType = item.mime_type?.toLowerCase() || '';
         return videoExtensions.some(ext => filename.endsWith(ext)) || mimeType.startsWith('video/');
     };
-    const [language, setLanguage] = useState<Language>('en');
+    const [localLanguage, setLocalLanguage] = useState<Language>('en');
     const [compareLang, setCompareLang] = useState<Language | null>(null);
+    const language = activeLanguage ?? localLanguage;
+
+    const setLanguage = useCallback((nextLanguage: Language) => {
+        if (!activeLanguage) {
+            setLocalLanguage(nextLanguage);
+        }
+        onLanguageChange?.(nextLanguage);
+    }, [activeLanguage, onLanguageChange]);
 
 
     // Fetch data from Supabase
@@ -271,6 +285,7 @@ export function EditorScreen() {
     // Build schema key and valid field set to exclude stale/removed fields from the DB
     const schemaKey = `${pageId}:${sectionId}` as SchemaSection;
     const schemaFields = (CONTENT_SCHEMA as Record<string, { key: string; label?: string }[]>)[schemaKey];
+    const schemaFieldsWithThumbnails = schemaFields as Array<{ key: string; label?: string; thumbnailSrc?: string }> | undefined;
     const schemaFieldKeys = schemaFields ? new Set(schemaFields.map(f => f.key)) : null;
     // Build a label override map: schema labels take precedence over DB field_label
     const schemaLabelMap = schemaFields
@@ -285,8 +300,12 @@ export function EditorScreen() {
         : new Map<string, number>();
 
     // Build thumbnail map: key → image src (for gallery captions)
-    const schemaThumbnailMap = schemaFields
-        ? new Map(schemaFields.filter((f: any) => f.thumbnailSrc).map((f: any) => [f.key, f.thumbnailSrc as string]))
+    const schemaThumbnailMap = schemaFieldsWithThumbnails
+        ? new Map(
+            schemaFieldsWithThumbnails
+                .filter((f): f is { key: string; label?: string; thumbnailSrc: string } => typeof f.thumbnailSrc === 'string')
+                .map(f => [f.key, f.thumbnailSrc])
+        )
         : new Map<string, string>();
 
     const filteredContent = (subsectionPrefix

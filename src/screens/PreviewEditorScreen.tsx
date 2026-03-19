@@ -23,8 +23,11 @@ import {
     getSubsectionWebsiteUrl,
 } from '../content/contentMap';
 import type { PageConfig, Section, Subsection } from '../content/contentMap';
+import type { Language } from '../types';
 
 const SITE_BASE = 'https://coldexperience.se';
+const SITE_ORIGIN = new URL(SITE_BASE).origin;
+const SUPPORTED_LANGUAGES: Language[] = ['en', 'sv', 'de', 'pl'];
 
 type DeviceMode = 'desktop' | 'tablet' | 'mobile';
 
@@ -53,6 +56,10 @@ function isBridgeMessage(data: unknown): data is BridgeMessage {
     );
 }
 
+function isLanguage(value: string | undefined): value is Language {
+    return !!value && SUPPORTED_LANGUAGES.includes(value as Language);
+}
+
 export function PreviewEditorScreen() {
     const navigate = useNavigate();
     const { pageId: urlPageId, sectionId: urlSectionId, subsectionId: urlSubsectionId } = useParams<{
@@ -69,7 +76,7 @@ export function PreviewEditorScreen() {
     const [bridgeReady, setBridgeReady] = useState(false);
     const [device, setDevice] = useState<DeviceMode>('desktop');
     const [isLoading, setIsLoading] = useState(true);
-    const [language, setLanguage] = useState('en');
+    const [language, setLanguage] = useState<Language>('en');
     const [showSystemMenu, setShowSystemMenu] = useState(false);
 
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -139,6 +146,8 @@ export function PreviewEditorScreen() {
     // always reads the latest value synchronously.
     const handleBridgeMessage = useCallback((event: MessageEvent) => {
         if (!isBridgeMessage(event.data)) return;
+        if (event.origin !== SITE_ORIGIN) return;
+        if (event.source !== iframeRef.current?.contentWindow) return;
         if (!syncActive) return;
 
         const msg = event.data;
@@ -215,7 +224,7 @@ export function PreviewEditorScreen() {
                     // the navigation and release the lock.
                     const isSamePage = lookup.pageId === activePageIdRef.current;
                     if ((isSubsectionActive || isManuallyLocked || initGuardRef.current) && isSamePage) {
-                        if (msg.lang) setLanguage(msg.lang);
+                        if (isLanguage(msg.lang)) setLanguage(msg.lang);
                         break;
                     }
 
@@ -231,13 +240,13 @@ export function PreviewEditorScreen() {
                         : `/edit/${lookup.pageId}/sections/${lookup.sectionId}`;
                     navigate(path, { replace: true });
                 }
-                if (msg.lang) {
+                if (isLanguage(msg.lang)) {
                     setLanguage(msg.lang);
                 }
                 break;
 
             case 'language-change':
-                if (msg.lang) {
+                if (isLanguage(msg.lang)) {
                     setLanguage(msg.lang);
                 }
                 break;
@@ -278,7 +287,7 @@ export function PreviewEditorScreen() {
                 source: 'coldexperience-cms',
                 type: 'scroll-to-section',
                 sectionId: bridgeId,
-            }, '*');
+            }, SITE_ORIGIN);
         }
 
         // Navigate the iframe to the correct page / detail page
@@ -472,7 +481,10 @@ export function PreviewEditorScreen() {
                 </div>
 
                 {/* Editor Screen (reuse existing component) */}
-                <EditorScreen />
+                <EditorScreen
+                    activeLanguage={language}
+                    onLanguageChange={setLanguage}
+                />
             </div>
         </div>
     );

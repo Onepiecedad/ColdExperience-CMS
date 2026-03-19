@@ -89,10 +89,7 @@ export function log(
     notifySubscribers();
 
     // Also log to console in dev
-    if (import.meta.env.DEV) {
-        const icon = { info: 'ℹ️', success: '✅', warn: '⚠️', error: '❌' }[level];
-        console.log(`${icon} [${source}] ${message}`, details || '');
-    }
+    void import.meta.env.DEV;
 }
 
 // Convenience methods

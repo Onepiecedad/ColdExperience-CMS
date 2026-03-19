@@ -75,7 +75,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
         setDragActive(false);
     };
 
-    const handleFileUpload = async (files: FileList | null) => {
+    const handleFileUpload = useCallback(async (files: FileList | null) => {
         if (!files || files.length === 0) return;
         setUploading(true);
         try {
@@ -87,7 +87,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
         } finally {
             setUploading(false);
         }
-    };
+    }, [onChange]);
 
     const handleDrag = useCallback((e: React.DragEvent) => {
         e.preventDefault();
@@ -101,7 +101,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
         e.stopPropagation();
         setDragActive(false);
         handleFileUpload(e.dataTransfer.files);
-    }, []);
+    }, [handleFileUpload]);
 
     const handleUrlConfirm = () => {
         if (urlInput.trim()) {

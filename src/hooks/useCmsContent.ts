@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
+import { logInfo } from '../services/debugLog';
 
 // Import static content data as fallback
 import cmsContentData from '../../cms-content-data.json';
@@ -75,6 +76,8 @@ export interface CmsData {
     settings: CmsSettings;
 }
 
+type SerializedArrayValue = string | unknown[];
+
 interface CmsContentState {
     data: CmsData;
     loading: boolean;
@@ -125,16 +128,10 @@ export function useCmsContent() {
         pageIdMapRef.current = state.pageIdMap;
     }, [state.pendingChanges, state.data, state.pageIdMap]);
 
-    // Load content from Supabase on mount
-    useEffect(() => {
-        loadFromSupabase();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     /**
      * Load page slug set from Supabase (validates which pages exist)
      */
-    const loadPageIds = async (): Promise<Map<string, string>> => {
+    const loadPageIds = useCallback(async (): Promise<Map<string, string>> => {
         const pageIdMap = new Map<string, string>();
 
         try {
@@ -151,18 +148,18 @@ export function useCmsContent() {
                 pageIdMap.set(page.slug, page.slug); // Map slug -> slug for consistency
             });
 
-            console.log(`📄 Loaded ${pageIdMap.size} page mappings`);
+            logInfo('useCmsContent', 'Loaded page mappings', { count: pageIdMap.size });
         } catch (error) {
             console.warn('Failed to load page IDs:', error);
         }
 
         return pageIdMap;
-    };
+    }, []);
 
     /**
      * Load all content from Supabase database
      */
-    const loadFromSupabase = async () => {
+    const loadFromSupabase = useCallback(async () => {
         setState(prev => ({ ...prev, loading: true }));
 
         try {
@@ -183,9 +180,9 @@ export function useCmsContent() {
 
             // If we have database content, merge it with local data
             if (dbContent && dbContent.length > 0) {
-                console.log(`📥 Loaded ${dbContent.length} content items from Supabase`);
+                logInfo('useCmsContent', 'Loaded content items from Supabase', { count: dbContent.length });
 
-                const newData = JSON.parse(JSON.stringify(state.data));
+                const newData = JSON.parse(JSON.stringify(dataRef.current));
 
                 dbContent.forEach((item: DbContent) => {
                     const { page_slug, section_key, field_key, content_en, content_sv, content_de, content_pl } = item;
@@ -208,7 +205,7 @@ export function useCmsContent() {
                     }
 
                     // Helper to parse JSON arrays back from stored strings
-                    const parseValue = (val: string | undefined): string | any[] => {
+                    const parseValue = (val: string | undefined): SerializedArrayValue => {
                         if (!val) return '';
                         // Check if it's a JSON array (starts with [ and ends with ])
                         const trimmed = val.trim();
@@ -238,7 +235,7 @@ export function useCmsContent() {
                     pageIdMap,
                 }));
             } else {
-                console.log('📋 No database content found, using local JSON data');
+                logInfo('useCmsContent', 'No database content found, using local JSON data');
                 setState(prev => ({ ...prev, loading: false, pageIdMap }));
             }
 
@@ -249,7 +246,7 @@ export function useCmsContent() {
                 .order('display_order');
 
             if (dbPackages && dbPackages.length > 0) {
-                console.log(`📦 Loaded ${dbPackages.length} packages from Supabase`);
+                logInfo('useCmsContent', 'Loaded packages from Supabase', { count: dbPackages.length });
                 const mappedPackages: Package[] = dbPackages.map((p: {
                     package_key: string;
                     price_sek: number;
@@ -281,7 +278,12 @@ export function useCmsContent() {
             console.error('Error loading from Supabase:', error);
             setState(prev => ({ ...prev, loading: false, error: error as Error }));
         }
-    };
+    }, [loadPageIds]);
+
+    // Load content from Supabase on mount
+    useEffect(() => {
+        void loadFromSupabase();
+    }, [loadFromSupabase]);
 
     /**
      * Get a content value from the nested structure
@@ -407,7 +409,7 @@ export function useCmsContent() {
      * Save all pending changes to Supabase
      */
     const saveChanges = useCallback(async () => {
-        console.log('💾 Saving changes to Supabase...');
+        logInfo('useCmsContent', 'Saving changes to Supabase');
 
         setState(prev => ({ ...prev, loading: true }));
 
@@ -420,12 +422,12 @@ export function useCmsContent() {
             const changes = Array.from(pendingChanges.values());
 
             if (changes.length === 0) {
-                console.log('✅ No changes to save');
+                logInfo('useCmsContent', 'No changes to save');
                 setState(prev => ({ ...prev, loading: false, hasChanges: false }));
                 return true;
             }
 
-            console.log(`📤 Saving ${changes.length} content changes...`);
+            logInfo('useCmsContent', 'Saving content changes', { count: changes.length });
 
             // Group changes by unique content item
             const contentUpdates = new Map<string, DbContent>();
@@ -501,7 +503,7 @@ export function useCmsContent() {
                 }
             }
 
-            console.log(`✅ Successfully saved ${upsertData.length} content items to Supabase`);
+            logInfo('useCmsContent', 'Successfully saved content items to Supabase', { count: upsertData.length });
 
             setState(prev => ({
                 ...prev,
@@ -537,7 +539,7 @@ export function useCmsContent() {
      * Sync all local JSON data to Supabase (for initial population)
      */
     const syncToSupabase = useCallback(async () => {
-        console.log('🔄 Syncing ALL local content to Supabase...');
+        logInfo('useCmsContent', 'Syncing all local content to Supabase');
 
         setState(prev => ({ ...prev, loading: true }));
 
@@ -562,7 +564,7 @@ export function useCmsContent() {
                 const pageId = pageIdMap.get(pageSlug);
 
                 if (!pageId) {
-                    console.log(`⚠️ No page mapping for ${pageSlug}, skipping...`);
+                    logInfo('useCmsContent', 'Skipping page without mapping during sync', { pageSlug });
                     continue;
                 }
 
@@ -592,7 +594,7 @@ export function useCmsContent() {
                 }
             }
 
-            console.log(`📤 Syncing ${upsertData.length} content items to Supabase...`);
+            logInfo('useCmsContent', 'Syncing content items to Supabase', { count: upsertData.length });
 
             // First, clear existing content for the pages we're syncing
             for (const pageSlug of Object.keys(content)) {
@@ -624,11 +626,17 @@ export function useCmsContent() {
                     }
                 } else {
                     successCount += batch.length;
-                    console.log(`✓ Batch ${Math.floor(i / BATCH_SIZE) + 1}: ${batch.length} items`);
+                    logInfo('useCmsContent', 'Synced content batch', {
+                        batch: Math.floor(i / BATCH_SIZE) + 1,
+                        count: batch.length,
+                    });
                 }
             }
 
-            console.log(`✅ Content synced to Supabase! ${successCount}/${upsertData.length} items`);
+            logInfo('useCmsContent', 'Content synced to Supabase', {
+                successCount,
+                totalCount: upsertData.length,
+            });
             setState(prev => ({ ...prev, loading: false }));
             return true;
 
@@ -637,14 +645,14 @@ export function useCmsContent() {
             setState(prev => ({ ...prev, loading: false, error: error as Error }));
             return false;
         }
-    }, [state.data, state.pageIdMap]);
+    }, [loadPageIds, state.data, state.pageIdMap]);
 
     /**
      * Force resync from the ORIGINAL local JSON file (not state.data which may be corrupted)
      * This bypasses any corrupted data that may have been loaded from Supabase
      */
     const forceResyncFromLocalJson = useCallback(async () => {
-        console.log('🔄 FORCE RESYNC: Using original local JSON file (bypassing state)...');
+        logInfo('useCmsContent', 'Force resync using original local JSON file');
 
         setState(prev => ({ ...prev, loading: true }));
 
@@ -653,7 +661,7 @@ export function useCmsContent() {
             const originalContent = (cmsContentData as unknown as CmsData).content;
 
             // Ensure we have page IDs
-            let pageIdMap = state.pageIdMap;
+            let pageIdMap = pageIdMapRef.current;
             if (pageIdMap.size === 0) {
                 pageIdMap = await loadPageIds();
             }
@@ -685,7 +693,7 @@ export function useCmsContent() {
                 const pageId = pageIdMap.get(pageSlug);
 
                 if (!pageId) {
-                    console.log(`⚠️ No page mapping for ${pageSlug}, skipping...`);
+                    logInfo('useCmsContent', 'Skipping page without mapping during force resync', { pageSlug });
                     continue;
                 }
 
@@ -701,7 +709,11 @@ export function useCmsContent() {
 
                         if (isArray) {
                             arrayFieldCount++;
-                            console.log(`   🔧 Array field: ${pageSlug}/${section}/${field}`);
+                            logInfo('useCmsContent', 'Found array field during force resync', {
+                                pageSlug,
+                                section,
+                                field,
+                            });
                         }
 
                         // Serialize arrays as JSON to preserve object structure
@@ -728,10 +740,13 @@ export function useCmsContent() {
                 }
             }
 
-            console.log(`📦 Prepared ${upsertData.length} content items (${arrayFieldCount} array fields)`);
+            logInfo('useCmsContent', 'Prepared content items for force resync', {
+                totalCount: upsertData.length,
+                arrayFieldCount,
+            });
 
             // First, clear existing content for the pages we're syncing
-            console.log('🗑️ Clearing existing content...');
+            logInfo('useCmsContent', 'Clearing existing content before force resync');
             for (const pageSlug of Object.keys(originalContent)) {
                 await supabase
                     .from('cms_content')
@@ -740,7 +755,7 @@ export function useCmsContent() {
             }
 
             // Insert in batches of 50
-            console.log('📤 Inserting clean data...');
+            logInfo('useCmsContent', 'Inserting clean data during force resync');
             const BATCH_SIZE = 50;
             let successCount = 0;
 
@@ -762,11 +777,17 @@ export function useCmsContent() {
                     }
                 } else {
                     successCount += batch.length;
-                    console.log(`✓ Batch ${Math.floor(i / BATCH_SIZE) + 1}: ${batch.length} items`);
+                    logInfo('useCmsContent', 'Inserted force-resync batch', {
+                        batch: Math.floor(i / BATCH_SIZE) + 1,
+                        count: batch.length,
+                    });
                 }
             }
 
-            console.log(`✅ FORCE RESYNC COMPLETE! ${successCount}/${upsertData.length} items synced`);
+            logInfo('useCmsContent', 'Force resync completed', {
+                successCount,
+                totalCount: upsertData.length,
+            });
 
             // Reload state from Supabase to get the fresh data
             await loadFromSupabase();
@@ -779,7 +800,7 @@ export function useCmsContent() {
             setState(prev => ({ ...prev, loading: false, error: error as Error }));
             return false;
         }
-    }, [state.pageIdMap]);
+    }, [loadFromSupabase, loadPageIds]);
 
     return {
         // Raw data access

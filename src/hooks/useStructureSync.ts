@@ -44,7 +44,7 @@ export function useStructureSync(): StructureSyncState {
     useEffect(() => {
         const stored = localStorage.getItem(LAST_SYNC_KEY);
         setLastSyncedAt(stored);
-    }, []);
+    }, [mapPagesCount]);
 
     // Fetch DB pages and compute diff
     const refresh = useCallback(async () => {
@@ -72,7 +72,7 @@ export function useStructureSync(): StructureSyncState {
             setError(message);
             setStatus('error');
         }
-    }, []);
+    }, [mapPagesCount]);
 
     // Initial load
     useEffect(() => {

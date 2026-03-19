@@ -68,6 +68,16 @@ function dbToLocal(dbDraft: CmsDraft): LocalDraft {
     };
 }
 
+function countDirtyDrafts(drafts: Map<string, LocalDraft>): number {
+    let count = 0;
+    for (const draft of drafts.values()) {
+        if (draft.isDirty) {
+            count++;
+        }
+    }
+    return count;
+}
+
 // ============================================================================
 // Hook
 // ============================================================================
@@ -136,6 +146,83 @@ export function useDraftStore() {
     }, []);
 
     // =========================================================================
+    // Flush pending syncs to Supabase
+    // =========================================================================
+
+    const flushSync = useCallback(async () => {
+        if (isSyncingRef.current || pendingSyncRef.current.size === 0) {
+            return;
+        }
+
+        isSyncingRef.current = true;
+        const toSync = new Map(pendingSyncRef.current);
+        pendingSyncRef.current.clear();
+
+        setState(prev => ({ ...prev, syncStatus: 'syncing' }));
+
+        logInfo('DraftStore', `Syncing ${toSync.size} drafts to Supabase...`);
+
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (const [key, draft] of toSync) {
+            try {
+                await upsertDraft({
+                    page_id: draft.pageId,
+                    section: draft.section,
+                    content_id: draft.contentId,
+                    content_key: draft.contentKey,
+                    language: draft.language,
+                    value: draft.value,
+                });
+
+                // Mark as synced in local state
+                setState(prev => {
+                    const newDrafts = new Map(prev.drafts);
+                    const existing = newDrafts.get(key);
+                    if (existing) {
+                        newDrafts.set(key, { ...existing, isDirty: false });
+                    }
+                    return {
+                        ...prev,
+                        drafts: newDrafts,
+                        pendingSyncCount: countDirtyDrafts(newDrafts),
+                    };
+                });
+
+                successCount++;
+            } catch (err) {
+                const message = err instanceof Error ? err.message : 'Unknown sync error';
+                logWarn('DraftStore', `Failed to sync draft: ${key} (${message})`);
+                // Re-queue for retry
+                pendingSyncRef.current.set(key, draft);
+                errorCount++;
+            }
+        }
+
+        const now = new Date();
+        const status: SyncStatus = errorCount > 0 ? 'error' : 'synced';
+
+        setState(prev => ({
+            ...prev,
+            syncStatus: status,
+            lastSyncedAt: now,
+            error: errorCount > 0 ? `Failed to sync ${errorCount} drafts` : null,
+        }));
+
+        if (successCount > 0) {
+            logSuccess('DraftStore', `Synced ${successCount} drafts`);
+        }
+
+        isSyncingRef.current = false;
+
+        // If there are retries queued, schedule another sync
+        if (pendingSyncRef.current.size > 0) {
+            syncTimeoutRef.current = setTimeout(flushSync, SYNC_DEBOUNCE_MS * 2);
+        }
+    }, []);
+
+    // =========================================================================
     // Update a draft locally + queue for sync
     // =========================================================================
 
@@ -154,6 +241,8 @@ export function useDraftStore() {
             isDirty: true,
         };
 
+        pendingSyncRef.current.set(key, localDraft);
+
         // Update local state immediately (optimistic)
         setState(prev => {
             const newDrafts = new Map(prev.drafts);
@@ -161,12 +250,9 @@ export function useDraftStore() {
             return {
                 ...prev,
                 drafts: newDrafts,
-                pendingSyncCount: prev.pendingSyncCount + 1,
+                pendingSyncCount: countDirtyDrafts(newDrafts),
             };
         });
-
-        // Add to pending sync queue
-        pendingSyncRef.current.set(key, localDraft);
 
         // Debounce the sync
         if (syncTimeoutRef.current) {
@@ -174,9 +260,9 @@ export function useDraftStore() {
         }
 
         syncTimeoutRef.current = setTimeout(() => {
-            flushSync();
+            void flushSync();
         }, SYNC_DEBOUNCE_MS);
-    }, []);
+    }, [flushSync]);
 
     // =========================================================================
     // Get draft value (returns null if no draft exists)
@@ -226,79 +312,6 @@ export function useDraftStore() {
     }, [state.drafts]);
 
     // =========================================================================
-    // Flush pending syncs to Supabase
-    // =========================================================================
-
-    const flushSync = useCallback(async () => {
-        if (isSyncingRef.current || pendingSyncRef.current.size === 0) {
-            return;
-        }
-
-        isSyncingRef.current = true;
-        const toSync = new Map(pendingSyncRef.current);
-        pendingSyncRef.current.clear();
-
-        setState(prev => ({ ...prev, syncStatus: 'syncing' }));
-
-        logInfo('DraftStore', `Syncing ${toSync.size} drafts to Supabase...`);
-
-        let successCount = 0;
-        let errorCount = 0;
-
-        for (const [key, draft] of toSync) {
-            try {
-                await upsertDraft({
-                    page_id: draft.pageId,
-                    section: draft.section,
-                    content_id: draft.contentId,
-                    content_key: draft.contentKey,
-                    language: draft.language,
-                    value: draft.value,
-                });
-
-                // Mark as synced in local state
-                setState(prev => {
-                    const newDrafts = new Map(prev.drafts);
-                    const existing = newDrafts.get(key);
-                    if (existing) {
-                        newDrafts.set(key, { ...existing, isDirty: false });
-                    }
-                    return { ...prev, drafts: newDrafts };
-                });
-
-                successCount++;
-            } catch (err) {
-                logWarn('DraftStore', `Failed to sync draft: ${key}`);
-                // Re-queue for retry
-                pendingSyncRef.current.set(key, draft);
-                errorCount++;
-            }
-        }
-
-        const now = new Date();
-        const status: SyncStatus = errorCount > 0 ? 'error' : 'synced';
-
-        setState(prev => ({
-            ...prev,
-            syncStatus: status,
-            lastSyncedAt: now,
-            pendingSyncCount: pendingSyncRef.current.size,
-            error: errorCount > 0 ? `Failed to sync ${errorCount} drafts` : null,
-        }));
-
-        if (successCount > 0) {
-            logSuccess('DraftStore', `Synced ${successCount} drafts`);
-        }
-
-        isSyncingRef.current = false;
-
-        // If there are retries queued, schedule another sync
-        if (pendingSyncRef.current.size > 0) {
-            syncTimeoutRef.current = setTimeout(flushSync, SYNC_DEBOUNCE_MS * 2);
-        }
-    }, []);
-
-    // =========================================================================
     // Clear drafts for a section (after publish)
     // =========================================================================
 
@@ -309,6 +322,12 @@ export function useDraftStore() {
             // Delete from Supabase
             await deleteDraftsForSection(pageId, section);
 
+            for (const [key, draft] of pendingSyncRef.current.entries()) {
+                if (draft.pageId === pageId && draft.section === section) {
+                    pendingSyncRef.current.delete(key);
+                }
+            }
+
             // Clear from local state
             setState(prev => {
                 const newDrafts = new Map(prev.drafts);
@@ -317,7 +336,11 @@ export function useDraftStore() {
                         newDrafts.delete(key);
                     }
                 }
-                return { ...prev, drafts: newDrafts };
+                return {
+                    ...prev,
+                    drafts: newDrafts,
+                    pendingSyncCount: countDirtyDrafts(newDrafts),
+                };
             });
 
             logSuccess('DraftStore', `Cleared drafts for ${section}`);
@@ -337,12 +360,8 @@ export function useDraftStore() {
             if (syncTimeoutRef.current) {
                 clearTimeout(syncTimeoutRef.current);
             }
-            // Flush any remaining syncs
-            if (pendingSyncRef.current.size > 0) {
-                flushSync();
-            }
         };
-    }, [flushSync]);
+    }, []);
 
     // =========================================================================
     // Return

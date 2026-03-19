@@ -102,7 +102,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
     }, [pageId, sectionId]);
 
     // Fetch all media for the picker
-    const fetchAllMedia = async () => {
+    const fetchAllMedia = useCallback(async () => {
         try {
             const data = await getMedia();
             // Filter out media already assigned to this section
@@ -113,14 +113,14 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
         } catch (err) {
             console.error('Failed to fetch all media:', err);
         }
-    };
+    }, [pageId, sectionId]);
 
     useEffect(() => {
         fetchSectionMedia();
     }, [fetchSectionMedia]);
 
     // Handle file upload to this section
-    const handleUpload = async (files: FileList | null) => {
+    const handleUpload = useCallback(async (files: FileList | null) => {
         if (!files || files.length === 0) return;
 
         setUploading(true);
@@ -134,7 +134,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
         } finally {
             setUploading(false);
         }
-    };
+    }, [pageId, sectionId]);
 
     // Handle deleting media
     const handleDelete = async (item: CmsMedia) => {
@@ -193,7 +193,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
         e.stopPropagation();
         setDragActive(false);
         handleUpload(e.dataTransfer.files);
-    }, []);
+    }, [handleUpload]);
 
     const formatBytes = (bytes: number | null): string => {
         if (!bytes) return '—';
@@ -203,10 +203,10 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
     };
 
     // Open media picker and load all media
-    const openMediaPicker = () => {
+    const openMediaPicker = useCallback(() => {
         fetchAllMedia();
         setShowMediaPicker(true);
-    };
+    }, [fetchAllMedia]);
 
     if (loading) {
         return (

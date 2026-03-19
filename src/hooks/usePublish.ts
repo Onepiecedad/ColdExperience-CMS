@@ -236,20 +236,22 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
     const executePublish = useCallback(async (): Promise<boolean> => {
         if (!pageId || !pageSlug || !summary) return false;
 
+        const currentSummary = summary;
+
         setStatus('loading');
         setError(null);
 
         logInfo('publish', 'Publishing started', {
-            drafts: summary.draftsToPublish.length,
+            drafts: currentSummary.draftsToPublish.length,
             suggestions: suggestionsRef.current.filter(s => s.enabled).length,
         });
 
         try {
             // 1. Write all drafts to cms_content
-            for (const item of summary.draftsToPublish) {
+            for (const item of currentSummary.draftsToPublish) {
                 await upsertContentFromDraft(
                     item.draft.content_id,
-                    pageSlug!,  // cms_content uses page_slug, not UUID
+                    pageSlug,
                     item.draft.section,
                     item.contentKey,
                     item.draft.language,
@@ -285,7 +287,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
 
             logInfo('publish', 'Publish complete', {
                 version: newVersion,
-                fieldsPublished: summary.draftsToPublish.length,
+                fieldsPublished: currentSummary.draftsToPublish.length,
             });
 
             return true;
@@ -296,7 +298,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             logInfo('publish', 'Publish failed', { error: message });
             return false;
         }
-    }, [pageId, summary]);
+    }, [pageId, pageSlug, summary]);
 
     /**
      * Reset the publish state

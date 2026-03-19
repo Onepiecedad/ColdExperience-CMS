@@ -5,7 +5,7 @@
 // Ticket 9: Website Used Keys integration
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
     ChevronLeft,
@@ -40,6 +40,23 @@ interface UsedKeysData {
     keys: string[];
 }
 
+interface SaveFilePickerHandle {
+    createWritable: () => Promise<{
+        write: (data: string) => Promise<void>;
+        close: () => Promise<void>;
+    }>;
+}
+
+interface SaveFilePickerWindow extends Window {
+    showSaveFilePicker?: (options: {
+        suggestedName: string;
+        types: Array<{
+            description: string;
+            accept: Record<string, string[]>;
+        }>;
+    }) => Promise<SaveFilePickerHandle>;
+}
+
 export function SchemaCoverageScreen() {
     const [schemaKeys, setSchemaKeys] = useState<string[]>([]);
     const [dbKeys, setDbKeys] = useState<string[]>([]);
@@ -60,14 +77,9 @@ export function SchemaCoverageScreen() {
 
     // Website used keys from static import
     const usedKeysData = websiteUsedKeysData as UsedKeysData;
-    const usedKeys = usedKeysData.keys || [];
+    const usedKeys = useMemo(() => usedKeysData.keys || [], [usedKeysData]);
 
-    // Load data on mount
-    useEffect(() => {
-        loadData();
-    }, []);
-
-    const loadData = async () => {
+    const loadData = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
@@ -96,7 +108,12 @@ export function SchemaCoverageScreen() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [usedKeys]);
+
+    // Load data on mount
+    useEffect(() => {
+        void loadData();
+    }, [loadData]);
 
     // Compute allowed, blocked, and used lists
     const { allowedKeys, blockedKeys, usedKeysInfo, missingInCmsCount } = useMemo(() => {
@@ -272,10 +289,10 @@ export function SchemaCoverageScreen() {
         // Prefer File System Access API when available (more reliable than <a download>
         // on Safari/locked-down browsers).
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker
-        const anyWindow = window as any;
-        if (anyWindow?.showSaveFilePicker) {
+        const saveFilePickerWindow = window as SaveFilePickerWindow;
+        if (saveFilePickerWindow.showSaveFilePicker) {
             try {
-                const handle = await anyWindow.showSaveFilePicker({
+                const handle = await saveFilePickerWindow.showSaveFilePicker({
                     suggestedName: 'schema.pending.json',
                     types: [
                         {
@@ -287,7 +304,7 @@ export function SchemaCoverageScreen() {
                 const writable = await handle.createWritable();
                 await writable.write(json);
                 await writable.close();
-            } catch (e) {
+            } catch {
                 // User cancelled or browser blocked; fall back to blob download below.
             }
         }
