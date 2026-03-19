@@ -529,6 +529,10 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'faq.hero.title1', type: 'text', translatable: true, label: 'FAQ Hero: Title (white)' },
         { key: 'faq.hero.title2', type: 'text', translatable: true, label: 'FAQ Hero: Title (accent)' },
         { key: 'faq.hero.subtitle', type: 'textarea', translatable: true, label: 'FAQ Hero: Subtitle' },
+        // Section title ("Common Questions")
+        { key: 'contact.faqTitle1', type: 'text', translatable: true, label: 'Section Title (white)' },
+        { key: 'contact.faqTitle2', type: 'text', translatable: true, label: 'Section Title (accent)' },
+        { key: 'contact.faqSubtitle', type: 'textarea', translatable: true, label: 'Section Subtitle' },
         // Questions 1–10
         { key: 'faq.faq.item1.question', type: 'text', translatable: true, label: '01 Question' },
         { key: 'faq.faq.item1.answer', type: 'textarea', translatable: true, label: '01 Answer' },
@@ -550,8 +554,11 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'faq.faq.item9.answer', type: 'textarea', translatable: true, label: '09 Answer' },
         { key: 'faq.faq.item10.question', type: 'text', translatable: true, label: '10 Question' },
         { key: 'faq.faq.item10.answer', type: 'textarea', translatable: true, label: '10 Answer' },
-        // Meta
-        { key: 'faq.meta.description', type: 'textarea', translatable: true, label: 'FAQ: Meta Description' },
+        // CTA ("Ready to book your adventure?")
+        { key: 'contact.ctaTitle', type: 'text', translatable: true, label: 'CTA Title' },
+        { key: 'contact.ctaSubtitle', type: 'textarea', translatable: true, label: 'CTA Subtitle' },
+        { key: 'contact.callNow', type: 'text', translatable: true, label: 'CTA: Call Button' },
+        { key: 'contact.sendEmail', type: 'text', translatable: true, label: 'CTA: Email Button' },
         // Media
         { key: 'faq.hero.videoSrc', type: 'url', translatable: false, label: 'FAQ Hero Video' },
         { key: 'faq.hero.poster', type: 'url', translatable: false, label: 'FAQ Hero Poster' },
