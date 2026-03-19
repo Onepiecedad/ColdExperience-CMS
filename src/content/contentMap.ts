@@ -135,9 +135,8 @@ export const WEBSITE_PAGES: PageConfig[] = [
         websiteUrl: '/book',
         group: 'content',
         sections: [
-            { id: 'booking', label: 'Booking Form', icon: '📅', description: 'Huvudbokningsformulär' },
-            { id: 'book', label: 'Book Section', icon: '📋', description: 'Bokningsbox och CTA' },
-            { id: 'form', label: 'Form Fields', icon: '📝', description: 'Formulärfält och validering' },
+            { id: 'bookingHero', label: 'Booking Hero', icon: '🎬', description: 'Booking hero-sektion', bridgeSectionIds: ['booking:hero'], mediaPageIds: ['booking'], mediaSectionIds: ['bookingHero', 'book'] },
+            { id: 'booking', label: 'Booking Form', icon: '📅', description: 'Bokningsformulär', bridgeSectionIds: ['booking', 'booking:form'] },
         ]
     },
     {
