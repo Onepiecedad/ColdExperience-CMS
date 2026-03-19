@@ -115,14 +115,21 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'hero.feature2Desc', type: 'textarea', translatable: true, label: 'Feature 2 Description' },
         { key: 'hero.feature3Title', type: 'text', translatable: true, label: 'Feature 3 Title' },
         { key: 'hero.feature3Desc', type: 'textarea', translatable: true, label: 'Feature 3 Description' },
-
-
+        // Media
+        { key: 'hero.backgroundVideoUrl', type: 'url', translatable: false, label: 'Hero Background Video' },
+        { key: 'hero.posterImageUrl', type: 'url', translatable: false, label: 'Hero Poster Image' },
+        { key: 'features.feature1VideoUrl', type: 'url', translatable: false, label: 'Feature 1 Video' },
+        { key: 'features.feature2VideoUrl', type: 'url', translatable: false, label: 'Feature 2 Video' },
+        { key: 'features.feature3VideoUrl', type: 'url', translatable: false, label: 'Feature 3 Video' },
+        { key: 'features.feature4VideoUrl', type: 'url', translatable: false, label: 'Feature 4 Video' },
+        { key: 'ownerSection.ownerImageUrl', type: 'url', translatable: false, label: 'Owner Photo' },
     ],
 
     'hero:featuredVideo': [
         { key: 'featuredVideo.title', type: 'text', translatable: true, label: 'Section Title' },
         { key: 'featuredVideo.description', type: 'textarea', translatable: true, label: 'Section Description' },
         { key: 'featuredVideo.youtubeUrl', type: 'url', translatable: false, label: 'YouTube URL' },
+        { key: 'featuredVideo.posterUrl', type: 'url', translatable: false, label: 'YouTube Poster Image' },
     ],
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -270,6 +277,10 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'pages.laplandHoliday.cta.primaryCta', type: 'text', translatable: true, label: 'CTA Primary Button' },
         { key: 'pages.laplandHoliday.cta.secondaryCta', type: 'text', translatable: true, label: 'CTA Secondary Button' },
         { key: 'pages.laplandHoliday.cta.outlineCta', type: 'text', translatable: true, label: 'CTA Outline Button' },
+        // Media
+        { key: 'packages.hero.videoSrc', type: 'url', translatable: false, label: 'Hero Video' },
+        { key: 'packages.hero.poster', type: 'url', translatable: false, label: 'Hero Poster' },
+        { key: 'packages.cta.backgroundImage', type: 'url', translatable: false, label: 'CTA Background Image' },
     ],
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -373,6 +384,9 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'book.hero.subtitle', type: 'textarea', translatable: true, label: 'Book: Hero Subtitle' },
         { key: 'book.hero.title1', type: 'text', translatable: true, label: 'Book: Hero Title 1' },
         { key: 'book.hero.title2', type: 'text', translatable: true, label: 'Book: Hero Title 2' },
+        // Media
+        { key: 'booking.hero.videoSrc', type: 'url', translatable: false, label: 'Hero Video' },
+        { key: 'booking.hero.poster', type: 'url', translatable: false, label: 'Hero Poster' },
     ],
 
     // Booking form — validation messages, labels, summary, toasts
@@ -504,6 +518,9 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'contact.toast.missingTitle', type: 'text', translatable: true, label: 'Contact Toast: Missing Title' },
         { key: 'contact.toast.sentDesc', type: 'text', translatable: true, label: 'Contact Toast: Sent Description' },
         { key: 'contact.toast.sentTitle', type: 'text', translatable: true, label: 'Contact Toast: Sent Title' },
+        // Media
+        { key: 'contact.hero.videoSrc', type: 'url', translatable: false, label: 'Hero Video' },
+        { key: 'contact.hero.poster', type: 'url', translatable: false, label: 'Hero Poster' },
     ],
 
     // FAQ section — questions and answers
@@ -532,6 +549,10 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'faq.hero.title1', type: 'text', translatable: true, label: 'FAQ Hero: Title 1' },
         { key: 'faq.hero.title2', type: 'text', translatable: true, label: 'FAQ Hero: Title 2' },
         { key: 'faq.meta.description', type: 'textarea', translatable: true, label: 'FAQ: Meta Description' },
+        // Media
+        { key: 'faq.hero.videoSrc', type: 'url', translatable: false, label: 'FAQ Hero Video' },
+        { key: 'faq.hero.poster', type: 'url', translatable: false, label: 'FAQ Hero Poster' },
+        { key: 'faq.clothesImage', type: 'url', translatable: false, label: 'Clothes Packing Image' },
     ],
 
     // ── Gallery: Hero ────────────────────────────────────────────────────
@@ -541,8 +562,8 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'gallery.heroSubtitle', type: 'textarea', translatable: true, label: 'Hero Subtitle' },
         { key: 'gallery.heroButton1', type: 'text', translatable: true, label: 'Hero Button 1' },
         { key: 'gallery.heroButton2', type: 'text', translatable: true, label: 'Hero Button 2' },
-        { key: 'gallery.media.heroVideo', type: 'text', translatable: false, label: 'Hero Background Video' },
-        { key: 'gallery.media.heroPoster', type: 'text', translatable: false, label: 'Hero Poster Image' },
+        { key: 'gallery.hero.videoSrc', type: 'url', translatable: false, label: 'Hero Background Video' },
+        { key: 'gallery.hero.poster', type: 'url', translatable: false, label: 'Hero Poster Image' },
     ],
 
     // ── Gallery: Images (captions — ordered matching website gallery) ────
@@ -674,6 +695,15 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'experiences.snowmobileFeature4', type: 'text', translatable: true, label: 'Experiences: Snowmobile Feature 4' },
         { key: 'experiences.snowmobileTitle', type: 'text', translatable: true, label: 'Experiences: Snowmobile Title' },
         { key: 'experiences.title', type: 'text', translatable: true, label: 'Experiences: Full Title', hint: 'e.g. Magical Winter Adventures' },
+        // Media
+        { key: 'experiences.snowmobile.videoSrc', type: 'url', translatable: false, label: 'Snowmobile Video' },
+        { key: 'experiences.snowmobile.poster', type: 'url', translatable: false, label: 'Snowmobile Poster' },
+        { key: 'experiences.northernLights.videoSrc', type: 'url', translatable: false, label: 'Northern Lights Video' },
+        { key: 'experiences.northernLights.poster', type: 'url', translatable: false, label: 'Northern Lights Poster' },
+        { key: 'experiences.dogSledding.videoSrc', type: 'url', translatable: false, label: 'Dog Sledding Video' },
+        { key: 'experiences.dogSledding.poster', type: 'url', translatable: false, label: 'Dog Sledding Poster' },
+        { key: 'experiences.lodging.videoSrc', type: 'url', translatable: false, label: 'Lodging Video' },
+        { key: 'experiences.lodging.poster', type: 'url', translatable: false, label: 'Lodging Poster' },
     ],
 
     // Meet the Hosts — owner bios, values, lifestyle
