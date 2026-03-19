@@ -267,11 +267,17 @@ export function PreviewEditorScreen() {
         navigate(path, { replace: true });
 
         // Tell the preview to scroll to this section
+        // Use the first bridgeSectionId (matches DOM data-cms-section attribute)
+        // since CMS section IDs (e.g. "bookingHero") differ from DOM attributes
+        // (e.g. "booking:hero") on several pages.
         if (iframeRef.current?.contentWindow) {
+            const newPage = getPageById(newPageId);
+            const targetSec = newPage?.sections.find(s => s.id === newSectionId);
+            const bridgeId = targetSec?.bridgeSectionIds?.[0] || newSectionId;
             iframeRef.current.contentWindow.postMessage({
                 source: 'coldexperience-cms',
                 type: 'scroll-to-section',
-                sectionId: newSectionId,
+                sectionId: bridgeId,
             }, '*');
         }
 
