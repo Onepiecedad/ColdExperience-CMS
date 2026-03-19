@@ -521,14 +521,6 @@ export const CONTENT_SCHEMA: Record<SchemaSection, ContentFieldSchema[]> = {
         { key: 'contact.ctaSubtitle', type: 'textarea', translatable: true, label: 'CTA Subtitle' },
         { key: 'contact.callNow', type: 'text', translatable: true, label: 'CTA: Call Button' },
         { key: 'contact.sendEmail', type: 'text', translatable: true, label: 'CTA: Email Button' },
-        // Toast notifications
-        { key: 'contact.toast.sentTitle', type: 'text', translatable: true, label: 'Toast: Sent Title' },
-        { key: 'contact.toast.sentDesc', type: 'text', translatable: true, label: 'Toast: Sent Description' },
-        { key: 'contact.toast.missingTitle', type: 'text', translatable: true, label: 'Toast: Missing Title' },
-        { key: 'contact.toast.missingDesc', type: 'text', translatable: true, label: 'Toast: Missing Description' },
-        // SEO
-        { key: 'contact.pageTitle', type: 'text', translatable: true, label: 'SEO: Page Title' },
-        { key: 'contact.pageDescription', type: 'textarea', translatable: true, label: 'SEO: Page Description' },
     ],
 
     // ── FAQ: Hero ─────────────────────────────────────────────────────────
