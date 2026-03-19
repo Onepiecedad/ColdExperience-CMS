@@ -24,6 +24,7 @@ export interface Section {
     icon: string;
     description: string;
     dataPageId?: string;   // DB page_id slug if different from parent page
+    websiteUrl?: string;    // Override page-level URL for preview navigation (e.g. FAQ sections → /faq)
     websiteAnchor?: string; // DOM element ID on the website for preview scroll sync
     bridgeSectionIds?: string[]; // Accepted bridge IDs from the website (legacy aliases allowed)
     mediaPageIds?: string[]; // Accepted cms_media.page_id values (legacy aliases allowed)
@@ -123,8 +124,8 @@ export const WEBSITE_PAGES: PageConfig[] = [
         sections: [
             { id: 'contactHero', label: 'Contact Hero', icon: '🎬', description: 'Contact hero-sektion', bridgeSectionIds: ['contact:hero'], mediaPageIds: ['contact'], mediaSectionIds: ['contactHero'] },
             { id: 'contact', label: 'Contact Form', icon: '✉', description: 'Kontaktformulär och info', bridgeSectionIds: ['contact', 'contact:form', 'contact:info'], mediaPageIds: ['contact'], mediaSectionIds: ['contact'] },
-            { id: 'faqHero', label: 'FAQ Hero', icon: '🎬', description: 'FAQ-sidans hero-sektion', bridgeSectionIds: ['faq:hero'], mediaPageIds: ['contact'], mediaSectionIds: ['faqHero'] },
-            { id: 'faq', label: 'FAQ Questions', icon: '❓', description: 'Vanliga frågor och CTA', bridgeSectionIds: ['faq', 'faq:questions'], mediaPageIds: ['contact'], mediaSectionIds: ['faq'] },
+            { id: 'faqHero', label: 'FAQ Hero', icon: '🎬', description: 'FAQ-sidans hero-sektion', websiteUrl: '/faq', bridgeSectionIds: ['faq:hero'], mediaPageIds: ['contact'], mediaSectionIds: ['faqHero'] },
+            { id: 'faq', label: 'FAQ Questions', icon: '❓', description: 'Vanliga frågor och CTA', websiteUrl: '/faq', bridgeSectionIds: ['faq', 'faq:questions'], mediaPageIds: ['contact'], mediaSectionIds: ['faq'] },
         ]
     },
     {

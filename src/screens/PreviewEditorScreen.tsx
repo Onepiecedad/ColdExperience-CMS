@@ -282,10 +282,14 @@ export function PreviewEditorScreen() {
                 targetPath = getSubsectionWebsiteUrl(newSubsectionId);
             }
 
-            // Different page? Navigate to the page URL
+            // Section has its own URL override? (e.g. FAQ sections → /faq)
             if (!targetPath) {
                 const newPage = getPageById(newPageId);
-                if (newPage?.websiteUrl && newPage.id !== activePageId) {
+                const newSection = newPage?.sections.find(s => s.id === newSectionId);
+                if (newSection?.websiteUrl) {
+                    targetPath = newSection.websiteUrl === '/' ? '' : newSection.websiteUrl;
+                } else if (newPage?.websiteUrl && newPage.id !== activePageId) {
+                    // Different page? Navigate to the page URL
                     targetPath = newPage.websiteUrl === '/' ? '' : newPage.websiteUrl;
                 }
             }
