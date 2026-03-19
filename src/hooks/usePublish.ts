@@ -60,6 +60,20 @@ export interface PublishSummary {
     totalChanges: number;
 }
 
+export interface PublishResult {
+    sectionsPublished: string[];
+    fieldsPublished: number;
+    contentVersion: number;
+}
+
+function isEmptyRequiredValue(value: string, fieldType: 'text' | 'textarea' | 'richtext' | 'url' | 'media'): boolean {
+    if (!['text', 'textarea', 'richtext'].includes(fieldType)) {
+        return false;
+    }
+
+    return value.trim().length === 0;
+}
+
 // ============================================================================
 // HOOK
 // ============================================================================
@@ -123,6 +137,19 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
                 const fieldSchema = getFieldSchema(sectionKey, contentKey);
 
                 if (isValid && fieldSchema) {
+                    if (isEmptyRequiredValue(draft.value, fieldSchema.type)) {
+                        blockedDrafts.push({
+                            draft,
+                            contentKey,
+                            reason: `Field "${fieldSchema.label}" cannot be published empty`,
+                        });
+                        logInfo('publish', `Blocked empty required field: ${contentKey}`, {
+                            sectionKey,
+                            label: fieldSchema.label,
+                        });
+                        continue;
+                    }
+
                     draftsToPublish.push({
                         draft,
                         contentKey,
@@ -233,8 +260,8 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
     /**
      * Execute the publish operation
      */
-    const executePublish = useCallback(async (): Promise<boolean> => {
-        if (!pageId || !pageSlug || !summary) return false;
+    const executePublish = useCallback(async (): Promise<PublishResult | null> => {
+        if (!pageId || !pageSlug || !summary) return null;
 
         const currentSummary = summary;
 
@@ -290,13 +317,17 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
                 fieldsPublished: currentSummary.draftsToPublish.length,
             });
 
-            return true;
+            return {
+                sectionsPublished: currentSummary.sectionsAffected,
+                fieldsPublished: currentSummary.draftsToPublish.length,
+                contentVersion: newVersion,
+            };
         } catch (err) {
             const message = err instanceof Error ? err.message : 'Unknown error';
             setError(message);
             setStatus('error');
             logInfo('publish', 'Publish failed', { error: message });
-            return false;
+            return null;
         }
     }, [pageId, pageSlug, summary]);
 
@@ -324,7 +355,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
         reset,
 
         // Computed
-        canPublish: summary !== null && summary.draftsToPublish.length > 0 && status !== 'loading',
+        canPublish: summary !== null && summary.draftsToPublish.length > 0 && summary.blockedDrafts.length === 0 && status !== 'loading',
         hasBlockedDrafts: summary !== null && summary.blockedDrafts.length > 0,
     };
 }

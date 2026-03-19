@@ -30,7 +30,7 @@ interface PublishModalProps {
     pageId: string | undefined;
     pageSlug: string | undefined;
     pageLabel: string;
-    onPublishSuccess?: () => void;
+    onPublishSuccess?: (sectionsPublished: string[]) => void;
 }
 
 // Language labels
@@ -80,9 +80,9 @@ export function PublishModal({
     }, [isOpen, reset]);
 
     const handlePublish = async () => {
-        const success = await executePublish();
-        if (success) {
-            onPublishSuccess?.();
+        const result = await executePublish();
+        if (result) {
+            onPublishSuccess?.(result.sectionsPublished);
             setTimeout(() => onClose(), 1500); // Show success state briefly
         }
     };
@@ -336,7 +336,9 @@ export function PublishModal({
                     {summary && status !== 'success' && (
                         <div className="px-6 py-4 border-t border-white/[0.06] flex items-center justify-between gap-4">
                             <div className="text-xs text-white/30">
-                                Version: {meta?.content_version ?? 0} → {(meta?.content_version ?? 0) + 1}
+                                {hasBlockedDrafts
+                                    ? 'Lös blockerade fält innan publicering.'
+                                    : `Version: ${meta?.content_version ?? 0} → ${(meta?.content_version ?? 0) + 1}`}
                             </div>
                             <div className="flex gap-3">
                                 <button

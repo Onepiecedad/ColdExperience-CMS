@@ -399,7 +399,8 @@ export async function uploadMedia(
 
 export async function deleteMedia(mediaId: string, storagePath: string): Promise<void> {
     // Delete from storage
-    await supabase.storage.from('media').remove([storagePath]);
+    const { error: storageError } = await supabase.storage.from('media').remove([storagePath]);
+    if (storageError) throw storageError;
 
     // Delete record
     const { error } = await supabase

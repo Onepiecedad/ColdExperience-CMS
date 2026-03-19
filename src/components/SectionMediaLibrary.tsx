@@ -51,6 +51,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
     const [videoPlaying, setVideoPlaying] = useState(false);
     const [videoMuted, setVideoMuted] = useState(true);
     const [showMediaPicker, setShowMediaPicker] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
     // Helper function to check if media is a video
@@ -92,10 +93,12 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
     const fetchSectionMedia = useCallback(async () => {
         try {
             setLoading(true);
+            setError(null);
             const data = await getMediaBySection(pageId, sectionId);
             setSectionMedia(data);
         } catch (err) {
             console.error('Failed to fetch section media:', err);
+            setError(err instanceof Error ? err.message : 'Failed to load section media.');
         } finally {
             setLoading(false);
         }
@@ -104,6 +107,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
     // Fetch all media for the picker
     const fetchAllMedia = useCallback(async () => {
         try {
+            setError(null);
             const data = await getMedia();
             // Filter out media already assigned to this section
             const availableMedia = data.filter(
@@ -112,6 +116,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
             setAllMedia(availableMedia);
         } catch (err) {
             console.error('Failed to fetch all media:', err);
+            setError(err instanceof Error ? err.message : 'Failed to load media library.');
         }
     }, [pageId, sectionId]);
 
@@ -124,6 +129,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
         if (!files || files.length === 0) return;
 
         setUploading(true);
+        setError(null);
         try {
             for (const file of Array.from(files)) {
                 const uploaded = await uploadMediaToSection(file, pageId, sectionId);
@@ -131,6 +137,7 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
             }
         } catch (err) {
             console.error('Upload failed:', err);
+            setError(err instanceof Error ? err.message : 'Upload failed. Please try again.');
         } finally {
             setUploading(false);
         }
@@ -141,34 +148,40 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
         if (!confirm('Are you sure you want to delete this media?')) return;
 
         try {
+            setError(null);
             await deleteMedia(item.id, item.storage_path);
             setSectionMedia(prev => prev.filter(m => m.id !== item.id));
             setSelectedMedia(null);
         } catch (err) {
             console.error('Delete failed:', err);
+            setError(err instanceof Error ? err.message : 'Failed to delete media.');
         }
     };
 
     // Handle assigning media from the global library
     const handleAssignMedia = async (item: CmsMedia) => {
         try {
+            setError(null);
             await assignMediaToSection(item.id, pageId, sectionId);
             // Update local state
             setSectionMedia(prev => [{ ...item, page_id: pageId, section_id: sectionId }, ...prev]);
             setAllMedia(prev => prev.filter(m => m.id !== item.id));
         } catch (err) {
             console.error('Failed to assign media:', err);
+            setError(err instanceof Error ? err.message : 'Failed to link media to this section.');
         }
     };
 
     // Handle unassigning media from this section
     const handleUnassign = async (item: CmsMedia) => {
         try {
+            setError(null);
             await unassignMedia(item.id);
             setSectionMedia(prev => prev.filter(m => m.id !== item.id));
             setSelectedMedia(null);
         } catch (err) {
             console.error('Failed to unassign media:', err);
+            setError(err instanceof Error ? err.message : 'Failed to unlink media from this section.');
         }
     };
 
@@ -221,6 +234,12 @@ export const SectionMediaLibrary: React.FC<SectionMediaLibraryProps> = ({
 
     return (
         <div className="space-y-6">
+            {error && (
+                <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                    {error}
+                </div>
+            )}
+
             {/* Section Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">

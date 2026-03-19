@@ -61,12 +61,14 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
     // Library tab state
     const [libraryMedia, setLibraryMedia] = useState<CmsMedia[]>([]);
     const [libraryLoading, setLibraryLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const openModal = () => {
         setUrlInput(value || '');
         setActiveTab('upload');
+        setError(null);
         setOpen(true);
     };
 
@@ -78,12 +80,14 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
     const handleFileUpload = useCallback(async (files: FileList | null) => {
         if (!files || files.length === 0) return;
         setUploading(true);
+        setError(null);
         try {
             const uploaded = await uploadMedia(files[0]);
             onChange(uploaded.public_url);
             closeModal();
         } catch (err) {
             console.error('Upload failed:', err);
+            setError(err instanceof Error ? err.message : 'Upload failed. Please try again.');
         } finally {
             setUploading(false);
         }
@@ -112,6 +116,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
 
     const handleTabChange = async (tab: Tab) => {
         setActiveTab(tab);
+        setError(null);
         if (tab === 'library' && libraryMedia.length === 0) {
             setLibraryLoading(true);
             try {
@@ -119,6 +124,7 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                 setLibraryMedia(data);
             } catch (err) {
                 console.error('Failed to load library:', err);
+                setError(err instanceof Error ? err.message : 'Failed to load media library.');
             } finally {
                 setLibraryLoading(false);
             }
@@ -268,6 +274,12 @@ export const MediaFieldEditor: React.FC<MediaFieldEditorProps> = ({
                                 <X size={16} />
                             </button>
                         </div>
+
+                        {error && (
+                            <div className="mx-5 mt-4 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                                {error}
+                            </div>
+                        )}
 
                         {/* Tabs */}
                         <div className="flex gap-1 px-5 pt-4">

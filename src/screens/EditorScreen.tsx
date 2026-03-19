@@ -176,6 +176,8 @@ export function EditorScreen({
         updateDraft,
         getDraftValue,
         hasDraft,
+        flushSync,
+        clearDraftsForSection,
         syncStatus,
         pendingSyncCount,
     } = useDraftStore();
@@ -513,11 +515,15 @@ export function EditorScreen({
                             <div className="flex items-center gap-2">
                                 <SyncStatusBadge />
                                 <button
-                                    onClick={() => setShowPublishModal(true)}
+                                    onClick={async () => {
+                                        await flushSync();
+                                        setShowPublishModal(true);
+                                    }}
+                                    disabled={syncStatus === 'syncing'}
                                     className="flex items-center gap-1.5 px-3 py-1.5 bg-[#3f7ba7]/20 text-[#5a9bc7] hover:bg-[#3f7ba7]/30 hover:text-white border border-[#3f7ba7]/30 rounded-lg text-xs font-medium transition-all"
                                 >
                                     <Upload size={12} />
-                                    <span>Publish</span>
+                                    <span>{syncStatus === 'syncing' ? 'Syncing...' : 'Publish'}</span>
                                 </button>
                             </div>
                         </div>
@@ -1024,7 +1030,12 @@ export function EditorScreen({
                 pageId={dbPage?.id}
                 pageSlug={pageId}
                 pageLabel={pageLabel}
-                onPublishSuccess={() => {
+                onPublishSuccess={(sectionsPublished) => {
+                    if (dbPage?.id) {
+                        sectionsPublished.forEach(section => {
+                            void clearDraftsForSection(dbPage.id, section);
+                        });
+                    }
                     refetch();
                     setShowPublishModal(false);
                 }}
