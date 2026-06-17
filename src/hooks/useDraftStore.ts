@@ -29,6 +29,7 @@ interface DraftKey {
 interface LocalDraft extends DraftKey {
     value: string;
     isDirty: boolean;  // Has local changes not yet synced
+    isExplicitEmpty: boolean; // Tracks a deliberate clear so empty drafts still override published content
 }
 
 export interface DraftStoreState {
@@ -65,6 +66,7 @@ function dbToLocal(dbDraft: CmsDraft): LocalDraft {
         language: dbDraft.language,
         value: dbDraft.value,
         isDirty: false,
+        isExplicitEmpty: dbDraft.value === '',
     };
 }
 
@@ -239,6 +241,7 @@ export function useDraftStore() {
         const localDraft: LocalDraft = {
             ...params,
             isDirty: true,
+            isExplicitEmpty: params.value === '',
         };
 
         pendingSyncRef.current.set(key, localDraft);
@@ -282,13 +285,6 @@ export function useDraftStore() {
             return null;
         }
 
-        // Persisted empty-string drafts are treated as absent so they cannot
-        // mask the published content. Locally edited empty drafts (isDirty=true)
-        // still render immediately while the user is editing.
-        if (draft.value === '' && !draft.isDirty) {
-            return null;
-        }
-
         return draft.value;
     }, [state.drafts]);
 
@@ -308,7 +304,7 @@ export function useDraftStore() {
         if (!draft) {
             return false;
         }
-        return !(draft.value === '' && !draft.isDirty);
+        return draft.isExplicitEmpty || draft.value !== '';
     }, [state.drafts]);
 
     // =========================================================================
@@ -356,12 +352,18 @@ export function useDraftStore() {
     // =========================================================================
 
     useEffect(() => {
+        const pendingSyncQueue = pendingSyncRef.current;
+
         return () => {
             if (syncTimeoutRef.current) {
                 clearTimeout(syncTimeoutRef.current);
             }
+
+            if (pendingSyncQueue.size > 0) {
+                void flushSync();
+            }
         };
-    }, []);
+    }, [flushSync]);
 
     // =========================================================================
     // Return

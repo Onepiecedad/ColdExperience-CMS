@@ -1028,7 +1028,8 @@ export function EditorScreen({
                 isOpen={showPublishModal}
                 onClose={() => setShowPublishModal(false)}
                 pageId={dbPage?.id}
-                pageSlug={pageId}
+                schemaPageSlug={pageId}
+                contentPageSlug={dbPage?.slug}
                 pageLabel={pageLabel}
                 onPublishSuccess={(sectionsPublished) => {
                     if (dbPage?.id) {

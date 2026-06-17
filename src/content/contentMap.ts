@@ -262,12 +262,37 @@ const URL_TO_SUBSECTION: Record<string, { pageId: string; sectionId: string; sub
  * returns the English website URL slug (e.g. "husky-ride").
  * Used to navigate the preview iframe to the correct detail page.
  */
-const SUBSECTION_TO_URL_SLUG: Record<string, string> = {};
+const SUBSECTION_URL_SLUGS: Record<string, Partial<Record<LanguageCode, string>>> = {};
 (() => {
-    // Build from URL_TO_SUBSECTION, keeping only the first (English) match per subsectionId
+    const slugLanguageOrder: LanguageCode[] = ['en', 'sv', 'de', 'pl'];
+    const detectSlugLanguage = (slug: string): LanguageCode => {
+        const slugIndex = Object.keys(URL_TO_SUBSECTION).indexOf(slug);
+        if (slugIndex < 4) return 'en';
+        if (slugIndex < 8) return 'sv';
+        if (slugIndex < 11) return 'de';
+        return 'pl';
+    };
+
     for (const [slug, info] of Object.entries(URL_TO_SUBSECTION)) {
-        if (!SUBSECTION_TO_URL_SLUG[info.subsectionId]) {
-            SUBSECTION_TO_URL_SLUG[info.subsectionId] = slug;
+        const language = detectSlugLanguage(slug);
+        const languageMap = SUBSECTION_URL_SLUGS[info.subsectionId] || {};
+        languageMap[language] = slug;
+
+        // Always retain the first slug as an English/default fallback.
+        if (!languageMap.en) {
+            languageMap.en = slug;
+        }
+
+        SUBSECTION_URL_SLUGS[info.subsectionId] = languageMap;
+    }
+
+    // Keep the language order explicit to ensure fallbacks remain deterministic.
+    for (const subsectionId of Object.keys(SUBSECTION_URL_SLUGS)) {
+        const languageMap = SUBSECTION_URL_SLUGS[subsectionId];
+        for (const language of slugLanguageOrder) {
+            if (!languageMap[language] && languageMap.en) {
+                languageMap[language] = languageMap.en;
+            }
         }
     }
 })();
@@ -276,8 +301,8 @@ const SUBSECTION_TO_URL_SLUG: Record<string, string> = {};
  * Get the website URL for a subsection to use in the preview iframe.
  * Returns e.g. "/husky-ride" for subsectionId "dogsledding".
  */
-export function getSubsectionWebsiteUrl(subsectionId: string): string | undefined {
-    const slug = SUBSECTION_TO_URL_SLUG[subsectionId];
+export function getSubsectionWebsiteUrl(subsectionId: string, language: LanguageCode = 'en'): string | undefined {
+    const slug = SUBSECTION_URL_SLUGS[subsectionId]?.[language] || SUBSECTION_URL_SLUGS[subsectionId]?.en;
     return slug ? `/${slug}` : undefined;
 }
 

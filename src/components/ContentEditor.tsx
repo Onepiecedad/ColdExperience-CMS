@@ -59,7 +59,7 @@ export const ContentEditor: React.FC = () => {
         const fetchContent = async () => {
             setLoading(true);
             try {
-                const contentData = await getContentByPage(selectedPage.id);
+                const contentData = await getContentByPage(selectedPage.slug);
                 setContent(contentData);
                 setError(null);
             } catch (err) {
@@ -187,7 +187,28 @@ export const ContentEditor: React.FC = () => {
                                             : c
                                     )
                                 );
-                                saveField({ ...item, content_en: url }, url);
+                                setSavingFields(prev => new Set(prev).add(item.id));
+                                void Promise.all(
+                                    LANGUAGES.map((lang) => updateContent(item.id, lang.code, url))
+                                ).then(() => {
+                                    setSavedFields(prev => new Set(prev).add(item.id));
+                                    setTimeout(() => {
+                                        setSavedFields(prev => {
+                                            const next = new Set(prev);
+                                            next.delete(item.id);
+                                            return next;
+                                        });
+                                    }, 2000);
+                                }).catch((err) => {
+                                    console.error('Failed to save media field:', err);
+                                    setError('Failed to save changes');
+                                }).finally(() => {
+                                    setSavingFields(prev => {
+                                        const next = new Set(prev);
+                                        next.delete(item.id);
+                                        return next;
+                                    });
+                                });
                             }}
                         />
                         {/* Save indicator */}

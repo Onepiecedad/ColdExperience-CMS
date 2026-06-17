@@ -78,7 +78,11 @@ function isEmptyRequiredValue(value: string, fieldType: 'text' | 'textarea' | 'r
 // HOOK
 // ============================================================================
 
-export function usePublish(pageId: string | undefined, pageSlug: string | undefined) {
+export function usePublish(
+    pageId: string | undefined,
+    schemaPageSlug: string | undefined,
+    contentPageSlug: string | undefined
+) {
     const [status, setStatus] = useState<PublishStatus>('idle');
     const [error, setError] = useState<string | null>(null);
     const [summary, setSummary] = useState<PublishSummary | null>(null);
@@ -96,7 +100,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
         setStatus('loading');
         setError(null);
 
-        logInfo('publish', 'Collecting drafts for publish', { pageId, pageSlug });
+        logInfo('publish', 'Collecting drafts for publish', { pageId, schemaPageSlug, contentPageSlug });
 
         try {
             // Fetch all drafts for the page
@@ -130,7 +134,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
                 }
 
                 // Build section key for schema lookup
-                const sectionKey = `${pageSlug}:${draft.section}` as SchemaSection;
+                const sectionKey = `${schemaPageSlug}:${draft.section}` as SchemaSection;
 
                 // Validate against schema
                 const isValid = isValidKey(sectionKey, contentKey);
@@ -239,7 +243,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             logInfo('publish', 'Collect failed', { error: message });
             return null;
         }
-    }, [pageId, pageSlug]);
+    }, [pageId, schemaPageSlug, contentPageSlug]);
 
     /**
      * Toggle a translation suggestion
@@ -261,7 +265,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
      * Execute the publish operation
      */
     const executePublish = useCallback(async (): Promise<PublishResult | null> => {
-        if (!pageId || !pageSlug || !summary) return null;
+        if (!pageId || !contentPageSlug || !summary) return null;
 
         const currentSummary = summary;
 
@@ -278,7 +282,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             for (const item of currentSummary.draftsToPublish) {
                 await upsertContentFromDraft(
                     item.draft.content_id,
-                    pageSlug,
+                    contentPageSlug,
                     item.draft.section,
                     item.contentKey,
                     item.draft.language,
@@ -329,7 +333,7 @@ export function usePublish(pageId: string | undefined, pageSlug: string | undefi
             logInfo('publish', 'Publish failed', { error: message });
             return null;
         }
-    }, [pageId, pageSlug, summary]);
+    }, [pageId, contentPageSlug, summary]);
 
     /**
      * Reset the publish state

@@ -154,8 +154,14 @@ export function useEditorData(
                 section: sectionId,
             });
         } catch (err) {
-            const message = err instanceof Error ? err.message : 'Failed to load content';
-            logError('EditorData', `Error: ${message}`, { pageSlug, sectionId });
+            let message = 'Failed to load content';
+            if (err instanceof Error) {
+                message = err.message;
+            } else if (err && typeof err === 'object' && 'message' in err) {
+                const raw = (err as { message: unknown }).message;
+                if (typeof raw === 'string' && raw.length > 0) message = raw;
+            }
+            logError('EditorData', `Error: ${message}`, { pageSlug, sectionId, raw: err });
             console.error('Error fetching editor data:', err);
             setError(message);
         } finally {

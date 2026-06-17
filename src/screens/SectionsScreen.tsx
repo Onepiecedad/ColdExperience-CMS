@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, Upload, CloudOff, Loader2 } from 'lucide-react';
-import { getPageById } from '../content/contentMap';
+import { getPageById, getDataPageId } from '../content/contentMap';
 import { useDraftStore } from '../hooks/useDraftStore';
 import { PublishModal } from '../components/PublishModal';
 import { getDraftsForPage, getPageBySlug } from '../services/supabase';
@@ -27,6 +27,20 @@ export function SectionsScreen() {
     const { syncStatus } = useDraftStore();
 
     const page = pageId ? getPageById(pageId) : undefined;
+    const contentPageSlug = page
+        ? (() => {
+            const slugs = new Set<string>();
+
+            page.sections.forEach((section) => {
+                slugs.add(getDataPageId(page.id, section.id));
+                section.subsections?.forEach((subsection) => {
+                    slugs.add(subsection.dataPageId || getDataPageId(page.id, section.id));
+                });
+            });
+
+            return slugs.size === 1 ? Array.from(slugs)[0] : null;
+        })()
+        : null;
 
     // Monitor online status
     useEffect(() => {
@@ -44,10 +58,14 @@ export function SectionsScreen() {
 
     // Fetch database page ID and draft count
     useEffect(() => {
-        if (!pageId) return;
+        if (!page || !contentPageSlug) {
+            setDbPageId(null);
+            setDraftCount(0);
+            return;
+        }
 
         // Fetch the database page by slug
-        getPageBySlug(pageId)
+        getPageBySlug(contentPageSlug)
             .then(dbPage => {
                 if (dbPage) {
                     setDbPageId(dbPage.id);
@@ -62,14 +80,16 @@ export function SectionsScreen() {
             .catch(err => {
                 logInfo('sections', 'Failed to fetch draft count', { error: err.message });
             });
-    }, [pageId]);
+    }, [page, contentPageSlug]);
 
     // Determine if publish is available
     // 'idle' = no pending syncs, 'synced' = just finished syncing - both are ready states
     const isReadyToPublish = syncStatus === 'idle' || syncStatus === 'synced';
-    const canOpenPublish = isOnline && isReadyToPublish && draftCount > 0;
+    const canOpenPublish = isOnline && isReadyToPublish && draftCount > 0 && !!contentPageSlug;
     const publishDisabledReason = !isOnline
         ? 'Offline'
+        : !contentPageSlug
+            ? 'Legacy publish stöds inte för blandade datasidor'
         : syncStatus === 'syncing'
             ? 'Synkar...'
             : syncStatus === 'error'
@@ -218,7 +238,8 @@ export function SectionsScreen() {
                     isOpen={isPublishModalOpen}
                     onClose={() => setIsPublishModalOpen(false)}
                     pageId={dbPageId}
-                    pageSlug={page.id}
+                    schemaPageSlug={page.id}
+                    contentPageSlug={contentPageSlug || undefined}
                     pageLabel={page.label}
                     onPublishSuccess={handlePublishSuccess}
                 />
@@ -228,4 +249,3 @@ export function SectionsScreen() {
 }
 
 export default SectionsScreen;
-

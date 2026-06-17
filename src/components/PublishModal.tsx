@@ -28,7 +28,8 @@ interface PublishModalProps {
     isOpen: boolean;
     onClose: () => void;
     pageId: string | undefined;
-    pageSlug: string | undefined;
+    schemaPageSlug: string | undefined;
+    contentPageSlug: string | undefined;
     pageLabel: string;
     onPublishSuccess?: (sectionsPublished: string[]) => void;
 }
@@ -45,7 +46,8 @@ export function PublishModal({
     isOpen,
     onClose,
     pageId,
-    pageSlug,
+    schemaPageSlug,
+    contentPageSlug,
     pageLabel,
     onPublishSuccess,
 }: PublishModalProps) {
@@ -60,7 +62,7 @@ export function PublishModal({
         reset,
         canPublish,
         hasBlockedDrafts,
-    } = usePublish(pageId, pageSlug);
+    } = usePublish(pageId, schemaPageSlug, contentPageSlug);
 
     const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
 

@@ -296,7 +296,7 @@ export function PreviewEditorScreen() {
 
             // Subsection? Navigate to its detail page (e.g. /husky-ride)
             if (newSubsectionId) {
-                targetPath = getSubsectionWebsiteUrl(newSubsectionId);
+                targetPath = getSubsectionWebsiteUrl(newSubsectionId, language);
             }
 
             // Section has its own URL override? (e.g. FAQ sections → /faq)
